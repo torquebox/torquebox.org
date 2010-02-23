@@ -11,14 +11,12 @@ layout: default
         = page.date.strftime( '%d %B %Y' )
     .body
       ~ content
-      #disqus_thread
-        &nbsp;
-      %script{:type=>'text/javascript', :src=>'http://disqus.com/forums/torquebox/embed.js' }
-      %noscript
-        %a{:href=>'http://disqus.com/forums/torquebox/?url=ref'} View the discussion thread
-        %a.dsq-brlink{:href=>'http://disqus.com'} 
-          blog comments powered by
-          %span.logo-disqus Disqus
+      :javascript
+        var idcomments_acct = '82f59e335081be13846c34fa627b3208';
+        var idcomments_post_id;
+        var idcomments_post_url;
+      %span#IDCommentsPostTitle{:style=>"display:none"}
+      %script{ :type=>'text/javascript', :src=>'http://www.intensedebate.com/js/genericCommentWrapperV2.js' }
 
 .prepend-1.span-9.last
   .box
