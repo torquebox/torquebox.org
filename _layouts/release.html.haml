@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+.span-14
+  .post
+    .byline
+      .author
+        = page.author
+      .date
+        = page.date.strftime( '%d %B %Y' )
+    .body
+      ~ content
+      #disqus_thread
+        &nbsp;
+      %script{:type=>'text/javascript', :src=>'http://disqus.com/forums/torquebox/embed.js' }
+      %noscript
+        %a{:href=>'http://disqus.com/forums/torquebox/?url=ref'} View the discussion thread
+        %a.dsq-brlink{:href=>'http://disqus.com'} 
+          blog comments powered by
+          %span.logo-disqus Disqus
+
+.prepend-1.span-9.last
+  .box
+    %h1
+      Release: #{page.version}
+    %ul
+      %li
+        %a{:href=>"http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-bin/#{page.version}/torquebox-bin-#{page.version}.zip"} Download #{page.version} binary
+      %li
+        %a{:href=>"/documentation/#{page.version}/"} Browse docs for #{page.version}
+      %li
+        %a{:href=>"http://github.com/torquebox/torquebox/tree/#{page.version}"} Browse sources for #{page.version}

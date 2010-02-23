@@ -39,6 +39,10 @@ title: Download
       %tr
         %td
           = release.version
+          - announcement = news_posts.find{|e| e.layout=='release' && e.version == release.version}
+          - if announcement
+            .announcement
+              %a{:href=>announcement.url} Release announcement
         %td
           %a{:href=>"http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-bin/#{release.version}/torquebox-bin-#{release.version}.zip"} ZIP Bundle
         %td

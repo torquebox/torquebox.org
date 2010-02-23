@@ -11,3 +11,9 @@ layout: default
         = page.date.strftime( '%d %B %Y' )
     .body
       ~ content
+      :javascript
+        var idcomments_acct = '82f59e335081be13846c34fa627b3208';
+        var idcomments_post_id;
+        var idcomments_post_url;
+      %span#IDCommentsPostTitle{:style=>"display:none"}
+      %script{ :type=>'text/javascript', :src=>'http://www.intensedebate.com/js/genericCommentWrapperV2.js' }
