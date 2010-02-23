@@ -1,7 +1,6 @@
 
 
 
-=begin
 releases.each do |release|
   doc_root = File.join( output_root, 'documentation', release.version )
   FileUtils.mkdir_p( doc_root )
@@ -17,4 +16,3 @@ releases.each do |release|
     end
   end
 end
-=end

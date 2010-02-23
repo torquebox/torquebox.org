@@ -7,7 +7,7 @@ class Post
     @day   = day
     @slug  = slug
     @page  = page
-    @page.extra_options['date'] = DateTime.civil( @year.to_i, @month.to_i, @day.to_i )
+    @page.extra_options['date'] = Time.utc( @year.to_i, @month.to_i, @day.to_i )
   end
 
   def body
