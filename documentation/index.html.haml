@@ -1,0 +1,35 @@
+---
+layout: default
+title: Documentation
+---
+
+.span-24.last.append-bottom
+  %h1{:style=>'text-align: center;'}
+    %a{:href=>"/documentation/#{releases.first.version}/"}Browse the latest documentation
+  
+
+.prepend-top
+  %p
+    Or you can browse historic documentation for prior releases.
+
+  %table.downloads
+    %tr
+      %th
+        Version
+      %th
+        Browse
+      %th
+        Download
+    - for release in releases
+      %tr
+        %td
+          #{release.version}
+        %td
+          %a{:href=>"/documentation/#{release.version}/"}Browse
+        %td
+          %a{:href=>"http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{release.version}/torquebox-docs-en_US-#{release.version}.pdf"} PDF
+          |
+          %a{:href=>"http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{release.version}/torquebox-docs-en_US-#{release.version}-html.zip"} Multi-page HTML Bundle
+          |
+          %a{:href=>"http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{release.version}/torquebox-docs-en_US-#{release.version}-html-single.zip"} Single-page HTML Bundle
+  

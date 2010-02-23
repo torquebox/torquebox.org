@@ -1,0 +1,13 @@
+---
+layout: default
+---
+
+.span-14.last
+  .post
+    .byline
+      .author
+        = page.author
+      .date
+        = page.date.strftime( '%d %B %Y' )
+    .body
+      ~ content
