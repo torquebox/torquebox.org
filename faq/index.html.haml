@@ -1,0 +1,41 @@
+---
+title: FAQ
+layout: default
+---
+
+.span-16.last
+  :markdown
+    # What is TorqueBox?
+  
+    TorqueBox is a small adaptation layer on top of Java application server from JBoss, [JBoss AS](http://jboss.org/jbossas/).
+  
+    It attempts to go beyond providing web-centric services (supporting Rails, Rack, Sinatra, etc),
+    to also expose other enterprise-grade services to Ruby applications.
+  
+    # If it's a small layer, why is it a 250mb download?
+  
+    One goal of the TorqueBox distribution is a simplified end-user experience. 
+    To accomplish this, the distribution includes a pre-integrated combination
+    of the TorqueBox code, the base JBoss AS application server, and the full
+    JRuby distribution, plus some useful gems such as Rails, Rack and Sinatra.
+  
+    The result is a 250mb distribution with everything you need (except for a JDK)
+    right in the tin.
+  
+    # Why is TorqueBox still in "beta"?
+  
+    TorqueBox is primarily developed by Bob McWhirter, the master of the perma-beta.
+  
+    Ultimately, the APIs are still shifting with each release, while we attempt
+    to figure out the correct way to make the power of JBoss technologies available
+    naturally to Rubyists.
+  
+    # Will TorqueBox ever support \[Python,Scala,Groovy,...\]
+  
+    Not directly, no.
+  
+    Of those, Python is the most interesting, and could certainly benefit
+    from a similar initiative. 
+  
+    Scala, Groovy, and any other more Java-natural language already integrate
+    pretty well with Java application servers, so what's there to do? 

@@ -19,6 +19,26 @@ inhibit_title: true
       <img src="/images/components.png"/>
     </div>
 .span-9.last
-  .latest-release.box
-    %h1 Latest Release
-    More information coming, taco
+  #latest-release.box
+    - announcement = site.news_posts.find{|e| e.layout=='release' && e.version == site.releases.first.version}
+    %h1 Latest: #{site.releases.first.version}
+    - if ( announcement )
+      %h2 Released #{announcement.date.strftime( '%d %B %Y' )}
+    .download
+      %a#download-link{:href=>"http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-bin/#{site.releases.first.version}/torquebox-bin-#{site.releases.first.version}.zip"} Download Now!
+      .details
+        (ZIP archive, #{site.releases.first.size}mb)
+        | 
+        %a{:href=>"/documentation/#{site.releases.first.version}/"} Documentation
+      - if announcement
+        .announcement
+          %a{:href=>announcement.url} Release announcement
+  #latest-news
+    %h1 Latest News
+    %h2 
+      %a{:href=>site.news_posts.first.url}= site.news_posts.first.title
+    %h3 #{site.news_posts.first.date.strftime( '%d %B %Y' )}
+    .body
+      #{summarize( html_to_text( site.news_posts.first.content ), 30 )}...
+    .tail
+      %a{:href=>site.news_posts.first.url} Read more

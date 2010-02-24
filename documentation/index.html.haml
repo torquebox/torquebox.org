@@ -5,7 +5,7 @@ title: Documentation
 
 .span-24.last.append-bottom
   %h1{:style=>'text-align: center;'}
-    %a{:href=>"/documentation/#{releases.first.version}/"}Browse the latest documentation
+    %a{:href=>"/documentation/#{site.releases.first.version}/"}Browse the latest documentation
   
 
 .prepend-top
@@ -20,7 +20,7 @@ title: Documentation
         Browse
       %th
         Download
-    - for release in releases
+    - for release in site.releases
       %tr
         %td
           #{release.version}

@@ -4,7 +4,7 @@ layout: default
 ---
 
 .span-14.append-2
-  - for post in news_posts
+  - for post in site.news_posts
     .post
       %h1.title
         %a{:href=>post.url}= post.title

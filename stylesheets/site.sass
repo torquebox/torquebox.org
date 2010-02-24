@@ -21,13 +21,13 @@ body
     :clear both
     :border-top 1px solid #999
     :border-bottom 1px solid #999
-    :font-size 130%
+    :font-size 120%
     :font-weight bold
     :margin 0px
     :padding 0px
     :list-style-type none
     li
-      :padding 1ex
+      :margin-right .7em
       :display inline
   a:hover
     :color #999
@@ -66,17 +66,32 @@ body
   h2
     :font-size 120%
     :color #449
+  h3
+    :font-size 110%
+    :font-weight bold
+    :color #449
   pre
     :font-size 90%
     code
       :padding 1em
       :border 1px dotted #999
 
+  .post-navigation
+    :line-height 1.4em
+    :font-size 80%
+    :margin-bottom 2em
+    .next, .previous
+      :color #999
+      :margin-bottom 1em
+      .label
+        :font-weight bold
+      a 
+        :display block
+        :padding 0px
   .post
     :margin-bottom 1em
     :border-bottom 1px solid #ccc
-    :line-height 1.2em
-    :font-size 90%
+    :line-height 1.5em
     h1.title
       :font-size 125% 
       :font-weight bold
@@ -94,12 +109,46 @@ body
         :font-weight bold
         :display inline
     .body
+      :margin-bottom 2em
+    .comments
+      :border-top 1px solid #ddd
+      :margin-bottom 2em
     .tail
       :background-color #eee
       :border 1px solid #bbb
       :padding .8ex
       :margin-bottom 1em
       :margin-top 1em
+
+  #latest-release
+    :margin-bottom 4em
+    :text-align center
+    .download
+      a#download-link
+        :display block
+        :font-size 200%
+        :font-weight bold
+      .details
+        :margin-top 1em
+      .announcement
+        :font-size 90%
+  #latest-news
+    h1
+      :color black
+      :font-weight bold
+      :font-size 220%
+      :text-align center
+    h2
+      :margin-bottom .5ex
+    h3
+      :font-size 80%
+    .body
+      :font-size 90%
+      :line-height 1.5em
+      :margin-bottom 1ex
+    .tail
+      :text-align right
+      :font-weight bold
 
 table.downloads
   :font-size 80%
@@ -108,6 +157,9 @@ table.downloads
   td
     :vertical-align top
     :border-bottom 1px solid #777
+    .version
+      :font-size 105%
+      :font-weight bold
   ul
     :margin 0px
     :padding-left 1em
