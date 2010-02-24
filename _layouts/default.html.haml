@@ -2,53 +2,54 @@
   %head
     %title
       TorqueBox: #{page.title}
-    %link{ :rel=>'stylesheet', :type=>'text/css', :href=>'/stylesheets/screen.css', :media=>'screen, projection' }
+    %link{ :rel=>'stylesheet', :type=>'text/css', :href=>'/stylesheets/site.css', :media=>'screen, projection' }
     %link{ :rel=>'stylesheet', :type=>'text/css', :href=>'/stylesheets/print.css', :media=>'print' }
     /[if lt IE 8]
       %link{ :rel=>'stylesheet', :type=>'text/css', :href=>'/stylesheets/ie.css', :media=>'screen, projection' }
-    %link{ :rel=>'stylesheet', :type=>'text/css', :href=>'/stylesheets/site.css' }
+    -#%link{ :rel=>'stylesheet', :type=>'text/css', :href=>'/stylesheets/site.css' }
     %link{ :rel=>'alternate',  :type=>'application/atom+xml', :href=>'/news.atom' }
   %body.bp
-    #header
-      .spacer-box
-        #logos
-          %a{:href=>'/'}
-            %img#torquebox-logo{ :src=>'/images/torquebox-logo.png' }
-          %a{:href=>'http://jboss.org/'}
-            %img#jbosscommunity-logo{ :src=>'/images/jbosscommunity-logo.png' }
-        %ul#top-nav
-          %li
-            %a{ :href=>'/' } Home
-          %li
-            %a{ :href=>'/news' } News
-          %li
-            %a{ :href=>'/features' } Features
-          %li
-            %a{ :href=>'/faq' } FAQ
-          %li
-            %a{ :href=>'/download' } Download
-          %li
-            %a{ :href=>'/documentation' } Documentation
-          %li
-            %a{ :href=>'/resources' } Resources
-          %li
-            %a{ :href=>'/community' } Community
-          %li
-            %a{ :href=>'/source_repository' } Source Repository
-          %li
-            %a{ :href=>'/license' } License
-          %li
-            %a{ :href=>'/support' } Support
-    #primary-container
-      - unless page.inhibit_title 
-        %h1.page-title
-          - if page.section 
-            %a{:href=>"/#{page.section.downcase}.html"} #{page.section}
-            \:
-          #{page.title}
-      #primary-content
-        ~ content
-    #footer
-      A member of the <a href="http://jboss.org/">JBoss Community</a>.
-      Copyright 2009-2010 <a href="http://redhat.com/">Red Hat, Inc.</a>
-      TorqueBox is a trademark of Red Hat, Inc.
+    #page-container
+      #header
+        .spacer-box
+          #logos
+            %a{:href=>'/'}
+              %img#torquebox-logo{ :src=>'/images/torquebox-logo.png' }
+            %a{:href=>'http://jboss.org/'}
+              %img#jbosscommunity-logo{ :src=>'/images/jbosscommunity-logo.png' }
+          %ul#top-nav
+            %li
+              %a{ :href=>'/' } Home
+            %li
+              %a{ :href=>'/news' } News
+            %li
+              %a{ :href=>'/features' } Features
+            %li
+              %a{ :href=>'/faq' } FAQ
+            %li
+              %a{ :href=>'/download' } Download
+            %li
+              %a{ :href=>'/documentation' } Documentation
+            %li
+              %a{ :href=>'/resources' } Resources
+            %li
+              %a{ :href=>'/community' } Community
+            %li
+              %a{ :href=>'/source_repository' } Source Repository
+            %li
+              %a{ :href=>'/license' } License
+            %li
+              %a{ :href=>'/support' } Support
+      #primary-container
+        - unless page.inhibit_title 
+          %h1.page-title
+            - if page.section 
+              %a{:href=>"/#{page.section.downcase}.html"} #{page.section}
+              \:
+            #{page.title}
+        #primary-content
+          ~ content
+      #footer
+        A member of the <a href="http://jboss.org/">JBoss Community</a>.
+        Copyright 2009-2010 <a href="http://redhat.com/">Red Hat, Inc.</a>
+        TorqueBox is a trademark of Red Hat, Inc.

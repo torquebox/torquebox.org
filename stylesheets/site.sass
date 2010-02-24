@@ -7,6 +7,8 @@ body
     :color #339
   
 body.bp
+
+#page-container
   +container
 
 #header
@@ -21,9 +23,10 @@ body.bp
 #front-page
   +last
   #left-column
-    +column(12)
+    +column(14)
+    +append(2)
   #right-column
-    +column(12)
+    +column(8)
     +last
 
 #faq
@@ -64,6 +67,7 @@ body.bp
   :border-top 1px solid #999
   :padding-top 1ex
   :padding-bottom 2em
+
 #primary-container
   .sidebar
     :font-size 80%
@@ -101,6 +105,8 @@ body.bp
     code
       :padding 1em
       :border 1px dotted #999
+  p
+    :margin-bottom 1em
 
   .post-navigation
     :line-height 1.4em
