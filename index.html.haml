@@ -4,41 +4,42 @@ layout: default
 inhibit_title: true
 ---
 
-.span-14.append-1
-  :markdown
-    TorqueBox is a new kind of Ruby application platform that integrates popular 
-    technologies such as Ruby-on-Rails, while extending the footprint of Ruby 
-    applications to include support for Job Scheduling, Task Queues, SOAP Handling, 
-    and Telephony.
-  
-    TorqueBox provides an all-in-one environment, built upon the latest, most 
-    powerful JBoss AS Java application server. Functionality such as clustering and 
-    cloud deployment is included right out-of-the-box. 
-  
-    <div style="text-align: center">
-      <img src="/images/components.png"/>
-    </div>
-.span-9.last
-  #latest-release.box
-    - announcement = site.news_posts.find{|e| e.layout=='release' && e.version == site.releases.first.version}
-    %h1 Latest: #{site.releases.first.version}
-    - if ( announcement )
-      %h2 Released #{announcement.date.strftime( '%d %B %Y' )}
-    .download
-      %a#download-link{:href=>"http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-bin/#{site.releases.first.version}/torquebox-bin-#{site.releases.first.version}.zip"} Download Now!
-      .details
-        (ZIP archive, #{site.releases.first.size}mb)
-        | 
-        %a{:href=>"/documentation/#{site.releases.first.version}/"} Documentation
-      - if announcement
-        .announcement
-          %a{:href=>announcement.url} Release announcement
-  #latest-news
-    %h1 Latest News
-    %h2 
-      %a{:href=>site.news_posts.first.url}= site.news_posts.first.title
-    %h3 #{site.news_posts.first.date.strftime( '%d %B %Y' )}
-    .body
-      #{summarize( html_to_text( site.news_posts.first.content ), 30 )}...
-    .tail
-      %a{:href=>site.news_posts.first.url} Read more
+#front-page
+  #left-column
+    :markdown
+      TorqueBox is a new kind of Ruby application platform that integrates popular 
+      technologies such as Ruby-on-Rails, while extending the footprint of Ruby 
+      applications to include support for Job Scheduling, Task Queues, SOAP Handling, 
+      and Telephony.
+    
+      TorqueBox provides an all-in-one environment, built upon the latest, most 
+      powerful JBoss AS Java application server. Functionality such as clustering and 
+      cloud deployment is included right out-of-the-box. 
+    
+      <div style="text-align: center">
+        <img src="/images/components.png"/>
+      </div>
+  #right-column
+    #latest-release.box
+      - announcement = site.news_posts.find{|e| e.layout=='release' && e.version == site.releases.first.version}
+      %h1 Latest: #{site.releases.first.version}
+      - if ( announcement )
+        %h2 Released #{announcement.date.strftime( '%d %B %Y' )}
+      .download
+        %a#download-link{:href=>"http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-bin/#{site.releases.first.version}/torquebox-bin-#{site.releases.first.version}.zip"} Download Now!
+        .details
+          (ZIP archive, #{site.releases.first.size}mb)
+          | 
+          %a{:href=>"/documentation/#{site.releases.first.version}/"} Documentation
+        - if announcement
+          .announcement
+            %a{:href=>announcement.url} Release announcement
+    #latest-news
+      %h1 Latest News
+      %h2 
+        %a{:href=>site.news_posts.first.url}= site.news_posts.first.title
+      %h3 #{site.news_posts.first.date.strftime( '%d %B %Y' )}
+      .body
+        #{summarize( html_to_text( site.news_posts.first.content ), 30 )}...
+      .tail
+        %a{:href=>site.news_posts.first.url} Read more
