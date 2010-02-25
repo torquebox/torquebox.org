@@ -3,7 +3,7 @@ title: News
 layout: default
 ---
 .span-14.append-2
-  - for post in site.news_posts[0,10]
+  - for post in site.posts[0,10]
     .post
       %h1.title
         %a{:href=>post.url}= post.title

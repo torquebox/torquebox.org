@@ -40,7 +40,7 @@ title: Download
         %td
           .version
             = release.version
-          - announcement = site.news_posts.find{|e| e.layout=='release' && e.version == release.version}
+          - announcement = site.posts.find{|e| e.layout=='release' && e.version == release.version}
           - if announcement
             .announcement
               %a{:href=>announcement.url} Release announcement

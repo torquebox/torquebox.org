@@ -21,7 +21,7 @@ inhibit_title: true
       </div>
   #right-column
     #latest-release.box
-      - announcement = site.news_posts.find{|e| e.layout=='release' && e.version == site.releases.first.version}
+      - announcement = site.posts.find{|e| e.layout=='release' && e.version == site.releases.first.version}
       %h1 Latest: #{site.releases.first.version}
       - if ( announcement )
         %h2 Released #{announcement.date.strftime( '%d %B %Y' )}
@@ -37,9 +37,9 @@ inhibit_title: true
     #latest-news
       %h1 Latest News
       %h2 
-        %a{:href=>site.news_posts.first.url}= site.news_posts.first.title
-      %h3 #{site.news_posts.first.date.strftime( '%d %B %Y' )}
+        %a{:href=>site.posts.first.url}= site.posts.first.title
+      %h3 #{site.posts.first.date.strftime( '%d %B %Y' )}
       .body
-        #{summarize( html_to_text( site.news_posts.first.content ), 30 )}...
+        #{summarize( html_to_text( site.posts.first.content ), 30 )}...
       .tail
-        %a{:href=>site.news_posts.first.url} Read more
+        %a{:href=>site.posts.first.url} Read more
