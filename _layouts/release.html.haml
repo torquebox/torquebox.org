@@ -2,42 +2,43 @@
 layout: default
 ---
 
-.span-14
-  .post
-    .byline
-      .author
-        = page.author
-      .date
-        = page.date.strftime( '%d %B %Y' )
-    .body
-      ~ content
-    .comments
-      :javascript
-        var idcomments_acct = '82f59e335081be13846c34fa627b3208';
-        var idcomments_post_id;
-        var idcomments_post_url;
-      %span#IDCommentsPostTitle{:style=>"display:none"}
-      %script{ :type=>'text/javascript', :src=>'http://www.intensedebate.com/js/genericCommentWrapperV2.js' }
-
-.prepend-1.span-9.last
-  .post-navigation
-    .previous
-      - if page.previous
-        .label
-          previous
-        %a{:href=>page.previous.url}= page.previous.title
-    .next
-      - if page.next
-        .label
-          next
-        %a{:href=>page.next.url}= page.next.title
-  .box
-    %h1
-      Release: #{page.version}
-    %ul
-      %li
-        %a{:href=>"http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-bin/#{page.version}/torquebox-bin-#{page.version}.zip"} Download #{page.version} binary
-      %li
-        %a{:href=>"/documentation/#{page.version}/"} Browse docs for #{page.version}
-      %li
-        %a{:href=>"http://github.com/torquebox/torquebox/tree/#{page.version}"} Browse sources for #{page.version}
+#right-sidebar
+  #main-column
+    .post
+      .byline
+        .author
+          = page.author
+        .date
+          = page.date.strftime( '%d %B %Y' )
+      .body
+        ~ content
+      .comments
+        :javascript
+          var idcomments_acct = '82f59e335081be13846c34fa627b3208';
+          var idcomments_post_id;
+          var idcomments_post_url;
+        %span#IDCommentsPostTitle{:style=>"display:none"}
+        %script{ :type=>'text/javascript', :src=>'http://www.intensedebate.com/js/genericCommentWrapperV2.js' }
+  
+  #sidebar-column
+    .post-navigation
+      .previous
+        - if page.previous
+          .label
+            previous
+          %a{:href=>page.previous.url}= page.previous.title
+      .next
+        - if page.next
+          .label
+            next
+          %a{:href=>page.next.url}= page.next.title
+    .box
+      %h1
+        Release: #{page.version}
+      %ul
+        %li
+          %a{:href=>"http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-bin/#{page.version}/torquebox-bin-#{page.version}.zip"} Download #{page.version} binary
+        %li
+          %a{:href=>"/documentation/#{page.version}/"} Browse docs for #{page.version}
+        %li
+          %a{:href=>"http://github.com/torquebox/torquebox/tree/#{page.version}"} Browse sources for #{page.version}

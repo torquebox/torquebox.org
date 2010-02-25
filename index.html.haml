@@ -20,7 +20,7 @@ inhibit_title: true
         <img src="/images/components.png"/>
       </div>
   #right-column
-    #latest-release.box
+    #latest-release
       - announcement = site.posts.find{|e| e.layout=='release' && e.version == site.releases.first.version}
       %h1 Latest: #{site.releases.first.version}
       - if ( announcement )
@@ -28,12 +28,13 @@ inhibit_title: true
       .download
         %a#download-link{:href=>"http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-bin/#{site.releases.first.version}/torquebox-bin-#{site.releases.first.version}.zip"} Download Now!
         .details
-          (ZIP archive, #{site.releases.first.size}mb)
-          | 
-          %a{:href=>"/documentation/#{site.releases.first.version}/"} Documentation
-        - if announcement
-          .announcement
-            %a{:href=>announcement.url} Release announcement
+          .size
+            ZIP archive, #{site.releases.first.size}mb
+          .links
+            - if announcement
+              %a{:href=>announcement.url} Release announcement 
+              |
+            %a{:href=>"/documentation/#{site.releases.first.version}/"} Documentation
     #latest-news
       %h1 Latest News
       %h2 

@@ -3,44 +3,45 @@ title: Community
 layout: default
 ---
 
-.span-16
-  :markdown
-    Being an open-source project, the TorqueBox community has many entry-points.
+#right-sidebar
+  #main-column
+    :markdown
+      Being an open-source project, the TorqueBox community has many entry-points.
+  
+      * [Mailing lists](/community/mailing_lists/)
+      * [Issue tracker](/community/issues/)
+      * [IRC](/community/irc/)
+  
+      The project Twitter account is [`@torquebox`](http://twitter.com/torquebox)
 
-    * [Mailing lists](/community/mailing_lists/)
-    * [Issue tracker](/community/issues/)
-    * [IRC](/community/irc/)
-
-    The project Twitter account is [`@torquebox`](http://twitter.com/torquebox)
-
-.span-8.append-bottom.last
-  %script{:src=>"http://widgets.twimg.com/j/2/widget.js"}
-  :javascript
-    new TWTR.Widget({
-      version: 2,
-      type: 'profile',
-      rpp: 6,
-      interval: 6000,
-      width: 250,
-      height: 300,
-      theme: {
-        shell: {
-          background: '#eeeeee',
-          color: '#333333'
+  #sidebar-column
+    %script{:src=>"http://widgets.twimg.com/j/2/widget.js"}
+    :javascript
+      new TWTR.Widget({
+        version: 2,
+        type: 'profile',
+        rpp: 6,
+        interval: 6000,
+        width: 250,
+        height: 300,
+        theme: {
+          shell: {
+            background: '#eeeeee',
+            color: '#333333'
+          },
+          tweets: {
+            background: '#ffffff',
+            color: '#000000',
+            links: '#2c54b0'
+          }
         },
-        tweets: {
-          background: '#ffffff',
-          color: '#000000',
-          links: '#2c54b0'
+        features: {
+          scrollbar: false,
+          loop: false,
+          live: false,
+          hashtags: true,
+          timestamp: true,
+          avatars: true,
+          behavior: 'all'
         }
-      },
-      features: {
-        scrollbar: false,
-        loop: false,
-        live: false,
-        hashtags: true,
-        timestamp: true,
-        avatars: true,
-        behavior: 'all'
-      }
-    }).render().setUser('torquebox').start();
+      }).render().setUser('torquebox').start();

@@ -3,30 +3,31 @@ title: Features
 layout: default
 ---
 
-.span-11.append-1
-  :markdown
-    Ruby-on-Rails
-    =============
-    TorqueBox supports Ruby-on-Rails 2.2+. Rails applications are served as first-class resources within the web container. The web container is clusterable, and web sessions may be shared between nodes without any additional configuration.
+#two-column
+  #left-column
+    :markdown
+      Ruby-on-Rails
+      =============
+      TorqueBox supports Ruby-on-Rails 2.2+. Rails applications are served as first-class resources within the web container. The web container is clusterable, and web sessions may be shared between nodes without any additional configuration.
 
-    High-performance tried-and-true JDBC database drivers power your ActiveRecord models.
+      High-performance tried-and-true JDBC database drivers power your ActiveRecord models.
 
-    Scheduled Jobs
-    =============
-    cron-like functionality is provided by the TorqueBox server. Job classes implemented in Ruby have full access to to your Ruby environment and are managed by a durable job scheduler.
+      Scheduled Jobs
+      =============
+      cron-like functionality is provided by the TorqueBox server. Job classes implemented in Ruby have full access to to your Ruby environment and are managed by a durable job scheduler.
+  
+      Task Queues
+      =============
+      Asynchronous task queues are supported by TorqueBox using an industrial-strength, clusterable messaging bus. Tasks are persistent and have the ability to access your entire Ruby environment.
 
-    Task Queues
-    =============
-    Asynchronous task queues are supported by TorqueBox using an industrial-strength, clusterable messaging bus. Tasks are persistent and have the ability to access your entire Ruby environment.
-
-.prepend-1.span-11.last
-  :markdown
-    SOAP
-    =====
-    For those dark days that you must implement a SOAP server, TorqueBox makes it an easy, Ruby-friendly experience. Service operations are simply methods on Ruby classes, and a full XSD-to-Ruby data-binding layer is woven in.
-
-    Telephony (SIP, JAIN, SLEE)
-    =============
-
-    Integrating with the Mobicents Communications Platform, TorqueBox allows your Ruby controllers to manipulate SIP sessions.
+  #right-column
+    :markdown
+      SOAP
+      =====
+      For those dark days that you must implement a SOAP server, TorqueBox makes it an easy, Ruby-friendly experience. Service operations are simply methods on Ruby classes, and a full XSD-to-Ruby data-binding layer is woven in.
+  
+      Telephony (SIP, JAIN, SLEE)
+      =============
+  
+      Integrating with the Mobicents Communications Platform, TorqueBox allows your Ruby controllers to manipulate SIP sessions.
 

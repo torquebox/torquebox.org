@@ -3,26 +3,27 @@ layout: default
 title: Download
 ---
 
-.span-11.colborder
-  :markdown
-    # Binary Distribution
-  
-    The latest binary distribution is #{site.releases.first.version}
+#two-column
+  #left-column
+    :markdown
+      # Binary Distribution
     
-    * [Download torquebox-#{site.releases.first.version}](http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-bin/#{site.releases.first.version}/torquebox-bin-#{site.releases.first.version}.zip)
-.prepend-1.span-11.last
-  :markdown
-    # Documentation
+      The latest binary distribution is #{site.releases.first.version}
+      
+      * [Download torquebox-#{site.releases.first.version}](http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-bin/#{site.releases.first.version}/torquebox-bin-#{site.releases.first.version}.zip)
+  #right-column
+    :markdown
+      # Documentation
+  
+      You may [browse the documentation online](/documentation/#{site.releases.first.version}/)
+  
+      Downloadable documentation is available in several forms:
+  
+      * [PDF Manual for #{site.releases.first.version}](http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{site.releases.first.version}/torquebox-docs-en_US-#{site.releases.first.version}.pdf)
+      * [Multi-page HTML Manual for #{site.releases.first.version}](http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{site.releases.first.version}/torquebox-docs-en_US-#{site.releases.first.version}-html.zip)
+      * [Single-page HTML Manual for #{site.releases.first.version}](http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{site.releases.first.version}/torquebox-docs-en_US-#{site.releases.first.version}-html-single.zip)
 
-    You may [browse the documentation online](/documentation/#{site.releases.first.version}/)
-
-    Downloadable documentation is available in several forms:
-
-    * [PDF Manual for #{site.releases.first.version}](http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{site.releases.first.version}/torquebox-docs-en_US-#{site.releases.first.version}.pdf)
-    * [Multi-page HTML Manual for #{site.releases.first.version}](http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{site.releases.first.version}/torquebox-docs-en_US-#{site.releases.first.version}-html.zip)
-    * [Single-page HTML Manual for #{site.releases.first.version}](http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{site.releases.first.version}/torquebox-docs-en_US-#{site.releases.first.version}-html-single.zip)
-
-.prepend-top.span-24.last
+#download-table
   %table.downloads
     %tr
       %th
