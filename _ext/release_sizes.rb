@@ -3,6 +3,9 @@ require 'net/http'
 class ReleaseSizes
   SERVER = 'repository.torquebox.org'
 
+  def initialize()
+  end
+
   def execute(site)
     Net::HTTP.start( SERVER, 80) do |http|
       site.releases.each do |release|
