@@ -1,0 +1,65 @@
+---
+title: Community Signup
+layout: default
+---
+
+#right-sidebar
+  #main-column
+    %form{ :action=>"https://www.jboss.org/index.html?module=user&op=finishnewuser&finish=true",
+           :name=>"register",
+           :method=>"post" }
+    
+      .field
+        %label{:for=>'uname'} Username
+        %input{:type=>'text', :name=>'uname', :size=>'26', :maxlength=>'60'}
+    
+      .field
+        %label{:for=>'fname'} First Name
+        %input{:type=>'text', :name=>'fname', :size=>'26', :maxlength=>'60'}
+    
+      .field
+        %label{:for=>'lname'} Last Name
+        %input{:type=>'text', :name=>'lname', :size=>'26', :maxlength=>'60'}
+    
+      .field
+        %label{:for=>'realemail'} Email
+        %input{:type=>'text', :name=>'realemail', :size=>'26', :maxlength=>'60'}
+        %input{:type=>'hidden', :name=>'fakeemail', :value=>'not@provided.com' }
+    
+      .field
+        %label{:for=>'pass1'} Password
+        %input{:type=>'password', :name=>'pass1', :size=>'26', :maxlength=>'60'}
+    
+      .field
+        %label{:for=>'pass2'} Confirm Password
+        %input{:type=>'password', :name=>'pass2', :size=>'26', :maxlength=>'60'}
+    
+      %input{:type=>'hidden', :name=>'cname', :value=>'not provided' }
+      %input{:type=>'hidden', :name=>'Role', :value=>'Other' }
+      %input{:type=>'hidden', :name=>'title', :value=>'not provided' }
+      %input{:type=>'hidden', :name=>'phone', :value=>'not provided' }
+      %input{:type=>'hidden', :name=>'country', :value=>'USA' }
+      %input{:type=>'hidden', :name=>'street', :value=>'not provided' }
+      %input{:type=>'hidden', :name=>'state', :value=>'not provided' }
+      %input{:type=>'hidden', :name=>'usertype', :value=>'other' }
+      %input{:type=>'hidden', :name=>'companysize', :value=>'_20' }
+      %input{:type=>'hidden', :name=>'industry', :value=>'other' }
+      %input{:type=>'hidden', :name=>'sales_contact', :value=>'1' }
+    
+      .field
+        %input{:type=>'submit', :value=>'New user'}
+        
+  #sidebar-column
+    %h1 Circumvent complexity
+
+    :markdown
+      This signup page is *not the official signup page*.
+
+      The *real* signup page at JBoss.com is very long and probing.
+      This form just auto-populates junk into the onerous form fields.
+  
+      It may also fail.  If it does, you can use the real form 
+      [located here](http://www.jboss.org/index.html?op=checkage&module=user).
+  
+      Feel free to enter junk information into any field you find
+      a tad too personal.
