@@ -4,6 +4,7 @@ layout: default
 ---
 #right-sidebar
   #main-column
+    = page.posts.links
     - for post in page.posts
       .post
         %h1.title
@@ -18,17 +19,5 @@ layout: default
         .tail
           %a{:href=>post.url} Add a comment
     = page.posts.links
-    .links
-      - if page.posts.previous_page
-        %a{:href=>page.posts.previous_page.url} Previous
-      - if page.posts.next_page
-        %a{:href=>page.posts.next_page.url} Next
   #sidebar-column
-    .box
-      %h1
-        Older news?
-      %p
-        You can 
-        %a{:href=>'/news/archives'} browse the full archives
-        of older news and release announcements.
-    
+    &nbsp;

@@ -13,12 +13,7 @@ layout: default
       .body
         ~ content
       .comments
-        :javascript
-          var idcomments_acct = '82f59e335081be13846c34fa627b3208';
-          var idcomments_post_id;
-          var idcomments_post_url;
-        %span#IDCommentsPostTitle{:style=>"display:none"}
-        %script{ :type=>'text/javascript', :src=>'http://www.intensedebate.com/js/genericCommentWrapperV2.js' }
+        = intense_debate_comments
   
   #sidebar-column
     .post-navigation
