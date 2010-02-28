@@ -4,7 +4,7 @@ layout: default
 ---
 #right-sidebar
   #main-column
-    - for post in site.posts[0,10]
+    - for post in page.posts
       .post
         %h1.title
           %a{:href=>post.url}= post.title
@@ -17,6 +17,12 @@ layout: default
           = post.content
         .tail
           %a{:href=>post.url} Add a comment
+    = page.posts.links
+    .links
+      - if page.posts.previous_page
+        %a{:href=>page.posts.previous_page.url} Previous
+      - if page.posts.next_page
+        %a{:href=>page.posts.next_page.url} Next
   #sidebar-column
     .box
       %h1
