@@ -17,12 +17,12 @@ layout: default
   #sidebar-column
     .post-navigation
       .previous
-        - if page.previous
+        - if page.previous_post
           .label
             previous
-          %a{:href=>page.previous.url}= page.previous.title
+          %a{:href=>page.previous_post.url}= page.previous_post.title
       .next
-        - if page.next
+        - if page.next_post
           .label
             next
-          %a{:href=>page.next.url}= page.next.title
+          %a{:href=>page.next_post.url}= page.next_post.title
