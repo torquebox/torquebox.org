@@ -1,4 +1,19 @@
-base_url: http://staging.torquebox.org
-#base_url: http://localhost:4242
+
+profiles:
+  development:
+  staging:
+    base_url: http://staging.torquebox.org/
+    deploy:
+      host: torquebox.org
+      path: /var/www/domains/torquebox.org/staging/htdocs/ 
+  production:
+    base_url: http://torquebox.org/
+    deploy:
+      host: torquebox.org
+      path: /var/www/domains/torquebox.org/www/htdocs/ 
+
+title: The TorqueBox Project
+
 intense_debate_acct: 82f59e335081be13846c34fa627b3208
+google_analytics:    UA-6435340-2
   

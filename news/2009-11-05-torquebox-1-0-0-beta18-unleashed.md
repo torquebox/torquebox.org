@@ -24,7 +24,7 @@ Here's what JIRA thinks we've done:
 * [TORQUE-50](https://jira.jboss.org/jira/browse/TORQUE-50) - Remove crypto jar from torquebox-core-deployer.jar
 * [TORQUE-51](https://jira.jboss.org/jira/browse/TORQUE-51) - StringUtils.camelize(...) will occasionally enter infinite loop
 * [TORQUE-52](https://jira.jboss.org/jira/browse/TORQUE-52) - rake torquebox:server:run assumes unix and run.sh
-* [TORQUE-53](https://jira.jboss.org/jira/browse/TORQUE-53) - ENV\\[\\*\\*\\] not being set appropriately
+* [TORQUE-53](https://jira.jboss.org/jira/browse/TORQUE-53) - ENV\[\*\*\] not being set appropriately
 * [TORQUE-55](https://jira.jboss.org/jira/browse/TORQUE-55) - URL-based session-tracking leaves ;jsessionid=X in the REQUEST_URI
 
 ## Task

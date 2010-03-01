@@ -9,7 +9,7 @@ The TorqueBox Ruby application platform has reached 1.0.0.Beta13 and is [availab
 This release includes a handful of improvements, including some for hybrid Java/Ruby shops:
 
 * Finer-grained control by supporting web.xml
-* Support for jboss-web.xml and \\*-ds.xml
+* Support for jboss-web.xml and \*-ds.xml
 
 And some for everyone:
 

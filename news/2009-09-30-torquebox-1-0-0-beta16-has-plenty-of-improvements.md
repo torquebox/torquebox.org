@@ -19,11 +19,11 @@ Included in this release, though:
 
 * [TORQUE-20](https://jira.jboss.org/jira/browse/TORQUE-20) - Ensure task queues fully undeploy
 * [TORQUE-23](https://jira.jboss.org/jira/browse/TORQUE-23) - Fix jobs.yml documentation
-* [TORQUE-28](https://jira.jboss.org/jira/browse/TORQUE-28) - Removing \\*-rails.yml from $JBOSS_HOME/server/\\*/deploy does not undeploy the application.
+* [TORQUE-28](https://jira.jboss.org/jira/browse/TORQUE-28) - Removing \*-rails.yml from $JBOSS_HOME/server/\*/deploy does not undeploy the application.
 * [TORQUE-35](https://jira.jboss.org/jira/browse/TORQUE-35) - Specifying context in web.yml causes NPE
 * [TORQUE-36](https://jira.jboss.org/jira/browse/TORQUE-36) - When using a context, relative paths are wrong if a trailing slash is not included
 * [TORQUE-37](https://jira.jboss.org/jira/browse/TORQUE-37) - Rails' production.log shouldn't be mixed into JBoss AS' server.log
-* [TORQUE-38](https://jira.jboss.org/jira/browse/TORQUE-38) - Set Rack's env\\['REMOTE_ADDR'\\]
+* [TORQUE-38](https://jira.jboss.org/jira/browse/TORQUE-38) - Set Rack's env\['REMOTE_ADDR'\]
 * [TORQUE-39](https://jira.jboss.org/jira/browse/TORQUE-39) - Servlet-based session-store initialization fails for RAILS_ENV=production
 
 ## Task
