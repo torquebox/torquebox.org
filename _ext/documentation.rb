@@ -8,17 +8,16 @@ class Documentation
   def execute(site)
     return unless @enabled
 
-    FileUtils.cd( File.join( site.output_dir, 'documentation' ) ) do |dir|
-      FileUtils.rm( 'current' ) if File.exist?( 'current' )
-    end
+    current_path = File.join( site.output_dir, 'documentation', 'current' ) 
+    FileUtils.rm( current_path ) if File.exist?( current_path )
 
-    site.releases.each_with_index do |release, index|
+    site.releases.each do |release|
       doc_bundle_name = "torquebox-docs-en_US-#{release.version}-html.zip"
       doc_bundle_path = File.join( site.tmp_dir, doc_bundle_name )
       doc_root = File.join( site.output_dir, 'documentation', release.version )
       FileUtils.mkdir_p( doc_root )
 
-      if index == 0
+      if release == site.releases.first
         puts "Linking documentation/current to #{release.version}"
         FileUtils.cd( File.join( site.output_dir, 'documentation' ) ) do |dir|
           FileUtils.ln_s( release.version, 'current' ) 
