@@ -4,7 +4,7 @@ require 'downloads'
 
 
 Awestruct::Extensions::Pipeline.new do
-  extension Documentation.new(false)
+  extension Documentation.new()
   extension ReleaseSizes.new()
   extension Downloads.new()
   extension Awestruct::Extensions::Posts.new( '/news' )
