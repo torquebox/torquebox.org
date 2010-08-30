@@ -10,18 +10,18 @@ title: Download
     
       The latest binary distribution is #{site.releases.first.version}
       
-      * [Download torquebox-#{site.releases.first.version}](http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-bin/#{site.releases.first.version}/torquebox-bin-#{site.releases.first.version}.zip)
+      * [Download torquebox-#{site.releases.first.version}](#{site.releases.first.urls.dist_zip})
   #right-column
     :markdown
       # Documentation
   
-      You may [browse the documentation online](/documentation/#{site.releases.first.version}/)
+      You may [browse the documentation online](#{site.releases.first.urls.docs.browse})
   
       Downloadable documentation is available in several forms:
   
-      * [PDF Manual for #{site.releases.first.version}](http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{site.releases.first.version}/torquebox-docs-en_US-#{site.releases.first.version}.pdf)
-      * [Multi-page HTML Manual for #{site.releases.first.version}](http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{site.releases.first.version}/torquebox-docs-en_US-#{site.releases.first.version}-html.zip)
-      * [Single-page HTML Manual for #{site.releases.first.version}](http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{site.releases.first.version}/torquebox-docs-en_US-#{site.releases.first.version}-html-single.zip)
+      * [PDF Manual for #{site.releases.first.version}](#{site.releases.first.urls.docs.pdf})
+      * [Multi-page HTML Manual for #{site.releases.first.version}](#{site.releases.first.urls.docs.html_multi_zip})
+      * [Single-page HTML Manual for #{site.releases.first.version}](#{site.releases.first.urls.docs.html_single_zip})
 
 #download-table
   %table.downloads
@@ -48,23 +48,23 @@ title: Download
             .release-date
               = announcement.date.strftime( '%d %B %Y' )
         %td
-          %a{:href=>"http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-bin/#{release.version}/torquebox-bin-#{release.version}.zip"} 
+          %a{:href=>release.urls.dist_zip}
             ZIP archive (#{release.size}mb)
         %td
           %ul
             %li
-              %a{:href=>"/documentation/#{release.version}/"} Browse
+              %a{:href=>release.urls.docs.browse} Browse
             %li
-              %a{:href=>"http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{release.version}/torquebox-docs-en_US-#{release.version}-html.zip"} Multi-page HTML ZIP
+              %a{:href=>release.urls.docs.html_multi_zip} Multi-page HTML ZIP
             %li
-              %a{:href=>"http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{release.version}/torquebox-docs-en_US-#{release.version}-html-single.zip"} Single-page HTML ZIP
+              %a{:href=>release.urls.docs.html_single_zip} Single-page HTML ZIP
             %li
-              %a{:href=>"http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{release.version}/torquebox-docs-en_US-#{release.version}.pdf"} PDF 
+              %a{:href=>release.urls.docs.pdf} PDF 
         %td
           %ul
             %li
-              %a{:href=>"https://jira.jboss.org/jira/secure/IssueNavigator.jspa?reset=true&amp;fixfor=#{release.jira_version}&amp;pid=12310812&amp;sorter/field=issuekey&amp;sorter/order=DESC"} JIRA Issues
+              %a{:href=>release.urls.jira} JIRA Issues
             %li
-              %a{:href=>"http://github.com/torquebox/torquebox/commits/#{release.version}"} Git Log
+              %a{:href=>release.urls.github.log} Git Log
         %td
-          %a{:href=>"http://github.com/torquebox/torquebox/tree/#{release.version}"} Browse
+          %a{:href=>release.urls.github.tree} Browse

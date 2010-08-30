@@ -18,7 +18,7 @@ class Documentation
       FileUtils.mkdir_p( doc_root )
 
       if release == site.releases.first
-        puts "Linking documentation/current to #{release.version}"
+        #puts "Linking documentation/current to #{release.version}"
         FileUtils.cd( File.join( site.output_dir, 'documentation' ) ) do |dir|
           FileUtils.ln_s( release.version, 'current' ) 
         end
