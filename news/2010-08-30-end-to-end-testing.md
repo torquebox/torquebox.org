@@ -23,7 +23,7 @@ While Arquillian can perform in-container testing, we're currently not
 using that functionality.
 
 The first thing we have to do is add a `arquillian.xml` to our test classpath,
-so that when Arquillian wnats to fire up an AS, it knows which AS and how to
+so that when Arquillian wants to fire up an AS, it knows which AS and how to
 do it.
 
     <?xml version="1.0"?>
