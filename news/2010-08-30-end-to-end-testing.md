@@ -24,7 +24,10 @@ using that functionality.
 
 The first thing we have to do is add a `arquillian.xml` to our test classpath,
 so that when Arquillian wants to fire up an AS, it knows which AS and how to
-do it.
+do it.  
+
+Note, we do run our `arquillian.xml` through Maven's test-resource filtering
+to replace our `${integ.dist.dir}`.
 
     <?xml version="1.0"?>
 
