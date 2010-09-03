@@ -6,12 +6,17 @@ layout: default
 #two-column
   #left-column
     :markdown
-      Ruby-on-Rails
+      Rack
       =============
-      TorqueBox supports Ruby-on-Rails 2.2+. Rails applications are served as first-class resources within the web container. The web container is clusterable, and web sessions may be shared between nodes without any additional configuration.
+
+      TorqueBox supports Rack 1.1.0, including Rails 2.3+, Sinatra, and other.  Rack applications are served 
+      as first-class resources within the web container. The web container is clusterable, and web sessions may 
+      be shared between nodes without any additional configuration.
 
       High-performance tried-and-true JDBC database drivers power your ActiveRecord models.
 
+  #right-column
+    :markdown
       Scheduled Jobs
       =============
       cron-like functionality is provided by the TorqueBox server. Job classes implemented in Ruby have full access to to your Ruby environment and are managed by a durable job scheduler.
@@ -19,15 +24,4 @@ layout: default
       Task Queues
       =============
       Asynchronous task queues are supported by TorqueBox using an industrial-strength, clusterable messaging bus. Tasks are persistent and have the ability to access your entire Ruby environment.
-
-  #right-column
-    :markdown
-      SOAP
-      =====
-      For those dark days that you must implement a SOAP server, TorqueBox makes it an easy, Ruby-friendly experience. Service operations are simply methods on Ruby classes, and a full XSD-to-Ruby data-binding layer is woven in.
-  
-      Telephony (SIP, JAIN, SLEE)
-      =============
-  
-      Integrating with the Mobicents Communications Platform, TorqueBox allows your Ruby controllers to manipulate SIP sessions.
 
