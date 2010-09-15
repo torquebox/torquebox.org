@@ -1,0 +1,372 @@
+// Most of this copied from torquebox.org's styling
+// http://github.com/torquebox/torquebox.org/
+
+@import "blueprint/reset";
+@import "partials/base";
+@import "blueprint";
+@import "blueprint/scaffolding";
+@import "compass/utilities/lists";
+
+// To generate css equivalent to the blueprint css but with your
+// configuration applied, uncomment:
+// @include blueprint
+
+// But Compass recommends that you scope your blueprint styles
+// So that you can better control what pages use blueprint
+// when stylesheets are concatenated together.
+@include blueprint-scaffolding("body.bp");
+
+body.bp {
+  @include blueprint-typography(true);
+  @include blueprint-utilities;
+  @include blueprint-debug;
+  @include blueprint-interaction;
+  background-color: $page_background_color;
+}
+
+form.bp {
+  @include blueprint-form;
+}
+
+body.bp {
+  padding-top: 1em;
+  font-family: 'Trebuchet MS',Verdana,sans-serif;
+  #container {
+    padding: 2em;
+    padding-bottom: 1ex;
+    @include container;
+    background-color: white;
+    border: 2px solid $page_background_color - #333;
+  }
+  #header, #footer, #primary-container {
+    @include column($blueprint_grid_columns);
+    @include last;
+  }
+}
+
+#header {
+  margin-bottom: 2em;
+  #logos {
+    font-size: 300%;
+    margin-bottom: .5ex;
+    #jbosscommunity-logo {
+      width: 200px;
+      float: right;
+    }
+  }
+  ul#top-nav {
+    @include horizontal-list(1ex);
+    font-size: 110%;
+    font-weight: bold;
+    clear: both;
+    border-top: 1px solid $top_nav_border_color;
+    border-bottom: 2px solid $top_nav_border_color;
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+#footer {
+  font-size: 90%;
+  padding-top: 1em;
+  margin-top: 1em;
+  border-top: 1px solid $top_nav_border_color;
+
+  #legal {
+    clear: both;
+    border-top: 2px solid $top_nav_border_color;
+    margin-top: 2em;
+    padding: 1ex;
+    padding-bottom: 0px;
+  }
+
+  #bottom-nav {
+    #bottom-left {
+      @include column(8);
+    }
+    #bottom-center {
+      @include column(8);
+    }
+    #bottom-right {
+      @include column(8);
+      @include last;
+    }
+    h2 {
+      margin-bottom: .5ex;
+    }
+    ul {
+      list-style-type: none;
+      margin-left: 0px;
+      padding-left: 0px;
+      ul {
+        padding-left: 1em;
+      }
+    }
+  }
+}
+
+#front-page {
+  #left-column {
+    font-size: 130%;
+    @include column(14);
+    @include append(1);
+  }
+  #right-column {
+    @include column(9);
+    @include last;
+  }
+  #latest-news {
+    h1, h2 {
+      font-weight: bold;
+    }
+    h1 {
+      font-size: 200%;
+      border-bottom: 1px solid $top_nav_border_color;
+    }
+    h2 {
+      font-size: 150%;
+      margin-bottom: 0px;
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+  #latest-release {
+    @include box;
+    background-color: $page_background_color + #222;
+    border: 2px solid $page_background_color - #222;
+    text-align: center;
+    a {
+      color: $header_color;
+    }
+    h1, h2, .size {
+      font-weight: bold;
+    }
+    #download-link {
+      font-weight: bold;
+      font-size: 200%;
+      display: block;
+      margin-top: 1em;
+    }
+    .links {
+      margin-top: 2em;
+    }
+  }
+}
+
+#download-table {
+  @include prepend-top;
+  @include column(24);
+  @include last;
+}
+
+#two-column {
+  #left-column {
+    @include column(11);
+    @include append(1);
+  }
+  #right-column {
+    @include prepend(1);
+    @include column(11);
+    @include last;
+  }
+}
+
+#right-sidebar {
+  #main-column {
+    @include column(14);
+    @include append(1);
+  }
+  #sidebar-column {
+    @include column(9);
+    @include last;
+  }
+}
+
+#main-column {
+  font-size: 110%;
+}
+
+
+#primary-container {
+  h1.page-title {
+    font-size: 220%;
+    font-weight: bold;
+    color: $page_title_color;
+    margin-bottom: 1ex;
+    padding-bottom: .5ex;
+    a {
+      text-decoration: none;
+    }
+  }
+  h1 {
+    font-size: 140%;
+  }
+  h2 {
+    font-size: 120%;
+  }
+  h3 {
+    font-size: 110%;
+    font-weight: bold;
+  }
+  pre {
+    font-size: 90%;
+    code {
+      display: block;
+      padding: 1em;
+      border: 1px dotted $code_border_color;
+      overflow-x: auto;
+    }
+  }
+  p {
+    margin-bottom: 1em;
+  }
+}
+
+table.downloads {
+  th {
+    border-bottom: 1px solid $downloads_th_border_color;
+  }
+  td {
+    vertical-align: top;
+    border-bottom: 1px solid $downloads_td_border_color;
+    .version {
+      font-size: 105%;
+      font-weight: bold;
+    }
+  }
+  ul {
+    margin: 0px;
+    padding-left: 1em;
+  }
+}
+
+.post-navigation {
+  line-height: 1.4em;
+  margin-bottom: 2em;
+  .next, .previous {
+    color: $post_nav_color;
+    margin-bottom: 1em;
+    .label {
+      font-weight: bold;
+    }
+    a {
+      display: block;
+      text-decoration: none;
+      padding: 0px;
+    }
+  }
+}
+
+.post {
+  margin-bottom: 1em;
+  border-bottom: 1px solid $post_border_color;
+  line-height: 1.5em;
+  h1.title {
+    font-size: 125%;
+    font-weight: bold;
+    margin-bottom: .5ex;
+    a {
+      text-decoration: none;
+    }
+  }
+  .byline {
+    margin-bottom: 1em;
+    font-size: 90%;
+    .date {
+      display: inline;
+      color: $post_date_color;
+      margin-left: 1ex;
+    }
+    .author {
+      font-weight: bold;
+      display: inline;
+    }
+  }
+  .body {
+    margin-bottom: 2em;
+  }
+  .comments {
+    border-top: 1px solid $post_comments_border_color;
+    margin-bottom: 2em;
+  }
+  .tail {
+    background-color: $post_tail_background_color;
+    border: 1px solid $post_tail_border_color;
+    padding: .8ex;
+    margin-bottom: 1em;
+    margin-top: 1em;
+  }
+}
+
+#error-404 {
+  @include prepend(4);
+  @include column(16);
+  @include append(4);
+  font-size: 200%;
+}
+
+form {
+  label {
+    display: block;
+  }
+}
+
+.bp {
+  .pagination-links {
+    margin-bottom: 1em;
+    a {
+      text-decoration: none;
+    }
+    a, .current-page, .slip {
+      padding: .5ex;
+      margin-right: .5ex;
+    }
+    a.page-link, .current-page, .previous-link, .next-link {
+      border: 1px solid $pagination_border_color;
+    }
+    .current-page {
+      font-weight: bold;
+    }
+  }
+}
+
+.bp {
+  #primary-content {
+    table.tcTable {
+      border: 1px solid $tcTable_border_color;
+      .projectName {
+        font-weight: bold;
+        font-size: 120%;
+      }
+    }
+  }
+}
+
+.bp {
+  .bio {
+    @include column(14);
+    @include last;
+    margin-bottom: 2em;
+    .avatar {
+      @include column(3);
+    }
+    .contact {
+      @include column(8);
+      @include last;
+      ul {
+        @include horizontal-list(3ex);
+        .label {
+          color: $team_account_color;
+          font-weight: bold;
+        }
+        a {
+          display: block;
+          text-decoration: none;
+          padding: 0px;
+        }
+      }
+    }
+  }
+}

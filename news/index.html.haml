@@ -4,7 +4,6 @@ layout: default
 ---
 #right-sidebar
   #main-column
-    = page.posts.links
     - for post in page.posts
       .post
         %h1.title
@@ -17,7 +16,7 @@ layout: default
         .body
           = post.content
         .tail
-          %a{:href=>post.url} Add a comment
+          = post.intense_debate_comments_link
     = page.posts.links
   #sidebar-column
     &nbsp;

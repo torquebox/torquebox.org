@@ -16,23 +16,15 @@ layout: base
         %li
           %a{ :href=>'/news/' } News
         %li
-          %a{ :href=>'/features/' } Features
-        %li
-          %a{ :href=>'/faq/' } FAQ
-        %li
           %a{ :href=>'/download/' } Download
         %li
           %a{ :href=>'/documentation/' } Documentation
         %li
-          %a{ :href=>'/resources/' } Resources
-        %li
           %a{ :href=>'/community/' } Community
         %li
-          %a{ :href=>'/source_repository/' } Source Repository
+          %a{ :href=>'/development/' } Development
         %li
           %a{ :href=>'/license/' } License
-        %li
-          %a{ :href=>'/support/' } Support
   #primary-container
     - unless page.inhibit_title 
       %h1.page-title
@@ -43,6 +35,65 @@ layout: base
     #primary-content
       ~ content
   #footer
-    A member of the <a href="http://jboss.org/">JBoss Community</a>.
-    Copyright 2009-2010 <a href="http://redhat.com/">Red Hat, Inc.</a>
-    TorqueBox is a trademark of Red Hat, Inc.
+    #bottom-nav
+      #bottom-left
+        %h2 Download
+        %ul
+          %li
+            %a{:href=>site.releases.first.urls.dist_zip}
+              Latest release (Zip, #{site.releases.first.size}mb}
+          %li
+            %a{:href=>'/download/'}
+              Other releases
+      #bottom-center
+        %h2 Learn
+        %ul
+          %li 
+            %a{:href=>'/news/'}
+              News
+          %li 
+            %a{:href=>'/faq/'}
+              FAQ
+          %li 
+            %a{:href=>'/documentation/'}
+              Documentation
+          %li 
+            %a{:href=>'/resources/'}
+              Resources
+          %li 
+            %a{:href=>'/license/'}
+              License
+      #bottom-right
+        %h2 Get Involved
+        %ul
+          %li 
+            %a{:href=>'/community/'}
+              Community
+              %ul
+                %li
+                  %a{:href=>'/community/mailing_lists/'}
+                    Mailing Lists
+                %li
+                  %a{:href=>'/community/issues/'}
+                    Issue Tracker
+                %li
+                  %a{:href=>'/community/irc/'}
+                    IRC
+          %li
+            %a{:href=>'/development/'}
+              Development of TorqueBox
+              %ul
+                %li 
+                  %a{:href=>'/development/source_repository/'}
+                    Source Repository
+                %li 
+                  %a{:href=>'/development/continuous_integration/'}
+                    Continuous Integration
+          %li 
+            %a{:href=>'/support/'}
+              Support
+    
+    #legal
+      A member of the <a href="http://jboss.org/">JBoss Community</a>.
+      Copyright 2009-2010 <a href="http://redhat.com/">Red Hat, Inc.</a>
+      TorqueBox is a trademark of Red Hat, Inc.
