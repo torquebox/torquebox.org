@@ -1,4 +1,5 @@
 
+skin_dir: ../site-skin
 profiles:
   development:
   staging:
@@ -12,7 +13,7 @@ profiles:
       host: torquebox.org
       path: /var/www/domains/torquebox.org/www/htdocs/ 
 
-title: The TorqueBox Project
+title: TorqueBox
 
 intense_debate_acct: 82f59e335081be13846c34fa627b3208
 google_analytics:    UA-6435340-2
