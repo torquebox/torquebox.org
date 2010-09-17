@@ -30,15 +30,6 @@ form.bp {
 
 body.bp {
   font-family: 'Trebuchet MS',Verdana,sans-serif;
-/*
-  #container {
-    padding: 2em;
-    padding-bottom: 1ex;
-    @include container;
-    background-color: white;
-    border: 2px solid $page_background_color - #333;
-  }
-*/
   #nav-wrapper, #header-wrapper, #footer-wrapper, #primary-wrapper {
     @include container;
   }
@@ -47,8 +38,8 @@ body.bp {
     padding-bottom: 1ex;
     margin-bottom: 3em;
     background-color: $bar_background_color;
-    border-bottom: 2px solid $bar_background_color - #333; 
-    border-top: 2px solid $bar_background_color - #333; 
+    border-bottom: 1px solid $bar_background_color - #333; 
+    border-top: 1px solid $bar_background_color - #333; 
   }
   #header {
   }
@@ -62,8 +53,8 @@ body.bp {
     padding-top: 0px;
     margin-bottom: 2em;
     background-color: $bar_background_color;
-    border-bottom: 2px solid $bar_background_color - #333; 
-    border-top: 2px solid $bar_background_color - #333; 
+    border-bottom: 1px solid $bar_background_color - #333; 
+    border-top: 1px solid $bar_background_color - #333; 
   }
 }
 
