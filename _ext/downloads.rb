@@ -36,6 +36,11 @@ class Downloads
       else
         after_beta21(release)
       end
+      if ( v.major == 1 && v.minor == 0 && v.beta_version < 22 ) 
+        before_beta22(release)
+      else
+        after_beta22(release)
+      end
     end
   end
 
@@ -45,7 +50,6 @@ class Downloads
     release.urls.docs.browse          = "/documentation/#{release.version}/"
     release.urls.docs.pdf             = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}.pdf"
     release.urls.docs.html_multi_zip  = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}-html.zip"
-    release.urls.docs.html_single_zip = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}-html-single.zip"
 
     release.urls.jira = "https://jira.jboss.org/jira/secure/IssueNavigator.jspa?reset=true&amp;fixfor=#{release.jira_version}&amp;pid=12310812&amp;sorter/field=issuekey&amp;sorter/order=DESC"
 
@@ -60,6 +64,13 @@ class Downloads
 
   def after_beta21(release)
     release.urls.dist_zip = "#{REPO_PREFIX}/torquebox-dist/#{release.version}/torquebox-dist-#{release.version}-bin.zip"
+  end
+
+  def before_beta22(release)
+    release.urls.docs.html_single_zip = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}-html-single.zip"
+  end
+
+  def after_beta22(release)
   end
 
 end

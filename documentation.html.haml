@@ -5,7 +5,7 @@ title: Documentation
 
 .span-24.last.append-bottom
   %h1{:style=>'text-align: center;'}
-    %a{:href=>"/documentation/#{site.releases.first.version}/"}Browse the latest documentation
+    %a{:href=>"/documentation/#{site.releases.first.version}/"}Browse the #{site.releases.first.version} documentation.
   
 
 .prepend-top
@@ -27,9 +27,10 @@ title: Documentation
         %td
           %a{:href=>"/documentation/#{release.version}/"}Browse
         %td
-          %a{:href=>"http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{release.version}/torquebox-docs-en_US-#{release.version}.pdf"} PDF
+          %a{:href=>release.urls.docs.pdf} PDF
           |
-          %a{:href=>"http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{release.version}/torquebox-docs-en_US-#{release.version}-html.zip"} Multi-page HTML Bundle
-          |
-          %a{:href=>"http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{release.version}/torquebox-docs-en_US-#{release.version}-html-single.zip"} Single-page HTML Bundle
+          %a{:href=>release.urls.docs.html_multi_zip} Multi-page HTML Bundle
+          - if release.urls.docs.html_single_zip
+            |
+            %a{:href=>release.urls.docs.html_single_zip} Single-page HTML Bundle
   
