@@ -29,9 +29,6 @@ title: Download
   
       * [PDF Manual for #{site.releases.first.version}](#{site.releases.first.urls.docs.pdf})
       * [Multi-page HTML Manual for #{site.releases.first.version}](#{site.releases.first.urls.docs.html_multi_zip})
-      * [Single-page HTML Manual for #{site.releases.first.version}](#{site.releases.first.urls.docs.html_single_zip})
-
-
 
 #download-table
   %table.downloads
@@ -66,8 +63,9 @@ title: Download
               %a{:href=>release.urls.docs.browse} Browse
             %li
               %a{:href=>release.urls.docs.html_multi_zip} Multi-page HTML ZIP
-            %li
-              %a{:href=>release.urls.docs.html_single_zip} Single-page HTML ZIP
+            - if ( release.urls.docs.html_single_zip )
+              %li
+                %a{:href=>release.urls.docs.html_single_zip} Single-page HTML ZIP
             %li
               %a{:href=>release.urls.docs.pdf} PDF 
         %td
