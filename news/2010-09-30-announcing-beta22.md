@@ -19,6 +19,13 @@ TorqueBox that much more responsive and enjoyable!
 We also upgraded to the latest JRuby release (1.5.3) and the latest
 JBoss AS release (6.0.0 M5).
 
+Perhaps most **IMPORTANT**ly, we simplified the names of the rake
+tasks used to [un]deploy apps and start the TorqueBox server.  We
+changed `torquebox:server:run` and `torquebox:rails:deploy` to
+`torquebox:run` and `torquebox:deploy`, respectively.  In other words,
+you don't have to explicitly tell us whether you're deploying a Rails
+or a Rack app.  We should be smart enough to figure that out.
+
 But wait, according to JIRA, there's more!
 
 <h2>        Bug
