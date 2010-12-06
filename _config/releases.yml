@@ -1,3 +1,5 @@
+- version: 1.0.0.Beta23
+  jira_version: 12315484
 - version: 1.0.0.Beta22
   jira_version: 12315357
 - version: 1.0.0.Beta21
