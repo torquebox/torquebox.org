@@ -1,8 +1,7 @@
 ---
 title: Announcing the TorqueBox Project
 author: Bob McWhirter
-version: 1.0.0.Beta11
-layout: release
+layout: news
 ---
 # What is TorqueBox?
 
