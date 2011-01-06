@@ -63,19 +63,15 @@ regardless.  So I'm kinda doing you a favor.  You're welcome! ;)
 Fire up a shell window and start "node1":
     $JBOSS_HOME/bin/run.sh -b 192.168.6.201 \
                            -c node1 \
-                           -Djboss.messaging.ServerPeerID=1 \
                            -Djboss.mod_cluster.advertise.enabled=true
 
 Then fire up "node2" in another shell window:
     $JBOSS_HOME/bin/run.sh -b 192.168.6.202 \
                            -c node2 \
-                           -Djboss.messaging.ServerPeerID=2 \
                            -Djboss.mod_cluster.advertise.enabled=true
 
 * `-b` references our IP aliases
 * `-c` references our copies of the `all` config
-* the `jboss.messaging.ServerPeerID` system property is required to be
-  unique for every node in your cluster
 * the `jboss.mod_cluster.advertise.enabled` system property enables
   automatic discovery of the httpd mod_cluster front-end[s]. Its
   default value [false] is in
