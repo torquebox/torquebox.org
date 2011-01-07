@@ -114,4 +114,5 @@ disrupted.  The other node should pick up right where the killed one
 left off.
 
 Cool, huh?  Try other scenarios yourself.  It's pretty darn robust.
-In the next article, we'll see how well clustered messaging works.
+In the next article, we'll
+[see how well clustered background jobs work](/news/2011/01/07/clustered-tasks/).

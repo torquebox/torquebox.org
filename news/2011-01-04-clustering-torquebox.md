@@ -119,5 +119,7 @@ development, I prefer to have the nodes share the filesystem so that
 changes to the app are reflected immediately in all nodes.
 
 In a future article, I'll create a simple Rails app that demonstrates
-session replication and failover.  Then we'll show how clustered
-messaging "just works" out of the box, too.
+[session replication and failover](/news/2011/01/06/session-replication/).
+Then we'll show how
+[clustered background jobs](/news/2011/01/07/clustered-tasks/) "just work"
+out of the box, too.
