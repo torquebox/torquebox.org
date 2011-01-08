@@ -16,7 +16,7 @@ Non-trivial web applications are comprised of more than just web
 components.  You don't get too far along in the development of your
 app before you find yourself needing background processing and
 scheduling.  And it shouldn't be too difficult to manage such an
-application.  That's what app servers are good at, by golly!  They
+application.  That's what app servers are good for, by golly!  They
 offer a more tightly integrated experience in which the non-web
 resources your web app requires are provided by the app server itself.
 
@@ -53,7 +53,7 @@ sleep for a few seconds.
 
 Brilliant, right?  Suck it, "Hello World!"  :-)
 
-All task classes have three requirements:
+All task classes must meet three requirements:
 
 * They must extend `TorqueBox::Messaging::Task`
 * They must reside in `app/tasks`
@@ -102,7 +102,9 @@ In your shell, try this:
 Try it a few times, actually.  Each time try changing the number of
 seconds the task should sleep (the number at the end of the URL).
 Notice how both the web requests (because we're not saving our
-cookies) and the tasks are distributed across each node.  Neat, right?
+cookies) and the tasks are load-balanced across the cluster.  The node
+responding to the web request may or may not be the one executing the
+task.  Neat, right?
 
 I should point out that background processing in TorqueBox has no
 dependency on clustering whatsoever.  It works whether you cluster or
