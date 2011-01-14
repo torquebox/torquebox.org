@@ -1,0 +1,6 @@
+ErrorDocument 404 /404.html
+
+RewriteEngine on
+RewriteRule ^torquebox-dev\.zip$ http://ci.stormgrind.org/repository/download/bt7/.lastSuccessful/torquebox-dist-bin.zip?guest=1 [P]
+RewriteRule ^torquebox-(.*(20|1.)).zip$ http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-bin/$1/torquebox-bin-$1.zip [P]
+RewriteRule ^torquebox-(.*).zip$ http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-dist/$1/torquebox-dist-$1-bin.zip [P]
