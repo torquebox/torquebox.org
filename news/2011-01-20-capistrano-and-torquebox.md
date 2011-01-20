@@ -179,7 +179,7 @@ If your server is already running, then *you're done!*
 If your server is not running, that's okay.  You can deploy and
 undeploy apps irrespective of the current state of the server.
 
-When you want to start the server, an all apps already deployed
+When you want to start the server, and all apps already deployed
 to it:
 
     jruby -S cap deploy:start
