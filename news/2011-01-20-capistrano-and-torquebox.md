@@ -220,7 +220,7 @@ server, the traditional `mod_rewrite` strategy for controlling
 a *maintenance* page still works.
 
 The various steps Capistrano takes to perform a deployment are
-still the directly invokable for piece-meal execution.
+still directly invokable for piece-meal execution.
 
     jruby -S cap deploy:update_code
     jruby -S cap deploy:symlink
