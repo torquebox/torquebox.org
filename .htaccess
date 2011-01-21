@@ -1,6 +1,16 @@
 ErrorDocument 404 /404.html
 
 RewriteEngine on
+RewriteRule ^torquebox-doc\.pdf$ http://ci.stormgrind.org/repository/download/bt7/1701:id/docs/torquebox-docs-en_US.pdf?guest=1 [P]
 RewriteRule ^torquebox-dev\.zip$ http://ci.stormgrind.org/repository/download/bt7/.lastSuccessful/torquebox-dist-bin.zip?guest=1 [P]
 RewriteRule ^torquebox-(.*(20|1.)).zip$ http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-bin/$1/torquebox-bin-$1.zip [P]
 RewriteRule ^torquebox-(.*).zip$ http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-dist/$1/torquebox-dist-$1-bin.zip [P]
+
+SetEnvIfNoCase Request_URI torquebox-dev\.zip$ torquebox-latest
+Header set Content-Disposition \
+    "attachment; filename=torquebox-dev.zip" env=torquebox-latest
+
+SetEnvIfNoCase Request_URI torquebox-doc\.pdf torquebox-doc-latest
+Header set Content-Disposition \
+    "attachment; filename=torquebox-doc.pdf" env=torquebox-doc-latest
+
