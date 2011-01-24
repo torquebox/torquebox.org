@@ -1,0 +1,3907 @@
+---
+title: 'TorqueBox post-1.0 Planning Meeting: 24 January 2011'
+layout: default
+---
+%table.irclog
+  %tr
+    %td.tstamp
+      09:41
+    %td.user
+      bobmcw_
+    %td.text
+      ah-ha
+  %tr
+    %td.tstamp
+      09:41
+    %td.user
+      bobmcw_
+    %td.text
+      I got'em
+  %tr
+    %td.tstamp
+      09:42
+    %td.user
+      jc3
+    %td.text
+      tcrawley: good call on <a href='https://issues.jboss.org/browse/TORQUE-213'>TORQUE-213</a>
+  %tr
+    %td.tstamp
+      09:42
+    %td.user
+      jbossbot
+    %td.text
+      jira [TORQUE-213] Mimic delayed_job's AR handle_asynchronously method  <a href='https://issues.jboss.org/browse/TORQUE-213'>https://issues.jboss.org/browse/TORQUE-213</a>
+  %tr
+    %td.tstamp
+      09:43
+    %td.user
+      tcrawley
+    %td.text
+      jc3: yeah, I thought that would make transition easier for folks. and it's handy!
+  %tr
+    %td.tstamp
+      09:46
+    %td.user
+      bobmcw_
+    %td.text
+      so, pardon my ignorance, but I've never actually used EventMachine
+  %tr
+    %td.tstamp
+      09:46
+    %td.user
+      bobmcw_
+    %td.text
+      but reading quickly, it's mostly NIO-esque non-blocking I/O?
+  %tr
+    %td.tstamp
+      09:48
+    %td.user
+      bbrowning
+    %td.text
+      yeah
+  %tr
+    %td.tstamp
+      09:48
+    %td.user
+      bobmcw_
+    %td.text
+      useful reference: http://www.jboss.org/projects/matrix
+  %tr
+    %td.tstamp
+      09:48
+    %td.user
+      bbrowning
+    %td.text
+      non-blocking I/O + timers and a few other things
+  %tr
+    %td.tstamp
+      09:49
+    %td.user
+      jc3
+    %td.text
+      tcrawley: should be straightforward to implement, too, since we're already doing the marshalling bits.  so you *could* serialize the model instance.  but i almost think it'd be better for the consumer to fetch by id anyway.  there are some race condition issues to work out there.
+  %tr
+    %td.tstamp
+      09:49
+    %td.user
+      bobmcw_
+    %td.text
+      jc3: we'd probably want TX involved also
+  %tr
+    %td.tstamp
+      09:49
+    %td.user
+      bobmcw_
+    %td.text
+      wtf is MarkL?
+  %tr
+    %td.tstamp
+      09:49
+    %td.meta{:colspan=>2}
+      sordyl has joined (~sordyl@adsl-99-141-18-140.dsl.chcgil.sbcglobal.net)
+  %tr
+    %td.tstamp
+      09:50
+    %td.meta{:colspan=>2}
+      bobmcw_ is now known as bobmcw
+  %tr
+    %td.tstamp
+      09:50
+    %td.meta{:colspan=>2}
+      ChanServ has changed mode
+  %tr
+    %td.tstamp
+      09:50
+    %td.meta{:colspan=>2}
+      ChanServ has set topic
+  %tr
+    %td.tstamp
+      09:50
+    %td.user
+      jc3
+    %td.text
+      bobmcw_: the best you could hope for is that the delivery is in the TX, but not the actual guts of the method 'handled asynchronously'
+  %tr
+    %td.tstamp
+      09:51
+    %td.user
+      bobmcw
+    %td.text
+      yah, mostly ensuring that it only drops onto the queue if the db-commit was successful
+  %tr
+    %td.tstamp
+      09:51
+    %td.user
+      bobmcw
+    %td.text
+      all-or-nothing
+  %tr
+    %td.tstamp
+      09:51
+    %td.user
+      jc3
+    %td.text
+      bobmcw: gotcha
+  %tr
+    %td.tstamp
+      09:51
+    %td.user
+      bobmcw
+    %td.text
+      then you'd know the processor will have valid state once he fetches
+  %tr
+    %td.tstamp
+      09:51
+    %td.user
+      bobmcw
+    %td.text
+      no possiblity of processor fetching before the DB tx commits
+  %tr
+    %td.tstamp
+      09:51
+    %td.user
+      bobmcw
+    %td.text
+      ie, the SteamCannon race condition
+  %tr
+    %td.tstamp
+      09:51
+    %td.user
+      jc3
+    %td.text
+      bobmcw: not necessarily.  but he's got a shot.
+  %tr
+    %td.tstamp
+      09:51
+    %td.user
+      bobmcw
+    %td.text
+      (db+enqueue) becomes a single tx
+  %tr
+    %td.tstamp
+      09:51
+    %td.user
+      bobmcw
+    %td.text
+      and occurs before (dequeue)
+  %tr
+    %td.tstamp
+      09:52
+    %td.user
+      bobmcw
+    %td.text
+      modulo an obj.delete!
+  %tr
+    %td.tstamp
+      09:52
+    %td.user
+      jc3
+    %td.text
+      right but nothing prevents the state from changing (by a 3rd party) before handler acts on it.
+  %tr
+    %td.tstamp
+      09:52
+    %td.user
+      bobmcw
+    %td.text
+      sure
+  %tr
+    %td.tstamp
+      09:54
+    %td.meta{:colspan=>2}
+      szimano has joined (~szimano@178-36-252-135.adsl.inetia.pl)
+  %tr
+    %td.tstamp
+      09:54
+    %td.user
+      szimano
+    %td.text
+      hey guys
+  %tr
+    %td.tstamp
+      09:55
+    %td.meta{:colspan=>2}
+      aslak has joined (~aslak@redhat/jboss/aslak)
+  %tr
+    %td.tstamp
+      09:56
+    %td.user
+      jc3
+    %td.text
+      szimano: morning!
+  %tr
+    %td.tstamp
+      09:58
+    %td.user
+      szimano
+    %td.text
+      it's afternoon on my side, but thanks for the greet ;-)
+  %tr
+    %td.tstamp
+      09:58
+    %td.user
+      mgoldmann
+    %td.text
+      right, coffee!
+  %tr
+    %td.tstamp
+      09:58
+    %td.user
+      mgoldmann
+    %td.text
+      szimano: morning!
+  %tr
+    %td.tstamp
+      09:58
+    %td.user
+      jc3
+    %td.text
+      szimano: it's always morning somewhere
+  %tr
+    %td.tstamp
+      09:58
+    %td.meta{:colspan=>2}
+      ajayers has joined (~aayers@146.137.112.11)
+  %tr
+    %td.tstamp
+      09:58
+    %td.user
+      szimano
+    %td.text
+      right ;-)
+  %tr
+    %td.tstamp
+      09:59
+    %td.user
+      szimano
+    %td.text
+      hey marek
+  %tr
+    %td.tstamp
+      09:59
+    %td.meta{:colspan=>2}
+      xmasbot has joined (~michael@64.134.220.217)
+  %tr
+    %td.tstamp
+      09:59
+    %td.user
+      szimano
+    %td.text
+      so you guys ready to forge the future of ruby EE ;-) ?
+  %tr
+    %td.tstamp
+      10:00
+    %td.user
+      bobmcw
+    %td.text
+      Good morning everyone!
+  %tr
+    %td.tstamp
+      10:00
+    %td.user
+      bobmcw
+    %td.text
+      Good morning, szimano, the snarkiest of them all
+  %tr
+    %td.tstamp
+      10:00
+    %td.meta{:colspan=>2}
+      rhauch has joined (~rhauch@nat/redhat/x-jdpdzswcjkvxgwzx)
+  %tr
+    %td.tstamp
+      10:00
+    %td.meta{:colspan=>2}
+      rhauch has left IRC (Changing host)
+  %tr
+    %td.tstamp
+      10:00
+    %td.meta{:colspan=>2}
+      rhauch has joined (~rhauch@redhat/jboss/rhauch)
+  %tr
+    %td.tstamp
+      10:00
+    %td.meta{:colspan=>2}
+      vik has joined (~Adium@iad-69-171-176-221.evdo.leapwireless.net)
+  %tr
+    %td.tstamp
+      10:01
+    %td.user
+      szimano
+    %td.text
+      naw, i've changed during past 3 (?) years we had the last jboss irc meeting together ;-)
+  %tr
+    %td.tstamp
+      10:01
+    %td.user
+      bobmcw
+    %td.text
+      Thanks for stopping by for meeting, everyone, we'll start with some introductions of the TorqueBox guys
+  %tr
+    %td.tstamp
+      10:01
+    %td.meta{:colspan=>2}
+      rruss has joined (~Adium@redhat/jboss/rruss)
+  %tr
+    %td.tstamp
+      10:01
+    %td.user
+      bobmcw
+    %td.text
+      I'm Bob McWhirter, I start the project ~2yrs ago.  http://twitter.com/#!/bobmcwhirter
+  %tr
+    %td.tstamp
+      10:01
+    %td.user
+      bobmcw
+    %td.text
+      jc3: wtf are you?
+  %tr
+    %td.tstamp
+      10:01
+    %td.user
+      jc3
+    %td.text
+      ?
+  %tr
+    %td.tstamp
+      10:01
+    %td.user
+      bobmcw
+    %td.text
+      introduce yourself
+  %tr
+    %td.tstamp
+      10:02
+    %td.user
+      jc3
+    %td.text
+      oh, yeah.  i'm jim crossley:  http://twitter.com/#!/jcrossley3
+  %tr
+    %td.tstamp
+      10:02
+    %td.meta{:colspan=>2}
+      asarih has joined (~asarih@cpe-174-106-010-097.ec.res.rr.com)
+  %tr
+    %td.tstamp
+      10:02
+    %td.user
+      bobmcw
+    %td.text
+      jc3 and I have been hacking the core of TorqueBox.  We also have bbrowning, tcrawley and lanceball contributing.
+  %tr
+    %td.tstamp
+      10:03
+    %td.user
+      lanceball
+    %td.text
+      morning!
+  %tr
+    %td.tstamp
+      10:03
+    %td.user
+      tcrawley
+    %td.text
+      morning all!
+  %tr
+    %td.tstamp
+      10:03
+    %td.meta{:colspan=>2}
+      nmcl has joined (~marklittl@88-110-100-14.dynamic.dsl.as9105.com)
+  %tr
+    %td.tstamp
+      10:03
+    %td.user
+      bobmcw
+    %td.text
+      and nmcl is my boss, so if we displease him, we'll be needing new jobs
+  %tr
+    %td.tstamp
+      10:03
+    %td.user
+      nmcl
+    %td.text
+      bobmcw ping
+  %tr
+    %td.tstamp
+      10:03
+    %td.meta{:colspan=>2}
+      xmasbot_ has joined (~michael@166.205.9.40)
+  %tr
+    %td.tstamp
+      10:03
+    %td.user
+      nmcl
+    %td.text
+      Wow. A meeting that doesn't involve the phone. How quaint ;)
+  %tr
+    %td.tstamp
+      10:03
+    %td.user
+      bobmcw
+    %td.text
+      nmcl: I know, right?
+  %tr
+    %td.tstamp
+      10:04
+    %td.user
+      bobmcw
+    %td.text
+      So, we're wrapping up the 1.0 release of the community version of TorqueBox
+  %tr
+    %td.tstamp
+      10:04
+    %td.user
+      rruss
+    %td.text
+      and self documenting
+  %tr
+    %td.tstamp
+      10:04
+    %td.meta{:colspan=>2}
+      galderz has joined (~Adium@redhat/jboss/galderz)
+  %tr
+    %td.tstamp
+      10:04
+    %td.user
+      bobmcw
+    %td.text
+      ostensibly feature-complete at this point
+  %tr
+    %td.tstamp
+      10:04
+    %td.user
+      nmcl
+    %td.text
+      bobmcw I didn't realise until I looked at the invitation.
+  %tr
+    %td.tstamp
+      10:04
+    %td.user
+      galderz
+    %td.text
+      hi all
+  %tr
+    %td.tstamp
+      10:04
+    %td.user
+      bobmcw
+    %td.text
+      after 1.0, the development will diverge into two paths
+  %tr
+    %td.tstamp
+      10:04
+    %td.user
+      jc3
+    %td.text
+      galderz: nmcl: morning!
+  %tr
+    %td.tstamp
+      10:04
+    %td.user
+      bobmcw
+    %td.text
+      path (a) is the boring path, taking our 1.0 stuff, and making it run on top of JBoss EAP 5.1
+  %tr
+    %td.tstamp
+      10:04
+    %td.user
+      nmcl
+    %td.text
+      morning/afternoon/evening
+  %tr
+    %td.tstamp
+      10:05
+    %td.user
+      bobmcw
+    %td.text
+      hopefully culminating in something supportable, maybe
+  %tr
+    %td.tstamp
+      10:05
+    %td.user
+      adamw1pl
+    %td.text
+      5.1?
+  %tr
+    %td.tstamp
+      10:05
+    %td.user
+      bobmcw
+    %td.text
+      path (b) is the exciting part, which we're here to discuss today
+  %tr
+    %td.tstamp
+      10:05
+    %td.user
+      bobmcw
+    %td.text
+      which involving moving towards AS7, and doing all sorts of wacky stuff we think up
+  %tr
+    %td.tstamp
+      10:05
+    %td.user
+      bobmcw
+    %td.text
+      adamw1pl: EAP 5.1
+  %tr
+    %td.tstamp
+      10:05
+    %td.user
+      bobmcw
+    %td.text
+      the Product(tm)
+  %tr
+    %td.tstamp
+      10:05
+    %td.user
+      adamw1pl
+    %td.text
+      right, slight surprise because now trq box is on AS6 ;)
+  %tr
+    %td.tstamp
+      10:06
+    %td.user
+      bobmcw
+    %td.text
+      adamw1pl: yes, hence boring
+  %tr
+    %td.tstamp
+      10:06
+    %td.meta{:colspan=>2}
+      qmx has joined (~qmx@200-160-70-249.static-user.ajato.com.br)
+  %tr
+    %td.tstamp
+      10:06
+    %td.user
+      bobmcw
+    %td.text
+      and mostly a "backporting" excercise
+  %tr
+    %td.tstamp
+      10:06
+    %td.user
+      adamw1pl
+    %td.text
+      yep, "exciting"! ;)
+  %tr
+    %td.tstamp
+      10:06
+    %td.user
+      bobmcw
+    %td.text
+      for post-1.0 TorqueBox, as mentioned in the blogpost, I'd like us to consider not just the context of JBossAS
+  %tr
+    %td.tstamp
+      10:06
+    %td.user
+      bobmcw
+    %td.text
+      but where can we bring ruby and jboss together in any combination
+  %tr
+    %td.tstamp
+      10:07
+    %td.user
+      bobmcw
+    %td.text
+      Not everyone wants to be centered around a Rack/Rails app, but might want to mix a little Ruby into their Java
+  %tr
+    %td.tstamp
+      10:07
+    %td.meta{:colspan=>2}
+      xmasbot has left IRC (Ping timeout
+  %tr
+    %td.tstamp
+      10:07
+    %td.meta{:colspan=>2}
+      xmasbot_ is now known as xmasbot
+  %tr
+    %td.tstamp
+      10:07
+    %td.user
+      bobmcw
+    %td.text
+      of course, TorqueBoxAS, we'd like to aggregate it all
+  %tr
+    %td.tstamp
+      10:07
+    %td.user
+      nmcl
+    %td.text
+      bobmcw for instance? ESB? :-D
+  %tr
+    %td.tstamp
+      10:07
+    %td.user
+      bobmcw
+    %td.text
+      nmcl: for instance, ESB
+  %tr
+    %td.tstamp
+      10:07
+    %td.user
+      bobmcw
+    %td.text
+      or SwitchYard?
+  %tr
+    %td.tstamp
+      10:07
+    %td.user
+      nmcl
+    %td.text
+      bobmcw yeah, SwitchYard would be the right one.
+  %tr
+    %td.tstamp
+      10:07
+    %td.user
+      bobmcw
+    %td.text
+      http://www.jboss.org/projects/matrix
+  %tr
+    %td.tstamp
+      10:08
+    %td.user
+      bobmcw
+    %td.text
+      the JBoss umbrella encompasses quite a lot
+  %tr
+    %td.tstamp
+      10:08
+    %td.user
+      bobmcw
+    %td.text
+      So, to start, things that we have partially in-flight, that need some love
+  %tr
+    %td.tstamp
+      10:08
+    %td.user
+      bobmcw
+    %td.text
+      a) Mobicents integration, SIP Servlets.
+  %tr
+    %td.tstamp
+      10:08
+    %td.user
+      szimano
+    %td.text
+      is SwitchYard ESB 2.0 ?
+  %tr
+    %td.tstamp
+      10:08
+    %td.user
+      bobmcw
+    %td.text
+      jeand did some excellent work a while back
+  %tr
+    %td.tstamp
+      10:08
+    %td.user
+      bobmcw
+    %td.text
+      but we didn't manage to keep it active and up-to-date with the major TorqueBox overhauls
+  %tr
+    %td.tstamp
+      10:08
+    %td.meta{:colspan=>2}
+      shawkins_rht has joined (~shawkins@99.126.106.160)
+  %tr
+    %td.tstamp
+      10:09
+    %td.user
+      bobmcw
+    %td.text
+      b) Transactions.  nmcl did some TX work.
+  %tr
+    %td.tstamp
+      10:09
+    %td.user
+      bobmcw
+    %td.text
+      we could bind that to our messaging bits and AR stuff, perchance
+  %tr
+    %td.tstamp
+      10:09
+    %td.user
+      adamw1pl
+    %td.text
+      so a ruby MDB?
+  %tr
+    %td.tstamp
+      10:09
+    %td.user
+      bobmcw
+    %td.text
+      c) Infinispan.  Galder's talking about it soon.  It should exist.
+  %tr
+    %td.tstamp
+      10:09
+    %td.user
+      jc3
+    %td.text
+      in multiple ways
+  %tr
+    %td.tstamp
+      10:09
+    %td.user
+      bobmcw
+    %td.text
+      adamw1pl: we sorta have ruby MDBs now, but being able to do multi-resource transactions
+  %tr
+    %td.tstamp
+      10:09
+    %td.user
+      bobmcw
+    %td.text
+      jc3: yes, basic client, as impls for ActiveSupport::Cache, etc
+  %tr
+    %td.tstamp
+      10:10
+    %td.user
+      bobmcw
+    %td.text
+      bound to ActiveModel mebbe
+  %tr
+    %td.tstamp
+      10:10
+    %td.user
+      bobmcw
+    %td.text
+      NoSQLish
+  %tr
+    %td.tstamp
+      10:10
+    %td.user
+      bobmcw
+    %td.text
+      As far as schedule and timing, I'm exactly the wrong person to ask.
+  %tr
+    %td.tstamp
+      10:10
+    %td.user
+      bobmcw
+    %td.text
+      see 1.0.0.Beta23
+  %tr
+    %td.tstamp
+      10:10
+    %td.user
+      bobmcw
+    %td.text
+      I *would* like to increase the cadence of our releases
+  %tr
+    %td.tstamp
+      10:10
+    %td.user
+      bobmcw
+    %td.text
+      and perhaps move to a more rubyish numbering
+  %tr
+    %td.tstamp
+      10:11
+    %td.user
+      nmcl
+    %td.text
+      bobmcw can we try to move to a regular timebox release schedule? 8 or 10 weeks works for the majority of jboss projects.
+  %tr
+    %td.tstamp
+      10:11
+    %td.user
+      bobmcw
+    %td.text
+      ie, drop "Beta23" suffixen
+  %tr
+    %td.tstamp
+      10:11
+    %td.user
+      bobmcw
+    %td.text
+      nmcl: that'd be ideal
+  %tr
+    %td.tstamp
+      10:11
+    %td.user
+      bobmcw
+    %td.text
+      jc3 has helped us a lot push out more regular releases.  just a matter of us having more disclepline as a team (ie, me.)
+  %tr
+    %td.tstamp
+      10:11
+    %td.user
+      nmcl
+    %td.text
+      bobmcw so we just release on schedule and push other issues to the next release.
+  %tr
+    %td.tstamp
+      10:11
+    %td.user
+      bobmcw
+    %td.text
+      yep
+  %tr
+    %td.tstamp
+      10:11
+    %td.user
+      bobmcw
+    %td.text
+      "just"
+  %tr
+    %td.tstamp
+      10:11
+    %td.user
+      bobmcw
+    %td.text
+      it's easy!
+  %tr
+    %td.tstamp
+      10:12
+    %td.user
+      nmcl
+    %td.text
+      bobmcw I'm sure we can all help :)
+  %tr
+    %td.tstamp
+      10:12
+    %td.user
+      jc3
+    %td.text
+      8-10 weeks is easily do-able
+  %tr
+    %td.tstamp
+      10:12
+    %td.user
+      bobmcw
+    %td.text
+      so, I know some of the guys have some thoughts of stuff they want to work towards during the next cycle
+  %tr
+    %td.tstamp
+      10:12
+    %td.user
+      nmcl
+    %td.text
+      jc3 usually it goes like this ... 2 weeks at the start to agree on JIRAs to work on, 4 weeks work, and 2 weeks unit testing. But it can be flexible.
+  %tr
+    %td.tstamp
+      10:13
+    %td.user
+      bobmcw
+    %td.text
+      and I'd also love to hear from everyone else lurking here what is important/interesting/exciting to them
+  %tr
+    %td.tstamp
+      10:13
+    %td.user
+      bobmcw
+    %td.text
+      just shout it out
+  %tr
+    %td.tstamp
+      10:13
+    %td.user
+      bobmcw
+    %td.text
+      as mentioned by nmcl, we track everything through JIRA
+  %tr
+    %td.tstamp
+      10:13
+    %td.user
+      bobmcw
+    %td.text
+      for now we'll be jamming anything we mention under the 2.0 release
+  %tr
+    %td.tstamp
+      10:13
+    %td.user
+      bobmcw
+    %td.text
+      https://issues.jboss.org/browse/TORQUE/fixforversion/12315931
+  %tr
+    %td.tstamp
+      10:14
+    %td.user
+      bobmcw
+    %td.text
+      we'll juggle actually iterations once we start the dev cycles
+  %tr
+    %td.tstamp
+      10:14
+    %td.user
+      jc3
+    %td.text
+      "it would be way cool if torquebox did __________"
+  %tr
+    %td.tstamp
+      10:14
+    %td.user
+      bobmcw
+    %td.text
+      jc3: _exactly_!
+  %tr
+    %td.tstamp
+      10:14
+    %td.user
+      vik
+    %td.text
+      hi this is vikram with amentra. I'd be most interested in getting some integration with Drools/jBPM.
+  %tr
+    %td.tstamp
+      10:14
+    %td.user
+      bobmcw
+    %td.text
+      vik: agreed.  that could be realized in several ways.  which are your envisioning?
+  %tr
+    %td.tstamp
+      10:14
+    %td.user
+      bobmcw
+    %td.text
+      Drools rule actions being chunks of Ruby?  being able to assert ruby objects into a working-memory?
+  %tr
+    %td.tstamp
+      10:15
+    %td.user
+      bobmcw
+    %td.text
+      something else entirely
+  %tr
+    %td.tstamp
+      10:15
+    %td.user
+      bobmcw
+    %td.text
+      ?
+  %tr
+    %td.tstamp
+      10:15
+    %td.user
+      galderz
+    %td.text
+      bobmcw: ActiveSupport:Cache stuff would be what would wrap HotRod java client around JRuby to talk to a remote data store, correct?
+  %tr
+    %td.tstamp
+      10:16
+    %td.user
+      bobmcw
+    %td.text
+      galderz: yah, for that, I was thinking we start with a base hotrod-client.gem, just wrapping the client with Rubytastic idioms
+  %tr
+    %td.tstamp
+      10:16
+    %td.user
+      bobmcw
+    %td.text
+      then use that to impl an AS::Cache which is used by Rails for query-caching, HTML fragment caching
+  %tr
+    %td.tstamp
+      10:16
+    %td.user
+      vik
+    %td.text
+      I think at a bare bones being able to call rules defined in Drools or a workflow process defined in jBPM from ruby code is what I'd be most interested in
+  %tr
+    %td.tstamp
+      10:17
+    %td.user
+      galderz
+    %td.text
+      bobmcw: for that type of query-caching, you'd want a local cache most probably
+  %tr
+    %td.tstamp
+      10:17
+    %td.user
+      jeand
+    %td.text
+      bobmcw, what is the JBoss AS target for TorqueBox 1.0 (AS 5, AS 6 or AS 7 ?)
+  %tr
+    %td.tstamp
+      10:17
+    %td.user
+      galderz
+    %td.text
+      cos it's cached data, so you want to access it quickly i suppose?
+  %tr
+    %td.tstamp
+      10:17
+    %td.user
+      galderz
+    %td.text
+      similar to Hibernate 2LC?
+  %tr
+    %td.tstamp
+      10:17
+    %td.user
+      bobmcw
+    %td.text
+      vik: "calling a rule" though, is sorta async and implicit given a workingMemory.assertObject( myFact )
+  %tr
+    %td.tstamp
+      10:17
+    %td.user
+      bobmcw
+    %td.text
+      myFact could be a ruby object
+  %tr
+    %td.tstamp
+      10:17
+    %td.user
+      bobmcw
+    %td.text
+      or you could call wm.assert_object( my_java_object ) from ruby
+  %tr
+    %td.tstamp
+      10:18
+    %td.user
+      jc3
+    %td.text
+      jeand: 6
+  %tr
+    %td.tstamp
+      10:18
+    %td.user
+      bobmcw
+    %td.text
+      galderz: probably
+  %tr
+    %td.tstamp
+      10:18
+    %td.user
+      bobmcw
+    %td.text
+      there's a JBossCache impl of AS::Cache out there, but I've not inspected it too closely
+  %tr
+    %td.tstamp
+      10:18
+    %td.user
+      bobmcw
+    %td.text
+      jeand: TB 1.0 community is based on AS6
+  %tr
+    %td.tstamp
+      10:18
+    %td.user
+      bobmcw
+    %td.text
+      if there ever becomes a TB 1.0 Product, it'd be based on EAP5.1 I'd imagine
+  %tr
+    %td.tstamp
+      10:18
+    %td.user
+      galderz
+    %td.text
+      bobmcw: if you want something to replace an existing store (i.e. a database replacement,), remote access to such data store makes a lot of sense
+  %tr
+    %td.tstamp
+      10:18
+    %td.user
+      bobmcw
+    %td.text
+      hedges
+  %tr
+    %td.tstamp
+      10:19
+    %td.user
+      bobmcw
+    %td.text
+      galderz: that'd be then Infinispan+ActiveRecord or ActiveModel or something like mongoid for ispan
+  %tr
+    %td.tstamp
+      10:19
+    %td.user
+      galderz
+    %td.text
+      if what you're trying to replace is an actual cache which stores data that's hard to compute or remote data that's read very often, a locally available cache makes more sense
+  %tr
+    %td.tstamp
+      10:19
+    %td.user
+      bobmcw
+    %td.text
+      I can see us using both, then :)
+  %tr
+    %td.tstamp
+      10:19
+    %td.user
+      galderz
+    %td.text
+      i thought so
+  %tr
+    %td.tstamp
+      10:19
+    %td.user
+      jeand
+    %td.text
+      bobmcw, jc3 ok because I'm not sure Mobicents SIP Servlets is going ot have an AS6 version, we might shift directly to AS7 to make sure the integration is effective for the next productized version
+  %tr
+    %td.tstamp
+      10:19
+    %td.user
+      galderz
+    %td.text
+      so there's two pieces of work there :)
+  %tr
+    %td.tstamp
+      10:20
+    %td.user
+      galderz
+    %td.text
+      which are relatively independent
+  %tr
+    %td.tstamp
+      10:20
+    %td.user
+      bobmcw
+    %td.text
+      the local-cache bits wouldn't need hotrod or anything too fancy?
+  %tr
+    %td.tstamp
+      10:20
+    %td.user
+      bobmcw
+    %td.text
+      but the distributed persistence DB-replacement would?
+  %tr
+    %td.tstamp
+      10:20
+    %td.user
+      galderz
+    %td.text
+      bobmcw: nope
+  %tr
+    %td.tstamp
+      10:20
+    %td.user
+      vik
+    %td.text
+      bobmcw: the more I think about it being able to insert ruby objects into a working memory would be a good starting point
+  %tr
+    %td.tstamp
+      10:20
+    %td.user
+      galderz
+    %td.text
+      and then yes
+  %tr
+    %td.tstamp
+      10:21
+    %td.user
+      bobmcw
+    %td.text
+      vik: excellent.  I've done some PoC of that, and his some walls wrt Drools' fascination with actual Java POJOs and classes
+  %tr
+    %td.tstamp
+      10:21
+    %td.user
+      galderz
+    %td.text
+      for local cache, access via embedded cache manager
+  %tr
+    %td.tstamp
+      10:21
+    %td.user
+      bobmcw
+    %td.text
+      the fact-template stuff might provide a way to bridge though.
+  %tr
+    %td.tstamp
+      10:21
+    %td.user
+      galderz
+    %td.text
+      for persistence db-replacement access via remote cache
+  %tr
+    %td.tstamp
+      10:21
+    %td.user
+      galderz
+    %td.text
+      so these two would at least be two separate jiras
+  %tr
+    %td.tstamp
+      10:21
+    %td.user
+      bobmcw
+    %td.text
+      galderz: can I ask you to file 2+ JIRAs in TORQUE for these?
+  %tr
+    %td.tstamp
+      10:21
+    %td.user
+      galderz
+    %td.text
+      sure bobmcw, no probs
+  %tr
+    %td.tstamp
+      10:21
+    %td.user
+      bobmcw
+    %td.text
+      excellent, thank you
+  %tr
+    %td.tstamp
+      10:22
+    %td.user
+      jc3
+    %td.text
+      does anyone think the ability to "inject" a JEE bean into say, a rails controller or model, would be interesting?
+  %tr
+    %td.tstamp
+      10:22
+    %td.user
+      bobmcw
+    %td.text
+      jc3: adamw1pl might
+  %tr
+    %td.tstamp
+      10:22
+    %td.user
+      adamw1pl
+    %td.text
+      I was just about to ;)
+  %tr
+    %td.tstamp
+      10:22
+    %td.user
+      bobmcw
+    %td.text
+      and we had a user (forget whom?) who did something injecty with EJBs
+  %tr
+    %td.tstamp
+      10:23
+    %td.user
+      adamw1pl
+    %td.text
+      there are things actually
+  %tr
+    %td.tstamp
+      10:23
+    %td.user
+      adamw1pl
+    %td.text
+      but both would help making RoR a frontend technology for JEE apps
+  %tr
+    %td.tstamp
+      10:23
+    %td.user
+      adamw1pl
+    %td.text
+      two things ;)
+  %tr
+    %td.tstamp
+      10:23
+    %td.user
+      bobmcw
+    %td.text
+      two?
+  %tr
+    %td.tstamp
+      10:23
+    %td.user
+      adamw1pl
+    %td.text
+      so 1. is being able to deploy a .yml inside an EAR
+  %tr
+    %td.tstamp
+      10:24
+    %td.user
+      adamw1pl
+    %td.text
+      so you can have a ruby frontend and a java backend
+  %tr
+    %td.tstamp
+      10:24
+    %td.user
+      adamw1pl
+    %td.text
+      without making big classloader hacks
+  %tr
+    %td.tstamp
+      10:24
+    %td.user
+      bobmcw
+    %td.text
+      btw, vik: <a href='https://issues.jboss.org/browse/TORQUE-76'>TORQUE-76</a>
+  %tr
+    %td.tstamp
+      10:24
+    %td.user
+      jbossbot
+    %td.text
+      jira [TORQUE-76] Drools fact model integration  <a href='https://issues.jboss.org/browse/TORQUE-76'>https://issues.jboss.org/browse/TORQUE-76</a>
+  %tr
+    %td.tstamp
+      10:24
+    %td.user
+      adamw1pl
+    %td.text
+      as I'm doing now :)
+  %tr
+    %td.tstamp
+      10:24
+    %td.user
+      bobmcw
+    %td.text
+      vik: if you could add some comments about how you'd like to see it work, that'd be awesome
+  %tr
+    %td.tstamp
+      10:25
+    %td.user
+      bobmcw
+    %td.text
+      adamw1pl: more generally, that'd be a rails/rack app living within the same classloader as an enclosing .ear?
+  %tr
+    %td.tstamp
+      10:25
+    %td.user
+      bobmcw
+    %td.text
+      <a href='https://issues.jboss.org/browse/TORQUE-85'>TORQUE-85</a>
+  %tr
+    %td.tstamp
+      10:25
+    %td.user
+      jbossbot
+    %td.text
+      jira [TORQUE-85] Support deploying .yml (RoR applications) in an EAR  <a href='https://issues.jboss.org/browse/TORQUE-85'>https://issues.jboss.org/browse/TORQUE-85</a>
+  %tr
+    %td.tstamp
+      10:25
+    %td.user
+      adamw1pl
+    %td.text
+      yes
+  %tr
+    %td.tstamp
+      10:25
+    %td.user
+      jc3
+    %td.text
+      adamw1pl: and #2?
+  %tr
+    %td.tstamp
+      10:25
+    %td.user
+      adamw1pl
+    %td.text
+      that's injecting beans into a controller
+  %tr
+    %td.tstamp
+      10:25
+    %td.user
+      adamw1pl
+    %td.text
+      or any other ruby thing
+  %tr
+    %td.tstamp
+      10:25
+    %td.user
+      bobmcw
+    %td.text
+      EJBs?  any MCBean?  JNDI lookups?
+  %tr
+    %td.tstamp
+      10:26
+    %td.user
+      szimano
+    %td.text
+      we're injecting CDI beans atm
+  %tr
+    %td.tstamp
+      10:26
+    %td.user
+      adamw1pl
+    %td.text
+      well CDI beans is what I was thinking of
+  %tr
+    %td.tstamp
+      10:26
+    %td.user
+      adamw1pl
+    %td.text
+      I think CDI is the future
+  %tr
+    %td.tstamp
+      10:26
+    %td.user
+      bobmcw
+    %td.text
+      makes a note to figure out wtf CDI is
+  %tr
+    %td.tstamp
+      10:26
+    %td.user
+      szimano
+    %td.text
+      weld beans :) ?
+  %tr
+    %td.tstamp
+      10:26
+    %td.user
+      jc3
+    %td.text
+      if we're doing JNDI, we're prolly doing it wrong.
+  %tr
+    %td.tstamp
+      10:26
+    %td.user
+      vik
+    %td.text
+      bobmcw: I shall add my comments to that jira
+  %tr
+    %td.tstamp
+      10:26
+    %td.user
+      bobmcw
+    %td.text
+      makes a note to figure out wtf weld is
+  %tr
+    %td.tstamp
+      10:26
+    %td.user
+      bobmcw
+    %td.text
+      vik: yes, please!
+  %tr
+    %td.tstamp
+      10:26
+    %td.user
+      adamw1pl
+    %td.text
+      although we've got it solved pretty nicely, you just write inject(MyBeanClass).some_bean_method
+  %tr
+    %td.tstamp
+      10:26
+    %td.user
+      adamw1pl
+    %td.text
+      so this point isn't that important
+  %tr
+    %td.tstamp
+      10:27
+    %td.user
+      bobmcw
+    %td.text
+      adamw1pl: care to contribute code and/or expertise to everyone can benefit?
+  %tr
+    %td.tstamp
+      10:27
+    %td.user
+      bobmcw
+    %td.text
+      or do you want to selfishly keep that to yourself?
+  %tr
+    %td.tstamp
+      10:27
+    %td.user
+      bobmcw
+    %td.text
+      \:)
+  %tr
+    %td.tstamp
+      10:27
+    %td.user
+      adamw1pl
+    %td.text
+      sure, I think it's on my blog ;)
+  %tr
+    %td.tstamp
+      10:27
+    %td.user
+      adamw1pl
+    %td.text
+      however, you could go as far as having objects on the ruby side be contextual CDI objects
+  %tr
+    %td.tstamp
+      10:27
+    %td.user
+      adamw1pl
+    %td.text
+      hmm that doesn't sound to clear
+  %tr
+    %td.tstamp
+      10:27
+    %td.user
+      bobmcw
+    %td.text
+      injecting ruby objs into java objs?
+  %tr
+    %td.tstamp
+      10:27
+    %td.user
+      adamw1pl
+    %td.text
+      well that you can have a request or conversation scoped ruby object
+  %tr
+    %td.tstamp
+      10:28
+    %td.user
+      bobmcw
+    %td.text
+      adamw1pl: um, that sounds awesome, but we'll need you to educate us as to what those words mean.
+  %tr
+    %td.tstamp
+      10:28
+    %td.user
+      bobmcw
+    %td.text
+      psuedo-code, notes, on a JIRA :)
+  %tr
+    %td.tstamp
+      10:29
+    %td.user
+      bobmcw
+    %td.text
+      so, slight tangent from infinispan, keeping with data-management...
+  %tr
+    %td.tstamp
+      10:29
+    %td.user
+      bobmcw
+    %td.text
+      rhauch: how's ModeShape and Teiid?  Thoughts there?
+  %tr
+    %td.tstamp
+      10:29
+    %td.user
+      rhauch
+    %td.text
+      Yup. I'm Randall Hauch, project lead of ModeShape (a JCR 2.0 implementation).
+  %tr
+    %td.tstamp
+      10:29
+    %td.user
+      rhauch
+    %td.text
+      I've two ideas.
+  %tr
+    %td.tstamp
+      10:29
+    %td.user
+      adamw1pl
+    %td.text
+      in CDI/Seam/Weld you can have a class for which instances live in some scope, e.g. @ConversationScoped public class MyWizardState { ... }
+  %tr
+    %td.tstamp
+      10:29
+    %td.user
+      szimano
+    %td.text
+      bob CDI is like spring, but it's ok to use it @jboss ;-)
+  %tr
+    %td.tstamp
+      10:29
+    %td.user
+      rhauch
+    %td.text
+      one is for  RoR+JCR integration. So, we can haz nice RoR apps on top of JCR.
+  %tr
+    %td.tstamp
+      10:29
+    %td.user
+      adamw1pl
+    %td.text
+      and the instances are container-managed
+  %tr
+    %td.tstamp
+      10:30
+    %td.user
+      rhauch
+    %td.text
+      JCR is often used for content management, but in JBoss we use it more as an unstructured, hierarchical data store for metadata, artifact mgmt, governance, etc.
+  %tr
+    %td.tstamp
+      10:30
+    %td.user
+      adamw1pl
+    %td.text
+      so in one conversation you always get the sam eobject
+  %tr
+    %td.tstamp
+      10:30
+    %td.user
+      adamw1pl
+    %td.text
+      you could have the same on the ruby side
+  %tr
+    %td.tstamp
+      10:30
+    %td.user
+      rhauch
+    %td.text
+      The other idea is for ActiveRecord+Teiid.
+  %tr
+    %td.tstamp
+      10:31
+    %td.user
+      rhauch
+    %td.text
+      Teiid has a great JDBC driver, and can sit under Hibernate.
+  %tr
+    %td.tstamp
+      10:31
+    %td.user
+      bobmcw
+    %td.text
+      rhauch: JCR... that'd be a jcr-client.gem sort of thing?
+  %tr
+    %td.tstamp
+      10:31
+    %td.user
+      rhauch
+    %td.text
+      so maybe that work is already mostly there, just needing integration.
+  %tr
+    %td.tstamp
+      10:31
+    %td.user
+      bobmcw
+    %td.text
+      Would that be ModeShape-specific, or suitable for any javax.jcr impl (or whatever the pkg is)?
+  %tr
+    %td.tstamp
+      10:31
+    %td.user
+      rhauch
+    %td.text
+      bobmcw: yeah, maybe a very thin Rubyish JCR
+  %tr
+    %td.tstamp
+      10:32
+    %td.user
+      rhauch
+    %td.text
+      bobmcw: either accessing a local (in app server) or remote JCR
+  %tr
+    %td.tstamp
+      10:32
+    %td.user
+      bobmcw
+    %td.text
+      wrt Teiid, if it's JDBC, AR should hopefully "just work" assuming it can query out metadata on table structures, etc
+  %tr
+    %td.tstamp
+      10:32
+    %td.user
+      rhauch
+    %td.text
+      For the most part, it'd be generic JCR
+  %tr
+    %td.tstamp
+      10:32
+    %td.user
+      bobmcw
+    %td.text
+      are these things transactional? (hi nmcl)
+  %tr
+    %td.tstamp
+      10:32
+    %td.user
+      rhauch
+    %td.text
+      shawkins_rht: Is there a benefit to a more Teiid-centric integration?
+  %tr
+    %td.tstamp
+      10:32
+    %td.user
+      bobmcw
+    %td.text
+      did I get ModeShape and Teiid confused?
+  %tr
+    %td.tstamp
+      10:33
+    %td.user
+      rhauch
+    %td.text
+      bobmcw: nope. you got em right.
+  %tr
+    %td.tstamp
+      10:33
+    %td.user
+      shawkins_rht
+    %td.text
+      rhauch: I'm not sure there would be much more to it than that
+  %tr
+    %td.tstamp
+      10:33
+    %td.user
+      rhauch
+    %td.text
+      bobmcw: Teiid is the relationally-oriented integration/federation engine. Creates "virtual databases" on top of multiple sources (including non-relational)
+  %tr
+    %td.tstamp
+      10:33
+    %td.user
+      bobmcw
+    %td.text
+      would the easiest test be a no-op/straight pass-thru Teiid in front of a DB?
+  %tr
+    %td.tstamp
+      10:34
+    %td.user
+      bobmcw
+    %td.text
+      if that worked, we could then start twisting the Fancy knob?
+  %tr
+    %td.tstamp
+      10:34
+    %td.user
+      rhauch
+    %td.text
+      bobmcw: prolly.
+  %tr
+    %td.tstamp
+      10:34
+    %td.user
+      rhauch
+    %td.text
+      bobmcw: but Teiid SQL is mostly standard, there may be some differences. shawkins_rht ?
+  %tr
+    %td.tstamp
+      10:34
+    %td.user
+      shawkins_rht
+    %td.text
+      rhauch: the only other possibility is that we should at some point introduce a client with a non-blocking api
+  %tr
+    %td.tstamp
+      10:34
+    %td.user
+      bobmcw
+    %td.text
+      btw, I've beeing thinking Teiid is like a programatic kick-ass Yahoo Pipes
+  %tr
+    %td.tstamp
+      10:34
+    %td.user
+      bobmcw
+    %td.text
+      is that roughly correct?
+  %tr
+    %td.tstamp
+      10:35
+    %td.user
+      bobmcw
+    %td.text
+      N datasources, massage, join, expose, bi-directionally?
+  %tr
+    %td.tstamp
+      10:35
+    %td.user
+      rhauch
+    %td.text
+      bobmcw: Not a perfect analogy, but not too far off.
+  %tr
+    %td.tstamp
+      10:35
+    %td.user
+      shawkins_rht
+    %td.text
+      rhauch: there are of course db specific syntax options that we don't support, but we are adding as needed
+  %tr
+    %td.tstamp
+      10:35
+    %td.user
+      rhauch
+    %td.text
+      bobmcw: at that high level, yes
+  %tr
+    %td.tstamp
+      10:36
+    %td.user
+      bobmcw
+    %td.text
+      okay, so this could possibly be a quick easy win
+  %tr
+    %td.tstamp
+      10:36
+    %td.user
+      bobmcw
+    %td.text
+      nmcl: are you still with us?
+  %tr
+    %td.tstamp
+      10:36
+    %td.user
+      nmcl
+    %td.text
+      bobmcw yes
+  %tr
+    %td.tstamp
+      10:36
+    %td.user
+      rhauch
+    %td.text
+      I forget. is there something similar to Hibernate dialects in ActiveRecord ?
+  %tr
+    %td.tstamp
+      10:36
+    %td.user
+      bobmcw
+    %td.text
+      I'm pretty SwitchYard ignorant when it comes to actually using it
+  %tr
+    %td.tstamp
+      10:36
+    %td.user
+      galderz
+    %td.text
+      rhauch: what would be the relationship betweenn AR and MS?
+  %tr
+    %td.tstamp
+      10:36
+    %td.user
+      bobmcw
+    %td.text
+      where'd you envision Ruby in something like ESB?
+  %tr
+    %td.tstamp
+      10:36
+    %td.meta{:colspan=>2}
+      jmettraux has left IRC (Remote host closed the connection)
+  %tr
+    %td.tstamp
+      10:36
+    %td.user
+      galderz
+    %td.text
+      MS to be backend for AR?
+  %tr
+    %td.tstamp
+      10:36
+    %td.user
+      bobmcw
+    %td.text
+      rhauch: you pick an AR driver, but we use generic AR-JDBC
+  %tr
+    %td.tstamp
+      10:37
+    %td.user
+      bobmcw
+    %td.text
+      which defers to your JDBC driver
+  %tr
+    %td.tstamp
+      10:37
+    %td.user
+      bobmcw
+    %td.text
+      I don't think it has too much DB-specific bits in it, but I'm not 100% certain
+  %tr
+    %td.tstamp
+      10:37
+    %td.user
+      rhauch
+    %td.text
+      galderz: That's an interesting idea. they're pretty different, but it might be a way of hooking into MS.
+  %tr
+    %td.tstamp
+      10:37
+    %td.user
+      bobmcw
+    %td.text
+      github.com/nickseiger/ somewhere
+  %tr
+    %td.tstamp
+      10:37
+    %td.user
+      nmcl
+    %td.text
+      bobmcw we support Groovy and some other languages for writing business logic that interfaces with the ESB. Ruby has been asked for in the past.
+  %tr
+    %td.tstamp
+      10:38
+    %td.user
+      galderz
+    %td.text
+      rhauch: hmmm, that would somehow clash with having AR backed by Infinispan
+  %tr
+    %td.tstamp
+      10:38
+    %td.user
+      galderz
+    %td.text
+      we shouldn't step on each others toes
+  %tr
+    %td.tstamp
+      10:38
+    %td.user
+      rhauch
+    %td.text
+      galderz: JCR can be considered a "schemaless" storage, so putting Hibernate on top prevents you from using the dynamic schema capabilities. AR+JCR might expose that capability.
+  %tr
+    %td.tstamp
+      10:38
+    %td.user
+      galderz
+    %td.text
+      clearly JCR and Infinispan offer diff APIs, that should be the differentiator
+  %tr
+    %td.tstamp
+      10:38
+    %td.user
+      szimano
+    %td.text
+      nmcl: do you really need some kind of extra support to execute ruby code via jruby ?
+  %tr
+    %td.tstamp
+      10:38
+    %td.user
+      rhauch
+    %td.text
+      galderz: yes, plus different purposes, IMO
+  %tr
+    %td.tstamp
+      10:39
+    %td.user
+      szimano
+    %td.text
+      i mean for the esb
+  %tr
+    %td.tstamp
+      10:39
+    %td.user
+      rhauch
+    %td.text
+      galderz: Plus, MS can be used to access data you already have. In that way, it is something akin to Teiid, but uses JCR API rather than JDBC or SQL.
+  %tr
+    %td.tstamp
+      10:39
+    %td.user
+      szimano
+    %td.text
+      as i'm using both jboss esb and torquebox i'm now wondering how could you marry those two
+  %tr
+    %td.tstamp
+      10:39
+    %td.user
+      bobmcw
+    %td.text
+      galderz: I think a multitude of AR backends could be okay
+  %tr
+    %td.tstamp
+      10:39
+    %td.user
+      bobmcw
+    %td.text
+      different tool for different needs
+  %tr
+    %td.tstamp
+      10:40
+    %td.user
+      nmcl
+    %td.text
+      bobmcw and maybe also as a way of sending active agents across the network, e.g., you send a Ruby scrip from one endpoint to another to do work and send back a result. Again, it's something we support in ESB but not with Ruby.
+  %tr
+    %td.tstamp
+      10:40
+    %td.user
+      galderz
+    %td.text
+      bobmcw: if you think it can work great
+  %tr
+    %td.tstamp
+      10:40
+    %td.user
+      bobmcw
+    %td.text
+      galderz: I'm all for options
+  %tr
+    %td.tstamp
+      10:40
+    %td.user
+      rhauch
+    %td.text
+      bobmcw: Pretty easy to have an app access multiple AR backends simultaneously, right?
+  %tr
+    %td.tstamp
+      10:40
+    %td.user
+      galderz
+    %td.text
+      i'm all as well if we can come up with a story on when to use one or the other
+  %tr
+    %td.tstamp
+      10:40
+    %td.user
+      bobmcw
+    %td.text
+      rhauch: doable, dunno if "easy"
+  %tr
+    %td.tstamp
+      10:41
+    %td.user
+      rhauch
+    %td.text
+      galderz: definitely.
+  %tr
+    %td.tstamp
+      10:41
+    %td.user
+      bobmcw
+    %td.text
+      you have to end up managing connections-per-model yourself
+  %tr
+    %td.tstamp
+      10:41
+    %td.user
+      bobmcw
+    %td.text
+      if each model comes from a different datasource
+  %tr
+    %td.tstamp
+      10:41
+    %td.user
+      rhauch
+    %td.text
+      bobmcw: k. thought it'd be a bit easier.
+  %tr
+    %td.tstamp
+      10:41
+    %td.user
+      rhauch
+    %td.text
+      I guess most RoR apps just sit on top of a single DB.
+  %tr
+    %td.tstamp
+      10:42
+    %td.user
+      bobmcw
+    %td.text
+      yah, or use some non-AR datasource in-addition-to/instead-of AR
+  %tr
+    %td.tstamp
+      10:42
+    %td.user
+      bobmcw
+    %td.text
+      ie, mongo, couch
+  %tr
+    %td.tstamp
+      10:42
+    %td.user
+      rhauch
+    %td.text
+      that's a clear benefit of Teiid.
+  %tr
+    %td.tstamp
+      10:42
+    %td.user
+      bobmcw
+    %td.text
+      N sources viewed as 1
+  %tr
+    %td.tstamp
+      10:42
+    %td.user
+      rhauch
+    %td.text
+      yes
+  %tr
+    %td.tstamp
+      10:43
+    %td.user
+      adamw1pl
+    %td.text
+      <a href='https://issues.jboss.org/browse/TORQUE-215'>TORQUE-215</a> created
+  %tr
+    %td.tstamp
+      10:43
+    %td.user
+      jbossbot
+    %td.text
+      jira [TORQUE-215] Inject CDI beans into ruby objects/rails controllers  <a href='https://issues.jboss.org/browse/TORQUE-215'>https://issues.jboss.org/browse/TORQUE-215</a>
+  %tr
+    %td.tstamp
+      10:43
+    %td.user
+      bobmcw
+    %td.text
+      adamw1pl: thanks!
+  %tr
+    %td.tstamp
+      10:43
+    %td.user
+      ajayers
+    %td.text
+      does torquebox currently provide controller-level transaction management (i.e. container managed persistence) or distributed transaction support (like when firing a JMS message)?
+  %tr
+    %td.tstamp
+      10:44
+    %td.user
+      bobmcw
+    %td.text
+      rruss: at one point, nmcl had a bit too much to drink, and said something about Errai + ruby
+  %tr
+    %td.tstamp
+      10:44
+    %td.user
+      bobmcw
+    %td.text
+      rruss: sounded like nonsense to me, but do you have any thoughts?
+  %tr
+    %td.tstamp
+      10:44
+    %td.user
+      nmcl
+    %td.text
+      bobmcw ;)
+  %tr
+    %td.tstamp
+      10:44
+    %td.user
+      bobmcw
+    %td.text
+      ajayers: right now we don't have any extra TX support
+  %tr
+    %td.tstamp
+      10:44
+    %td.user
+      bobmcw
+    %td.text
+      but nmcl has done some proof-of-concept to start making advanced TX stuff doable
+  %tr
+    %td.tstamp
+      10:45
+    %td.user
+      bobmcw
+    %td.text
+      multi-resource TX (db+jms, for instance) is *definitely* on the roadmap
+  %tr
+    %td.tstamp
+      10:45
+    %td.user
+      ajayers
+    %td.text
+      cool
+  %tr
+    %td.tstamp
+      10:45
+    %td.user
+      bobmcw
+    %td.text
+      but apparently not yet in JIRA
+  %tr
+    %td.tstamp
+      10:45
+    %td.user
+      bobmcw
+    %td.text
+      ajayers: if you have an account with issues.jboss.org, would you mind filing a JIRA for transactions, with notes on your use-cases?
+  %tr
+    %td.tstamp
+      10:45
+    %td.user
+      jc3
+    %td.text
+      we talk about it a lot, though.  :)
+  %tr
+    %td.tstamp
+      10:45
+    %td.user
+      nmcl
+    %td.text
+      bobmcw create a JIRA and assign it to me?
+  %tr
+    %td.tstamp
+      10:46
+    %td.user
+      bobmcw
+    %td.text
+      nmcl: excellent idea
+  %tr
+    %td.tstamp
+      10:46
+    %td.user
+      adamw1pl
+    %td.text
+      and <a href='https://issues.jboss.org/browse/TORQUE-216'>TORQUE-216</a> :)
+  %tr
+    %td.tstamp
+      10:46
+    %td.user
+      jbossbot
+    %td.text
+      jira [TORQUE-216] CDI and RubyOnRails integration  <a href='https://issues.jboss.org/browse/TORQUE-216'>https://issues.jboss.org/browse/TORQUE-216</a>
+  %tr
+    %td.tstamp
+      10:46
+    %td.user
+      bobmcw
+    %td.text
+      adamw1pl: thanks again!
+  %tr
+    %td.tstamp
+      10:46
+    %td.user
+      adamw1pl
+    %td.text
+      np ;)
+  %tr
+    %td.tstamp
+      10:46
+    %td.user
+      bbrowning
+    %td.text
+      I've wondered before about JMX MBeans in Ruby - anyone else think that would be useful?
+  %tr
+    %td.tstamp
+      10:47
+    %td.user
+      bobmcw
+    %td.text
+      bbrowning: exposing ruby components as mbeans?  or accessing mbeans from ruby?
+  %tr
+    %td.tstamp
+      10:47
+    %td.user
+      bobmcw
+    %td.text
+      jmesnil has jmx4r
+  %tr
+    %td.tstamp
+      10:47
+    %td.user
+      bbrowning
+    %td.text
+      exposing ruby components s mbeans
+  %tr
+    %td.tstamp
+      10:47
+    %td.user
+      bobmcw
+    %td.text
+      that, we don't have
+  %tr
+    %td.tstamp
+      10:47
+    %td.user
+      bbrowning
+    %td.text
+      so I could add mbeans to manage my rails app for example
+  %tr
+    %td.tstamp
+      10:47
+    %td.user
+      adamw1pl
+    %td.text
+      I don't think a lot of people use mbeans nowadays
+  %tr
+    %td.tstamp
+      10:47
+    %td.user
+      bbrowning
+    %td.text
+      or whatever else
+  %tr
+    %td.tstamp
+      10:47
+    %td.user
+      adamw1pl
+    %td.text
+      but I may be wrong :)
+  %tr
+    %td.tstamp
+      10:47
+    %td.user
+      bobmcw
+    %td.text
+      aside from the side-effect of things like queues have mbeans
+  %tr
+    %td.tstamp
+      10:47
+    %td.user
+      bbrowning
+    %td.text
+      adamw1pl: what do they use instead/
+  %tr
+    %td.tstamp
+      10:47
+    %td.user
+      adamw1pl
+    %td.text
+      ah for management
+  %tr
+    %td.tstamp
+      10:48
+    %td.user
+      bobmcw
+    %td.text
+      jbison, probably, eh?
+  %tr
+    %td.tstamp
+      10:48
+    %td.user
+      adamw1pl
+    %td.text
+      well jbison uses jmx to read the data ;)
+  %tr
+    %td.tstamp
+      10:48
+    %td.user
+      szimano
+    %td.text
+      hehe
+  %tr
+    %td.tstamp
+      10:48
+    %td.user
+      adamw1pl
+    %td.text
+      for management, yes
+  %tr
+    %td.tstamp
+      10:48
+    %td.user
+      adamw1pl
+    %td.text
+      I guess RHQ could also be a consumer
+  %tr
+    %td.tstamp
+      10:48
+    %td.user
+      adamw1pl
+    %td.text
+      but that's more application-server/framework-provided mbeans
+  %tr
+    %td.tstamp
+      10:48
+    %td.user
+      adamw1pl
+    %td.text
+      not that you write an mbean in your application
+  %tr
+    %td.tstamp
+      10:49
+    %td.user
+      jc3
+    %td.text
+      but i can control a war via jmx.  i cannot do the same for a rack/rails.
+  %tr
+    %td.tstamp
+      10:49
+    %td.user
+      bobmcw
+    %td.text
+      adamw1pl: I think we (TB) would implicitly create an mbean for each controller (or whatever)
+  %tr
+    %td.tstamp
+      10:49
+    %td.user
+      bobmcw
+    %td.text
+      and an mbean for TheApp
+  %tr
+    %td.tstamp
+      10:49
+    %td.user
+      bbrowning
+    %td.text
+      jc3: yeah, maybe that's the better use-case
+  %tr
+    %td.tstamp
+      10:49
+    %td.user
+      adamw1pl
+    %td.text
+      ah yes, I misunderstood initially
+  %tr
+    %td.tstamp
+      10:49
+    %td.user
+      bobmcw
+    %td.text
+      bbrowning: JIRA, please, sir!
+  %tr
+    %td.tstamp
+      10:49
+    %td.user
+      ajayers
+    %td.text
+      bobmcw: I am registering now to add
+  %tr
+    %td.tstamp
+      10:49
+    %td.user
+      bbrowning
+    %td.text
+      not a user writing mbeans so much as TB creating appropriate ones
+  %tr
+    %td.tstamp
+      10:50
+    %td.user
+      bbrowning
+    %td.text
+      bobmcw: k
+  %tr
+    %td.tstamp
+      10:50
+    %td.user
+      bobmcw
+    %td.text
+      ajayers: excellent, thanks!
+  %tr
+    %td.tstamp
+      10:50
+    %td.user
+      jc3
+    %td.text
+      bbrowning: right
+  %tr
+    %td.tstamp
+      10:50
+    %td.user
+      bobmcw
+    %td.text
+      adamw1pl: we've talked a bit about data, obviously.  are you guys using AR?  Or working with a hibernate model?
+  %tr
+    %td.tstamp
+      10:51
+    %td.user
+      adamw1pl
+    %td.text
+      hibernate and simpledb
+  %tr
+    %td.tstamp
+      10:51
+    %td.user
+      adamw1pl
+    %td.text
+      our backend is in java
+  %tr
+    %td.tstamp
+      10:51
+    %td.user
+      bobmcw
+    %td.text
+      anything beyond CDI that'd help with that?  or you access it all through pojos?
+  %tr
+    %td.tstamp
+      10:51
+    %td.user
+      adamw1pl
+    %td.text
+      with pojos through CDI :)
+  %tr
+    %td.tstamp
+      10:51
+    %td.user
+      bobmcw
+    %td.text
+      alright... next big topic, but anil's not here...
+  %tr
+    %td.tstamp
+      10:51
+    %td.user
+      bobmcw
+    %td.text
+      security/sso
+  %tr
+    %td.tstamp
+      10:52
+    %td.user
+      bobmcw
+    %td.text
+      the AS has plenty of support for a variety of security/authentication bits
+  %tr
+    %td.tstamp
+      10:52
+    %td.user
+      jc3
+    %td.text
+      ooh, sso would be great
+  %tr
+    %td.tstamp
+      10:52
+    %td.user
+      bobmcw
+    %td.text
+      absolutely none exposed through to ruby
+  %tr
+    %td.tstamp
+      10:52
+    %td.user
+      adamw1pl
+    %td.text
+      we'll opensource jbison sometime soon so you'll just be able to see :)
+  %tr
+    %td.tstamp
+      10:52
+    %td.user
+      szimano
+    %td.text
+      which sso are you talking about ?
+  %tr
+    %td.tstamp
+      10:53
+    %td.user
+      bobmcw
+    %td.text
+      szimano: I dunno, I'm auth-ignorant :)
+  %tr
+    %td.tstamp
+      10:53
+    %td.user
+      bobmcw
+    %td.text
+      wishes anil was here
+  %tr
+    %td.tstamp
+      10:53
+    %td.user
+      bbrowning
+    %td.text
+      <a href='https://issues.jboss.org/browse/TORQUE-217'>TORQUE-217</a>
+  %tr
+    %td.tstamp
+      10:53
+    %td.user
+      jbossbot
+    %td.text
+      jira [TORQUE-217] Create JMX MBeans For Management of Rack/Rails Applications  <a href='https://issues.jboss.org/browse/TORQUE-217'>https://issues.jboss.org/browse/TORQUE-217</a>
+  %tr
+    %td.tstamp
+      10:53
+    %td.user
+      szimano
+    %td.text
+      i'm voting for OpenAM (ex openSSO) integration with both hands ;-)
+  %tr
+    %td.tstamp
+      10:53
+    %td.user
+      bobmcw
+    %td.text
+      invited anil
+  %tr
+    %td.tstamp
+      10:54
+    %td.user
+      bobmcw
+    %td.text
+      szimano: I imagine we'd do Picket*
+  %tr
+    %td.tstamp
+      10:54
+    %td.user
+      bobmcw
+    %td.text
+      but I have *no* clue
+  %tr
+    %td.tstamp
+      10:54
+    %td.user
+      bobmcw
+    %td.text
+      szimano: but we'd accept community contributions around anything, of course
+  %tr
+    %td.tstamp
+      10:54
+    %td.meta{:colspan=>2}
+      asaldhan has joined (~anil@redhat/jboss/asaldhan)
+  %tr
+    %td.tstamp
+      10:54
+    %td.user
+      jc3
+    %td.text
+      i thought AS already provided SSO?  no idea really.
+  %tr
+    %td.tstamp
+      10:54
+    %td.user
+      szimano
+    %td.text
+      \:)
+  %tr
+    %td.tstamp
+      10:54
+    %td.user
+      bobmcw
+    %td.text
+      jc3: we have no way (currently) of binding a ruby app to the AS notion of security
+  %tr
+    %td.tstamp
+      10:54
+    %td.user
+      bobmcw
+    %td.text
+      and I'm too ignorant to figure it out
+  %tr
+    %td.tstamp
+      10:55
+    %td.user
+      szimano
+    %td.text
+      well picketlink would be cool as well
+  %tr
+    %td.tstamp
+      10:55
+    %td.user
+      szimano
+    %td.text
+      it supports OpenID and so on
+  %tr
+    %td.tstamp
+      10:55
+    %td.user
+      nmcl
+    %td.text
+      bobmcw I'll have to drop off in 5 minutes for another meeting.
+  %tr
+    %td.tstamp
+      10:55
+    %td.user
+      bobmcw
+    %td.text
+      nmcl: okay, want to talk TX or anything else before you depart?
+  %tr
+    %td.tstamp
+      10:55
+    %td.meta{:colspan=>2}
+      calavera has joined (~calavera@80.169.246.204)
+  %tr
+    %td.tstamp
+      10:55
+    %td.user
+      bobmcw
+    %td.text
+      calavera: welcome!  (he's the Trinidad dude)
+  %tr
+    %td.tstamp
+      10:56
+    %td.user
+      bbrowning
+    %td.text
+      jc3: AS includes Tomcat valves for non-clustered and clustered SSO iirc
+  %tr
+    %td.tstamp
+      10:56
+    %td.user
+      asaldhan
+    %td.text
+      bobmcw: with picketlink, u can either do saml (xml based) or openid(resty/http types)
+  %tr
+    %td.tstamp
+      10:56
+    %td.user
+      calavera
+    %td.text
+      bobmcw, thank you!
+  %tr
+    %td.tstamp
+      10:56
+    %td.user
+      nmcl
+    %td.text
+      bobmcw probably just add that what we'll have so far with the stuff I did only allows us to call the underlying transactional capabilities and resource managers provided by Java. I'd like to add a feature that allows people to write resource managers in Ruby too. Not sure if that will be a 2.0 item though.
+  %tr
+    %td.tstamp
+      10:57
+    %td.user
+      bobmcw
+    %td.text
+      'k
+  %tr
+    %td.tstamp
+      10:57
+    %td.user
+      asaldhan
+    %td.text
+      bbrowning: that is correct.  that is just to allow sso across a bunch of web apps deployed on the same JBAS or a JBoss cluster
+  %tr
+    %td.tstamp
+      10:57
+    %td.user
+      asaldhan
+    %td.text
+      bbrowning: so it depends on what your needs are.
+  %tr
+    %td.tstamp
+      10:57
+    %td.user
+      bobmcw
+    %td.text
+      asaldhan: is there much My App has to do, or just delegates most auth to the AS to figure out?
+  %tr
+    %td.tstamp
+      10:58
+    %td.user
+      bbrowning
+    %td.text
+      the other type of SSO would be things like PicketLink, CAS, OpenAM? External servers using SAML or something similar
+  %tr
+    %td.tstamp
+      10:58
+    %td.user
+      asaldhan
+    %td.text
+      bobmcw: question is what do you need?
+  %tr
+    %td.tstamp
+      10:58
+    %td.user
+      bobmcw
+    %td.text
+      yah, what does an app have to do, typically, to take advantage of this?
+  %tr
+    %td.tstamp
+      10:58
+    %td.user
+      bobmcw
+    %td.text
+      or point me to some docs URL :)
+  %tr
+    %td.tstamp
+      10:58
+    %td.meta{:colspan=>2}
+      galderz has left IRC (Read error
+  %tr
+    %td.tstamp
+      10:58
+    %td.meta{:colspan=>2}
+      galderz1 has joined (~Adium@nat/redhat/x-fowywoglveajfzfb)
+  %tr
+    %td.tstamp
+      10:58
+    %td.meta{:colspan=>2}
+      nmcl has left IRC (Quit
+  %tr
+    %td.tstamp
+      11:00
+    %td.user
+      bobmcw
+    %td.text
+      heya lanceball, could you give us a few works on your deployment ideas?
+  %tr
+    %td.tstamp
+      11:00
+    %td.user
+      bobmcw
+    %td.text
+      s/works/words/
+  %tr
+    %td.tstamp
+      11:01
+    %td.user
+      asaldhan
+    %td.text
+      bobmcw: maybe for now just use the tomcat SSO.
+  %tr
+    %td.tstamp
+      11:01
+    %td.user
+      bobmcw
+    %td.text
+      also, I'd like to discuss the distribution, and if we should include much fewer gems in it
+  %tr
+    %td.tstamp
+      11:01
+    %td.user
+      bbrowning
+    %td.text
+      bobmcw: similar to SSO, may be useful to make sure ruby apps can use container auth
+  %tr
+    %td.tstamp
+      11:01
+    %td.user
+      lanceball
+    %td.text
+      well, I like the functionality that heroku provides currently for deploying via git
+  %tr
+    %td.tstamp
+      11:01
+    %td.user
+      bobmcw
+    %td.text
+      we currently ship the full rails 2.3/3.1 stack
+  %tr
+    %td.tstamp
+      11:01
+    %td.user
+      bbrowning
+    %td.text
+      and access the java Principal object
+  %tr
+    %td.tstamp
+      11:01
+    %td.user
+      bobmcw
+    %td.text
+      bbrowning: yes!
+  %tr
+    %td.tstamp
+      11:01
+    %td.meta{:colspan=>2}
+      rareddy has joined (~rareddy@nat/redhat/x-fzkcpwvqmlubsprc)
+  %tr
+    %td.tstamp
+      11:01
+    %td.user
+      szimano
+    %td.text
+      @sso from the startup point of view it is very handy to have an easy integration with openid (hence google/facebook/twitter login)
+  %tr
+    %td.tstamp
+      11:01
+    %td.user
+      bobmcw
+    %td.text
+      OAuth2?
+  %tr
+    %td.tstamp
+      11:02
+    %td.user
+      asaldhan
+    %td.text
+      bobmcw: we do not have oauth2 in PL right now. something for future.
+  %tr
+    %td.tstamp
+      11:02
+    %td.user
+      asaldhan
+    %td.text
+      bobmcw: oauth primarily deals with authorization of resources.  For example, I can get access to Bob's facebook contacts.
+  %tr
+    %td.tstamp
+      11:03
+    %td.user
+      asaldhan
+    %td.text
+      bobmcw: oh wait.  ruby apps are not the regular tomcat webapps. correct?
+  %tr
+    %td.tstamp
+      11:03
+    %td.user
+      asaldhan
+    %td.text
+      bobmcw: which mean tomcat sso is out of Q
+  %tr
+    %td.tstamp
+      11:03
+    %td.user
+      bobmcw
+    %td.text
+      they do end up looking like a .war to the AS
+  %tr
+    %td.tstamp
+      11:03
+    %td.user
+      bbrowning
+    %td.text
+      asaldhan: no, tomcat sso should be doable :)
+  %tr
+    %td.tstamp
+      11:03
+    %td.user
+      bobmcw
+    %td.text
+      we deploy out a WebMetaData to TomcatDeployer or whatnot
+  %tr
+    %td.tstamp
+      11:03
+    %td.user
+      bobmcw
+    %td.text
+      we can pretend to be anything you need us to be
+  %tr
+    %td.tstamp
+      11:03
+    %td.user
+      asaldhan
+    %td.text
+      bbrowning: then stick with it as it is quite simple and straightforward
+  %tr
+    %td.tstamp
+      11:04
+    %td.user
+      bobmcw
+    %td.text
+      bbrowning: you grok this enough to author a JIRA
+  %tr
+    %td.tstamp
+      11:04
+    %td.user
+      bobmcw
+    %td.text
+      ?
+  %tr
+    %td.tstamp
+      11:04
+    %td.user
+      bbrowning
+    %td.text
+      bobmcw: yeah, I'll write something up. I've at least played with tomcat sso before and some other
+  %tr
+    %td.tstamp
+      11:04
+    %td.user
+      bobmcw
+    %td.text
+      excellent, thank you sir
+  %tr
+    %td.tstamp
+      11:04
+    %td.user
+      asaldhan
+    %td.text
+      bbrowning: u need to enable the valve in server.xml
+  %tr
+    %td.tstamp
+      11:04
+    %td.user
+      bbrowning
+    %td.text
+      asaldhan: yep
+  %tr
+    %td.tstamp
+      11:05
+    %td.user
+      bobmcw
+    %td.text
+      so, no one has opinions on the size of our distribution?
+  %tr
+    %td.tstamp
+      11:05
+    %td.user
+      jc3
+    %td.text
+      it's too big
+  %tr
+    %td.tstamp
+      11:05
+    %td.user
+      bbrowning
+    %td.text
+      bobmcw: make it smaller! :D
+  %tr
+    %td.tstamp
+      11:05
+    %td.user
+      bobmcw
+    %td.text
+      thanks!
+  %tr
+    %td.tstamp
+      11:05
+    %td.user
+      asaldhan
+    %td.text
+      bbrowning: if the use cases are a bit advanced, then you can bring in other types of SSO.
+  %tr
+    %td.tstamp
+      11:05
+    %td.user
+      jc3
+    %td.text
+      yw
+  %tr
+    %td.tstamp
+      11:05
+    %td.user
+      bobmcw
+    %td.text
+      remove all gems?  user brings-their-own?
+  %tr
+    %td.tstamp
+      11:05
+    %td.user
+      tcrawley
+    %td.text
+      bobmcw: I don't think we need to ship rails 2.3 or 3.x
+  %tr
+    %td.tstamp
+      11:05
+    %td.user
+      bobmcw
+    %td.text
+      tcrawley: yah, I've been considering that for 1.0 even, tbh
+  %tr
+    %td.tstamp
+      11:06
+    %td.user
+      jc3
+    %td.text
+      bobmcw: i think they're getting in the habit of running 'jruby -S bundle install' anyway.
+  %tr
+    %td.tstamp
+      11:06
+    %td.user
+      bobmcw
+    %td.text
+      aye
+  %tr
+    %td.tstamp
+      11:06
+    %td.user
+      tcrawley
+    %td.text
+      but it would be nice to continute to sh8ip the jdbc drivers
+  %tr
+    %td.tstamp
+      11:06
+    %td.user
+      jc3
+    %td.text
+      rails 2 is a different story.
+  %tr
+    %td.tstamp
+      11:06
+    %td.user
+      bobmcw
+    %td.text
+      tcrawley: what's the diff?
+  %tr
+    %td.tstamp
+      11:06
+    %td.user
+      bobmcw
+    %td.text
+      all is via rubygems.org
+  %tr
+    %td.tstamp
+      11:06
+    %td.user
+      bobmcw
+    %td.text
+      why remove rails, but not drivers?
+  %tr
+    %td.tstamp
+      11:07
+    %td.user
+      bbrowning
+    %td.text
+      asaldhan: yep - luckily other types of SSO frequently expose the authenticated user as the principal and can integrate via valves or filters which is doable under TB
+  %tr
+    %td.tstamp
+      11:07
+    %td.user
+      jc3
+    %td.text
+      bobmcw: really, all we should provide is tb gems, and only them until we publish them to rubygems.org.
+  %tr
+    %td.tstamp
+      11:07
+    %td.user
+      tcrawley
+    %td.text
+      bobmcw: true. A beginning TB dev would know they need rails, but would need to read docs to figure out the jdbc gems.
+  %tr
+    %td.tstamp
+      11:08
+    %td.user
+      lanceball
+    %td.text
+      I'd prefer shipping a dist that is as bare bones as possible, but which includes some nice rvm integration to automagically setup an TB environment in an RVM gemset
+  %tr
+    %td.tstamp
+      11:08
+    %td.user
+      tcrawley
+    %td.text
+      maybe ship with a sample Gemfile
+  %tr
+    %td.tstamp
+      11:08
+    %td.user
+      bobmcw
+    %td.text
+      lanceball: good idea.  then we can blame RVM for any user bug!
+  %tr
+    %td.tstamp
+      11:08
+    %td.user
+      bobmcw
+    %td.text
+      I like it!
+  %tr
+    %td.tstamp
+      11:08
+    %td.user
+      jc3
+    %td.text
+      tcrawley: the template creates a sqlite3 gemfile
+  %tr
+    %td.tstamp
+      11:08
+    %td.user
+      lanceball
+    %td.text
+      _exactly_
+  %tr
+    %td.tstamp
+      11:08
+    %td.user
+      bobmcw
+    %td.text
+      always blames RVM
+  %tr
+    %td.tstamp
+      11:09
+    %td.user
+      tcrawley
+    %td.text
+      jc3: cool.
+  %tr
+    %td.tstamp
+      11:09
+    %td.user
+      bobmcw
+    %td.text
+      could someone please create a JIRA for the bare-bonesification?
+  %tr
+    %td.tstamp
+      11:09
+    %td.user
+      tcrawley
+    %td.text
+      wdm
+  %tr
+    %td.tstamp
+      11:09
+    %td.user
+      jc3
+    %td.text
+      wonders if sinatra has templates
+  %tr
+    %td.tstamp
+      11:09
+    %td.user
+      bobmcw
+    %td.text
+      jc3: sinatra can use thor, which is what the tmpl is I think
+  %tr
+    %td.tstamp
+      11:09
+    %td.user
+      bobmcw
+    %td.text
+      really, anyone/anything can use thor
+  %tr
+    %td.tstamp
+      11:10
+    %td.user
+      adamw1pl
+    %td.text
+      gotta go, so bye :)
+  %tr
+    %td.tstamp
+      11:10
+    %td.user
+      adamw1pl
+    %td.text
+      looking forward to 2.0
+  %tr
+    %td.tstamp
+      11:10
+    %td.user
+      bobmcw
+    %td.text
+      so, that's over an hour, my brain is full of features.  But I'd like to ask if the community would enjoy more of these
+  %tr
+    %td.tstamp
+      11:10
+    %td.user
+      tcrawley
+    %td.text
+      adamw1pl: later
+  %tr
+    %td.tstamp
+      11:10
+    %td.user
+      bobmcw
+    %td.text
+      bi-weekly or whatnot?
+  %tr
+    %td.tstamp
+      11:10
+    %td.user
+      bobmcw
+    %td.text
+      and if y'all have any comments on how we run the project in general
+  %tr
+    %td.tstamp
+      11:10
+    %td.meta{:colspan=>2}
+      adamw1pl has left IRC (Quit
+  %tr
+    %td.tstamp
+      11:10
+    %td.user
+      bobmcw
+    %td.text
+      I've enjoyed bbrowning's weekly recap emails on SteamCannon, and would like to start them for TB
+  %tr
+    %td.tstamp
+      11:11
+    %td.user
+      bbrowning
+    %td.text
+      wait! one more feature!
+  %tr
+    %td.tstamp
+      11:11
+    %td.user
+      bbrowning
+    %td.text
+      websockets!
+  %tr
+    %td.tstamp
+      11:11
+    %td.user
+      tcrawley
+    %td.text
+      <a href='https://issues.jboss.org/browse/TORQUE-219'>TORQUE-219</a>
+  %tr
+    %td.tstamp
+      11:11
+    %td.user
+      jbossbot
+    %td.text
+      jira [TORQUE-219] Remove unneeded gems from TB distribution  <a href='https://issues.jboss.org/browse/TORQUE-219'>https://issues.jboss.org/browse/TORQUE-219</a>
+  %tr
+    %td.tstamp
+      11:11
+    %td.user
+      bobmcw
+    %td.text
+      bbrowning: sure!
+  %tr
+    %td.tstamp
+      11:11
+    %td.user
+      bobmcw
+    %td.text
+      I realize we do a lot of work on IRC, would y'all prefer to see more -dev list traffic instead?
+  %tr
+    %td.tstamp
+      11:11
+    %td.user
+      bobmcw
+    %td.text
+      and remember, everyone is always welcome here in #torquebox
+  %tr
+    %td.tstamp
+      11:11
+    %td.user
+      bobmcw
+    %td.text
+      bbrowning: websockets...
+  %tr
+    %td.tstamp
+      11:12
+    %td.user
+      bbrowning
+    %td.text
+      HornetQ and Infinispan both use Netty for WebSockets support and would be great for TB to provide some integration
+  %tr
+    %td.tstamp
+      11:12
+    %td.user
+      bobmcw
+    %td.text
+      that opens a small can of worms I discussed with lance last night
+  %tr
+    %td.tstamp
+      11:12
+    %td.user
+      bbrowning
+    %td.text
+      as a first pass a way to specific a port to listen on and a class to send/receive messages would be a good start :D
+  %tr
+    %td.tstamp
+      11:12
+    %td.user
+      bobmcw
+    %td.text
+      yes, HQ, INSPN and/or Netty would be my thought towards that
+  %tr
+    %td.tstamp
+      11:12
+    %td.user
+      bobmcw
+    %td.text
+      probably learning towards HQ
+  %tr
+    %td.tstamp
+      11:12
+    %td.user
+      bbrowning
+    %td.text
+      HQ's impl is for STOMP
+  %tr
+    %td.tstamp
+      11:12
+    %td.user
+      bobmcw
+    %td.text
+      vs em-websockets
+  %tr
+    %td.tstamp
+      11:12
+    %td.user
+      bbrowning
+    %td.text
+      I think we'd use Netty directly after looking at HQ and Infinispan's code
+  %tr
+    %td.tstamp
+      11:13
+    %td.user
+      bbrowning
+    %td.text
+      yeah, forget em-websockets
+  %tr
+    %td.tstamp
+      11:13
+    %td.user
+      bobmcw
+    %td.text
+      that works
+  %tr
+    %td.tstamp
+      11:13
+    %td.user
+      bobmcw
+    %td.text
+      bbrowning: excellent, worms re-sealed into their can
+  %tr
+    %td.tstamp
+      11:13
+    %td.user
+      rhauch
+    %td.text
+      Keep up the great work, TBers!
+  %tr
+    %td.tstamp
+      11:13
+    %td.user
+      bobmcw
+    %td.text
+      bbrowning: jira up netty+websockets, sir
+  %tr
+    %td.tstamp
+      11:14
+    %td.user
+      jc3
+    %td.text
+      bbrowning: so no good reason to use EM in a TB Service?
+  %tr
+    %td.tstamp
+      11:14
+    %td.user
+      bobmcw
+    %td.text
+      I think that'd be awesome
+  %tr
+    %td.tstamp
+      11:14
+    %td.user
+      bbrowning
+    %td.text
+      jc3: plenty of good reasons!
+  %tr
+    %td.tstamp
+      11:14
+    %td.user
+      bbrowning
+    %td.text
+      jc3: but at the same time, does it make more sense to use something netty-based for NIO stuff? I dunno
+  %tr
+    %td.tstamp
+      11:14
+    %td.user
+      bbrowning
+    %td.text
+      EM will be more familar to ruby devs
+  %tr
+    %td.tstamp
+      11:14
+    %td.user
+      bobmcw
+    %td.text
+      bbrowning: yah, this is where we have to remember that one of our goals is to expand the market for JBoss stuff
+  %tr
+    %td.tstamp
+      11:14
+    %td.user
+      bbrowning
+    %td.text
+      jc3: good news is EM in a TB service works today so I can write my twitter streaming API client as a TB service
+  %tr
+    %td.tstamp
+      11:15
+    %td.user
+      bobmcw
+    %td.text
+      rubyists are familiar with Rabbit also, but, well...
+  %tr
+    %td.tstamp
+      11:15
+    %td.meta{:colspan=>2}
+      rhauch has left ()
+  %tr
+    %td.tstamp
+      11:15
+    %td.user
+      bobmcw
+    %td.text
+      (or mongrel, or ...)
+  %tr
+    %td.tstamp
+      11:15
+    %td.user
+      bbrowning
+    %td.text
+      bobmcw: sure, just saying TB doesn't have to do any extra work to let a user use EM if they choose to do so
+  %tr
+    %td.tstamp
+      11:15
+    %td.user
+      bbrowning
+    %td.text
+      not that TB should necessarily encourage that as the Right Way™
+  %tr
+    %td.tstamp
+      11:16
+    %td.user
+      bobmcw
+    %td.text
+      bbrowning: right, easy wins appreciated, however possible
+  %tr
+    %td.tstamp
+      11:17
+    %td.user
+      bbrowning
+    %td.text
+      <a href='https://issues.jboss.org/browse/TORQUE-220'>TORQUE-220</a>
+  %tr
+    %td.tstamp
+      11:17
+    %td.user
+      bobmcw
+    %td.text
+      'k, meeting can keep rolling until it tapers off, I'm still logging.  But i'm also stepping off to refill my coffee
+  %tr
+    %td.tstamp
+      11:17
+    %td.user
+      jbossbot
+    %td.text
+      jira [TORQUE-220] Support JBoss Web SingleSignOn For Rails / Rack Applications  <a href='https://issues.jboss.org/browse/TORQUE-220'>https://issues.jboss.org/browse/TORQUE-220</a>
+  %tr
+    %td.tstamp
+      11:17
+    %td.user
+      bobmcw
+    %td.text
+      thanks!
+  %tr
+    %td.tstamp
+      11:17
+    %td.user
+      bbrowning
+    %td.text
+      in the most basic case, that kind of SSO is useful for my java and rails apps to coexist and appear as one within TB
+  %tr
+    %td.tstamp
+      11:18
+    %td.user
+      bobmcw
+    %td.text
+      bbrowning: yep, perfect
+  %tr
+    %td.tstamp
+      11:18
+    %td.user
+      bobmcw
+    %td.text
+      openid would be a following phase
+  %tr
+    %td.tstamp
+      11:19
+    %td.user
+      bobmcw
+    %td.text
+      qmx, rareddy, sordyl, vhalbert: any comments, requests, questions?
+  %tr
+    %td.tstamp
+      11:20
+    %td.user
+      cschneid
+    %td.text
+      no comments except that you have a nice long list of acronyms / features there
+  %tr
+    %td.tstamp
+      11:20
+    %td.user
+      rareddy
+    %td.text
+      bobmcw: sorry I joined late, I will try to read the log if you can post it and we will follow up
+  %tr
+    %td.tstamp
+      11:20
+    %td.user
+      jc3
+    %td.text
+      cschneid: not all of us understand all the acronyms.  :)
+  %tr
+    %td.tstamp
+      11:21
+    %td.user
+      cschneid
+    %td.text
+      I like:  websockets - cache / db backends - and JMX magic.
+  %tr
+    %td.tstamp
+      11:21
+    %td.user
+      cschneid
+    %td.text
+      I dislike: long walks on the beach, acronyms I don't understand
+  %tr
+    %td.tstamp
+      11:21
+    %td.user
+      cschneid
+    %td.text
+      I don't have much use for workflow stuff, but I can see how others do
+  %tr
+    %td.tstamp
+      11:23
+    %td.user
+      tcrawley
+    %td.text
+      lanceball: we should flesh out this git deploy idea soon
+  %tr
+    %td.tstamp
+      11:24
+    %td.user
+      jc3
+    %td.text
+      tcrawley: lanceball: jmx might be useful for your control interface there, e.g. an "update my app" command.
+  %tr
+    %td.tstamp
+      11:24
+    %td.user
+      tcrawley
+    %td.text
+      jc3: yes, definitely.
+  %tr
+    %td.tstamp
+      11:25
+    %td.user
+      qmx
+    %td.text
+      bobmcw: for me none, only following what's hot on torquebox future
+  %tr
+    %td.tstamp
+      11:25
+    %td.user
+      vik
+    %td.text
+      I gotta head out but based on this discussion I am really looking forward to torquebox post 1.0 release
+  %tr
+    %td.tstamp
+      11:25
+    %td.meta{:colspan=>2}
+      vik has left ()
+  %tr
+    %td.tstamp
+      11:25
+    %td.user
+      qmx
+    %td.text
+      bobmcw: btw, keep up the good work :)
+  %tr
+    %td.tstamp
+      11:25
+    %td.user
+      lanceball
+    %td.text
+      tcrawley: bobmcw and I talked a bit about git deploy yesterday
+  %tr
+    %td.tstamp
+      11:26
+    %td.user
+      jc3
+    %td.text
+      everyone: don't be strangers -- drop in any time.  :)
+  %tr
+    %td.tstamp
+      11:26
+    %td.user
+      lanceball
+    %td.text
+      first pass will be to keep it as simple as possible
+  %tr
+    %td.tstamp
+      11:26
+    %td.user
+      lanceball
+    %td.text
+      once you start going down the path of what heroku provides there are lots of cans of worms
+  %tr
+    %td.tstamp
+      11:26
+    %td.user
+      bobmcw
+    %td.text
+      will post the log in a bit
+  %tr
+    %td.tstamp
+      11:27
+    %td.user
+      lanceball
+    %td.text
+      so first use case will be developer wants to install TB on a VPS and use it as a dev env for multiple apps
+  %tr
+    %td.tstamp
+      11:27
+    %td.user
+      cschneid
+    %td.text
+      Ohh, I also want clustery magic.  Not sure what the provides - may just be docs - but leveraging the power of AS to make clustering, and similar magic just simple
+  %tr
+    %td.tstamp
+      11:27
+    %td.user
+      lanceball
+    %td.text
+      deploying with git push
+  %tr
+    %td.tstamp
+      11:27
+    %td.user
+      bobmcw
+    %td.text
+      cschneid: done
+  %tr
+    %td.tstamp
+      11:27
+    %td.user
+      cschneid
+    %td.text
+      my god, I shouldn't type before my coffee - "not sure what the provides"
+  %tr
+    %td.tstamp
+      11:27
+    %td.user
+      cschneid
+    %td.text
+      seriously
+  %tr
+    %td.tstamp
+      11:27
+    %td.user
+      jc3
+    %td.text
+      cschneid: it's pretty magic now -- but we do need to doc it better.
+  %tr
+    %td.tstamp
+      11:27
+    %td.user
+      bobmcw
+    %td.text
+      maybe more docs but see jims blog posts
+  %tr
+    %td.tstamp
+      11:27
+    %td.user
+      cschneid
+    %td.text
+      bobmcw: ok, on torquebox.{org,com}?  (can't remember which)
+  %tr
+    %td.tstamp
+      11:28
+    %td.user
+      bobmcw
+    %td.text
+      org yes
+  %tr
+    %td.tstamp
+      11:28
+    %td.user
+      jc3
+    %td.text
+      cschneid: http://bit.ly/clustertb
+  %tr
+    %td.tstamp
+      11:28
+    %td.user
+      bobmcw
+    %td.text
+      ta-da
+  %tr
+    %td.tstamp
+      11:28
+    %td.user
+      lanceball
+    %td.text
+      tcrawley: I see the rvm setup scripty stuff as something separate from git push for deployment, but in the longer view these two could work together to provide isolated deployment environments
+  %tr
+    %td.tstamp
+      11:28
+    %td.user
+      cschneid
+    %td.text
+      ahh, right.  Magic is good. Docs around magic are better :)
+  %tr
+    %td.tstamp
+      11:28
+    %td.user
+      jc3
+    %td.text
+      cschneid: follow-up articles linked at the bottom of that one.
+  %tr
+    %td.tstamp
+      11:29
+    %td.user
+      bobmcw
+    %td.text
+      fewer gems in the distri will also pollute less lanceball
+  %tr
+    %td.tstamp
+      11:29
+    %td.meta{:colspan=>2}
+      vhalbert has left ("Leaving")
+  %tr
+    %td.tstamp
+      11:29
+    %td.user
+      lanceball
+    %td.text
+      bobmcw: agreed, I think <a href='https://issues.jboss.org/browse/TORQUE-219'>TORQUE-219</a> + TORQUE-gitdeploy + TORQUE-rvmsetup will make a nice set of tools we can use to automate a number of use cases
+  %tr
+    %td.tstamp
+      11:29
+    %td.user
+      jbossbot
+    %td.text
+      jira [TORQUE-219] Remove unneeded gems from TB distribution  <a href='https://issues.jboss.org/browse/TORQUE-219'>https://issues.jboss.org/browse/TORQUE-219</a>
+  %tr
+    %td.tstamp
+      11:30
+    %td.user
+      bobmcw
+    %td.text
+      do us some jira for git deploy and rvm pls
+  %tr
+    %td.tstamp
+      11:30
+    %td.user
+      lanceball
+    %td.text
+      bobmcw: you want I should Jira TORQUE-gitdeploy and TORQUE-rvmsetup?
+  %tr
+    %td.tstamp
+      11:30
+    %td.user
+      lanceball
+    %td.text
+      heh
+  %tr
+    %td.tstamp
+      11:30
+    %td.user
+      bobmcw
+    %td.text
+      ships!
+  %tr
+    %td.tstamp
+      11:30
+    %td.user
+      jc3
+    %td.text
+      ships!
+  %tr
+    %td.tstamp
+      11:33
+    %td.meta{:colspan=>2}
+      xmasbot has left IRC (Quit
+  %tr
+    %td.tstamp
+      11:36
+    %td.user
+      lanceball
+    %td.text
+      <a href='https://issues.jboss.org/browse/TORQUE-221'>TORQUE-221</a> <a href='https://issues.jboss.org/browse/TORQUE-222'>TORQUE-222</a>
+  %tr
+    %td.tstamp
+      11:36
+    %td.user
+      jbossbot
+    %td.text
+      jira [TORQUE-221] Provide simple deployment to TB via git push  <a href='https://issues.jboss.org/browse/TORQUE-221'>https://issues.jboss.org/browse/TORQUE-221</a>
+  %tr
+    %td.tstamp
+      11:36
+    %td.user
+      jbossbot
+    %td.text
+      jira [TORQUE-222] Provide install/setup scripts that create an RVM gemset and installs required gemsets for Rails 2.3 or 3.0  <a href='https://issues.jboss.org/browse/TORQUE-222'>https://issues.jboss.org/browse/TORQUE-222</a>
+  %tr
+    %td.tstamp
+      11:36
+    %td.user
+      lanceball
+    %td.text
+      jbossbot: thanks!
+  %tr
+    %td.tstamp
+      11:39
+    %td.meta{:colspan=>2}
+      rareddy has left ()
+  %tr
+    %td.tstamp
+      11:41
+    %td.meta{:colspan=>2}
+      aemadrid_ has joined (~aemadrid@c-98-202-154-101.hsd1.ut.comcast.net)
+  %tr
+    %td.tstamp
+      11:42
+    %td.user
+      aemadrid_
+    %td.text
+      anybody has a good example on using a request-response pattern with hornetq in torquebox?
+  %tr
+    %td.tstamp
+      11:43
+    %td.meta{:colspan=>2}
+      calavera has left IRC (Quit
+  %tr
+    %td.tstamp
+      11:45
+    %td.meta{:colspan=>2}
+      szimano has left IRC (Quit
+  %tr
+    %td.tstamp
+      11:46
+    %td.user
+      jc3
+    %td.text
+      aemadrid_: mgoldmann does!
+  %tr
+    %td.tstamp
+      11:46
+    %td.user
+      mgoldmann
+    %td.text
+      aemadrid_: wait a second
+  %tr
+    %td.tstamp
+      11:47
+    %td.user
+      aemadrid_
+    %td.text
+      mgoldmann: will surely appreciate it!
+  %tr
+    %td.tstamp
+      11:49
+    %td.user
+      bobmcw
+    %td.text
+      'k, I'm calling it, will post the log+blog shortly
+  %tr
+    %td.tstamp
+      11:49
+    %td.user
+      bobmcw
+    %td.text
+      thanks for everyone's participation and input!
