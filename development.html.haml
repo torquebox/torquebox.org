@@ -1,0 +1,81 @@
+---
+layout: default
+title: Development
+---
+
+#development
+  #intro
+    %p
+      The TorqueBox team fully welcomes all contributors to the project. We have attempted to
+      organize our code and development tools to make it easy for community members to participate
+      as deeply as they desire.
+
+    %p
+      The team is lead by Bob McWhirter and Jim Crossley, and is supported by the other members of 
+      <a href="http://projectodd.org/">Project:odd</a>.
+
+  #main-content
+    .section
+      %h1
+        Sponsorship
+
+      %img{:src=>'/images/redhat.png', :style=>'float:right; margin-bottom: 2em'}
+
+      %p
+        The development of TorqueBox is primarily sponsored by Red Hat, Inc.
+    #sourcerepo.section
+      %h1
+        Code Repository
+
+      %img.screencap{:src=>'/images/screencaps/github.png'}
+
+      %p
+        The code is developed as open-source, with a publicly-accessible
+        <a href="/development/source_repository/">source-code repository.</a>.
+
+      %p
+        All of the code for TorqueBox is open-source under the <a href="/license-lgpl.html">LGPL</a>.
+        You may checkout the latest code under development at any time. 
+  
+      %p
+        The primary source repository is located at GitHub, and is obviously using
+        the Git revision-control system.
+  
+      %p
+        Using Git and GitHub, it's simple for contributors to fork the code to develop
+        bugfixes or features, and easily integrate their codelines back with the 
+        primary codebase, including all attribution and history.
+  
+      %p
+        Git is awesome.
+
+    #ci.section
+      %h1
+        Continuous Integration
+
+      %img.screencap{:src=>'/images/screencaps/ci.png'}
+
+      %p
+        The code is continuously built using continuous integration.
+
+      %p
+        The <a href="/torquebox-dev.zip">latest successful build of TorqueBox</a> is always available from the CI
+        server.
+
+      %p
+        Additionally, the <a href="/torquebox-doc.pdf">latest version of the PDF documentation</a> is also made available.
+
+      %p
+        For interim developer releases, when the TorqueBox gems have not been pushed to the official RubyGems
+        repository, the continuous integration server provides a repository matching the latest build.
+   
+      %p
+        %a{:href=>'http://rubygems.torquebox.org'}
+          %code http://rubygems.torquebox.org/
+    
+
+      %h2 Current Build Status
+      .div{:style=>'width: 400px; float: left;'}
+        <script type="text/javascript" src="http://ci.stormgrind.org/externalStatus.html?buildTypeId=bt7&js=1">
+        </script>
+

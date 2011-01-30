@@ -3,48 +3,107 @@ title: Community
 layout: default
 ---
 
-#right-sidebar
-  #main-column
-    :markdown
-      Being an open-source project, the TorqueBox community has many entry-points.
+#community
+  #one-column
+    #intro 
+      %p
+        Being an open-source project, the TorqueBox community has many entry-points.  You're
+        welcome to participate via one or several, depending on your level of interest.
   
-      * [Mailing lists](/community/mailing_lists/)
-      * [Issue tracker](/community/issues/)
-      * [IRC](/community/irc/)
-
-      Some activities, like filing bugs in our [issue tracker](/community/issues/), require
-      that you have a JBoss Community account.  
+      %p
+        Some activities, like filing bugs in our <a href="/community/issues/">issue tracker</a>, require
+        that you have a JBoss Community account.  <a href="https://community.jboss.org/login.jspa">Signing up for a JBoss Community account</a> is 
+        easy.
+ 
   
-      The project Twitter account is [`@torquebox`](http://twitter.com/torquebox)
-
-  #sidebar-column
-    %script{:src=>"http://widgets.twimg.com/j/2/widget.js"}
-    :javascript
-      new TWTR.Widget({
-        version: 2,
-        type: 'profile',
-        rpp: 6,
-        interval: 6000,
-        width: 250,
-        height: 300,
-        theme: {
-          shell: {
-            background: '#eeeeee',
-            color: '#333333'
-          },
-          tweets: {
-            background: '#ffffff',
-            color: '#000000',
-            links: '#2c54b0'
-          }
-        },
-        features: {
-          scrollbar: false,
-          loop: false,
-          live: false,
-          hashtags: true,
-          timestamp: true,
-          avatars: true,
-          behavior: 'all'
-        }
-      }).render().setUser('torquebox').start();
+    #main-content
+      .section 
+        %h1
+          %a{:href=>'/community/mailing_lists/'}
+            Mailing Lists
+    
+        %a{:href=>'/community/mailing_lists/'}
+          %img.screencap{:src=>'/images/screencaps/markmail.png'}
+        
+        %p
+          The team maintains two mailing lists.  The <code>-user</code> list
+          is tailored for people who just want to effectively use TorqueBox.
+    
+        %p 
+          The <code>-dev</code> list is intended for individuals who want to
+          know what's going on under the hood.
+    
+        %p.more
+          %a{:href=>'/community/mailing_lists/'}
+            More information about our mailing lists
+       
+      .section 
+        %h1 
+          %a{:href=>'/community/issues/'}
+            Issue Tracker
+    
+        %a{:href=>'/community/issues/'}
+          %img.screencap{:src=>'/images/screencaps/jbossjira.png'}
+    
+        %p
+          The project tracks bugs, feature-requests, and other issues
+          through the JIRA issue-tracking system at JBoss.org.
+    
+        %p
+          To file issues or requests with JIRA, you must have a
+          JBoss Community account.  Signing up is easy.
+    
+        %p.more
+          %a{:href=>'/community/issues/'}
+            More information about our issue-tracker
+       
+    
+      #irc.section 
+        %h1 
+          IRC
+    
+        %img.screencap{:src=>'/images/screencaps/irc.png'}
+    
+        %p
+          The TorqueBox team is a distributed team, so you can be
+          as close to the action as anyone else by participating 
+          on IRC.  IRC is our virtual office (and virtual watercooler)
+          so fire up an IRC client and stop in.
+    
+        %a{:href=>'irc://irc.freenode.net/torquebox'}
+          %code
+            irc.freenode.net #torquebox
+      
+      .section 
+        %h1
+          %a{:href=>"http://twitter.com/torquebox"}
+            Twitter
+    
+        %a{:href=>"http://twitter.com/torquebox"}
+          %img.screencap{:src=>'/images/screencaps/twitter.png'}
+      
+        %p
+          The project Twitter account is 
+          %a{:href=>'http://twitter.com/torquebox'}
+            %code
+              @torquebox
+    
+        %p
+          If you say something nice about TorqueBox, chances are we'll retweet you.
+          If you say something incomprehensible (to us) in a foreign language,
+          we will also probably still retweet you.  Then ask for a translation.
+    
+        %p
+          You may also desire to follow the individual members of the
+          <a href="http://projectodd.org/">Project:odd</a> team, who are
+          responsible for the development of TorqueBox.
+    
+      .section 
+        %h1
+          %a{:href=>"/development/"}
+            Development Community
+    
+        %p
+          If you'd like to take the next step, check out
+          the resources available to our <a href="/development/">developer community</a>.
+          

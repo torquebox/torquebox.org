@@ -563,18 +563,66 @@ form {
       text-align: right;
     }
     img.event_logo {
+      clear: both;
       width: 200px;
       display:block;
       margin: auto;
-      margin-bottom: 1em;
-      margin-top: 1em;
+      margin-bottom: 2em;
+      margin-top: 2em;
     }
     .details {
+      clear: both;
       margin-bottom: 1ex;
     }
     .links {
       text-align: right;
       font-weight: bold;
+    }
+  }
+}
+
+#community, #development {
+  #intro {
+    border: 1px dotted #555;
+    padding: 2em;
+    margin-bottom: 4em;
+    p {
+      font-size: 135%;
+    }
+  }
+
+  #main-content {
+    .section {
+      padding-top: 1em;
+      margin-top: 1em;
+      border-top: 1px dotted #999;
+      clear: both;
+    }
+    h1 {
+      clear: both;
+      font-weight: bold;
+      a {
+        text-decoration: none;
+      }
+    }
+  
+    p {
+      width: 500px;
+    }
+
+    p.more {
+      text-align: right;
+      font-size: 110%;
+      font-weight: bold;
+      a { 
+        text-decoration: none;
+      }
+    }
+    img.screencap {
+      margin-left: 1em;
+      margin-bottom: 1em;
+      width: 330px;
+      float: right;
     }
   }
 }
