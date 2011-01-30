@@ -9,6 +9,7 @@ Awestruct::Extensions::Pipeline.new do
   extension Documentation.new()
   extension Downloads.new()
   extension ReleaseSizes.new()
+  extension Awestruct::Extensions::DataDir.new
   helper ReleaseHelper
 
   extension Awestruct::Extensions::Posts.new('/news')

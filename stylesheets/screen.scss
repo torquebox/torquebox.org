@@ -453,11 +453,20 @@ form {
     @include column(24);
     @include last;
     text-align: center;
+    margin-bottom: 4em;
+    margin-top: 2em;
   }
 
   #bottom-row {
-    @include column(24);
-    @include last;
+    .left-column {
+      @include column(11);
+      @include append(1);
+    }
+    .right-column {
+      @include prepend(1);
+      @include column(11);
+      @include last;
+    }
   }
 
   #latest-release {
@@ -490,4 +499,81 @@ form {
     }
   }
 
+
+  #latest-news {
+    .item {
+      margin-bottom: 1em;
+    }
+    h1, h2 {
+      font-weight: bold;
+    }
+    h1 {
+      font-size: 160%;
+      border-bottom: 1px solid $top_nav_border_color;
+    }
+    h2 {
+      font-size: 120%;
+      margin-bottom: 0px;
+      a {
+        text-decoration: none;
+      }
+    }
+    .tail {
+      border-bottom: 1px solid $post_tail_border_color;
+      padding: .8ex;
+      padding-right: 0px;
+      margin-bottom: 1em;
+      margin-top: 1em;
+      text-align: right;
+    }
+    #even-more {
+      display: block;
+      text-align: center;
+      font-size: 180%;
+      font-weight: bold;
+    }
+  }
+
+  #upcoming-talks {
+    .item {
+      margin-bottom: 1em;
+      padding-bottom: 1em;
+      border-bottom: 1px solid $post_tail_border_color;
+    }
+    h1, h2 {
+      font-weight: bold;
+    }
+    h1 {
+      font-size: 160%;
+      border-bottom: 1px solid $top_nav_border_color;
+    }
+    h2 {
+      font-size: 120%;
+      margin-bottom: 0px;
+      a {
+        text-decoration: none;
+      }
+    }
+    h3 {
+      font-size: 100%;
+    }
+    .event_date {
+      float: right;
+      font-weight: bold;
+    }
+    img.event_logo {
+      width: 200px;
+      display:block;
+      margin: auto;
+      margin-bottom: 1em;
+      margin-top: 1em;
+    }
+    .details {
+      margin-bottom: 1ex;
+    }
+    .links {
+      text-align: right;
+      font-weight: bold;
+    }
+  }
 }

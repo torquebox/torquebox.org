@@ -45,12 +45,59 @@ inhibit_title: true
   #middle-row
     %img#stack{:src=>"/images/stack.png"}
   #bottom-row
-    #latest-news
-      %h1 Latest News
-      %h2 
-        %a{:href=>site.posts.first.url}= site.posts.first.title
-      %h3 #{site.posts.first.date.strftime( '%d %B %Y' )}
-      .body
-        #{summarize( html_to_text( site.posts.first.content ), 30 )}...
-      .tail
-        %a{:href=>site.posts.first.url} Read more
+    .left-column
+      #latest-news
+        %h1 Latest News &amp; Articles
+        - for post in site.posts[0,4] do
+          .item
+            %h2 
+              %a{:href=>post.url}= post.title
+            %h3 #{post.date.strftime( '%d %B %Y' )}
+            .body
+              #{summarize( html_to_text( post.content ), 50 )}...
+            .tail
+              %a{:href=>post.url} Read more
+        #even-more
+          %a{:href=>'/news'}Even more news
+    .right-column
+      #upcoming-talks
+        - talks = site.talks.values.sort &:effective_date
+        %h1 Upcoming Talks
+        - for talk in talks
+          .item{:effective_date=>talk.effective_date}
+            .event_date
+              = talk.event_date
+            %h2
+              %a{:href=>talk.event_url}
+                = talk.event
+            - if ( talk.event_logo_url )
+              %a{:href=>talk.event_url}
+                %img.event_logo{:src=>talk.event_logo_url}
+            %h3
+              = talk.title
+            .details
+              #{talk.presentor} will present at #{talk.event} in #{talk.location}.
+            .links
+              %a{:href=>talk.event_url}
+                #{talk.event} Site
+
+:javascript
+  $(document).ready( function() {
+    $('#upcoming-talks .item').each( function() {
+      effective_date = $(this).attr( 'effective_date' );
+      today = new Date();
+      month = today.getMonth()+1;
+      if ( month < 10 ) {
+        month = '0' + month;
+      }
+      date = today.getDate();
+      if ( date < 10 ) {
+        date = '0' + date;
+      }
+      today_str = '' + today.getFullYear() + month + date;
+      if ( today_str > effective_date ) {
+        alert( "hiding because " + today_str + " > " + effective_date );
+        $(this).hide();  
+      }
+    } );
+  } );
