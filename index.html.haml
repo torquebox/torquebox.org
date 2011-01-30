@@ -65,8 +65,11 @@ inhibit_title: true
         %h1 Upcoming Talks
         - for talk in talks
           .item{:effective_date=>talk.effective_date}
-            .event_date
-              = talk.event_date
+            .event_details
+              .event_date
+                #{talk.event_date}
+              .event_location
+                #{talk.location}
             %h2
               %a{:href=>talk.event_url}
                 = talk.event
