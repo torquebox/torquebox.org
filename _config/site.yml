@@ -1,5 +1,5 @@
 
-skin_dir: ../site-skin
+#skin_dir: ../site-skin
 profiles:
   development:
   staging:

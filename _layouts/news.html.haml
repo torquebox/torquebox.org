@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+#right-sidebar
+  #main-column
+    .post
+      .byline
+        .author
+          = page.author
+        .date
+          = page.date.strftime('%d %b %Y')
+      .body
+        ~ content
+      .comments
+        = page.intense_debate_comments
+  #sidebar-column
+    .post-navigation
+      .previous
+        - if page.previous_post
+          .label
+            previous
+          %a{:href => page.previous_post.url}= page.previous_post.title
+      .next
+        - if page.next_post
+          .label
+            next
+          %a{:href => page.next_post.url}= page.next_post.title

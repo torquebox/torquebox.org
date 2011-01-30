@@ -5,35 +5,46 @@ inhibit_title: true
 ---
 
 #front-page
-  #left-column
-    :markdown
-      TorqueBox is a new kind of Ruby application platform that integrates popular 
-      technologies such as Ruby-on-Rails, while extending the footprint of Ruby 
-      applications to include support for Job Scheduling and Task Queues.
-    
-      TorqueBox provides an all-in-one environment, built upon the latest, most 
-      powerful JBoss AS Java application server. Functionality such as clustering and 
-      cloud deployment is included right out-of-the-box. 
-    
-      <div style="text-align: center">
-        <img src="/images/components.png"/>
-      </div>
-  #right-column
-    #latest-release
-      - announcement = site.posts.find{|e| e.layout=='release' && e.version == site.releases.first.version}
-      %h1 Latest: #{site.releases.first.version}
-      - if ( announcement )
-        %h2 Released #{announcement.date.strftime( '%d %B %Y' )}
-      .download
-        %a#download-link{:href=>site.releases.first.urls.dist_zip} Download Now!
-        .details
-          .size
-            ZIP archive, #{site.releases.first.size}mb
-          .links
-            - if announcement
-              %a{:href=>announcement.url} Release announcement 
-              |
-            %a{:href=>"/documentation/#{site.releases.first.version}/"} Documentation
+  #top-row
+    .left-column
+      %img#knob{:src=>"/images/knob.png"}
+      #blurb 
+        %p
+          TorqueBox is a new kind of Ruby application platform that integrates popular 
+          technologies such as Ruby-on-Rails, while extending the footprint of Ruby 
+          applications to include built-in support for services such as messaging,
+          scheduling, and daemons.
+      
+        %p
+          TorqueBox provides an all-in-one environment, built upon the latest, most 
+          powerful JBoss AS Java application server. Functionality such as clustering,
+          load-balancing and high-availability is included right out-of-the-box. 
+    .right-column
+      #latest-release
+        - announcement = site.posts.find{|e| e.layout=='release' && e.version == site.releases.first.version}
+        .download
+          %a#download-link{:href=>site.releases.first.urls.dist_zip} 
+            Download #{site.releases.first.version}
+          %table.details
+            - if ( announcement )
+              %tr.release_date
+                %th
+                  Release Date
+                %td
+                  #{announcement.date.strftime( '%d %B %Y' )}
+            %tr.size
+              %th
+                Size
+              %td
+                ZIP archive, #{site.releases.first.size}mb
+            %tr.links
+              %td{:colspan=>2}
+                - if announcement
+                  %a{:href=>announcement.url} Announcement |
+                %a{:href=>"/documentation/#{site.releases.first.version}/"} Documentation
+  #middle-row
+    %img#stack{:src=>"/images/stack.png"}
+  #bottom-row
     #latest-news
       %h1 Latest News
       %h2 

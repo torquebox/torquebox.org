@@ -1,0 +1,46 @@
+---
+layout: base
+---
+
+#nav-wrapper
+  = partial( 'top-nav.html.haml' )
+
+#header-bar
+  #header-wrapper
+    #header
+      = partial( 'header.html.haml' )
+      #logos
+        %a{:href=>'/'}
+          %img#project-logo{ :src=>'/images/logo.png' }
+#primary-wrapper
+  #primary-container
+    - unless page.inhibit_title 
+      %h1.page-title
+        - sections = page.section ? [page.section] : page.sections
+        - if sections
+          - sections.each_with_index do |section, index|
+            - path = sections[0, index+1].join("/").downcase.gsub(' ', '_')
+            %a{:href=>"/#{path}/"} #{section}
+            \:
+        #{page.title}
+    #primary-content
+      ~ content
+#footer-bar
+  #footer-wrapper
+    #footer
+      #bottom-nav
+        = partial( 'bottom-nav.html.haml' )
+        #bottom-right
+          #legal
+            %p
+              The #{site.title} project is a member of the 
+              <a href="http://jboss.org/">JBoss Community</a> and
+              produced by the <a href="http://projectodd.org/">Project:odd</a> team.
+            %p
+              Copyright 2009-2010 <a href="http://redhat.com/">Red Hat, Inc.</a>
+              #{site.title}&trade; is a trademark of Red Hat, Inc.
+          #badges
+            %a{:href=>'http://jboss.org/'}
+              %img#jbosscommunity-logo{ :src=>'/images/jbosscommunity-logo.png' }
+            %a{:href=>'http://projectodd.org/'}
+              %img#projectodd-logo{ :src=>'http://projectodd.org//images/projectodd-logo.png' }
