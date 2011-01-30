@@ -19,7 +19,8 @@ title: Development
       %h1
         Sponsorship
 
-      %img{:src=>'/images/redhat.png', :style=>'float:right; margin-bottom: 2em'}
+      %a{:href=>'http://redhat.com/'}
+        %img{:src=>'/images/redhat.png', :style=>'float:right; margin-bottom: 2em'}
 
       %p
         The development of TorqueBox is primarily sponsored by Red Hat, Inc.
@@ -27,11 +28,12 @@ title: Development
       %h1
         Code Repository
 
-      %img.screencap{:src=>'/images/screencaps/github.png'}
+      %a{:href=>'http://github.com/torquebox/torquebox'}
+        %img.screencap{:src=>'/images/screencaps/github.png'}
 
       %p
         The code is developed as open-source, with a publicly-accessible
-        <a href="/development/source_repository/">source-code repository.</a>.
+        <a href="http://github.com/torquebox/torquebox">source-code repository.</a>.
 
       %p
         All of the code for TorqueBox is open-source under the <a href="/license-lgpl.html">LGPL</a>.
@@ -49,11 +51,21 @@ title: Development
       %p
         Git is awesome.
 
+      %p
+        You can easily <a href='http://github.com/torquebox/torquebox'>Browse the repository</a>.
+
+      %p
+        You may clone a complete copy of the repository using git.
+
+      %pre
+        git clone git://github.com/torquebox/torquebox.git
+
     #ci.section
       %h1
         Continuous Integration
 
-      %img.screencap{:src=>'/images/screencaps/ci.png'}
+      %a{:href=>'http://ci.stormgrind.org/viewType.html?buildTypeId=bt7&tab=buildTypeStatusDiv'}
+        %img.screencap{:src=>'/images/screencaps/ci.png'}
 
       %p
         The code is continuously built using continuous integration.

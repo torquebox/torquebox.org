@@ -593,8 +593,8 @@ form {
 
   #main-content {
     .section {
-      padding-top: 1em;
-      margin-top: 1em;
+      padding-top: 2em;
+      margin-top: 2em;
       border-top: 1px dotted #999;
       clear: both;
     }
@@ -603,6 +603,7 @@ form {
       font-weight: bold;
       a {
         text-decoration: none;
+        color: inherit;
       }
     }
   
@@ -612,7 +613,7 @@ form {
 
     p.more {
       text-align: right;
-      font-size: 110%;
+      font-size: 120%;
       font-weight: bold;
       a { 
         text-decoration: none;
@@ -624,5 +625,12 @@ form {
       width: 330px;
       float: right;
     }
+    pre {
+      border: 1px dashed #555;
+      padding: 1em;
+      font-size: 110%;
+      width: 500px;
+    }
   }
+
 }
