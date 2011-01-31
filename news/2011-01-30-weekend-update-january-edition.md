@@ -54,14 +54,14 @@ Toby Crawley added support for any object to have [asynchronous tasks](https://i
 Very easily TorqueBox now supports the same sort of idioms as `delayed_job`.
 
 Lance Ball is leveraging his [BoxGrinder](http://boxgrinder.org/) knowledge to produce [easy-to-consume AMIs](https://issues.jboss.org/browse/TORQUE-228),
-and better [RVM support](https://issues.jboss.org/browse/TORQUE-222).
+is working on better [RVM support](https://issues.jboss.org/browse/TORQUE-222), all
 in support of his goal of Heroku-esque [`git push` easy deployment](https://issues.jboss.org/browse/TORQUE-221).
 
 I (Bob) worked on Windows compatibility, improved and documented [Capistrano support](/news/2011/01/20/capistrano-and-torquebox/), 
 and started slimming the binary distribution (45% smaller!) by restricting the gems and profiles we include.
 
-We tried the JRuby 1.6.0.CR1 release, and while it seemed to function within TorqueBox itself, it exhibited regressions
-when used with our [integration test harness](/news/2010/12/20/rspec-with-arquillian/).  We eagerly await the 1.6.0.CR2 release from the JRuby team.
+We tried the JRuby 1.6.0.RC1 release, and while it seemed to function within TorqueBox itself, it exhibited regressions
+when used with our [integration test harness](/news/2010/12/20/rspec-with-arquillian/).  We eagerly await the 1.6.0.RC2 release from the JRuby team.
 
 ## Planning
 
