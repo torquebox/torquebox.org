@@ -1,0 +1,23 @@
+
+#header-quick-links
+  .title
+    Download
+  .stable.section
+    .section-title
+      Latest Stable
+    .download-latest-stable-dist
+      %a{:href=>site.releases.first.urls.dist_zip} 
+        #{site.releases.first.version} (#{site.releases.first.size}mb ZIP)
+    .download-latest-stable-docs
+      %a{:href=>site.releases.first.urls.docs.pdf}
+        PDF Documentation
+  .development.section
+    .section-title
+      Development
+    .download-latest-dev-dist
+      %a{:href=>'/torquebox-dev.zip'}
+        Latest CI Build (ZIP)
+    .download-latest-dev-docs
+      %a{:href=>'/torquebox-doc.pdf'}
+        PDF Documentation
+

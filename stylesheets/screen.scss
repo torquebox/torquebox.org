@@ -609,11 +609,12 @@ form {
   
     p {
       width: 500px;
+      font-size: 110%;
     }
 
     p.more {
       text-align: right;
-      font-size: 120%;
+      font-size: 140%;
       font-weight: bold;
       a { 
         text-decoration: none;
@@ -622,7 +623,7 @@ form {
     img.screencap {
       margin-left: 1em;
       margin-bottom: 1em;
-      width: 330px;
+      width: 200px;
       float: right;
     }
     pre {
@@ -633,4 +634,27 @@ form {
     }
   }
 
+}
+
+#header-quick-links {
+  float: right;
+  font-size: 85%;
+  padding: 1ex;
+  border: 1px solid $bar_background_color - #333;
+  a {
+    text-decoration: none;
+  }
+  .title {
+    font-size: 120%;
+    font-weight: bold;
+    color: $header_color - #222;
+  }
+  .section-title {
+    font-weight: bold;
+    border-bottom: 1px solid $bar_background_color - #333;
+  }
+  .stable, .development {
+    float: left;
+    margin-right: 2em;
+  }
 }
