@@ -32,25 +32,26 @@ of `Alpha`, `Beta`, `CR`, and either `Final` or `GA`.  The `CR` suffix is used t
 denote a *candidate release*, which the rest of the world calls a *release candidate*.
 
 Given that the next release will be a candidate release, it must potentially be
-able to be declare "done" and released as the final.  This means the CR1 release
+able to be declared "done" and released as the final.  This means the CR1 release
 will wait until we have [no outstanding JIRAs][cr1jira].  CR is not just a fancy name for
 "beta".
 
 ## Action Items
 
 A variety of improvements have occurred this month.  They will all be included
-in the upcomding `1.0.0.CR1` release.
+in the upcoming `1.0.0.CR1` release.
 
 Jim Crossley attacked several issues, including [session replication](https://issues.jboss.org/browse/TORQUE-199),
 [message processor concurrency](https://issues.jboss.org/browse/TORQUE-195), and [messaging reliability](https://issues.jboss.org/browse/TORQUE-207),
 along with a variety of VFS fixes. 
 
-Additionally, Jim produces a [fantastic 3-part series on cluster-related issues](/news/2011/01/04/clustering-torquebox/).
+Additionally, Jim produced a [fantastic 3-part series on cluster-related issues](/news/2011/01/04/clustering-torquebox/).
 
 Ben Browning worked in support for [synchronous queues](https://issues.jboss.org/browse/TORQUE-235), and wrote an [awesome article 
 about long-lived services](news/2011/01/28/services/).  
 
-Toby Crawley added support for any object to have [asynchronous tasks](https://issues.jboss.org/browse/TORQUE-213).
+Toby Crawley added support for any object to have [asynchronous tasks](https://issues.jboss.org/browse/TORQUE-213).  
+Very easily TorqueBox now supports the same sort of idioms as `delayed_job`.
 
 Lance Ball is leveraging his [BoxGrinder](http://boxgrinder.org/) knowledge to produce [easy-to-consume AMIs](https://issues.jboss.org/browse/TORQUE-228),
 and better [RVM support](https://issues.jboss.org/browse/TORQUE-222).
@@ -60,7 +61,7 @@ I (Bob) worked on Windows compatibility, improved and documented [Capistrano sup
 and started slimming the binary distribution (45% smaller!) by restricting the gems and profiles we include.
 
 We tried the JRuby 1.6.0.CR1 release, and while it seemed to function within TorqueBox itself, it exhibited regressions
-with used with our [integration test harness](/news/2010/12/20/rspec-with-arquillian/).  We eagerly await the 1.6.0.CR2 release from the JRuby team.
+when used with our [integration test harness](/news/2010/12/20/rspec-with-arquillian/).  We eagerly await the 1.6.0.CR2 release from the JRuby team.
 
 ## Planning
 
