@@ -40,8 +40,6 @@ processed as a background task, so let's add that:
 
 <noscript>
     class InitechEmployee < ActiveRecord::Base
-      include TorqueBox::Messaging::Backgroundable
-      
       def file_tps_report(report)
         # this always takes time...
       end
@@ -57,12 +55,10 @@ processed as a background task, so let's add that:
     end
 </noscript>
 
-There are two important lines in the code above. The first is the `include` 
-call to add the `TorqueBox::Messaging::Backgroundable` methods to the class. The second
-is the `always_background` call - this marks the `file_tps_report` method to *always* 
-be executed in the background. Now, any time `file_tps_report` is called on an 
-`InitechEmployee` object, it will happen asynchronously, returning immediately to the
-caller.
+Wait, what changed? Not much. We added a call to `always_background` - this marks
+the `file_tps_report` method to *always* be executed in the background. Now, any 
+time `file_tps_report` is called on an `InitechEmployee` object, it will happen 
+asynchronously, returning immediately to the caller.
 
 But what about `meet_with_the_bobs`? Sometimes we know it will take a long time, but 
 other times we know it will be a quick meeting, or need to wait for it to finish before
@@ -118,9 +114,24 @@ Here's how this works under the hood:
     end
 </noscript>
 
+## What about non-ActiveRecord objects?
+
 `Backgroundable` isn't just for `ActiveRecord` classes - you can use it in almost any ruby class.
 To use it in any other class, you'll need to include `TorqueBox::Messaging::Backgroundable`
-manually, as we did in the `InitechEmployee` example.
+manually, like so:
+
+<script src="https://gist.github.com/806419.js"></script>
+
+<noscript>
+    class TPSReport
+      include TorqueBox::Messaging::Backgroundable
+
+      def deliver_report_to_all_five_managers
+        # believe me, this takes a while...
+      end
+      always_background :deliver_report_to_all_five_managers
+    end
+</noscript>
 
 ## Caveats
 
@@ -132,7 +143,7 @@ manually, as we did in the `InitechEmployee` example.
   `ActiveRecord` objects and basic ruby objects. It may not work as well for objects that expect
   a lot of plumbing in place (`ActionController`s, for example - but if you have a method on a 
   controller that you want to execute asynchronously, you have bigger problems). 
-  
+
 We plan to add a section to the task [docs][tasks] covering these features in the near future,
 and add configuration options to control the concurrency of the message processor, or to turn
 off the embedded task queue if you don't need it.
