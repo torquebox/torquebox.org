@@ -6,22 +6,42 @@ layout: default
 #two-column
   #left-column
     :markdown
-      Rack
-      =============
+      # Rack
 
-      TorqueBox supports Rack 1.1.0, including Rails 2.3+, Sinatra, and other.  Rack applications are served 
+      TorqueBox supports Rack 1.1.0, including Rails 2.3.x, Rails 3.x, Sinatra, and other.  Rack applications are served 
       as first-class resources within the web container. The web container is clusterable, and web sessions may 
       be shared between nodes without any additional configuration.
 
-      High-performance tried-and-true JDBC database drivers power your ActiveRecord models.
+      # JDBC
+ 
+      High-performance tried-and-true Java Database Connectivity (JDBC) database drivers power your ActiveRecord and
+      other database access.
+
+      # Daemons
+
+      TorqueBox provides the framework to manage your daemon-like Ruby components.  TorqueBox
+      makes sure it starts and stops with your application.  What you do in the middle is
+      up to you.
 
   #right-column
     :markdown
-      Scheduled Jobs
-      =============
-      cron-like functionality is provided by the TorqueBox server. Job classes implemented in Ruby have full access to to your Ruby environment and are managed by a durable job scheduler.
+
+      # Scheduled Jobs
+
+      Cron-like functionality is provided by the TorqueBox server. Job classes implemented in Ruby have full access to to your Ruby environment and are managed by a durable job scheduler.
+
+      # Messaging
+
+      Your simple Ruby components can both produce and consume messages from 
+      clustered and distributed asynchronous messaging fabric powered by
+      [HornetQ](http://hornetq.org/).
   
-      Task Queues
-      =============
-      Asynchronous task queues are supported by TorqueBox using an industrial-strength, clusterable messaging bus. Tasks are persistent and have the ability to access your entire Ruby environment.
+      # Asynchornous Tasks
+
+      Leveraging the messaging system, TorqueBox makes it easy to execute simple
+      tasks and methods asynchronously, allows your application to quickly return
+      control to the user.
+
+.the_image{:style=>'text-align: center;'}
+  %img#stack{:src=>"/images/stack.png"}
 

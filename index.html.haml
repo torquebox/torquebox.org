@@ -43,7 +43,12 @@ inhibit_title: true
                   %a{:href=>announcement.url} Announcement |
                 %a{:href=>"/documentation/#{site.releases.first.version}/"} Documentation
   #middle-row
-    %img#stack{:src=>"/images/stack.png"}
+    %a{:href=>'/features'}
+      %img#stack{:src=>"/images/stack.png"}
+    .more_feature_info
+      %a{:href=>'/features'}
+        Read more about the TorqueBox stack!
+    
   #bottom-row
     .left-column
       #latest-news
@@ -58,7 +63,7 @@ inhibit_title: true
             .tail
               %a{:href=>post.url} Read more
         #even-more
-          %a{:href=>'/news'}Even more news
+          %a{:href=>'/news'}Even more news!
     .right-column
       #upcoming-talks
         - talks = site.talks.values.sort{|l,r| l.effective_date <=> r.effective_date}
