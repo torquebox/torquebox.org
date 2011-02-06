@@ -7,6 +7,7 @@ layout: news
 [MagicRuby]: http://magic-ruby.com/
 [stickers]: http://twitpic.com/3u7ogk
 [twitter]: http://twitter.com/#!/search/torquebox%20%23magicruby
+[hasingleton]: https://issues.jboss.org/browse/TORQUE-194
 [tobyblog]: /news/2011/02/01/turn-any-method-into-a-task/
 [lanceami]: https://issues.jboss.org/browse/TORQUE-228?focusedCommentId=12579172&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-12579172
 [stompbox]: https://github.com/lance/stompbox
@@ -35,7 +36,7 @@ The [reaction on Twitter][twitter] seems quite positive.  **Great job, Jim!**
 
 ## Code updates
 
-This week, Ben spent time investigating how the `HASingleton` pattern
+This week, Ben spent time investigating how the [`HASingleton`][hasingleton] pattern
 (related to high-availability)
 works within JBoss AS, and exposing it through TorqueBox.  Now,
 on your cluster, you can have a service fail-over from one node
