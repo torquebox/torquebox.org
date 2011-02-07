@@ -104,7 +104,6 @@ inhibit_title: true
       }
       today_str = '' + today.getFullYear() + month + date;
       if ( today_str > effective_date ) {
-        alert( "hiding because " + today_str + " > " + effective_date );
         $(this).hide();  
       }
     } );
