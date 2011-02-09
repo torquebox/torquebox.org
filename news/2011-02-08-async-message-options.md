@@ -12,7 +12,7 @@ options.
 If you are running TorqueBox [edge][repo], you can now set priority, time-to-live,
 and persistence options on a per message basis:
 
-* `:priotity` - higher priority messages will be delivered before lower priority 
+* `:priority` - higher priority messages will be delivered before lower priority 
   messages within the context of a queue. You can specify the priority as an integer
   in the range 0..9, or as one of the following convenience symbols (with the 
   corresponding integer priorities in parentheses):
