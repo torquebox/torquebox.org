@@ -10,7 +10,7 @@ layout: news
 [hasingleton]: https://issues.jboss.org/browse/TORQUE-194
 [tobyblog]: /news/2011/02/01/turn-any-method-into-a-task/
 [lanceami]: https://issues.jboss.org/browse/TORQUE-228?focusedCommentId=12579172&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-12579172
-[stompbox]: https://github.com/lance/stompbox
+[stompbox]: https://github.com/torquebox/stompbox
 [gitdeploy]: https://issues.jboss.org/browse/TORQUE-221
 [uniknob]: /news/2011/02/05/grand-unification-and-knobs/
 [rss]: /news.atom
