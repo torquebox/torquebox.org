@@ -21,7 +21,7 @@ and persistence options on a per message basis:
   * `:high` (7)
   * `:critical` (9)
 * `:ttl` - message that aren't delivered within the specified timeframe are discarded.
-  Specified in seconds. By default, messages don't have a ttl.
+  Specified in milliseconds. By default, messages don't have a ttl.
 * `:persistence` - by default, queued messages will survive across AS restarts. If
   you don't want a message to be persistent, set the persistence to `false`.
 
@@ -40,7 +40,7 @@ When marking a method as `always_background`able, you'll need to pass the option
 to `always_background`, which will then be applied to every invocation of the
 backgrounded method:
 
-<pre lang="ruby"><code>SomeModel.always_background(:a_method, :ttl => 5.seconds, :priority => :low)</code></pre>
+<pre lang="ruby"><code>SomeModel.always_background(:a_method, :ttl => 5000, :priority => :low)</code></pre>
 
 Enjoy! And as always, if you have any questions, comments, or concerns, don't hesitate 
 to [join our community][contact].
