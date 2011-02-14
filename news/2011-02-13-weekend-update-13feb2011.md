@@ -27,7 +27,7 @@ on TorqueBox.
 Since the last update, Ben Browning did a fine job of post-production
 on the film he and Toby Crawley shot at [MagicRuby][magicruby].  Jim 
 [posted it, along with some personal notes][magicruby.video].  If
-you were unable to attend MagicRuby, you can watch Jim's copmlete
+you were unable to attend MagicRuby, you can watch Jim's complete
 presentation online, now, for free.
 
 # News & Articles
