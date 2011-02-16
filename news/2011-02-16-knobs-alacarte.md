@@ -46,7 +46,7 @@ In this case, the `torquebox.yml` only needs to contain a very simple
 
 For more information on services in general, see [Ben's excellent post][ben.services].
 
-If you'd prefer to make a handle bundle, you can still use the [Rake support][rake.support]:
+If you'd prefer to make a handy bundle, you can still use the [Rake support][rake.support]:
 
     $ rake torquebox:archive
     $ rake torquebox:deploy:archive
