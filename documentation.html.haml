@@ -30,7 +30,7 @@ title: Documentation
           %a{:href=>release.urls.docs.pdf} PDF
           |
           %a{:href=>release.urls.docs.html_multi_zip} Multi-page HTML Bundle
-          - if release.urls.docs.html_single_zip
+          - unless release.urls.docs.html_single_zip.empty?
             |
             %a{:href=>release.urls.docs.html_single_zip} Single-page HTML Bundle
   
