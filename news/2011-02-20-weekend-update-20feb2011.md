@@ -37,7 +37,7 @@ Adam and Tomek will be presenting on the 8th of March at the
 at [java4people].
 
 Additionally, Toby Crawley submitted a proposal to RailsConf. We
-this this would be a great opportunity to spread the word.
+think this would be a great opportunity to spread the word.
 
 # Inside the box
 
