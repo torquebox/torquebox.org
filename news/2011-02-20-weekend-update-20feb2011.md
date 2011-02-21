@@ -59,7 +59,7 @@ This week Ben Browning spent some time looking at the
 [performance of TorqueBox][benchmail] in comparison to other alternatives
 (both JRuby and MRI). We hope to have results published in the upcoming
 week.  All of the performance-testing stuff is [kept in GitHub][speedmetal], because
-we want to be stay honest, and give everyone a chance to reproduce
+we want to stay honest, and give everyone a chance to reproduce
 or augment our testing.  
 
 Ben also reworked some of messaging documentation, including more details
