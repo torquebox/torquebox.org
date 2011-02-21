@@ -20,9 +20,9 @@ and persistence options on a per message basis:
   * `:normal` (4) - the default 
   * `:high` (7)
   * `:critical` (9)
-* `:ttl` - message that aren't delivered within the specified timeframe are discarded.
+* `:ttl` - messages that aren't delivered within the specified timeframe are discarded.
   Specified in milliseconds. By default, messages don't have a ttl.
-* `:persistence` - by default, queued messages will survive across AS restarts. If
+* `:persistent` - by default, queued messages will survive across AS restarts. If
   you don't want a message to be persistent, set the persistence to `false`.
 
 ## Usage
