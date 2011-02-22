@@ -10,7 +10,10 @@
         #{site.releases.first.version} (#{site.releases.first.dist_size}mb ZIP)
     .download-latest-stable-docs
       %a{:href=>site.releases.first.urls.docs.pdf}
-        PDF Documentation
+        PDF
+      |
+      %a{:href=>'/documentation/current'}
+        HTML
   .development.section
     .section-title
       Development
@@ -19,5 +22,8 @@
         Latest CI Build (ZIP)
     .download-latest-dev-docs
       %a{:href=>'/torquebox-doc.pdf'}
-        PDF Documentation
+        PDF
+      |
+      %a{:href=>'/documentation/DEV/'}
+        HTML
 
