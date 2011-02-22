@@ -6,6 +6,11 @@ RewriteRule ^torquebox-dev\.zip$ http://ci.stormgrind.org/repository/download/bt
 RewriteRule ^torquebox-(.*(20|1.)).zip$ http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-bin/$1/torquebox-bin-$1.zip [P]
 RewriteRule ^torquebox-(.*).zip$ http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-dist/$1/torquebox-dist-$1-bin.zip [P]
 
+
+RewriteRule ^documentation/DEV$      /documentation/DEV/ [R]
+RewriteRule ^documentation/DEV/?$    http://ci.stormgrind.org/repository/download/bt7/.lastSuccessful/html-docs/index.html?guest=1 [P]
+RewriteRule ^documentation/DEV/(.*)$ http://ci.stormgrind.org/repository/download/bt7/.lastSuccessful/html-docs/$1?guest=1 [P]
+
 SetEnvIfNoCase Request_URI torquebox-dev\.zip$ torquebox-latest
 Header set Content-Disposition \
     "attachment; filename=torquebox-dev.zip" env=torquebox-latest
