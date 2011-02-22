@@ -2,6 +2,7 @@
 title: Initial Rails 3.x Support
 author: Bob McWhirter
 layout: news
+tags: [ rails3 ]
 ---
 
 Today, with commit [9090ebc3](http://github.com/torquebox/torquebox/commit/9090ebc35589f8038f25f102370b28a76e629b19)

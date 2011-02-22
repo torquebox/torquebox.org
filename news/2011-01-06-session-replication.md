@@ -2,6 +2,7 @@
 title: Playing with Session Replication
 author: Jim Crossley
 layout: news
+tags: [ clustering, jboss, sessions ]
 ---
 
 When last we spoke, we learned

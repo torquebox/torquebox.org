@@ -2,6 +2,7 @@
 title: TorqueBox Planning Meeting
 author: Bob McWhirter
 layout: news
+tags: [ announcements, planning, roadmap ]
 ---
 
 [meeting-time]: http://www.timeanddate.com/worldclock/meetingdetails.html?year=2011&month=1&day=24&hour=15&min=0&sec=0&p1=179&p2=224&p3=136&p4=262

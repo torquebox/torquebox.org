@@ -2,6 +2,7 @@
 title: Project Renaming!
 author: Bob McWhirter
 layout: news
+tags: [ announcements, naming, april ]
 ---
 
 After spending countless hours discussing TorqueBox with

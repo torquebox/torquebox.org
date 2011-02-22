@@ -2,6 +2,7 @@
 title: Windows, yay!
 author: Bob McWhirter
 layout: news
+tags: [ windows ]
 ---
 
 [windows.jira]: https://issues.jboss.org/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+TORQUE+AND+%28summary+%7E+windows+OR+description+%7E+windows%29

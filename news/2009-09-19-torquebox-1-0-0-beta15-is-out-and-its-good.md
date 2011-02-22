@@ -3,6 +3,7 @@ title: TorqueBox 1.0.0.Beta15 is out, and it's good.
 author: Bob McWhirter
 version: 1.0.0.Beta15
 layout: release
+tags: [ releases ]
 ---
 Quick on the heels of 1.0.0.Beta14, I'm happy to announce 1.0.0.Beta15.
 

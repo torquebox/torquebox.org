@@ -2,6 +2,7 @@
 title: 'TorqueBox Weekend Update: 6 February 2011'
 author: Bob McWhirter
 layout: news
+tags: [ update, stompbox, magic-ruby, hasingleton, services ]
 ---
 
 [MagicRuby]: http://magic-ruby.com/

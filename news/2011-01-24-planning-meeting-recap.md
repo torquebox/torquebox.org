@@ -2,6 +2,7 @@
 title: TorqueBox Planning Meeting Recap
 author: Bob McWhirter
 layout: news
+tags: [ update, planning, roadmap ]
 ---
 
 [annc]:   http://torquebox.org/news/2011/01/21/torquebox-planning-meeting/

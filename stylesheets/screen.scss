@@ -285,7 +285,7 @@ table.downloads {
     }
   }
   .byline {
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     font-size: 90%;
     .date {
       display: inline;
@@ -295,6 +295,13 @@ table.downloads {
     .author {
       font-weight: bold;
       display: inline;
+    }
+    .tags {
+      a {
+        font-weight: bold;
+        margin-right: 1ex;
+        text-decoration: none;
+      }
     }
   }
   .body {
@@ -662,4 +669,44 @@ form {
 
 div.gist {
   margin: 2em 0;
+}
+
+.tag-cloud {
+  margin: auto;
+  text-align: justify;
+
+  .tag {
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .tag-0 {
+    font-size: 130%;
+  }
+
+  .tag-1 {
+    font-size: 150%;
+  }
+
+  .tag-2 {
+    font-size: 170%;
+  }
+
+  .tag-3 {
+    font-size: 190%;
+  }
+
+  .tag-4 {
+    font-size: 210%;
+  }
+
+  .tag-5 {
+    font-size: 230%;
+  }
+
+  .tag-6 {
+    font-size: 250%;
+  }
+
 }

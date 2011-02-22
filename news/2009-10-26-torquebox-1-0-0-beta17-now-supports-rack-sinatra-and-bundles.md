@@ -3,6 +3,7 @@ title: TorqueBox 1.0.0.Beta17 now supports Rack, Sinatra and Bundles
 version: 1.0.0.Beta17
 author: Bob McWhirter
 layout: release
+tags: [ releases, rack, sinatra ]
 ---
 We're happy to announce the release of TorqueBox 1.0.0.Beta17.
 

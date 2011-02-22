@@ -3,6 +3,7 @@ title: TorqueBox 1.0.0.Beta18 Unleashed!
 author: Bob McWhirter
 version: 1.0.0.Beta18
 layout: release
+tags: [ releases ]
 ---
 TorqueBox 1.0.0.Beta18 is out right now.
   

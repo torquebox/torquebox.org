@@ -2,6 +2,7 @@
 title: Capistrano and TorqueBox
 author: Bob McWhirter
 layout: news
+tags: [ capistrano ]
 ---
 
 [capistrano]: https://github.com/capistrano/capistrano/wiki

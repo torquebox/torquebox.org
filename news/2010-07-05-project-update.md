@@ -2,6 +2,7 @@
 title: Project Update and Roadmap
 author: Bob McWhirter
 layout: news
+tags: [ update, roadmap ]
 ---
 
 Well, it's been over 4 months since 1.0.0.Beta19 was released, and three

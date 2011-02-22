@@ -2,6 +2,7 @@
 title: Announcing the TorqueBox Project
 author: Bob McWhirter
 layout: news
+tags: [ announcements ]
 ---
 # What is TorqueBox?
 

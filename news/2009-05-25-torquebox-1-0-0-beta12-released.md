@@ -3,6 +3,7 @@ title: TorqueBox 1.0.0.Beta12 Released!
 author: Bob McWhirter
 version: 1.0.0.Beta12
 layout: release
+tags: [ releases ]
 ---
 We've just released version 1.0.0.Beta12 of the TorqueBox Server.
 

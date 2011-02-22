@@ -3,6 +3,7 @@ title: TorqueBox 1.0.0.Beta14 Released
 author: Bob McWhirter
 version: 1.0.0.Beta14
 layout: release
+tags: [ releases ]
 ---
 After a hiatus while I worked on cloud stuff, we're back to cranking on TorqueBox.
 

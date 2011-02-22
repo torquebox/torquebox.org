@@ -10,6 +10,10 @@ layout: default
           = page.author
         .date
           = page.date.strftime('%d %b %Y')
+        .tags
+          - page.tags.each do |tag|
+            %a{:href=>tag.primary_page.url}
+              = tag
       .body
         ~ content
       .comments
@@ -26,3 +30,5 @@ layout: default
           .label
             next
           %a{:href => page.next_post.url}= page.next_post.title
+    .tag-cloud
+      = site.posts_tag_cloud

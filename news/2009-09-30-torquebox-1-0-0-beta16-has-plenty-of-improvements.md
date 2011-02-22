@@ -3,6 +3,7 @@ title: TorqueBox 1.0.0.Beta16 has plenty of improvements
 version: 1.0.0.Beta16
 author: Bob McWhirter
 layout: release
+tags: [ releases ]
 ---
 I'm happy to announce the release of TorqueBox 1.0.0.Beta16.
 

@@ -2,6 +2,7 @@
 title: Turn Any Method Into A Task Inside TorqueBox
 author: Toby Crawley
 layout: news
+tags: [ tasks, backgroundable, messaging ]
 ---
 
 TorqueBox already has background tasks that allow you to [define methods on a

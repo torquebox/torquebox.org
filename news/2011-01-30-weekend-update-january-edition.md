@@ -2,6 +2,7 @@
 title: Weekend Update, January Edition
 author: Bob McWhirter
 layout: news
+tags: [ update ]
 ---
 
 [benblog]: http://thinkingconcurrently.com/

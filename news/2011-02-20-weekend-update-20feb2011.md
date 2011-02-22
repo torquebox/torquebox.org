@@ -2,6 +2,7 @@
 title: 'TorqueBox Weekend Update: 20 February 2011'
 author: Bob McWhirter
 layout: news
+tags: [ update, picketbox, stompbox, infinispan ]
 ---
 
 [PicketBox]: http://www.jboss.org/picketbox

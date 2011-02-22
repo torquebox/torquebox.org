@@ -13,10 +13,15 @@ layout: default
             = post.author
           .date
             #{post.date.strftime( '%d %B %Y' )}
+          .tags
+            - post.tags.each do |tag|
+              %a{:href=>tag.primary_page.url}
+                = tag
         .body
           ~ post.content
         .tail
           = post.intense_debate_comments_link
     = page.posts.links
   #sidebar-column
-    &nbsp;
+    .tag-cloud
+      = site.posts_tag_cloud

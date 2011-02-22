@@ -2,6 +2,7 @@
 title: 'TorqueBox Weekend Update: 13 February 2011'
 author: Bob McWhirter
 layout: news
+tags: [ update, magic-ruby, messaging, backgroundable, stompbox, knobs ]
 ---
 
 [magicruby]: http://magic-ruby.com/

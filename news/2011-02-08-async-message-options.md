@@ -2,6 +2,7 @@
 title: Setting Async Message Priority & TTL in TorqueBox
 author: Toby Crawley
 layout: news
+tags: [ messaging, ttl, async ]
 ---
 
 

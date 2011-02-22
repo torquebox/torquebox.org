@@ -3,6 +3,7 @@ title: TorqueBox 1.0.0.Beta19 is out!
 author: Bob McWhirter
 version: 1.0.0.Beta19
 layout: release
+tags: [ releases ]
 ---
 
 Finally, TorqueBox 1.0.0.Beta19 is out.  

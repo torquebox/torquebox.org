@@ -2,6 +2,7 @@
 title: Background Tasks in a TorqueBox Cluster
 author: Jim Crossley
 layout: news
+tags: [ clustering, jboss, tasks ]
 ---
 
 This is the third in a series of articles focused on TorqueBox

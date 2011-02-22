@@ -2,6 +2,7 @@
 title: Presenting TorqueBox at MagicRuby!
 author: Jim Crossley
 layout: news
+tags: [ presentations, orlando, magic-ruby ]
 ---
 I'm happy to announce that our TorqueBox talk proposal was accepted
 by the [MagicRuby](http://magic-ruby.com) organizers last week!  My

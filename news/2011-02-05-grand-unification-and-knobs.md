@@ -2,6 +2,7 @@
 title: Grand Unification of Deployment Descriptors.  And Knobs!
 author: Bob McWhirter
 layout: news
+tags: [ deployment-descriptors, knobs ]
 ---
 
 

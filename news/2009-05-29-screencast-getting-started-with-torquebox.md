@@ -2,6 +2,7 @@
 title: 'Screencast: Getting Started with TorqueBox'
 author: Bob McWhirter
 layout: news
+tags: [ screencast, getting-started ]
 ---
 We're proud to release the first in a series of screencasts about TorqueBox.
 

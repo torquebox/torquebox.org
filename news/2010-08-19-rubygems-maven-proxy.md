@@ -2,6 +2,7 @@
 title: RubyGems.org Maven Proxy
 author: Bob McWhirter
 layout: news
+tags: [ rubygems, maven ]
 ---
 
 Work is well underway towards 1.0.0.Beta21, including adjustments

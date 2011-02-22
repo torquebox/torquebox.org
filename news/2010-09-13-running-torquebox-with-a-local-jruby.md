@@ -2,6 +2,7 @@
 title: Running TorqueBox with a local JRuby
 author: Tobias Crawley
 layout: news
+tags: [ jruby ]
 ---
 
 TorqueBox ships with a bundled version of JRuby (version 1.5.2 as of Beta21)

@@ -2,6 +2,7 @@
 title: Hooking RSpec up with Arquillian via JRuby
 author: Jim Crossley
 layout: news
+tags: [ rspec, arquillian ]
 ---
 
 In the spirit of the holiday season,

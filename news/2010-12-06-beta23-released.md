@@ -3,6 +3,7 @@ title: TorqueBox 1.0.0.Beta23 Released
 author: Jim Crossley
 version: 1.0.0.Beta23
 layout: release
+tags: [ releases ]
 ---
 We're happy as clams to announce yet another beta release,
 TorqueBox 1.0.0.Beta23.  Please [download it](/download/) and [checkout

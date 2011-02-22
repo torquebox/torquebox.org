@@ -2,6 +2,7 @@
 title: 'Video & Slides from MagicRuby'
 author: Jim Crossley
 layout: news
+tags: [ presentations, magic-ruby, orlando ]
 ---
 
 [MagicRuby]: http://magic-ruby.com/

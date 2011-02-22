@@ -2,6 +2,7 @@
 title: End-to-end testing of TorqueBox with Arquillian
 author: Bob McWhirter
 layout: news
+tags: [ testing, arquillian ]
 ---
 
 In preparation for the 1.0.0.Beta21 (yes, twenty-one) release, we've set up

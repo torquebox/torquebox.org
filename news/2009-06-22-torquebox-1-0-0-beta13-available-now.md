@@ -3,6 +3,7 @@ title: TorqueBox 1.0.0.Beta13 available now
 author: Bob McWhirter
 version: 1.0.0.Beta13
 layout: release
+tags: [ releases ]
 ---
 The TorqueBox Ruby application platform has reached 1.0.0.Beta13 and is [available now](/download/).
 

@@ -2,6 +2,7 @@
 title: Clustering TorqueBox with mod_cluster
 author: Jim Crossley
 layout: news
+tags: [ clustering, jboss ]
 ---
 
 Clustering TorqueBox instances is pretty darn simple, and it requires

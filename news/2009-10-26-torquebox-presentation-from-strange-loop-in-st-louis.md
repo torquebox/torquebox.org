@@ -2,6 +2,7 @@
 title: TorqueBox Presentation from Strange Loop in St. Louis
 author: Bob McWhirter
 layout: news
+tags: [ presentations, st-louis ]
 ---
 Thursday, I drove 666 miles to St. Louis to present at the Strange Loop conference 
 with [John Williams](http://twitter.com/j_m_williams).  We presented a quick 

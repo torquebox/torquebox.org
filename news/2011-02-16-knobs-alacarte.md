@@ -2,6 +2,7 @@
 title: 'Knobs a la carte'
 author: Bob McWhirter
 layout: news
+tags: [ knobs ]
 ---
 
 [ben.services]: /news/2011/01/28/services/

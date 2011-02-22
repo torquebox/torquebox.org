@@ -3,6 +3,7 @@ title: New Format for Messaging Configuration
 author: Jim Crossley
 layout: news
 sequence: 2
+tags: [ messaging ]
 ---
 
 One of the benefits of a "perpetual beta" is being able to introduce

@@ -2,6 +2,7 @@
 title: Presentation tonight at Asheville.rb
 author: Bob McWhirter
 layout: news
+tags: [ presentations, asheville ]
 ---
 Tonight I'll be presenting a very Rubyist-centric introduction to 
 TorqueBox at the Asheville.rb meeting at *Locomotivity*.

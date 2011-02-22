@@ -2,6 +2,7 @@
 title: 'Screencast: Scheduled Jobs with TorqueBox'
 author: Bob McWhirter
 layout: news
+tags: [ screencast, jobs ]
 ---
 The second screencast in our introductory series about TorqueBox is now available.
 

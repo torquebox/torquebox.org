@@ -2,6 +2,7 @@
 title: Mailing list archives are live
 author: Bob McWhirter
 layout: news
+tags: [ announcements, mailing-lists ]
 ---
 Thanks to the fine guys at MarkLogic, we now have both the User and Dev lists archived.
 
