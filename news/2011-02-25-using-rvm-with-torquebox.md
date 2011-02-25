@@ -20,7 +20,7 @@ RVM is a command line tool that helps you keep track of multiple, named ruby env
 environment can have its own set of gems and has a specific ruby interpreter, such as 
 ruby-1.8.7, ree-1.8.7, or jruby-1.5.6.  This makes it very simple to have separate, named gem sets
 and ruby interpreters for each of your applications &mdash; isolating them from one another and
-potential version conflicts.  This is useful in a number of circumstances.
+potential version conflicts.  This is useful in a number of circumstances:
 
   * You are working on a few different apps that have a large number of gem dependencies - some with
     conflicting versions, and you'd like to keep them isolated.
@@ -36,7 +36,7 @@ Don't worry, the installation is quick and painless.
 TorqueBox runs on some pretty awesome foundations like JBossAS and JRuby, both of which we ship with the
 [continuous integration builds][ci]. With RVM, however, we'll install our own JRuby and use that. It's 
 all the same to TorqueBox as long as we twist the right knobs.  First let's install JRuby under RVM &mdash;
-TorqueBox requires 1.5.6, so that's what we'll install.
+TorqueBox currently requires 1.5.6, so that's what we'll install.
 
     $ rvm install jruby-1.5.6
     $ rvm use jruby-1.5.6
@@ -54,6 +54,14 @@ That's all you have to do to get TorqueBox to use RVM's JRuby interpreter &mdash
 ## Default Gemsets
 Now we've got TorqueBox using RVM's JRuby interpreter, but to run apps under TorqueBox, they need
 the TorqueBox gems installed.  So let's ensure that they are always available when we're using JRuby.
+To get the latest TorqueBox gems, you'll need to make sure `gem` knows where to find them.  Open up
+`~/.gemrc` and add rubygems.torquebox.org so that it looks like this:
+
+    :sources:
+    - http://rubygems.org
+    - http://rubygems.torquebox.org
+    
+Then install the TorqueBox gems.
 
     $ rvm use jruby-1.5.6@global
     $ gem install org.torquebox.container-foundation --pre
@@ -95,6 +103,18 @@ life even simpler, do this:
 Now whenever you change to your app directory, your JRuby interpreter and GEM_HOME are set.  Now just add
 your application gem dependencies to your Gemfile, run `bundle install` and you'll be in business.
 
+## Staying Edgy
+TorqueBox development is fast and furious. There are new builds every day with bug fixes, feature enhancements
+and other goodies.  What happens when you want to download a new dev build and use these new features?
+The `gem update` command will notice that you've already got org.torquebox.container-foundation 1.0.0.CR1
+installed and do nothing.  In this case, you'll need to uninstall and reinstall the gems you'd like to update.
 
+    $ rvm use jruby-1.5.6@global
+    $ gem uninstall org.torquebox.naming-container
+    $ gem install org.torquebox.naming-container
+    
+While this is a bit of a pain, it's quicker and easier than re-installing all of your application gems
+each time you want to update to a new TorqueBox build.
 
+Good luck - and feel free to hit us up in IRC on #torquebox if you run into any questions.
 
