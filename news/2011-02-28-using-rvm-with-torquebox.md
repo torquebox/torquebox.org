@@ -10,7 +10,6 @@ tags: [rvm, setup, installation]
 [rvm-install]: http://rvm.beginrescueend.com/rvm/install/
 [ci]: http://torquebox.org/torquebox-dev.zip
 
-# Using RVM With TorqueBox
 We've been getting quite a few requests in IRC lately asking how to set up and use [RVM][rvm] with TorqueBox.
 In this post, we'll take a look at RVM, talk about why you might want to use it in your development
 environment, and show you how to set it up for use with TorqueBox.
@@ -52,7 +51,7 @@ Set that as your JRUBY_HOME in your ~/.profile.
 That's all you have to do to get TorqueBox to use RVM's JRuby interpreter &mdash; easy!
 
 ## Default Gemsets
-Now we've got TorqueBox using RVM's JRuby interpreter, but to run apps under TorqueBox, they need
+Now we've got TorqueBox using RVM's JRuby interpreter, but to run apps under TorqueBox, you need
 the TorqueBox gems installed.  So let's ensure that they are always available when we're using JRuby.
 To get the latest TorqueBox gems, you'll need to make sure `gem` knows where to find them.  Open up
 `~/.gemrc` and add rubygems.torquebox.org so that it looks like this:
@@ -104,7 +103,7 @@ life even simpler, do this:
     $ cd myapp
     $ echo "rvm use jruby-1.5.6@myapp" > .rvmrc
     
-Now whenever you change to your app directory, your JRuby interpreter and GEM_HOME are set.  Now just add
+Now whenever you change to your app directory, your JRuby interpreter and GEM_HOME are set.  Just add
 your application gem dependencies to your Gemfile, run `bundle install` and you'll be in business.
 
 ## Staying Edgy
