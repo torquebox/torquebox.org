@@ -64,24 +64,28 @@ To get the latest TorqueBox gems, you'll need to make sure `gem` knows where to 
 Then install the TorqueBox gems.
 
     $ rvm use jruby-1.5.6@global
+    $ gem install org.torquebox.capistrano-support --pre
     $ gem install org.torquebox.container-foundation --pre
     $ gem install org.torquebox.messaging-client --pre
     $ gem install org.torquebox.messaging-container --pre
     $ gem install org.torquebox.naming-client --pre
     $ gem install org.torquebox.naming-container --pre
     $ gem install org.torquebox.rake-support --pre
+    $ gem install org.torquebox.vfs --pre
     $ gem install bundler
     $ gem list
     
     *** LOCAL GEMS ***
 
     bundler (1.0.10)
+    org.torquebox.capistrano-support (1.0.0.CR1)    
     org.torquebox.container-foundation (1.0.0.CR1)
     org.torquebox.messaging-client (1.0.0.CR1)
     org.torquebox.messaging-container (1.0.0.CR1)
     org.torquebox.naming-client (1.0.0.CR1)
     org.torquebox.naming-container (1.0.0.CR1)
     org.torquebox.rake-support (1.0.0.CR1)
+    org.torquebox.vfs (1.0.0.CR1)
 
 This installs all of the required TorqueBox gems into the global gemset for JRuby-1.5.6, ensuring their
 availability whenever you're using JRuby &mdash; awesome!  I put bundler in there too, because I find it 
@@ -106,12 +110,12 @@ your application gem dependencies to your Gemfile, run `bundle install` and you'
 ## Staying Edgy
 TorqueBox development is fast and furious. There are new builds every day with bug fixes, feature enhancements
 and other goodies.  What happens when you want to download a new dev build and use these new features?
-The `gem update` command will notice that you've already got org.torquebox.container-foundation 1.0.0.CR1
-installed and do nothing.  In this case, you'll need to uninstall and reinstall the gems you'd like to update.
+The `gem update` command will notice that you've already got the TorqueBox gems installed and do nothing.  
+In this case, you'll need to uninstall and reinstall the gems.  
 
     $ rvm use jruby-1.5.6@global
-    $ gem uninstall org.torquebox.naming-container
-    $ gem install org.torquebox.naming-container
+    $ gem uninstall org.torquebox.container-foundation org.torquebox.messaging-client org.torquebox.messaging-container org.torquebox.naming-client org.torquebox.naming-container org.torquebox.rake-support org.torquebox.vfs
+    $ gem install org.torquebox.container-foundation org.torquebox.messaging-client org.torquebox.messaging-container org.torquebox.naming-client org.torquebox.naming-container org.torquebox.rake-support org.torquebox.vfs --pre
     
 While this is a bit of a pain, it's quicker and easier than re-installing all of your application gems
 each time you want to update to a new TorqueBox build.
