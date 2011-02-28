@@ -75,7 +75,7 @@ Lance continued his fine work on our [PicketBox] integration, getting
 intimately familiar with the JBoss MicroContainer internals in order
 to get file-based JAAS security working.  He also posted a great
 article on
-[using RVM with TorqueBox](2011/02/25/using-rvm-with-torquebox/),
+[using RVM with TorqueBox](/news/2011/02/25/using-rvm-with-torquebox/),
 since apparently some of y'all do!
 
 Me, I finally took my first whack at an [Infinispan] implementation of
