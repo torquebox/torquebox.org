@@ -18,7 +18,7 @@ environment, and show you how to set it up for use with TorqueBox.
 RVM is a command line tool that helps you keep track of multiple, named ruby environments.  Each
 environment can have its own set of gems and has a specific ruby interpreter, such as 
 ruby-1.8.7, ree-1.8.7, or jruby-1.5.6.  This makes it very simple to have separate, named gem sets
-and ruby interpreters for each of your applications &mdash; isolating them from one another and
+and ruby interpreters for each of your applications &#8212; isolating them from one another and
 potential version conflicts.  This is useful in a number of circumstances:
 
   * You are working on a few different apps that have a large number of gem dependencies - some with
@@ -34,7 +34,7 @@ Don't worry, the installation is quick and painless.
 ## Setting Up Your Development Environment
 TorqueBox runs on some pretty awesome foundations like JBossAS and JRuby, both of which we ship with the
 [continuous integration builds][ci]. With RVM, however, we'll install our own JRuby and use that. It's 
-all the same to TorqueBox as long as we twist the right knobs.  First let's install JRuby under RVM &mdash;
+all the same to TorqueBox as long as we twist the right knobs.  First let's install JRuby under RVM &#8212;
 TorqueBox currently requires 1.5.6, so that's what we'll install.
 
     $ rvm install jruby-1.5.6
@@ -48,7 +48,7 @@ Set that as your JRUBY_HOME in your ~/.profile.
 
     echo "export JRUBY_HOME=/Users/lanceball/.rvm/rubies/jruby-1.5.6" >> ~/.profile
 
-That's all you have to do to get TorqueBox to use RVM's JRuby interpreter &mdash; easy!
+That's all you have to do to get TorqueBox to use RVM's JRuby interpreter &#8212; easy!
 
 ## Default Gemsets
 Now we've got TorqueBox using RVM's JRuby interpreter, but to run apps under TorqueBox, you need
@@ -87,7 +87,7 @@ Then install the TorqueBox gems.
     org.torquebox.vfs (1.0.0.CR1)
 
 This installs all of the required TorqueBox gems into the global gemset for JRuby-1.5.6, ensuring their
-availability whenever you're using JRuby &mdash; awesome!  I put bundler in there too, because I find it 
+availability whenever you're using JRuby &#8212; awesome!  I put bundler in there too, because I find it 
 essential for all apps.  Be sure to use the `--pre` flag. We're working on the cutting edge here, and if
 you're using a continuous integration build you'll want the latest pre-release gems.
 
