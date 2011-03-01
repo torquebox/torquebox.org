@@ -13,14 +13,14 @@ tags: [performance, jruby, rack, rails3]
 [jruby]: http://jruby.org
 [mri]: http://www.ruby-lang.org
 [speedmetal]: https://github.com/torquebox/speedmetal
-[rack_hello_world_source]: https://github.com/torquebox/speedmetal/tree/master/apps/rack/hello_world
-[rack_hello_world_results]: https://github.com/torquebox/speedmetal/tree/master/results/rack/hello_world
-[rack_sleep_source]: https://github.com/torquebox/speedmetal/tree/master/apps/rack/sleep
-[rack_sleep_results]: https://github.com/torquebox/speedmetal/tree/master/results/rack/sleep
-[rails_hello_world_source]: https://github.com/torquebox/speedmetal/tree/master/apps/rails3/hello_world
-[rails_hello_world_results]: https://github.com/torquebox/speedmetal/tree/master/results/rails3/hello_world
-[rails_fib_source]: https://github.com/torquebox/speedmetal/tree/master/apps/rails3/fibonacci
-[rails_fib_results]: https://github.com/torquebox/speedmetal/tree/master/results/rails3/fibonacci
+[rack_hello_world_source]: https://github.com/torquebox/speedmetal/tree/2011-02-23/apps/rack/hello_world
+[rack_hello_world_results]: https://github.com/torquebox/speedmetal/tree/2011-02-23/results/rack/hello_world
+[rack_sleep_source]: https://github.com/torquebox/speedmetal/tree/2011-02-23/apps/rack/sleep
+[rack_sleep_results]: https://github.com/torquebox/speedmetal/tree/2011-02-23/results/rack/sleep
+[rails_hello_world_source]: https://github.com/torquebox/speedmetal/tree/2011-02-23/apps/rails3/hello_world
+[rails_hello_world_results]: https://github.com/torquebox/speedmetal/tree/2011-02-23/results/rails3/hello_world
+[rails_fib_source]: https://github.com/torquebox/speedmetal/tree/2011-02-23/apps/rails3/fibonacci
+[rails_fib_results]: https://github.com/torquebox/speedmetal/tree/2011-02-23/results/rails3/fibonacci
 
 One question that we'd like to have a more concrete answer to is, "How
 does TorqueBox perform compared to project X?" In a quest to answer
