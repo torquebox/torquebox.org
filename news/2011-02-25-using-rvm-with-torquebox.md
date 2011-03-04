@@ -9,10 +9,14 @@ tags: [rvm, setup, installation]
 [rvm]: http://rvm.beginrescueend.com/
 [rvm-install]: http://rvm.beginrescueend.com/rvm/install/
 [ci]: http://torquebox.org/torquebox-dev.zip
+[gem-changes]: http://torquebox.org/news/2011/02/25/using-rvm-with-torquebox/
 
 We've been getting quite a few requests in IRC lately asking how to set up and use [RVM][rvm] with TorqueBox.
 In this post, we'll take a look at RVM, talk about why you might want to use it in your development
 environment, and show you how to set it up for use with TorqueBox.
+
+## Update - Friday, March 4, 2011
+This article has been modified to reflect the changes in gem names recently [announced][gem-changes].
 
 ## What is RVM and Why Use It?
 RVM is a command line tool that helps you keep track of multiple, named ruby environments.  Each
@@ -63,28 +67,22 @@ To get the latest TorqueBox gems, you'll need to make sure `gem` knows where to 
 Then install the TorqueBox gems.
 
     $ rvm use jruby-1.5.6@global
-    $ gem install org.torquebox.capistrano-support --pre
-    $ gem install org.torquebox.container-foundation --pre
-    $ gem install org.torquebox.messaging-client --pre
-    $ gem install org.torquebox.messaging-container --pre
-    $ gem install org.torquebox.naming-client --pre
-    $ gem install org.torquebox.naming-container --pre
-    $ gem install org.torquebox.rake-support --pre
-    $ gem install org.torquebox.vfs --pre
+    $ gem install torquebox torquebox-messaging-container torquebox-naming-container torquebox-capistrano-support torquebox-rake-support torquebox.vfs --pre 
     $ gem install bundler
     $ gem list
     
     *** LOCAL GEMS ***
 
     bundler (1.0.10)
-    org.torquebox.capistrano-support (1.0.0.CR1)    
-    org.torquebox.container-foundation (1.0.0.CR1)
-    org.torquebox.messaging-client (1.0.0.CR1)
-    org.torquebox.messaging-container (1.0.0.CR1)
-    org.torquebox.naming-client (1.0.0.CR1)
-    org.torquebox.naming-container (1.0.0.CR1)
-    org.torquebox.rake-support (1.0.0.CR1)
-    org.torquebox.vfs (1.0.0.CR1)
+    torquebox (1.0.0.CR1)
+    torquebox-capistrano-support (1.0.0.CR1)
+    torquebox-container-foundation (1.0.0.CR1)
+    torquebox-messaging (1.0.0.CR1)
+    torquebox-messaging-container (1.0.0.CR1)
+    torquebox-naming (1.0.0.CR1)
+    torquebox-naming-container (1.0.0.CR1)
+    torquebox-rake-support (1.0.0.CR1)
+    torquebox-vfs (1.0.0.CR1)
 
 This installs all of the required TorqueBox gems into the global gemset for JRuby-1.5.6, ensuring their
 availability whenever you're using JRuby &#8212; awesome!  I put bundler in there too, because I find it 
@@ -113,8 +111,8 @@ The `gem update` command will notice that you've already got the TorqueBox gems 
 In this case, you'll need to uninstall and reinstall the gems.  
 
     $ rvm use jruby-1.5.6@global
-    $ gem uninstall org.torquebox.container-foundation org.torquebox.messaging-client org.torquebox.messaging-container org.torquebox.naming-client org.torquebox.naming-container org.torquebox.rake-support org.torquebox.vfs
-    $ gem install org.torquebox.container-foundation org.torquebox.messaging-client org.torquebox.messaging-container org.torquebox.naming-client org.torquebox.naming-container org.torquebox.rake-support org.torquebox.vfs --pre
+    $ gem uninstall torquebox torquebox-messaging-container torquebox-naming-container torquebox-capistrano-support torquebox-rake-support torquebox.vfs 
+    $ gem install torquebox torquebox-messaging-container torquebox-naming-container torquebox-capistrano-support torquebox-rake-support torquebox.vfs --pre 
     
 While this is a bit of a pain, it's quicker and easier than re-installing all of your application gems
 each time you want to update to a new TorqueBox build.
