@@ -67,7 +67,7 @@ To get the latest TorqueBox gems, you'll need to make sure `gem` knows where to 
 Then install the TorqueBox gems.
 
     $ rvm use jruby-1.5.6@global
-    $ gem install torquebox torquebox-messaging-container torquebox-naming-container torquebox-capistrano-support torquebox-rake-support torquebox.vfs --pre 
+    $ gem install torquebox torquebox-messaging-container torquebox-naming-container torquebox-capistrano-support torquebox-rake-support torquebox-vfs --pre 
     $ gem install bundler
     $ gem list
     
@@ -111,8 +111,8 @@ The `gem update` command will notice that you've already got the TorqueBox gems 
 In this case, you'll need to uninstall and reinstall the gems.  
 
     $ rvm use jruby-1.5.6@global
-    $ gem uninstall torquebox torquebox-messaging-container torquebox-naming-container torquebox-capistrano-support torquebox-rake-support torquebox.vfs 
-    $ gem install torquebox torquebox-messaging-container torquebox-naming-container torquebox-capistrano-support torquebox-rake-support torquebox.vfs --pre 
+    $ gem uninstall torquebox torquebox-messaging-container torquebox-naming-container torquebox-capistrano-support torquebox-rake-support torquebox-vfs 
+    $ gem install torquebox torquebox-messaging-container torquebox-naming-container torquebox-capistrano-support torquebox-rake-support torquebox-vfs --pre 
     
 While this is a bit of a pain, it's quicker and easier than re-installing all of your application gems
 each time you want to update to a new TorqueBox build.
