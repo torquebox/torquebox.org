@@ -73,7 +73,7 @@ Toby continues work on [BackStage] to expose useful bits of an application's
 components, including messaging destinations, services and scheduled jobs.  Supporting
 his work, I have been adding JMX management paste to everything.
 
-# Bring you kid to work
+# Bring your kid to work
 
 The voting for the [JBoss Community Recognition Awards][jcra] continues until
 2 April 2011.  
