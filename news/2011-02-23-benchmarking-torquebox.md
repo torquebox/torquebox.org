@@ -2,7 +2,7 @@
 title: Benchmarking TorqueBox
 author: Ben Browning
 layout: news
-tags: [performance, jruby, rack, rails3]
+tags: [performance, benchmarks, jruby, rack, rails3]
 ---
 
 [benchmail]: http://torquebox.markmail.org/thread/sekbh2cqymgbd7zq
