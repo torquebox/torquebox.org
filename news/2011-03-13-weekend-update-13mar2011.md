@@ -11,6 +11,9 @@ tags: [ update ]
 [caching]: /news/2011/03/09/torquebox-caching/
 [backstage]: https://github.com/torquebox/backstage
 [authbranch]: https://github.com/torquebox/torquebox/tree/authentication
+[dobozy]: http://twitter.com/#!/dobozysaurus
+[newrelic]: http://newrelic.com/
+[rpmbranch]: https://github.com/torquebox/rpm
 [summit]: http://www.redhat.com/summit/
 
 If we got less accomplished this week, it's because someone bent space-time
@@ -45,6 +48,10 @@ I spent another few days inside a Windows 7 virtual machine, and TorqueBox seems
 to once again function better on second-class operating systems.  We would still
 love an active community member to caretake the Windows build.  We'll give you a
 sticker.
+
+With some prodding and assistance from [Mike Dobozy][dobozy], we got [NewRelic
+RPM][newrelic] working with TorqueBox.  Currently it requires a 1-line patch
+to the office NewRelic gem, which we've submitted from [our fork][rpmbranch].
 
 # Losing (for now)
 
