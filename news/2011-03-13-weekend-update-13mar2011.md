@@ -51,7 +51,7 @@ sticker.
 
 With some prodding and assistance from [Mike Dobozy][dobozy], we got [NewRelic
 RPM][newrelic] working with TorqueBox.  Currently it requires a 1-line patch
-to the office NewRelic gem, which we've submitted from [our fork][rpmbranch].
+to the official NewRelic gem, which we've submitted from [our fork][rpmbranch].
 
 # Losing (for now)
 
