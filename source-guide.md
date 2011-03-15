@@ -39,8 +39,16 @@ of the JBoss repository by creating or adjusting your `$HOME/.m2/settings.xml`.
 The TorqueBox distribution includes a `settings.xml` that you may use directly
 from the commandline, or integrate into your personal `settings.xml`.
 
-In the checked-out source tree, it is located as `build-support/settings.xml`.
-In GitHub you may find it [here](https://github.com/torquebox/torquebox/blob/master/build-support/settings.xml).
+In the checked-out source tree, it is located as
+`build-support/settings.xml`.  In GitHub you may find it
+[here](https://github.com/torquebox/torquebox/blob/master/build-support/settings.xml). To
+use our `settings.xml` directly from the commandline, replace all
+`mvn` commands below with `mvn -s build-support/settings.xml`.
+
+You'll also need to give Maven extra memory for the build by setting
+the `MAVEN_OPTS` environment variable.
+
+    export MAVEN_OPTS="-Xmx512m"
 
 # Build
 
@@ -50,7 +58,7 @@ From the root of the source-tree, a complete build can be performed:
 
     mvn install
 
-This will build a copmlete "assembly" of TorqueBox, laid out on disk
+This will build a complete "assembly" of TorqueBox, laid out on disk
 in a usable fashion.
 
 Once the build completes successfully, the assembly will be located
