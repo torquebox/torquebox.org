@@ -17,7 +17,7 @@ tags: [ update ]
 [gogreen]: /images/gogreen.png
 
 First off, apologies for the belated weekend update.  I am apparently
-suffering jet-lag from my flight down the eastern seaboard, and lost
+suffering jet-lag from my flight down the eastern seaboard and lost
 track of the day.
 
 # Wake up!
