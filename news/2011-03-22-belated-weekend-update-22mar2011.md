@@ -33,7 +33,7 @@ will be filming the talk, which we hope to get online fairly quickly.
 # Hooray!
 
 This week, Lance put the authentication integration to bed.  Due to
-copmlexities around JAAS and the PicketLink implementation against
+complexities around JAAS and the PicketLink implementation against
 JBoss AS6, we decided to reduce the scope slightly.  Look for a blog
 post from Lance about it this week.  Right, Lance?
 
@@ -60,7 +60,7 @@ Jim and I collaborated on what we hope will become one of the
 killer features of TorqueBox, inspired by our awesome
 community member, [Adam Warski][adamcdi]: **CDI integration**, 
 and other dependency-injection support.  This goes one step
-further to blurring the lines between your Ruby and Java
+further towards blurring the lines between your Ruby and Java
 applications.  Look forward to a blog post detailing this
 feature in the near future.
 
