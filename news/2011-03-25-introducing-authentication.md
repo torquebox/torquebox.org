@@ -33,7 +33,7 @@ there.
 
 First, let's be clear. This is not intended to replace `authlogic`,
 `restful_authentication`, or any of the other auth gems you might be familiar
-with in the Ruby world. Those softwares are an awesome way to wire up user
+with in the Ruby world. These tools are an awesome way to wire up user
 accounts for a web app.  They're most often used in situations where end-users
 are creating accounts by signing up online, with the result being a row
 somewhere in a `users` table fronted by ActiveRecord. But there are other 
@@ -56,49 +56,29 @@ into your application.
 If you're already familiar with JAAS and are interested in authenticating with
 an existing corporate user store, we've got you covered there too.  Want to
 learn more about JAAS and how it works inside of JBoss? Check out the JBoss
-[security docs][jboss-docs].
+[security docs][jboss-docs].  We're sorry about that. One of our big goals
+with TorqueBox is to expose enterprise awesomeness without a single line of
+XML.  We found, however, that the JBoss JAAS implementation is pretty tightly 
+tied to XML files and there was not a good way to get rid of this coupling.
+
+We hear that AS7 has much more awesomeness and are looking forward to making
+this XML business disappear. Still, it's not all that bad as it is.  
+With TorqueBox::Authentication and a few lines of XML in your JBoss configuration
+file your LDAP authentication looks like this:
+
+<script src="https://gist.github.com/887584.js?file=torquebox-auth.rb"></script>
+
+Notice that there's no mention of LDAP in your Ruby code. Corporate honchos
+decide to move from LDAP to something else? No problem, your app doesn't change.
 
 ## Example
 
 So, how does it work? Let's jump straight to the code. It's easy.  TorqueBox
 gives your ruby applications access to the `TorqueBox::Authentication` module.
-To use, it just require `torquebox` and `torquebox/auth/authentication`.
+To use it just require `torquebox` and `org/torquebox/auth/authentication`.
 Here's a very simple authentication module in Ruby.
 
-    require 'torquebox'
-    require 'org/torquebox/auth/authentication'
-    
-    module MyApp
-      module Authentication
-     
-        def login_path
-          "/login"
-        end
-    
-        def authenticated?
-          !session[:user].nil?
-        end
-       
-        def authenticate(username, password)
-          return false if username.blank? || password.blank?
-          authenticator = TorqueBox::Authentication.default
-          authenticator.authenticate(username, password) do
-            session[:user] = username
-          end
-        end
-    
-        def require_authentication
-          return if authenticated?
-          redirect login_path 
-        end
-    
-        def logout
-          session[:user] = nil
-          redirect login_path
-        end
-       
-      end
-    end
+<script src="https://gist.github.com/887584.js?file=sample-auth-module.rb"></script>
     
 The API has 3 simple methods:
 
@@ -111,10 +91,7 @@ within an authenticated context.
 
 Using this module, a Sintra route for the `/login` method might look like this.
 
-    post '/login' do
-      flash[:notice] = "Bad credentials, try again?" unless MyApp::Authentication.authenticate( params[:user], params[:pass] )
-      redirect '/'
-    end
+<script src="https://gist.github.com/887584.js?file=login_controller.rb"></script>
 
 ### Application Configuration
 
@@ -149,7 +126,7 @@ policies for the underlying components, such as HornetQ and JMX.
 
 Of course, if you're already running JBoss servers in a corporate environment, you may
 also have LDAP or other policies already in place. To integrate these into TorqueBox,
-just add your policy to to `$JBOSS_HOME/server/default/conf/login-config.xml`. Details
+just add your policy to `$JBOSS_HOME/server/default/conf/login-config.xml`. Details
 on how to configure JBoss can be found in the JBoss [security documentation][jboss-docs].
 
 Let's say you're writing an application for a corporate intranet, and your user
@@ -158,25 +135,11 @@ data is in 2 different LDAP servers, `internal.corp.com` and
 `internal-auth` and `client-auth`.  You can configure these policies in an `auth`
 section of `torquebox.yml` or in a separate `auth.yml` file for your application.  
 
-    auth:
-      default:
-        domain: internal-auth
-      clients:
-        domain: client-auth
+<script src="https://gist.github.com/887584.js?file=auth.yml"></script>
     
 Then in your application code, you can authenticate against each of them like so.
 
-    # Authenticate an internal user
-    authenticator = TorqueBox::Authentication.default
-    authenticator.authenticate(user,pass) do
-      # user is authenticated
-    end
-
-    # Authenticate a client
-    authenticator = TorqueBox::Authentication['clients']
-    authenticator.authenticate(user,pass) do
-      # client is authenticated
-    end
+<script src="https://gist.github.com/887584.js?file=advanced_auth.rb"></script>
 
 There are lots of other ways you can take advantage of `JAAS` authentication and we
 look forward to having folks try it out and give us feedback.  The integration is pretty 
