@@ -193,6 +193,9 @@ inject into scheduled jobs, services, tasks, and message-processors, using the
 exact same strategy.
 
     class ShipperAuditer
+
+      include TorqueBox::Injectors
+
       def initialize(opts={})
         @shipper = inject( com.mycorp.ShippingService )
       end
