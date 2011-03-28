@@ -84,7 +84,7 @@ components now.
 The most "exciting" (I guess) aspect of injection these days is known as
 **Context and Dependency Injection**, or CDI.  
 
-In its barest form, CDI is embodied in through the `@Inject`
+In its barest form, CDI is embodied through the `@Inject`
 annotation.  It's an instruction to the container to find or create
 an appropriate implementation, and give it to me at the right time.
 
