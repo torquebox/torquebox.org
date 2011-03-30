@@ -173,5 +173,8 @@ To build piece-meal on Windows, Maven's `-pl` option is used.
 
     mvn install -pl components\web\web-core\
 
+Make sure JAVA_HOME does not contain a space. If you installed Java to
+the default location, you'll need a JAVA_HOME like
 
+    C:\Progra~1\Java\jdk1.6.0_24
 
