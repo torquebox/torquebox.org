@@ -77,7 +77,7 @@ assembly by changing into the component's directory and invoking
 
 ## Very clean rebuilding
 
-From the root of the source-tree, to perform a complete `clean`
+From the root of the source-tree, to perform a complete `clean`:
 
     mvn clean -Pinteg,dist
 
@@ -86,6 +86,13 @@ portions of your local Maven repository under `$HOME/.m2/repository/`.
 
     rm -Rf ~/.m2/repository/org/torquebox/
     rm -Rf ~/.m2/repository/rubygems/torquebox*
+
+## Running tests under ruby 1.9 
+
+By default, JRuby acts as compatible with ruby 1.8.7. If you want
+to run the rspec tests as ruby 1.9.2, use the `19` profile:
+
+    mvn install -P19,integ
 
 # Source layout
 
