@@ -96,6 +96,9 @@ layout: default
         latest_url = build_manager.base_url + build_num;
 
         latest_div = $( '#latest-stable' );
+
+        latest_div.find( '.dist-size' ).text( '(' + Math.floor( dist_mb ) + 'mb)' );
+
         latest_div.find( '.version a' ).text( build_num );
         latest_div.find( '.version a' ).attr( 'href', latest_url );
 

@@ -258,7 +258,7 @@ table.downloads {
 
 table#builds {
   .build .number {
-    border-left: 12px solid black;
+    border-left: 12px solid #999999;
   }
   .build.stable .number {
     border-left: 12px solid #559955;
