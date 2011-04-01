@@ -71,7 +71,7 @@ layout: default
           html_doc_link = link + build_manager.html_doc_suffix;
           pdf_doc_link  = link + build_manager.pdf_doc_suffix;
 
-          build_div.find( '.download').append( $( '<span class="dist"><a href="' + dist_link + '">ZIP Archive (<span class="dist-size">unknown</span>mb)</a></span>' ) );
+          build_div.find( '.download').append( $( '<span class="dist"><a href="' + dist_link + '">ZIP Archive <span class="dist-size"></span></a></span>' ) );
           build_div.find( '.docs').append( $( '<ul></ul>' ) );
           build_div.find( '.docs ul').append( $( '<li class="html-docs"><a href="' + html_doc_link + '">Browse</a></li>' ) );
           build_div.find( '.docs ul').append( $( '<li class="pdf-docs"><a href="' + pdf_doc_link + '">PDF</a></li>' ) );
@@ -102,7 +102,10 @@ layout: default
         }
         build_num = data['build_number'];
         build_revision = data['build_revision'];
-        short_revision = build_revision.substring(0,6);
+
+        if ( build_revision.indexOf( 'unknown' ) >= 0 ) {
+          build_revision = null;
+        } 
     
         build_timestamp = data['build_time'];
         build_time = new Date( build_timestamp * 1000 );
@@ -111,17 +114,21 @@ layout: default
 
         build_div = $( '#build-' + build_num );
         dist_size_span = build_div.find( '.dist-size' );
-        dist_size_span.text( Math.floor( dist_mb ) );
+        dist_size_span.text( '(' + Math.floor( dist_mb ) + 'mb)' );
 
         formatted_time = build_time.format( "dd mmmm yyyy", true ) + '<br/>' + build_time.format( "HH:MM", true ) + ' UTC';
         build_date_div = build_div.find( '.release-date' );
         build_date_div.append( formatted_time );
-        build_date_div.append( $( '<br/><a href="https://github.com/torquebox/torquebox/commits/' + build_revision + '">' + short_revision + '...</a></li>' ) );
 
-        git_div = build_div.find( '.git' );
-        git_div.append( $( '<ul></ul>' ) );
-        git_div.find( 'ul' ).append( $( '<li><a href="https://github.com/torquebox/torquebox/tree/' + build_revision + '">Tree</a></li>' ) );
-        git_div.find( 'ul' ).append( $( '<li><a href="https://github.com/torquebox/torquebox/commits/' + build_revision + '">Commits</a></li>' ) );
+        if ( build_revision ) {
+          short_revision = build_revision.substring(0,6);
+          build_date_div.append( $( '<br/><a href="https://github.com/torquebox/torquebox/commits/' + build_revision + '">' + short_revision + '...</a></li>' ) );
+
+          git_div = build_div.find( '.git' );
+          git_div.append( $( '<ul></ul>' ) );
+          git_div.find( 'ul' ).append( $( '<li><a href="https://github.com/torquebox/torquebox/tree/' + build_revision + '">Tree</a></li>' ) );
+          git_div.find( 'ul' ).append( $( '<li><a href="https://github.com/torquebox/torquebox/commits/' + build_revision + '">Commits</a></li>' ) );
+        }
       },
      
       builds: $('#builds'),
