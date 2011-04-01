@@ -117,6 +117,7 @@ layout: default
 
         if ( build_revision ) {
           short_revision = build_revision.substring(0,6);
+          build_date_div = build_div.find( '.release-date' );
           build_date_div.append( $( '<br/><a href="https://github.com/torquebox/torquebox/commits/' + build_revision + '">' + short_revision + '...</a></li>' ) );
 
           git_div = build_div.find( '.git' );
