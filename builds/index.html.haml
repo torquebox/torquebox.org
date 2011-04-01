@@ -1,0 +1,108 @@
+---
+title: Incremental Builds
+layout: default
+---
+
+%h1 Recent Incremental Builds
+
+%p Incremental builds are performed by our CI system any time the code changes.
+
+%table.downloads#builds
+  %tr
+    %th Build
+    %th Binary Distribution
+    %th Documentation
+    %th Git Tree
+  
+
+
+:javascript
+  var build_manager;
+
+  $( function() {
+
+    build_manager = {
+      rss_url: 'https://torquebox.ci.cloudbees.com/job/torquebox/rssAll',
+      html_doc_suffix: '/artifact/docs/en-US/target/docbook/publish/en-US/xhtml/index.html',
+      pdf_doc_suffix: '/artifact/docs/en-US/target/docbook/publish/en-US/pdf/index.html',
+
+      start: function() {
+        $.jGFeed(build_manager.rss_url, build_manager.process_feed);
+      },
+
+      process_feed: function(feeds) {
+        if ( ! feeds ) {
+          return false;
+        }
+        for(var i=0; i<feeds.entries.length; i++){
+          var entry = feeds.entries[i];
+          build_manager.process_build( entry )
+        }
+      },
+      process_build: function(entry) {
+        chunks = entry.title.split(' ');
+        number = chunks[1].replace( '#', '' );
+        status = 'unknown';
+        if ( chunks[2].indexOf( 'stable' ) >= 0 ) {
+          status = 'stable';
+        } else if ( chunks[2].indexOf( 'back' ) >= 0 ) {
+          status = 'repaired';
+        } else if ( chunks[2].indexOf( 'abort' ) >= 0 ) {
+          status = 'aborted';
+        } else if ( chunks[2].indexOf( 'broken' ) >= 0 ) {
+          status = 'broken';
+        }
+        link = entry.link;
+        build_div = $('<tr id="build-' + number + '"class="build ' + status + '"></tr>' );
+
+        build_div.append( $('<td class="number"><div class="version"><a href="' + link + '">' + number + '</a></div><div class="release-date"></div></td>' ) );
+
+        build_div.append( $('<td class="download"></td>' ) );
+        build_div.append( $('<td class="docs"></td>' ) );
+
+        if ( status == 'repaired' || status == 'stable' ) {
+          dist_link     = '/builds/' + number + '/torquebox-dist-bin.zip';
+          html_doc_link = link + build_manager.html_doc_suffix;
+          pdf_doc_link  = link + build_manager.pdf_doc_suffix;
+
+          build_div.find( '.download').append( $( '<span class="dist"><a href="' + dist_link + '">ZIP Archive (<span class="dist-size">unknown</span>mb)</a></span>' ) );
+          build_div.find( '.docs').append( $( '<ul></ul>' ) );
+          build_div.find( '.docs ul').append( $( '<li class="html-docs"><a href="' + html_doc_link + '">Browse</a></li>' ) );
+          build_div.find( '.docs ul').append( $( '<li class="pdf-docs"><a href="' + pdf_doc_link + '">PDF</a></li>' ) );
+        }
+
+        build_div.append( $('<td class="git"></td>' ) );
+
+        build_manager.builds.append( build_div );
+        build_manager.request_build_details( number );
+      },
+  
+      request_build_details: function(build_number) {
+        $.getJSON( '/builds/' + build_number + '/metadata.json', {}, build_manager.process_details );
+      },
+
+      process_details: function(data) {
+        build_num = data['build_number'];
+        build_revision = data['build_revision'];
+        build_timestamp = data['build_time'];
+        build_time = new Date( build_timestamp * 1000 );
+        dist_bytes = data['dist_size'];
+        dist_mb = dist_bytes / (1024 * 1024);
+
+        build_div = $( '#build-' + build_num );
+        dist_size_span = build_div.find( '.dist-size' );
+        dist_size_span.text( Math.floor( dist_mb ) );
+
+        formatted_time = build_time.format( "dd mmmm yyyy", true ) + '<br/>' + build_time.format( "HH:MM", true ) + ' UTC';
+        build_date_div = build_div.find( '.release-date' );
+        build_date_div.append( formatted_time );
+
+        git_div = build_div.find( '.git' );
+        git_div.append( $( '<a href="https://github.com/torquebox/torquebox/tree/' + build_revision + '">Browse</a>' ) );
+      },
+     
+      builds: $('#builds'),
+    };
+
+    build_manager.start();
+  } );

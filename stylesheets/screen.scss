@@ -238,6 +238,7 @@ body.bp {
 }
 
 table.downloads {
+  empty-cells: show;
   th {
     border-bottom: 1px solid $downloads_th_border_color;
   }
