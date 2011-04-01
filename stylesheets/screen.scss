@@ -274,6 +274,23 @@ table#builds {
   }
 }
 
+table.incremental-builds {
+  .col-build {
+    width: 25%;
+  }
+  .col-dist {
+    width: 20%;
+  }
+  .col-docs {
+    width: 20%;
+  }
+  .col-changes {
+    width: 20%;
+  }
+  .col-git {
+  }
+}
+
 .post-navigation {
   line-height: 1.4em;
   margin-bottom: 2em;

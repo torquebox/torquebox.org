@@ -3,17 +3,56 @@ title: Incremental Builds
 layout: default
 ---
 
-%h1 Recent Incremental Builds
+%h1 Incremental Builds
 
-%p Incremental builds are performed by our CI system any time the code changes.
+%p Incremental builds are performed by our <a href="/development/#ci">CI system</a> any time the code changes.
 
-%table.downloads#builds
+%h2 Latest Stable Incremental Build
+%table.downloads.incremental-builds#latest-stable
   %tr
-    %th.build Build
-    %th Binary Distribution
-    %th Documentation
-    %th Changes
-    %th Git
+    %th.col-build Build
+    %th.col-dist Binary Distribution
+    %th.col-docs Documentation
+    %th.col-changes Changes
+    %th.col-git Git
+  %tr
+    %td.build
+      .version
+        %a{:href=>''}
+      .release-date
+    %td
+      %a.dist{:href=>''} 
+        ZIP Archive
+        %span.dist-size
+    %td
+      %ul
+        %li
+          %a.html-docs{:href=>''} 
+            Browse
+        %li
+          %a.pdf-docs{:href=>''} 
+            PDF
+    %td
+      %a.changes{:href=>''}
+        Changes
+    %td
+      %ul.git
+        %li
+          %a.tree{:href=>''} Tree
+        %li
+          %a.commits{:href=>''} Commits
+
+
+
+%h2 Recent Incremental Builds
+
+%table.downloads.incremental-builds#builds
+  %tr
+    %th.col-build Build
+    %th.col-dist Binary Distribution
+    %th.col-docs Documentation
+    %th.col-changes Changes
+    %th.col-git Git
   
 
 
@@ -23,12 +62,63 @@ layout: default
   $( function() {
 
     build_manager = {
+      base_url: 'https://torquebox.ci.cloudbees.com/job/torquebox/',
       rss_url: 'https://torquebox.ci.cloudbees.com/job/torquebox/rssAll',
       html_doc_suffix: '/artifact/docs/en-US/target/docbook/publish/en-US/xhtml/index.html',
       pdf_doc_suffix:  '/artifact/docs/en-US/target/docbook/publish/en-US/pdf/torquebox-docs-en_US.pdf',
 
 
       start: function() {
+        build_manager.populate_latest_build();
+        build_manager.populate_recent_builds();
+      },
+
+      populate_latest_build: function() {
+        $.ajax( { url: '/builds/LATEST/metadata.json',
+                  dataType: 'json',
+                  success: build_manager.process_latest_build_details } );
+      },
+
+      process_latest_build_details: function(data) {
+        if ( ! data ) {
+          return;
+        }
+        build_num = data['build_number'];
+        build_revision = data['build_revision'];
+
+        if ( build_revision.indexOf( 'unknown' ) >= 0 ) {
+          build_revision = null;
+        }
+
+        dist_bytes = data['dist_size'];
+        dist_mb = dist_bytes / (1024 * 1024);
+
+        latest_url = build_manager.base_url + build_num;
+
+        latest_div = $( '#latest-stable' );
+        latest_div.find( '.version a' ).text( build_num );
+        latest_div.find( '.version a' ).attr( 'href', latest_url );
+
+        short_revision = build_revision.substring(0,6);
+        build_date_div = latest_div.find( '.release-date' );
+
+        build_time = new Date( data['build_time'] * 1000 );
+        formatted_time = build_time.format( "dd mmmm yyyy" ) + '<br/>' + build_time.format( "HH:MM" ) + ' UTC';
+        build_date_div.append( formatted_time );
+
+        build_date_div.append( $( '<br/><a href="https://github.com/torquebox/torquebox/commits/' + build_revision + '">' + short_revision + '...</a></li>' ) );
+
+        latest_div.find( 'a.dist' ).attr( 'href', '/builds/' + build_num + '/torquebox-dist-bin.zip' );
+
+        latest_div.find( 'a.html-docs' ).attr( 'href', latest_url + build_manager.html_doc_suffix );
+        latest_div.find( 'a.pdf-docs' ).attr( 'href', latest_url + build_manager.pdf_doc_suffix );
+        latest_div.find( 'a.changes' ).attr( 'href', latest_url + '/changes' );
+
+        latest_div.find( '.git a.tree' ).attr( 'href', 'https://github.com/torquebox/torquebox/tree/' + build_revision );
+        latest_div.find( '.git a.commits' ).attr( 'href', 'https://github.com/torquebox/torquebox/commits/' + build_revision );
+      },
+
+      populate_recent_builds: function() {
         $.jGFeed(build_manager.rss_url, build_manager.process_feed, 20);
       },
 
@@ -87,7 +177,6 @@ layout: default
       },
   
       request_build_details: function(build_number) {
-        //$.getJSON( '/builds/' + build_number + '/metadata.json', {}, build_manager.process_details );
         $.ajax( { url: '/builds/' + build_number + '/metadata.json', 
                   dataType: 'json',
                   success: build_manager.process_details,
