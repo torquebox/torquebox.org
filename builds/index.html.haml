@@ -20,14 +20,10 @@ layout: default
 :javascript
   var build_manager;
 
-  now = new Date();
-  now_minutes = now.format('MM');
-  grist = now.format( 'yyyymmddHH' ) + now_minutes[0];
-
   $( function() {
 
     build_manager = {
-      rss_url: 'https://torquebox.ci.cloudbees.com/job/torquebox/rssAll?grist=' + grist,
+      rss_url: 'https://torquebox.ci.cloudbees.com/job/torquebox/rssAll',
       html_doc_suffix: '/artifact/docs/en-US/target/docbook/publish/en-US/xhtml/index.html',
       pdf_doc_suffix:  '/artifact/docs/en-US/target/docbook/publish/en-US/pdf/torquebox-docs-en_US.pdf',
 
