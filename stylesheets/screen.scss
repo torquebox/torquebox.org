@@ -256,6 +256,24 @@ table.downloads {
   }
 }
 
+table#builds {
+  .build .number {
+    border-left: 12px solid black;
+  }
+  .build.stable .number {
+    border-left: 12px solid #559955;
+  }
+  .build.repaired .number {
+    border-left: 12px solid #77BB77;
+  }
+  tr.broken td.build .number {
+    border-left: 12px solid #995555;
+  }
+  tr.aborted td.build .number {
+    border-left: 12px solid #999999;
+  }
+}
+
 .post-navigation {
   line-height: 1.4em;
   margin-bottom: 2em;
