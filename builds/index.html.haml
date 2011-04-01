@@ -29,7 +29,7 @@ layout: default
 
 
       start: function() {
-        $.jGFeed(build_manager.rss_url, build_manager.process_feed);
+        $.jGFeed(build_manager.rss_url, build_manager.process_feed, 20);
       },
 
       process_feed: function(feeds) {
@@ -58,6 +58,11 @@ layout: default
         build_div = $('<tr id="build-' + number + '"class="build ' + status + '"></tr>' );
 
         build_div.append( $('<td class="number"><div class="version"><a href="' + link + '">' + number + '</a></div><div class="release-date"></div></td>' ) );
+
+        build_time = new Date( entry.publishedDate );
+        formatted_time = build_time.format( "dd mmmm yyyy" ) + '<br/>' + build_time.format( "HH:MM" ) + ' UTC';
+        build_date_div = build_div.find( '.release-date' );
+        build_date_div.append( formatted_time );
 
         build_div.append( $('<td class="download"></td>' ) );
         build_div.append( $('<td class="docs"></td>' ) );
@@ -103,18 +108,12 @@ layout: default
           build_revision = null;
         } 
     
-        build_timestamp = data['build_time'];
-        build_time = new Date( build_timestamp * 1000 );
         dist_bytes = data['dist_size'];
         dist_mb = dist_bytes / (1024 * 1024);
 
         build_div = $( '#build-' + build_num );
         dist_size_span = build_div.find( '.dist-size' );
         dist_size_span.text( '(' + Math.floor( dist_mb ) + 'mb)' );
-
-        formatted_time = build_time.format( "dd mmmm yyyy", true ) + '<br/>' + build_time.format( "HH:MM", true ) + ' UTC';
-        build_date_div = build_div.find( '.release-date' );
-        build_date_div.append( formatted_time );
 
         if ( build_revision ) {
           short_revision = build_revision.substring(0,6);
