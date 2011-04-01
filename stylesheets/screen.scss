@@ -512,10 +512,20 @@ form {
     }
   }
 
-  #latest-release {
+  #latest-release { margin-top: 40px; }
+  #latest-release, #incremental-release {
     text-align: right;
+    p {
+      line-height: 1em;
+      font-size: 11px;
+      text-align: left;
+    }
     a {
       color: $header_color;
+    }
+    h2 { 
+      font-size: 140%; 
+      text-align: left;
     }
     #download-link {
       font-weight: bold;

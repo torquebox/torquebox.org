@@ -1,15 +1,15 @@
 ErrorDocument 404 /404.html
 
 RewriteEngine on
-RewriteRule ^torquebox-doc\.pdf$ http://ci.stormgrind.org/repository/download/bt7/.lastSuccessful/docs/torquebox-docs-en_US.pdf?guest=1 [P]
-RewriteRule ^torquebox-dev\.zip$ http://ci.stormgrind.org/repository/download/bt7/.lastSuccessful/torquebox-dist-bin.zip?guest=1 [P]
+RewriteRule ^torquebox-doc\.pdf$ https://torquebox.ci.cloudbees.com//job/torquebox/lastStableBuild/artifact/docs/en-US/target/docbook/publish/en-US/pdf/torquebox-docs-en_US.pdf [P]
+RewriteRule ^torquebox-dev\.zip$ https://torquebox.ci.cloudbees.com/job/torquebox/lastStableBuild/artifact/dist/target/torquebox-dist-bin.zip [P]
 RewriteRule ^torquebox-(.*(20|1.)).zip$ http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-bin/$1/torquebox-bin-$1.zip [P]
 RewriteRule ^torquebox-(.*).zip$ http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-dist/$1/torquebox-dist-$1-bin.zip [P]
 
 
 RewriteRule ^documentation/DEV$      /documentation/DEV/ [R]
-RewriteRule ^documentation/DEV/?$    http://ci.stormgrind.org/repository/download/bt7/.lastSuccessful/html-docs/index.html?guest=1 [P]
-RewriteRule ^documentation/DEV/(.*)$ http://ci.stormgrind.org/repository/download/bt7/.lastSuccessful/html-docs/$1?guest=1 [P]
+RewriteRule ^documentation/DEV/?$    https://torquebox.ci.cloudbees.com//job/torquebox/lastStableBuild/artifact/docs/en-US/target/docbook/publish/en-US/xhtml/index.html [P]
+RewriteRule ^documentation/DEV/(.*)$ https://torquebox.ci.cloudbees.com//job/torquebox/lastStableBuild/artifact/docs/en-US/target/docbook/publish/en-US/xhtml/$1 [P]
 
 RewriteRule ^builds/([0-9]+)/metadata.json$           https://torquebox.ci.cloudbees.com/job/torquebox/$1/artifact/dist/target/build-metadata.json [P]
 RewriteRule ^builds/LATEST/metadata.json$             https://torquebox.ci.cloudbees.com/job/torquebox/lastStableBuild/artifact/dist/target/build-metadata.json [P]
