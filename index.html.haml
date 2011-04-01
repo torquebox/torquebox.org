@@ -47,7 +47,7 @@ inhibit_title: true
             %tr
               %th Download
               %td
-                %a{:href=>'/builds/LATEST/torquebox-dist-bin.zip'} #{site.releases.first.version}
+                %a{:href=>site.releases.first.urls.dist_zip} #{site.releases.first.version}
             - if ( announcement )
               %tr.release_date
                 %th
