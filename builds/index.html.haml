@@ -106,7 +106,7 @@ layout: default
         build_date_div = latest_div.find( '.release-date' );
 
         build_time = new Date( data['build_time'] * 1000 );
-        formatted_time = build_time.format( "dd mmmm yyyy" ) + '<br/>' + build_time.format( "HH:MM" ) + ' UTC';
+        formatted_time = build_time.format( "dd mmmm yyyy" ) + '<br/>' + build_time.format( "HH:MM" ) + ' US Eastern';
         build_date_div.append( formatted_time );
 
         build_date_div.append( $( '<br/><a href="https://github.com/torquebox/torquebox/commits/' + build_revision + '">' + short_revision + '...</a></li>' ) );
@@ -153,7 +153,7 @@ layout: default
         build_div.append( $('<td class="number"><div class="version"><a href="' + link + '">' + number + '</a></div><div class="release-date"></div></td>' ) );
 
         build_time = new Date( entry.publishedDate );
-        formatted_time = build_time.format( "dd mmmm yyyy" ) + '<br/>' + build_time.format( "HH:MM" ) + ' UTC';
+        formatted_time = build_time.format( "dd mmmm yyyy" ) + '<br/>' + build_time.format( "HH:MM" ) + ' US Eastern';
         build_date_div = build_div.find( '.release-date' );
         build_date_div.append( formatted_time );
 
