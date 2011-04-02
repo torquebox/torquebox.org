@@ -11,8 +11,6 @@ RewriteRule ^documentation/DEV$      /documentation/DEV/ [R]
 RewriteRule ^documentation/DEV/?$    https://torquebox.ci.cloudbees.com//job/torquebox/lastStableBuild/artifact/docs/en-US/target/docbook/publish/en-US/xhtml/index.html [P]
 RewriteRule ^documentation/DEV/(.*)$ https://torquebox.ci.cloudbees.com//job/torquebox/lastStableBuild/artifact/docs/en-US/target/docbook/publish/en-US/xhtml/$1 [P]
 
-RewriteRule ^builds/([0-9]+)/metadata.json$           https://torquebox.ci.cloudbees.com/job/torquebox/$1/artifact/dist/target/build-metadata.json [P]
-RewriteRule ^builds/LATEST/metadata.json$             https://torquebox.ci.cloudbees.com/job/torquebox/lastStableBuild/artifact/dist/target/build-metadata.json [P]
 RewriteRule ^builds/([0-9]+)/torquebox-dist-bin.zip$  https://torquebox.ci.cloudbees.com/job/torquebox/$1/artifact/dist/target/torquebox-dist-bin.zip
 RewriteRule ^builds/LATEST/torquebox-dist-bin.zip$    https://torquebox.ci.cloudbees.com/job/torquebox/lastStableBuild/artifact/dist/target/torquebox-dist-bin.zip
 
