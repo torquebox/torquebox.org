@@ -74,12 +74,22 @@ Jenkins.prototype = {
     row.append( $( '<td class="col-changes"><a href="' + build.url + '/changes">Changes</a></td>' ) );
     row.append( $( '<td class="col-git"><ul></ul></td>' ) );
 
-    git_revision = build.actions[1].lastBuiltRevision.SHA1;
-    short_git_revision = git_revision.substring(0, 8);
+    last_built_revision = build.actions[1].lastBuiltRevision;
+
+    git_revision = null;
+
+    if ( last_built_revision ) {
+      git_revision = build.actions[1].lastBuiltRevision.SHA1;
+      short_git_revision = git_revision.substring(0, 8);
+    }
 
     // Build
     release_date = new Date( build.timestamp );
-    formatted_time = release_date.format( "dd mmmm yyyy" ) + '<br/>' + release_date.format( "HH:MM" ) + ' US Eastern<br/>' + '<a href="https://github.com/torquebox/torquebox/commits/' + git_revision + '">' + short_git_revision + '</a>';
+    formatted_time = release_date.format( "dd mmmm yyyy" ) + '<br/>' + release_date.format( "HH:MM" ) + ' US Eastern<br/>';
+
+    if ( git_revision ) {
+      formatted_time += '<a href="https://github.com/torquebox/torquebox/commits/' + git_revision + '">' + short_git_revision + '</a>';
+    }
     row.find( '.col-build' ).append( $( '<div class="version"><a href="' + build.url + '">' + build.number + '</div>' ) );
     row.find( '.col-build' ).append( $( '<div class="release-date">' + formatted_time + '</div>' ) );
 
@@ -101,8 +111,10 @@ Jenkins.prototype = {
     }
 
     // Git
-    row.find( '.col-git ul' ).append( $( '<li><a href="https://github.com/torquebox/torquebox/tree/' + git_revision + '">Tree</a></li>' ) );
-    row.find( '.col-git ul' ).append( $( '<li><a href="https://github.com/torquebox/torquebox/commits/' + git_revision + '">Commits</a></li>' ) );
+    if ( git_revision ) {
+      row.find( '.col-git ul' ).append( $( '<li><a href="https://github.com/torquebox/torquebox/tree/' + git_revision + '">Tree</a></li>' ) );
+      row.find( '.col-git ul' ).append( $( '<li><a href="https://github.com/torquebox/torquebox/commits/' + git_revision + '">Commits</a></li>' ) );
+    }
 
     table.append( row );
   },
