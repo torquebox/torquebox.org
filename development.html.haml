@@ -60,20 +60,12 @@ title: Development
       %h1
         Continuous Integration
 
-      %a{:href=>'http://ci.stormgrind.org/viewType.html?buildTypeId=bt7&tab=buildTypeStatusDiv&guest=1'}
-        %img.screencap{:src=>'/images/screencaps/ci.png'}
-
       %p
         The code is continuously built using our 
-        <a href='http://ci.stormgrind.org/viewType.html?buildTypeId=bt7&tab=buildTypeStatusDiv&guest=1'>continuous
-        integration server</a>.
+        <a href='http://torquebox.ci.cloudbees.com'>continuous integration service</a>.
 
       %p
-        The <a href="/torquebox-dev.zip">latest successful build of TorqueBox</a> is always available from the CI
-        server.
-
-      %p
-        Additionally, the <a href="/torquebox-doc.pdf">latest version of the PDF documentation</a> is also made available.
+        Recent <a href="/builds/">incremental builds are availble</a>.
 
       %p
         For interim developer releases, when the TorqueBox gems have not been pushed to the official RubyGems
@@ -83,9 +75,3 @@ title: Development
         %a{:href=>'http://rubygems.torquebox.org'}
           %code http://rubygems.torquebox.org/
     
-
-      %h2 Current Build Status
-      .div{:style=>'width: 400px; float: left;'}
-        <script type="text/javascript" src="http://ci.stormgrind.org/externalStatus.html?buildTypeId=bt7&js=1">
-        </script>
-

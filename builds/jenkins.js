@@ -31,7 +31,7 @@ Jenkins.prototype = {
   }, 
 
   update_page: function(self) {
-    $.each( self.root_data.builds, function(i,build) {
+    $.each( self.root_data.builds.slice(0,20), function(i,build) {
       self.add_row( $('#builds'), self.builds[build.number]);
     } );
 
@@ -58,6 +58,9 @@ Jenkins.prototype = {
 
   add_row: function(table, build) {
     var self = this;
+    if ( ! build ) {
+      return;
+    }
     build_result_class = "unknown";
     if ( build.result ) {
       build_result_class = 'result-' + build.result.toLowerCase();
@@ -66,10 +69,15 @@ Jenkins.prototype = {
         build_result_class = 'result-building';
       }
     }
+
+    
+    if ( build.building ) {
+      $('#build-currently-building').append( $( '<b>A build is currently in progress.</b>' ) );
+    }
     row = $( '<tr class="build ' + build_result_class + '"></td>' );
 
     row.append( $( '<td class="col-build"></td>' ) );
-    row.append( $( '<td class="col-dist"></td>' ) );
+    row.append( $( '<td class="col-dist"><ul></ul></td>' ) );
     row.append( $( '<td class="col-docs"><ul></ul></td>' ) );
     row.append( $( '<td class="col-changes"><a href="' + build.url + '/changes">Changes</a></td>' ) );
     row.append( $( '<td class="col-git"><ul></ul></td>' ) );
@@ -94,20 +102,30 @@ Jenkins.prototype = {
     row.find( '.col-build' ).append( $( '<div class="release-date">' + formatted_time + '</div>' ) );
 
     // Dist
+    if ( build.building ) {
+      row.find( '.col-dist ul' ).append( $( '<li><i>Build in progress</i></li>' ) );
+    }
+
     dist_bin_artifact = self.locate_artifact(build, 'dist/target/torquebox-dist-bin.zip' );
     if ( dist_bin_artifact ) {
-      row.find( '.col-dist' ).append( $( '<a href="/builds/' +  build.number + '/torquebox-dist-bin.zip">Download ZIP</a>' ) );
+      row.find( '.col-dist ul' ).append( $( '<li><a href="/builds/' +  build.number + '/torquebox-dist-bin.zip">Binary ZIP</a></li>' ) );
+    }
+
+
+    gem_repo_artifact = self.locate_artifact(build, 'assemblage/assembly/target/stage/gem-repo/simple-index' );
+    if ( gem_repo_artifact ) {
+      row.find( '.col-dist ul' ).append( $( '<li><a href="http://rubygems.torquebox.org/' +  build.number + '/">Gems Repository</a></li>' ) );
     }
 
     // Docs
     html_doc_artifact = self.locate_artifact(build, 'docs/en-US/target/docbook/publish/en-US/xhtml/index.html' );
     if ( html_doc_artifact ) {
-      row.find( '.col-docs ul' ).append( $( '<li><a href="' + self.job_url( build.number + '/artifact/' + html_doc_artifact.relativePath) + '">Browse </a></li>' ) );
+      row.find( '.col-docs ul' ).append( $( '<li><a href="' + self.job_url( build.number + '/artifact/' + html_doc_artifact.relativePath) + '">HTML</a></li>' ) );
     }
 
     pdf_doc_artifact = self.locate_artifact(build, 'docs/en-US/target/docbook/publish/en-US/pdf/torquebox-docs-en_US.pdf' );
     if ( pdf_doc_artifact ) {
-      row.find( '.col-docs ul' ).append( $( '<li><a href="' + self.job_url( build.number + '/artifact/' + pdf_doc_artifact.relativePath) + '">PDF </a></li>' ) );
+      row.find( '.col-docs ul' ).append( $( '<li><a href="' + self.job_url( build.number + '/artifact/' + pdf_doc_artifact.relativePath) + '">PDF</a></li>' ) );
     }
 
     // Git

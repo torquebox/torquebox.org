@@ -13,12 +13,25 @@ layout: default
 %p 
   Incremental builds are performed by our <a href="/development/#ci">CI system</a> any time the code changes.
   The incremental builds are supported by a contribution from 
-  <a href="http://cloudbees.com/">CloudBees</a>.
+  <a href="http://cloudbees.com/">CloudBees</a>.  <span id="build-currently-building"/>
+
  
-.clearfix{:style=>'clear:both;'}
+.clearfix{:style=>'clear:both; height: 0px;'}
   &nbsp;
 
 %h2 Latest Stable Incremental Build
+
+%p
+  The latest stable build may be fetched using this constant URL:
+
+%ul
+  %li
+    %a{:href=>'/builds/LATEST/torquebox-dist-bin.zip'}
+      http://torquebox.org/builds/LATEST/torquebox-dist-bin.zip
+
+%p 
+  Details of this build are immediately below.
+
 %table.downloads.incremental-builds#latest-stable
   %tr.header
     %th.col-build Build
@@ -31,6 +44,11 @@ layout: default
   &nbsp;
 
 %h2 Recent Incremental Builds
+
+%p
+  The last 20 builds are listed below.  A currently-running build is displayed in yellow. Aborted builds are displayed in grey.
+  Successful builds are green.  Failed builds are in red.  Failed build <b>may produce artifacts</b>, but they should probably
+  not be trusted.
 
 %table.downloads.incremental-builds#builds
   %tr.header
