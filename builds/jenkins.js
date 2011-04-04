@@ -78,7 +78,9 @@ Jenkins.prototype = {
 
     row.addClass( build_result_class );
     
-    last_built_revision = build.actions[1].lastBuiltRevision;
+    if ( build.actions.length >= 2 ) {
+      last_built_revision = build.actions[1].lastBuiltRevision;
+    }
 
     git_revision = null;
 
