@@ -25,42 +25,48 @@ Jenkins.prototype = {
     var self = this;
     self.root_data = data;
     $.each( data.builds.slice(0,20), function(i,build) {
-      self.fetch_build_details( build );
+      //self.fetch_build_details( build );
+      var row = $( '<tr class="build"></td>' );
+  
+      row.append( $( '<td class="col-build"></td>' ) );
+      row.append( $( '<td class="col-dist"><ul></ul></td>' ) );
+      row.append( $( '<td class="col-docs"><ul></ul></td>' ) );
+      row.append( $( '<td class="col-changes"><a href="' + build.url + '/changes">Changes</a></td>' ) );
+      row.append( $( '<td class="col-git"><ul></ul></td>' ) );
+
+      row_callback = null;
+
+      if ( data.lastStableBuild.number == build.number ) {
+        stable_row = row.clone();
+        $('#latest-stable').append( stable_row );
+        row_callback = function(data) { self.handle_build_jsonp( row, data ); self.handle_build_jsonp( stable_row, data ); }
+      } else {
+        row_callback = function(data) { self.handle_build_jsonp( row, data ); }
+      }
+
+      $('#builds').append( row );
+      $.ajax( {
+        url: build.url + '/api/json',
+        jsonp: 'jsonp',
+        dataType: 'jsonp',
+        type: 'GET',
+        context: self,
+        success: row_callback,
+      } );
+
     } );
-    $(document).ajaxStop( function() { self.update_page(self) } );
   }, 
 
-  update_page: function(self) {
-    $.each( self.root_data.builds.slice(0,20), function(i,build) {
-      self.add_row( $('#builds'), self.builds[build.number]);
-    } );
-
-    self.add_row( $('#latest-stable'), self.builds[ self.root_data.lastStableBuild.number ] );
-  },
-  
-  fetch_build_details: function(build_summary) {
-    var self = this;
-    $.ajax( {
-      url: build_summary.url + '/api/json',
-      jsonp: 'jsonp',
-      dataType: 'jsonp',
-      type: 'GET',
-      context: self,
-      async: false,
-      success: self.handle_build_jsonp,
-    } );
-  },
-
-  handle_build_jsonp: function(data) {
-    var self = this;
-    self.builds[ data.number ] = data;
-  },
-
-  add_row: function(table, build) {
+  handle_build_jsonp: function(row, build) {
     var self = this;
     if ( ! build ) {
       return;
     }
+
+    if ( build.building ) {
+      $('#build-currently-building').append( $( '<b>A build is currently in progress.</b>' ) );
+    }
+
     build_result_class = "unknown";
     if ( build.result ) {
       build_result_class = 'result-' + build.result.toLowerCase();
@@ -70,18 +76,8 @@ Jenkins.prototype = {
       }
     }
 
+    row.addClass( build_result_class );
     
-    if ( build.building ) {
-      $('#build-currently-building').append( $( '<b>A build is currently in progress.</b>' ) );
-    }
-    row = $( '<tr class="build ' + build_result_class + '"></td>' );
-
-    row.append( $( '<td class="col-build"></td>' ) );
-    row.append( $( '<td class="col-dist"><ul></ul></td>' ) );
-    row.append( $( '<td class="col-docs"><ul></ul></td>' ) );
-    row.append( $( '<td class="col-changes"><a href="' + build.url + '/changes">Changes</a></td>' ) );
-    row.append( $( '<td class="col-git"><ul></ul></td>' ) );
-
     last_built_revision = build.actions[1].lastBuiltRevision;
 
     git_revision = null;
@@ -133,8 +129,6 @@ Jenkins.prototype = {
       row.find( '.col-git ul' ).append( $( '<li><a href="https://github.com/torquebox/torquebox/tree/' + git_revision + '">Tree</a></li>' ) );
       row.find( '.col-git ul' ).append( $( '<li><a href="https://github.com/torquebox/torquebox/commits/' + git_revision + '">Commits</a></li>' ) );
     }
-
-    table.append( row );
   },
 
   locate_artifact: function(build, filename) {
