@@ -214,13 +214,15 @@ body.bp {
     }
   }
   h1 {
-    font-size: 140%;
+    font-size: 135%;
+    font-weight: bold;
   }
   h2 {
     font-size: 120%;
+    font-weight: bold;
   }
   h3 {
-    font-size: 110%;
+    font-size: 100%;
     font-weight: bold;
   }
   pre {
@@ -740,30 +742,50 @@ div.gist {
   }
 
   .tag-0 {
-    font-size: 130%;
+    font-size: 110%;
   }
 
   .tag-1 {
-    font-size: 150%;
+    font-size: 125%;
   }
 
   .tag-2 {
-    font-size: 170%;
+    font-size: 140%;
   }
 
   .tag-3 {
-    font-size: 190%;
+    font-size: 155%;
   }
 
   .tag-4 {
-    font-size: 210%;
+    font-size: 170%;
   }
 
   .tag-5 {
-    font-size: 230%;
+    font-size: 185%;
   }
 
   .tag-6 {
+    font-size: 200%;
+  }
+
+  .tag-7 {
+    font-size: 215%;
+  }
+
+  .tag-8 {
+    font-size: 230%;
+  }
+
+  .tag-9 {
+    font-size: 245%;
+  }
+
+  .tag-10 {
+    font-size: 250%;
+  }
+
+  .tag-11 {
     font-size: 250%;
   }
 
