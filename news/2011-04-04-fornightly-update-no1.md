@@ -80,7 +80,7 @@ and then spent days editing and [uploading the video][devnexus].  I
 think I got the better end of that stick.
 
 Through a very generous contribution from [CloudBees], we have migrated
-from our TeamCity CI server to a Jenkins-based on.  Also, since we recommend
+from our TeamCity CI server to a Jenkins-based one.  Also, since we recommend
 our incremental builds (previously called "dev builds" or "nightlies"), 
 we've [created a page][builds] to make it easier to know what changes are in which
 builds.
