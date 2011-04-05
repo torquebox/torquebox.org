@@ -264,11 +264,17 @@ table#builds {
     td.col-build  {
       border-left: 12px solid #999999;
     }
+    td.col-git  {
+      border-right: 4px solid #999999;
+    }
   }
   tr.result-success {
     background-color: #ccffcc;
     td.col-build {
       border-left: 12px solid #559955;
+    }
+    td.col-git {
+      border-right: 4px solid #559955;
     }
   }
   tr.result-failure {
@@ -276,11 +282,17 @@ table#builds {
     td.col-build {
       border-left: 12px solid #995555;
     }
+    td.col-git {
+      border-right: 4px solid #995555;
+    }
   }
   tr.result-building {
     background-color: #ffffcc;
     td.col-build {
       border-left: 12px solid #999955;
+    }
+    td.col-git {
+      border-right: 4px solid #999955;
     }
   }
   tr.header { 
@@ -289,6 +301,14 @@ table#builds {
 }
 
 table.incremental-builds {
+  font-size: 95%;
+  ul {
+    list-style-type: square;
+  }
+  color: #444;
+  a { 
+    color: #444;
+  }
   .col-build {
     width: 25%;
   }
