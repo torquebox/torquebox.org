@@ -31,7 +31,8 @@ Jenkins.prototype = {
       row.append( $( '<td class="col-build"></td>' ) );
       row.append( $( '<td class="col-dist"><ul></ul></td>' ) );
       row.append( $( '<td class="col-docs"><ul></ul></td>' ) );
-      row.append( $( '<td class="col-changes"><a href="' + build.url + '/changes">Changes</a></td>' ) );
+      row.append( $( '<td class="col-details"><ul></ul></id>' ) );
+      //row.append( $( '<td class="col-details"><ul><li><a href="' + build.url + '/changes">Changes</a></li></ul></td>' ) );
       row.append( $( '<td class="col-git"><ul></ul></td>' ) );
 
       row_callback = null;
@@ -125,6 +126,11 @@ Jenkins.prototype = {
     if ( pdf_doc_artifact ) {
       row.find( '.col-docs ul' ).append( $( '<li><a href="' + self.job_url( build.number + '/artifact/' + pdf_doc_artifact.relativePath) + '">PDF</a></li>' ) );
     }
+
+    // Details
+
+    row.find( '.col-details ul' ).append( $( '<li><a href="' + build.url + '/changes">Changes</a></li>' ) );
+    row.find( '.col-details ul' ).append( $( '<li><a href="' + build.url + '/console">Console Output</a></li>' ) );
 
     // Git
     if ( git_revision ) {
