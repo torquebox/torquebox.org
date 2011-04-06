@@ -139,12 +139,22 @@ Although intended as an alternative implementation of
 [`ActiveSupport::Cache::Store`][ascache] for Rails 3 apps (Rails 2 is
 not supported), you can certainly use it from your non-Rails apps,
 too, e.g. plain ol' Rack or Sinatra apps, and of course TorqueBox's
-own Services, Tasks and Jobs!  Just add these to your Gemfile, bundle
-install, and you'll be WINNING in no time, just like Charlie!
+own Services, Tasks and Jobs!  Just add these to your Gemfile...
 
     gem "torquebox"
     gem "activesupport", ">= 3.0.3"
     gem "i18n"
+
+And after you "bundle install", try something along these lines...
+
+    require 'sinatra/base'
+    require 'active_support/cache/torque_box_store'
+    
+    class SinatraCache < Sinatra::Base
+      set :cache, ActiveSupport::Cache::TorqueBoxStore.new
+      ...
+      
+That's all it takes to be WINNING just like Charlie!
 
 Oh, and in case it's not obvious, you'll need to install the
 [latest CI dev build][dev] to play with the new cache.  Links to it
