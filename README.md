@@ -10,4 +10,5 @@ Then build from within torquebox.org/ as typical.
   
 ## To Deploy to Production
 
-`git push origin production`
+`git push origin master:production`
+
