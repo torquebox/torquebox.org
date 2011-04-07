@@ -2,7 +2,7 @@
 title: 'See Behind the TorqueBox Curtain with BackStage'
 author: Toby Crawley
 layout: news
-tags: [ backstage jmx ]
+tags: [ backstage, jmx ]
 ---
 
 [repo]: https://github.com/torquebox/backstage
