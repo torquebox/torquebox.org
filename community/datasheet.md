@@ -3,23 +3,25 @@ title: TorqueBox Community Datasheet
 layout: default
 ---
 
-TorqueBox takes the power of JBoss AS and mixes it with the beauty of the
-Ruby language, using JRuby.  Not only does it provide a substrate for
-running your web applications, it exposes advanced enterprise functionality,
-such as messaging, scheduled jobs, services, resource injection, along
-with cross-cutting capabilities such as clustering and high-availability.
+TorqueBox takes the power of JBoss AS and mixes it with the beauty of
+the Ruby language, using JRuby.  Not only does it provide a simple but
+powerful substrate for running your web applications, it gives Ruby
+developers easy access to advanced enterprise functionality such as
+messaging, scheduled jobs, service daemons, and resource injection,
+not to mention cross-cutting capabilities such as clustering and
+high-availability.
 
 TorqueBox aims to be a comfortable environment for the pure Rubyist, while
-allowing Java-speaking polyglots to harness existing legacy code.
+allowing Java-speaking polyglots to encapsulate existing legacy code.
 
 TorqueBox supports all popular Ruby web frameworks:
 
 * Ruby on Rails (versions 2 and 3)
 * Sinatra
-* Rack
+* Any and all Rack-based frameworks
 
 TorqueBox integrates many popular JBoss and third-party projects, exposing them
-through the simplicity of Ruby:
+through simple Ruby libraries:
 
 * JBoss AS 
 * JBoss HornetQ message broker
@@ -30,7 +32,7 @@ through the simplicity of Ruby:
 TorqueBox additionally provides integration with Java CDI components
 and is manageable through JMX.
 
-TorqueBox provides an ecosystem of supporting technologies:
+TorqueBox provides an ecosystem of supporting applications:
 
 * BackStage: Easily see what is going on within the server
 * StompBox: Easy application deployment using `git`
