@@ -6,7 +6,8 @@ layout: default
 TorqueBox takes the power of JBoss AS and mixes it with the beauty of the
 Ruby language, using JRuby.  Not only does it provide a substrate for
 running your web applications, it exposes advanced enterprise functionality,
-such as messaging, schedule jobs, services and resource injection.
+such as messaging, scheduled jobs, services, resource injection, along
+with cross-cutting capabilities such as clustering and high-availability.
 
 TorqueBox aims to be a comfortable environment for the pure Rubyist, while
 allowing Java-speaking polyglots to harness existing legacy code.
