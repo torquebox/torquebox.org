@@ -34,7 +34,9 @@ and is manageable through JMX.
 
 TorqueBox provides an ecosystem of supporting applications:
 
-* BackStage: Easily see what is going on within the server
-* StompBox: Easy application deployment using `git`
+* BackStage: Provides a queue browser, along with tools for debugging application 
+  components, including evaluation of arbitrary ruby code against the server
+  runtimes
+* StompBox: Provides easy application deployment using `git`
 
 Find out more at http://torquebox.org/, or join #torquebox on irc.freenode.net
