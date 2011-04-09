@@ -258,18 +258,30 @@ table.downloads {
   }
 }
 
-table#builds {
+table.downloads#builds {
+  tr.divide {
+    td {
+      border-bottom: 1px solid #888;
+    }
+  }
+
   tr { 
+    td {
+      border-bottom: none;
+    }
     background-color: #dddddd;
     td.col-build  {
       border-left: 12px solid #999999;
     }
-    td.col-git  {
+    td.col-git {
       border-right: 4px solid #999999;
     }
   }
   tr.result-success {
     background-color: #ccffcc;
+    td {
+      border-bottom: 1px solid #888;
+    }
     td.col-build {
       border-left: 12px solid #559955;
     }
@@ -286,8 +298,53 @@ table#builds {
       border-right: 4px solid #995555;
     }
   }
+  
+  tr.failure-details {
+    td {
+      border-left: 12px solid #995555;
+      border-right: 4px solid #995555;
+      border-bottom: 1px solid #888;
+    }
+  }
+
+  tr.result-aborted {
+    td {
+      border-bottom: 1px solid #888;
+    }
+    td.build {
+      border-left: 12px solid #999999;
+    }
+    td.col-abort-details {
+      border-right: 4px solid #999999;
+    }
+  }
+  tr.result-success {
+    background-color: #ccffcc;
+    td {
+      border-bottom: 1px solid #888;
+    }
+    td.col-build {
+      border-left: 12px solid #559955;
+    }
+    td.col-git {
+      border-right: 4px solid #999999;
+    }
+  }
+  tr.result-success {
+    background-color: #ccffcc;
+    td {
+      border-bottom: 1px solid #888;
+    }
+    td.col-build {
+      border-left: 12px solid #559955;
+    }
+  }
+
   tr.result-building {
     background-color: #ffffcc;
+    td {
+      border-bottom: 1px solid #888;
+    }
     td.col-build {
       border-left: 12px solid #999955;
     }

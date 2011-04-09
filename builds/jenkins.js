@@ -28,13 +28,6 @@ Jenkins.prototype = {
       //self.fetch_build_details( build );
       var row = $( '<tr class="build"></td>' );
   
-      row.append( $( '<td class="col-build"></td>' ) );
-      row.append( $( '<td class="col-dist"><ul></ul></td>' ) );
-      row.append( $( '<td class="col-docs"><ul></ul></td>' ) );
-      row.append( $( '<td class="col-details"><ul></ul></id>' ) );
-      //row.append( $( '<td class="col-details"><ul><li><a href="' + build.url + '/changes">Changes</a></li></ul></td>' ) );
-      row.append( $( '<td class="col-git"><ul></ul></td>' ) );
-
       row_callback = null;
 
       if ( data.lastStableBuild.number == build.number ) {
@@ -78,7 +71,16 @@ Jenkins.prototype = {
     }
 
     row.addClass( build_result_class );
-    
+
+    if ( build.result == 'ABORTED' ) {
+      self.handle_aborted_row( row, build );
+    } else {
+      self.handle_typical_row( row, build );
+    }
+  },
+
+  handle_aborted_row: function(row, build) {
+    var self = this;
     if ( build.actions.length >= 2 ) {
       last_built_revision = build.actions[1].lastBuiltRevision;
     }
@@ -87,18 +89,45 @@ Jenkins.prototype = {
 
     if ( last_built_revision ) {
       git_revision = build.actions[1].lastBuiltRevision.SHA1;
-      short_git_revision = git_revision.substring(0, 8);
     }
 
-    // Build
+    row.append( $( '<td class="col-build"></td>' ) );
+
+    row.find( '.col-build' ).append( $( '<div class="version"><a href="' + build.url + '">' + build.number + '</div>' ) );
+
+    row.append( $( '<td class="col-abort-details" colspan="6">Aborted</td>' ) );
+  },
+
+  handle_typical_row: function(row, build) {
+    var self = this;
+
+    if ( build.actions.length >= 2 ) {
+      last_built_revision = build.actions[1].lastBuiltRevision;
+    }
+
+    git_revision = null;
+
+    if ( last_built_revision ) {
+      git_revision = build.actions[1].lastBuiltRevision.SHA1;
+    }
+
+    row.append( $( '<td class="col-build"></td>' ) );
+
     release_date = new Date( build.timestamp );
     formatted_time = release_date.format( "dd mmmm yyyy" ) + '<br/>' + release_date.format( "HH:MM" ) + ' US Eastern<br/>';
 
     if ( git_revision ) {
+      short_git_revision = git_revision.substring(0, 8);
       formatted_time += '<a href="https://github.com/torquebox/torquebox/commits/' + git_revision + '">' + short_git_revision + '</a>';
     }
     row.find( '.col-build' ).append( $( '<div class="version"><a href="' + build.url + '">' + build.number + '</div>' ) );
     row.find( '.col-build' ).append( $( '<div class="release-date">' + formatted_time + '</div>' ) );
+
+    row.append( $( '<td class="col-dist"><ul></ul></td>' ) );
+    row.append( $( '<td class="col-docs"><ul></ul></td>' ) );
+    row.append( $( '<td class="col-details"><ul></ul></id>' ) );
+    row.append( $( '<td class="col-git"><ul></ul></td>' ) );
+    
 
     // Dist
     if ( build.building ) {
@@ -125,6 +154,19 @@ Jenkins.prototype = {
     pdf_doc_artifact = self.locate_artifact(build, 'docs/en-US/target/docbook/publish/en-US/pdf/torquebox-docs-en_US.pdf' );
     if ( pdf_doc_artifact ) {
       row.find( '.col-docs ul' ).append( $( '<li><a href="' + self.job_url( build.number + '/artifact/' + pdf_doc_artifact.relativePath) + '">PDF</a></li>' ) );
+    }
+
+    if ( build.result == 'FAILURE' ) {
+      if ( build.culprits.length > 0 ) {
+        details_row = $( '<tr class="result-failure failure-details"/>' );
+        details_row.append( $( '<td colspan="7"></td>' ).text( "Possible culprits: " + 
+          $.map( build.culprits, function(each) {
+            return each.fullName;
+          } ).join(', ') ) );
+        row.after( details_row )
+      } else {
+        row.addClass( 'divide' );
+      }
     }
 
     // Details
