@@ -62,7 +62,17 @@ Your contributions to the code, this website, or the documentation
 are always appreciated.
 
 
-# Deprecation Warnings
+# Technical
+
+## How much memory does each Ruby interpreter require?
+
+For a very simple Rack app, each Ruby runtime took up 500KB of memory.
+
+For Redmine (decent size Rails2 app), each Ruby runtime took up 2.5MB of memory.
+
+These numbers are based on calculating the retained size of org.jruby.Ruby instances inside the JVM. If you're interested in finding the exact amount per runtime for your apps, I can help you figure this number out for app.
+
+So, a decent-sized Rails application with 3 Ruby runtimes (messaging, web, and maybe a service) may need around 7.5MB of memory plus whatever memory the application consumes as it does its work.
 
 ## I'm getting deprecation warnings in my log about `*-rails.yml` and `*-rack.yml` file
 
