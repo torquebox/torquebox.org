@@ -3,6 +3,7 @@ require 'release_sizes'
 require 'documentation'
 require 'downloads'
 require 'release_helper'
+require 'toc'
 
 
 Awestruct::Extensions::Pipeline.new do
@@ -26,6 +27,9 @@ Awestruct::Extensions::Pipeline.new do
   extension Awestruct::Extensions::TagCloud.new( :posts, 
                                                  '/news/tags/index.html',
                                                  :layout=>'default' )
+
+
+  extension TOC.new(:levels => 3)
 
   helper Awestruct::Extensions::GoogleAnalytics
   helper Awestruct::Extensions::Partial

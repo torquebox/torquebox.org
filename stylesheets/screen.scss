@@ -214,12 +214,14 @@ body.bp {
     }
   }
   h1 {
-    font-size: 135%;
+    font-size: 140%;
     font-weight: bold;
+    color: $header_color - #222;
   }
   h2 {
     font-size: 120%;
     font-weight: bold;
+    color: $header_color - #111;
   }
   h3 {
     font-size: 100%;
@@ -236,6 +238,11 @@ body.bp {
   }
   p {
     margin-bottom: 1em;
+  }
+ 
+  ul {
+    padding-left: 2em;
+    list-style-type: square;
   }
 }
 
@@ -866,4 +873,8 @@ div.gist {
     font-size: 250%;
   }
 
+}
+
+.faq-toc {
+  font-size: 80%;
 }
