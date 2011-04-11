@@ -15,7 +15,7 @@ TorqueBox is a small adaptation layer on top of Java application server from JBo
 It attempts to go beyond providing web-centric services (supporting Rails, Rack, Sinatra, etc),
 to also expose other enterprise-grade services to Ruby applications.
 
-## If it's a small layer, why is it a #{site.releases.first.dist_size}mb download?
+## If it's a small layer, why is it a large download?
 
 One goal of the TorqueBox distribution is a simplified end-user experience. 
 To accomplish this, the distribution includes a pre-integrated combination
