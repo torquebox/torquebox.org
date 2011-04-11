@@ -6,40 +6,24 @@ layout: base
 .div{:style=>"margin: 20px;"}
   %h1 TorqueBox Team Meeting
   %form
-    Name:
-    %input{:id=>"name", :type=>"text"}
-    &nbsp;&nbsp;&nbsp;
     Password:
     %input{:id=>"password", :type=>"text"}
     %input{:type=>"submit", :value=>"Join Meeting"}
   #tok{:style=>"display: none;"}
-    %object{:type=>"application/x-shockwave-flash", :data=>"kwIF2WjbW036bCMiAWFww5X+7KELFoV8fvYQjMrqGhddE3x8kRdELiBji8GdtZwpMJWr", :width=>"1400", :height=>"750"}
-      %param{:name=>"movie", :value=>"kwIF2WjbW036bCMiAWFww5X+7KELFoV8fvYQjMrqGhddE3x8kRdELiBji8GdtZwpMJWr"}
-      %param{:name=>"allowFullScreen", :value=>"true"}
-      %param{:name=>"allowScriptAccess", :value=>"always"}
-      %param{:name=>"flashvars", :value=>"&textChat=true&displayName=##name##"}
+    %iframe{:id=>"basicEmbed", :src=>"pwO9JwVvn008E3iA73N5As7v51SGbtJwbFBTTfJdMuYiIyRj2U3+vSpZ5RkTG/5JiFxjMenkkn9M9AaRGTPI9GgUArHHLD38UnEv+pKOfLW5", :width=>"1200", :height=>"600", :style=>"border:none"}
 
 %script{:src=>"http://code.jquery.com/jquery-1.5.min.js", :type=>"text/javascript"}
 %script{:src=>"aes.js", :type=>"text/javascript"}
 :javascript
   $(function() {
     $("form").submit(function() {
-      var name = $("#name").val();
       var password = $("#password").val();
 
-      // Update the user's display name
-      var flashvarsParam = $("#tok param[name='flashvars']");
-      var flashvars = flashvarsParam.val();
-      flashvars = flashvars.replace("##name##", name);
-      flashvarsParam.val(flashvars);
-
       // Decrypt the video url
-      var movieParam = $("#tok param[name='movie']");
-      var flashObject = $("#tok object");
-      var videoUrl = movieParam.val();
+      var tokFrame = $("#tok iframe");
+      var videoUrl = tokFrame.attr('src');
       videoUrl = Aes.Ctr.decrypt(videoUrl, password, 256);
-      movieParam.val(videoUrl);
-      flashObject.attr("data", videoUrl);
+      tokFrame.attr('src', videoUrl);
 
       // Show the tokbox window and hide our form
       $("#tok").show();
