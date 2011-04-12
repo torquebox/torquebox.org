@@ -5,6 +5,7 @@ layout: default
 
 [jdk]: http://www.oracle.com/technetwork/java/javase/downloads/index.html
 [maven]: http://maven.apache.org/
+[msysgit]: http://code.google.com/p/msysgit/downloads/list
 
 The TorqueBox team welcomes anyone brave enough or crazy enough to attempt to dive into the code.  
 If that's overwhelming, we also welcome anyone who wants to help out with documentation, articles, 
@@ -171,17 +172,32 @@ Sometimes you may wish to skip tests
 
 # Windows notes
 
-Windows is weird.
+* Download a [JDK 1.6+][jdk] and [Maven 3.0+][maven] as mentioned above
+* Set the `JAVA_HOME` environment variable, ensuring it has no spaces -
+  ex: `C:\Progra~1\Java\jdk.1.6.0_24`
+* Prepend `%JAVA_HOME%\bin` to the `Path` environment variable
+* Unzip `apache-maven-3.0.3-bin.zip` to a directory
+* Add a `M2_HOME` environment variable pointing to that directory
+* Add a `M2` environment variable with value `%M2_HOME%\bin`
+* Add a `MAVEN_OPTS` environment variable with the value `-Xmx512m`
+* Prepend `%M2%` to the `Path` environment variable
+* Download and install a recent [Git for Windows][msysgit]
+  (Git-1.7.4-preview20110204.exe at the time of this writing). It's
+  safe to accept the default installation options or customize as
+  needed.
+* Use Git Bash to checkout `https://github.com/torquebox/torquebox.git`
+* Copy TorqueBox's Maven settings - `cp torquebox/build-support/settings.xml ~/.m2`
+* `cd torquebox`
+* `mvn install`
 
-The best strategy for working with Windows is to use the `command.com` shell
-instead of bash, and to always build from the root of the source tree.
+The `mvn install` can take quite a while the first time as it
+downloads all the necessary dependencies. Be patient and it should
+eventually succeed.
+
+You can also build TorqueBox with `command.com` or `cmd` instead of
+Git Bash. The same `mvn install` should work there.
 
 To build piece-meal on Windows, Maven's `-pl` option is used.
 
     mvn install -pl components\web\web-core\
-
-Make sure JAVA_HOME does not contain a space. If you installed Java to
-the default location, you'll need a JAVA_HOME like
-
-    C:\Progra~1\Java\jdk1.6.0_24
 
