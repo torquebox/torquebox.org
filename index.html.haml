@@ -19,26 +19,6 @@ inhibit_title: true
           powerful [JBoss AS](http://www.jboss.org/jbossas) Java application server. Functionality such as clustering,
           load-balancing and high-availability is included right out-of-the-box. 
     .right-column
-      #incremental-release
-        %h2 Latest Incremental Build
-        %p
-          We're working towards a 1.0 release in May. Since Beta 23 we've added
-          tons of features and bug fixes.  We strongly recommend that you work with a current build.
-        %table.details
-          %tr
-            %th Latest Build
-            %td
-              %a{:href=>'/builds/LATEST/torquebox-dist-bin.zip'} ZIP
-          %tr
-            %th Documentation
-            %td
-              %a{:href=>"/documentation/DEV/"} HTML
-              \|
-              %a{:href=>"/torquebox-doc.pdf"} PDF
-          %tr
-            %th Continuous Integration
-            %td
-              %a{:href=>'/builds'} Build History
       #latest-release
         - announcement = site.posts.find{|e| e.layout=='release' && e.version == site.releases.first.version}
         .download

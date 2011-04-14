@@ -2,7 +2,7 @@
 require 'rubygems'
 require 'versionomy'
 
-class Downloads
+class OldDownloads
 
 
   FORMAT = Versionomy.default_format.modified_copy do
@@ -13,12 +13,12 @@ class Downloads
                  map(:development, 'Dev')
                  map(:alpha, 'Alpha')
                  map(:beta, 'Beta')
-                 map(:release_candidate, 'CR')
+                 map(:preview, 'Preview')
                end
              end
            end
 
-  REPO_PREFIX = "http://repository-torquebox.cloudbees.com/release/org/torquebox"
+  REPO_PREFIX = "http://repository.torquebox.org/maven2/releases/org/torquebox"
   DOCS_PREFIX = "#{REPO_PREFIX}/torquebox-docs-en_US"
 
   def initialize(enabled=true)
@@ -28,19 +28,20 @@ class Downloads
   def execute(site)
     return unless @enabled
 
-    site.releases.each do |release|
+    site.old_releases.each do |release|
       v = Versionomy.parse( release.version, FORMAT )
-
-      case ( v )
-        when ( v('1.0.0.CR1')..('1.0.0') )
-          all_releases(release)
-          release.urls.dist_zip = "#{REPO_PREFIX}/torquebox-dist/#{release.version}/torquebox-dist-#{release.version}-bin.zip"
+      all_releases(release)
+      if ( v.major == 1 && v.minor == 0 && v.beta_version < 21 ) 
+        before_beta21(release)
+      else
+        after_beta21(release)
+      end
+      if ( v.major == 1 && v.minor == 0 && v.beta_version < 22 ) 
+        before_beta22(release)
+      else
+        after_beta22(release)
       end
     end
-  end
-
-  def v(version)
-    Versionomy.parse( version, FORMAT )
   end
 
   def all_releases(release)

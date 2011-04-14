@@ -1,0 +1,88 @@
+---
+layout: default
+title: Download
+---
+
+#two-column
+  #left-column
+    :markdown
+      # Binary Distribution
+    
+      The latest binary distribution is #{site.releases.first.version}
+      
+      * [Download torquebox-#{site.releases.first.version}](#{site.releases.first.urls.dist_zip})
+
+      # Developer Build
+
+      Unstable developer builds are produced regularly from our [continuous integration server](/development#ci). 
+      A developer build has no guarantee of actually working.  *At all.*  But it probably will.  Feel free to try it.
+
+      * [Download the latest developer build](http://torquebox.org/torquebox-dev.zip)
+     
+
+  #right-column
+    :markdown
+      # Documentation
+  
+      You may [browse the documentation online](#{site.releases.first.urls.docs.browse})
+  
+      Downloadable documentation is available in several forms:
+  
+      * [PDF Manual for #{site.releases.first.version}](#{site.releases.first.urls.docs.pdf})
+      * [Multi-page HTML Manual for #{site.releases.first.version}](#{site.releases.first.urls.docs.html_multi_zip})
+
+      You may also obtain a pdf containing the latest, un-released documentation that coincides with our developer build.
+
+      * [Download the latest documentation](http://torquebox.org/torquebox-doc.pdf)
+
+#download-table
+  %table.downloads
+    %tr
+      %th
+        Version
+      %th
+        Binary Distribution
+      %th
+        Documentation
+      %th
+        Changelog
+      %th
+        Git Tree
+    - for release in site.releases
+      %tr
+        %td
+          .version
+            = release.version
+          - announcement = site.posts.find{|e| e.layout=='release' && e.version == release.version}
+          - if announcement
+            .announcement
+              %a{:href=>announcement.url} Release announcement
+            .release-date
+              = announcement.date.strftime( '%d %B %Y' )
+        %td
+          %a{:href=>release.urls.dist_zip}
+            ZIP archive (#{release.dist_size}mb)
+        %td
+          %ul
+            %li
+              %a{:href=>release.urls.docs.browse} Browse
+            %li
+              %a{:href=>release.urls.docs.html_multi_zip} Multi-page HTML ZIP
+            - unless ( release.urls.docs.html_single_zip.empty? )
+              %li
+                %a{:href=>release.urls.docs.html_single_zip} Single-page HTML ZIP
+            %li
+              %a{:href=>release.urls.docs.pdf} PDF 
+        %td
+          %ul
+            %li
+              %a{:href=>release.urls.jira} JIRA Issues
+            %li
+              %a{:href=>release.urls.github.log} Git Log
+        %td
+          %a{:href=>release.urls.github.tree} Browse
+
+
+%h2 Older releases
+
+Historical releases may be found on our <a href="/download/old">older releases page</a>.

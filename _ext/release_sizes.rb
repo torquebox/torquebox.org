@@ -8,7 +8,7 @@ class ReleaseSizes
 
   def execute(site)
     Net::HTTP.start( SERVER, 80) do |http|
-      site.releases.each do |release|
+      (site.releases + site.old_releases).each do |release|
         if ( release.dist_size?.nil? )
           #release_path = "/maven2/releases/org/torquebox/torquebox-bin/#{release.version}/torquebox-bin-#{release.version}.zip" 
           release_path = release.urls.dist_zip

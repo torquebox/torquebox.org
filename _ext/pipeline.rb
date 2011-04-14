@@ -1,16 +1,23 @@
 require 'rss_widget'
-require 'release_sizes'
 require 'documentation'
+require 'release_sizes'
 require 'downloads'
+require 'old_downloads'
 require 'release_helper'
 require 'toc'
 
 
 Awestruct::Extensions::Pipeline.new do
-  extension Documentation.new()
-  extension Downloads.new()
-  extension ReleaseSizes.new()
   extension Awestruct::Extensions::DataDir.new
+
+  extension Documentation.new()
+
+
+  extension Downloads.new()
+  extension OldDownloads.new()
+
+  extension ReleaseSizes.new()
+
   helper ReleaseHelper
 
   extension Awestruct::Extensions::Posts.new('/news')
