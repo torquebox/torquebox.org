@@ -26,7 +26,10 @@ class Documentation
       
       unless ( File.exist?( doc_bundle_path ) )
         puts "Fetching doc bundle for #{release.version}"
-        `wget --quiet -P #{site.tmp_dir} http://repository.torquebox.org/maven2/releases/org/torquebox/torquebox-docs-en_US/#{release.version}/torquebox-docs-en_US-#{release.version}-html.zip`
+
+        doc_url = release.urls.docs.html_multi_zip
+
+        `wget --quiet -P #{site.tmp_dir} #{doc_url}`
       end
       unless ( File.exist?( File.join( doc_root, "index.html" ) ) )
         puts "Unzipping doc bundle for #{release.version}"

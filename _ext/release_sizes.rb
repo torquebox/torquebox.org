@@ -1,4 +1,5 @@
 require 'net/http'
+require 'uri'
 
 class ReleaseSizes
   SERVER = 'repository.torquebox.org'
@@ -7,12 +8,11 @@ class ReleaseSizes
   end
 
   def execute(site)
-    Net::HTTP.start( SERVER, 80) do |http|
-      (site.releases + site.old_releases).each do |release|
-        if ( release.dist_size?.nil? )
-          #release_path = "/maven2/releases/org/torquebox/torquebox-bin/#{release.version}/torquebox-bin-#{release.version}.zip" 
-          release_path = release.urls.dist_zip
-          response = http.head( release_path )
+    (site.releases + site.old_releases).each do |release|
+      if ( release.dist_size?.nil? )
+        uri = URI.parse( release.urls.dist_zip )
+        Net::HTTP.start( uri.host, uri.port ) do |http|
+          response = http.head( uri.path )
           b = response['content-length'] || ''
           if ( ! b.empty? )
             b = b.to_i

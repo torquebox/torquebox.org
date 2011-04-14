@@ -10,7 +10,6 @@ require 'toc'
 Awestruct::Extensions::Pipeline.new do
   extension Awestruct::Extensions::DataDir.new
 
-  extension Documentation.new()
 
 
   extension Downloads.new()
@@ -41,4 +40,6 @@ Awestruct::Extensions::Pipeline.new do
   helper Awestruct::Extensions::GoogleAnalytics
   helper Awestruct::Extensions::Partial
   helper RssWidget
+
+  extension Documentation.new()
 end
