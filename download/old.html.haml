@@ -36,7 +36,7 @@ title: Download
               %a{:href=>release.urls.docs.browse} Browse
             %li
               %a{:href=>release.urls.docs.html_multi_zip} Multi-page HTML ZIP
-            - if ( release.urls.docs.html_single_zip )
+            - unless ( release.urls.docs.html_single_zip.empty? )
               %li
                 %a{:href=>release.urls.docs.html_single_zip} Single-page HTML ZIP
             %li
