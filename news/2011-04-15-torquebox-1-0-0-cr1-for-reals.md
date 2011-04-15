@@ -28,7 +28,7 @@ release chain.
 Through the intense work of Jim Crossley, Ben Browning, Toby Crawley,
 Lance Ball, and innumerable contributions from the community, this release
 represents a mass-load of improvements since Beta23 back near the start
-of December 2010. Over 153 issues were resolved for this release.
+of December 2010. Over 150 issues were resolved for this release.
 
 Over the next two weeks, we'll squash bugs as they are reported, and
 issue interim CR checkpoints, culimating in the 1.0.0.Final release 
@@ -276,8 +276,6 @@ implementation of Java CDI (JBoss Weld) is so awesome, it also works from Ruby.
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-33'>TORQUE-33</a>] -         Implement a Rails Cache Store that uses JBossCache
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-61'>TORQUE-61</a>] -         Adding JRuby --1.9 support (per application)
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-71'>TORQUE-71</a>] -         Support NewRelic RPM
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-75'>TORQUE-75</a>] -         Push gems to rubygems.org
 </li>
