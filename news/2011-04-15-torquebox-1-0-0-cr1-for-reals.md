@@ -26,6 +26,50 @@ by JBossWorld in early May.
 
 I (Bob) am proud-as-all-get-out with everything the team has accomplished. 
 
+# Major changes since 1.0.0.Beta23
+
+## `torquebox.yml`
+
+The most obvious change if you're migrating from 1.0.0.Beta23 is the multitude
+of YAML files (`queues.yml`, `messaging.yml`, `pooling.yml`, `web.yml`, etc) have all been 
+merged into a single `torquebox.yml` file.  You can most likely just copy the contents
+of each file into a similarly-named section within `torquebox.yml`.
+
+The `env` configuration item has moved from `web.yml` though, to the `app:` section
+of your new `torquebox.yml`
+
+## Knobs
+
+With previous version of TorqueBox, you would deploy your application using a
+`*-rails.yml` or a `*-rack.yml` deployment descriptor.  Since TorqueBox supports
+a broader set of applications, even those without web components, the naming
+convention is now `*-knob.yml`.
+
+Likewise, instead of deploying archives with suffixes of `.rails` or `.rack`,
+TorqueBox application archives now use the `.knob` suffix.
+
+## `$TORQUEBOX_HOME/apps/` deployment directory
+
+Instead of deploying your applications into the `$JBOSS_HOME/deploy/` directly
+mingling with core JBoss components, you now deploy to an empty-by-default
+`$TORQUEBOX_HOME/apps/` diretory, which is used by *all* server configurations.
+
+## TorqueBox gems
+
+A lot of the TorqueBox-provided gems have different (better) names.  To
+use the messaging client, for example, the required gem is now `torquebox-messaging`.
+We provide a simple top-level `torquebox` gem which will load up many of the
+other useful TorqueBox gems.  
+
+## Notable new features
+
+* Backgroundables
+* Resource Injection
+* Infinispan-backed caching
+* Services (with HA)
+* Non-web deployments
+
+
 # In This Release
     
 <div style="font-size:80%">
