@@ -61,7 +61,7 @@ TorqueBox application archives now use the `.knob` suffix.
 
 Instead of deploying your applications into the `$JBOSS_HOME/deploy/` directly
 mingling with core JBoss components, you now deploy to an empty-by-default
-`$TORQUEBOX_HOME/apps/` diretory, which is used by *all* server configurations.
+`$TORQUEBOX_HOME/apps/` directory, which is used by *all* server configurations.
 
 ## TorqueBox gems
 
