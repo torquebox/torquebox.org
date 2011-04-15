@@ -2,23 +2,17 @@
 #bottom-left
   %h2 Download
   %ul
-    %b Releases
-    %ul
-      %li
-        %a{:href=>site.releases.first.urls.dist_zip}
-          Latest release: #{site.releases.first.version} (#{site.releases.first.dist_size}mb ZIP)
-      %li
-        %a{:href=>'/download/'}
-          Recent releases
-      %li
-        %a{:href=>'/download/old'}
-          Historical releases
-    %b Incremental Builds
-    %ul 
-      %li
-        %a{:href=>'/builds/LATEST/torquebox-dist-bin.zip'} Latest Build (ZIP)
-      %li
-        %a{:href=>'/builds'} Recent Builds
+    %li
+      %a{:href=>site.releases.first.urls.dist_zip}
+        Latest release: #{site.releases.first.version} (#{site.releases.first.dist_size}mb ZIP)
+    %li
+      %a{:href=>'/download/'}
+        Recent releases
+    %li
+      %a{:href=>'/download/old'}
+        Historical releases
+    %li
+      %a{:href=>'/builds'} Incremental Builds
   %h2 Learn
   %ul
     %li
