@@ -22,9 +22,10 @@ That's right, the first-ever non-beta release of TorqueBox is now available.
 Go [download it](/download) and [read the docs](/documentation/1.0.0.CR1/).
 If you don't recall, "CR" is JBoss short-hand for "Candidate Release",
 which is what you might normally call a "Release Candidate".  We change
-the byte-order for improved lexical sorting compared to "Final" or "GA".
+the byte-order for improved lexical sorting in the Alpha/Beta/CR/Final
+release chain.
 
-Through the intense work of Jim Crossley, Ben Browning, Tobias Crawley,
+Through the intense work of Jim Crossley, Ben Browning, Toby Crawley,
 Lance Ball, and innumerable contributions from the community, this release
 represents a mass-load of improvements since Beta23 back near the start
 of December 2010. Over 153 issues were resolved for this release.
@@ -44,8 +45,8 @@ of YAML files (`queues.yml`, `messaging.yml`, `pooling.yml`, `web.yml`, etc) hav
 merged into a single `torquebox.yml` file.  You can most likely just copy the contents
 of each file into a similarly-named section within `torquebox.yml`.
 
-The `env` configuration item has moved from `web.yml` though, to the `app:` section
-of your new `torquebox.yml`
+Note: with this reorganization, we also moved the `rackup` configuration item 
+from the `application:` section to the `web:` section.
 
 ## Knobs
 
@@ -236,6 +237,8 @@ implementation of Java CDI (JBoss Weld) is so awesome, it also works from Ruby.
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-345'>TORQUE-345</a>] -         $TORQUEBOX_HOME/apps isn&#39;t recognized on startup: Illegal character in opaque part at index 2
 </li>
+<li>[<a href='https://issues.jboss.org/browse/TORQUE-350'>TORQUE-350</a>] -         Fix logging output for Sinatra (and maybe any rack app?)
+</li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-352'>TORQUE-352</a>] -         Overridden DriverManager getConnection Method Breaks oracle-enhanced-adapter
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-353'>TORQUE-353</a>] -         Fix gem dependencies so that torquebox-vfs is installed as a dependency of vanilla torquebox gem
@@ -418,8 +421,6 @@ implementation of Java CDI (JBoss Weld) is so awesome, it also works from Ruby.
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-325'>TORQUE-325</a>] -         Review docs before CR1
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-326'>TORQUE-326</a>] -         Remove Need For VFS Jars in jruby/lib/
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-350'>TORQUE-350</a>] -         Fix logging output for Sinatra (and maybe any rack app?)
 </li>
 </ul>
         
