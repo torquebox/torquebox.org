@@ -61,6 +61,13 @@ use the messaging client, for example, the required gem is now `torquebox-messag
 We provide a simple top-level `torquebox` gem which will load up many of the
 other useful TorqueBox gems.  
 
+## Other gems (Rails, Sinatra, etc) not included
+
+Any RubyGem that is published by another party, including Rails, Sinatra, etc,
+are no longer included in our distribution.  We figure everyone is managing
+their dependencies using `bundler` and can simply use that to pull down exactly
+the gems and versions required by the specific app.
+
 ## Notable new features
 
 * Backgroundables
