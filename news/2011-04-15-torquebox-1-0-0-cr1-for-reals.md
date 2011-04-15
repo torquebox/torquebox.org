@@ -5,6 +5,15 @@ layout: release
 version: 1.0.0.CR1
 ---
 
+[backgroundables]: /documentation/1.0.0.CR1/messaging.html#backgroundable
+[injection]: /documentation/1.0.0.CR1/resource-injection.html
+[caching]: /documentation/1.0.0.CR1/rails.html#caching
+[services]: /documentation/1.0.0.CR1/services.html
+[alacarte]: /news/2011/02/16/knobs-alacarte/
+[backstage]: /documentation/1.0.0.CR1/additional-resources.html#backstage
+[stompbox]: /documentation/1.0.0.CR1/additional-resources.html#stompbox
+[auth]: /documentation/1.0.0.CR1/authentication.html
+
 It's April 15; have you paid your taxes?  If not, great news: you have until the
 18th. But go ahead and take care of it so you can spend the weekend playing
 with the latest TorqueBox release: **1.0.0.CR1**.
@@ -40,7 +49,7 @@ of your new `torquebox.yml`
 
 ## Knobs
 
-With previous version of TorqueBox, you would deploy your application using a
+With previous versions of TorqueBox, you would deploy your application using a
 `*-rails.yml` or a `*-rack.yml` deployment descriptor.  Since TorqueBox supports
 a broader set of applications, even those without web components, the naming
 convention is now `*-knob.yml`.
@@ -68,14 +77,22 @@ are no longer included in our distribution.  We figure everyone is managing
 their dependencies using `bundler` and can simply use that to pull down exactly
 the gems and versions required by the specific app.
 
+## Resource injection
+
+While not directly a change, the new [resource-injection][injection] feature has changed
+the way you might obtain messaging destinations. Additionally, this shows how the JBoss
+implementation of Java CDI (JBoss Weld) is so awesome, it also works from Ruby.
+
 ## Notable new features
 
-* Backgroundables
-* Resource Injection
-* Infinispan-backed caching
-* Services (with HA)
-* Non-web deployments
-
+* [Backgroundables][backgroundables]
+* [Resource Injection][injection]
+* [Infinispan-backed caching][caching]
+* [Services (with HA)][services]
+* [Non-web deployments][alacarte]
+* [Admin dashboard][backstage]
+* [`git`-based deployment][stompbox]
+* [Container-based Authentication][auth]
 
 # In This Release
     
