@@ -2,7 +2,7 @@
 title: High Availability Singleton Services in TorqueBox
 author: Ben Browning
 layout: news
-tags: [ hasingleton, services, cluster ]
+tags: [ hasingleton, services, clustering ]
 ---
 
 This is the second article in a series exploring TorqueBox
