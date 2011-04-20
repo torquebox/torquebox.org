@@ -156,6 +156,12 @@ Jenkins.prototype = {
       row.find( '.col-docs ul' ).append( $( '<li><a href="' + self.job_url( build.number + '/artifact/' + pdf_doc_artifact.relativePath) + '">PDF</a></li>' ) );
     }
 
+    epub_doc_artifact = self.locate_artifact(build, '.repository/org/torquebox/torquebox-docs-en_US/1.0.0.CR2-SNAPSHOT/torquebox-docs-en_US-1.0.0.CR2-SNAPSHOT.epub' );
+    if ( epub_doc_artifact ) {
+      row.find( '.col-docs ul' ).append( $( '<li><a href="' + self.job_url( build.number + '/artifact/' + epub_doc_artifact.relativePath) + '">ePub</a></li>' ) );
+    }
+
+
     if ( build.result == 'FAILURE' ) {
       if ( build.culprits.length > 0 ) {
         details_row = $( '<tr class="result-failure failure-details"/>' );
