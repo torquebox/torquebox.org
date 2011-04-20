@@ -37,8 +37,9 @@ layout: default
     %th.col-build Build
     %th.col-dist Binary Distribution
     %th.col-docs Documentation
-    %th.col-details Details
     %th.col-git Git
+    %th Ruby 1.8
+    %th Ruby 1.9
 
 .spacer{:style=>'height: 2em;'}
   &nbsp;
@@ -46,7 +47,7 @@ layout: default
 %h2 Recent Incremental Builds
 
 %p
-  The last 20 builds are listed below.  A currently-running build is displayed in yellow. Aborted builds are displayed in grey.
+  Previous builds are listed below.  A currently-running build is displayed in yellow. Aborted builds are displayed in grey.
   Successful builds are green.  Failed builds are in red.  Failed builds <b>may produce artifacts</b>, but they should probably
   not be trusted.
 
@@ -55,8 +56,12 @@ layout: default
     %th.col-build Build
     %th.col-dist Binary Distribution
     %th.col-docs Documentation
-    %th.col-details Details
     %th.col-git Git
+    %th Ruby 1.8
+    %th Ruby 1.9
   
 :javascript
-  j = new Jenkins( 'https://torquebox.ci.cloudbees.com', 'torquebox' );
+  j = new Jenkins( 'https://torquebox.ci.cloudbees.com', 'torquebox-m2', [
+        'ruby_compat_version=1.8',
+        'ruby_compat_version=1.9',
+      ] );

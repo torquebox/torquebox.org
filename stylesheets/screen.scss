@@ -265,109 +265,86 @@ table.downloads {
   }
 }
 
-table.downloads#builds {
+table.incremental-builds {
   tr.divide {
     td {
       border-bottom: 1px solid #888;
     }
   }
-
-  tr { 
+  tr {
     td {
-      border-bottom: none;
+      border: none;
     }
-    background-color: #dddddd;
-    td.col-build  {
+    td.first {
       border-left: 12px solid #999999;
+      padding-left: 1ex;
     }
-    td.col-git {
+    td.last {
       border-right: 4px solid #999999;
+      padding-right: 1ex;
     }
   }
+
   tr.result-success {
     background-color: #ccffcc;
     td {
-      border-bottom: 1px solid #888;
-    }
-    td.col-build {
-      border-left: 12px solid #559955;
-    }
-    td.col-git {
-      border-right: 4px solid #559955;
+      border-color: #559955;
     }
   }
   tr.result-failure {
     background-color: #ffcccc;
-    td.col-build {
-      border-left: 12px solid #995555;
-    }
-    td.col-git {
-      border-right: 4px solid #995555;
+    td {
+      border-color: #995555;
     }
   }
   
   tr.failure-details {
     td {
-      border-left: 12px solid #995555;
-      border-right: 4px solid #995555;
-      border-bottom: 1px solid #888;
+      border-color: #995555;
     }
   }
 
   tr.result-aborted {
+    background-color: #cccccc;
     td {
-      border-bottom: 1px solid #888;
-    }
-    td.build {
-      border-left: 12px solid #999999;
-    }
-    td.col-abort-details {
-      border-right: 4px solid #999999;
-    }
-  }
-  tr.result-success {
-    background-color: #ccffcc;
-    td {
-      border-bottom: 1px solid #888;
-    }
-    td.col-build {
-      border-left: 12px solid #559955;
-    }
-    td.col-git {
-      border-right: 4px solid #999999;
-    }
-  }
-  tr.result-success {
-    background-color: #ccffcc;
-    td {
-      border-bottom: 1px solid #888;
-    }
-    td.col-build {
-      border-left: 12px solid #559955;
+      border-color: #999999;
     }
   }
 
   tr.result-building {
     background-color: #ffffcc;
     td {
-      border-bottom: 1px solid #888;
-    }
-    td.col-build {
-      border-left: 12px solid #999955;
-    }
-    td.col-git {
-      border-right: 4px solid #999955;
+      border-color: #999955;
     }
   }
+
   tr.header { 
     background-color: white;
   }
+
+  td ul li.matrix-status {
+    font-size: 120%;
+    font-weight: bold;
+  }
+  
+  td.matrix {
+    border-left: 1px solid #999;
+    border-bottom: 1px solid #999;
+  }
+
+  td.matrix-success {
+    background-color: #ccffcc - #222;
+  }
+
+  td.matrix-failure {
+    background-color: #ffcccc - #222;
+  }
 }
 
-table.incremental-builds {
+#primary-container table.incremental-builds {
   font-size: 95%;
   ul {
-    list-style-type: square;
+    list-style-type: circle;
   }
   color: #444;
   a { 
