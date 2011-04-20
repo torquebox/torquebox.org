@@ -27,7 +27,7 @@ I wanted to follow up on a few of the questions from the end of the talk:
   want to know, check out [this article][DI].
 * Nathaniel asked "where does the money change hands?", and I mentioned
   that Red Hat would probably productize TorqueBox someday. However, 
-  I neglected to mention that TorqueBox the project would always be 
+  I neglected to mention that TorqueBox the [project][project] will always be 
   available freely under the [LGPL][LGPL].
   
 Here are links to a few resources I mentioned in the talk:
