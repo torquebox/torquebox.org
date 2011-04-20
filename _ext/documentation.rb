@@ -13,7 +13,7 @@ class Documentation
 
     (site.releases + site.old_releases).each do |release|
       doc_bundle_name = "torquebox-docs-en_US-#{release.version}-html.zip"
-      doc_bundle_path = File.join( site.tmp_dir, doc_bundle_name )
+      doc_bundle_path = File.join( site.config.tmp_dir, doc_bundle_name )
       doc_root = File.join( site.output_dir, 'documentation', release.version )
       FileUtils.mkdir_p( doc_root )
 
