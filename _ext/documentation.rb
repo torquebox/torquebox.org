@@ -29,7 +29,7 @@ class Documentation
 
         doc_url = release.urls.docs.html_multi_zip
 
-        `wget --quiet -P #{site.tmp_dir} #{doc_url}`
+        `wget --quiet -P #{site.config.tmp_dir} #{doc_url}`
       end
       unless ( File.exist?( File.join( doc_root, "index.html" ) ) )
         puts "Unzipping doc bundle for #{release.version}"
