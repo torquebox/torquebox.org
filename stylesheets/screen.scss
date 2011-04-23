@@ -265,16 +265,50 @@ table.downloads {
   }
 }
 
+table#latest-stable {
+  border-bottom: 1px solid #999;
+  tr td.matrix {
+    border-bottom: 0 none;
+  }
+}
+
 table.incremental-builds {
-  tr.divide {
-    td {
-      border-bottom: 1px solid #888;
-    }
+  font-size: 90%;
+  border-right: 1px solid #999;
+  border-left: 1px solid #999;
+  border-top: 1px solid #999;
+
+  a {
+    text-decoration: none;
+  }
+
+  th.build-info {
+    padding-left: 18px;
+  }
+
+  th.matrix {
+    border-left: 1px solid #999;
+  }
+
+  .number, .date, .time, .sha1 {
+    display: block;
+  }
+
+  .number {
+    font-size: 150%;
+    font-weight: bold;
   }
   tr {
     td {
-      border: none;
+      background-color: #eee;
+      border: 0 none;
     }
+  }
+  tr.divide td {
+    border-bottom: 1px solid #777;
+  }
+ 
+  tr {
     td.first {
       border-left: 12px solid #999999;
       padding-left: 1ex;
@@ -285,64 +319,67 @@ table.incremental-builds {
     }
   }
 
-  tr.result-success {
-    background-color: #ccffcc;
-    td {
-      border-color: #559955;
-    }
-  }
-  tr.result-failure {
-    background-color: #ffcccc;
-    td {
-      border-color: #995555;
-    }
-  }
-  
-  tr.failure-details {
-    td {
-      border-color: #995555;
-    }
-  }
-
-  tr.result-aborted {
-    background-color: #cccccc;
-    td {
-      border-color: #999999;
-    }
-  }
-
-  tr.result-building {
-    background-color: #ffffcc;
-    td {
-      border-color: #999955;
-    }
-  }
-
   tr.header { 
     background-color: white;
   }
 
-  td ul li.matrix-status {
-    font-size: 120%;
-    font-weight: bold;
-  }
-  
   td.matrix {
     border-left: 1px solid #999;
     border-bottom: 1px solid #999;
+    background-color: #ccc;
+    a {
+      text-decoration: none;
+    }
+    
   }
 
-  td.matrix-success {
-    background-color: #ccffcc - #222;
+  tr.build-building {
+    td.first {
+      border-left: 12px solid #ffffcc - #444;
+    }
+    td {
+      background-color: #ffffcc;
+    }
   }
 
-  td.matrix-failure {
-    background-color: #ffcccc - #222;
+  tr.build-success {
+    td.first {
+      border-left: 12px solid #ccffcc - #444;
+    }
+    td {
+      background-color: #ccffcc;
+    }
+  }
+
+  tr.build-failure {
+    td.first {
+      border-left: 12px solid #ffcccc - #222;
+    }
+    td {
+      background-color: #ffcccc;
+    }
+  }
+
+  tr {
+    td.matrix-success {
+      background-color: #ccffcc - #222;
+    }
+  
+    td.matrix-failure {
+      background-color: #ffcccc - #222;
+    }
+
+    td.matrix-aborted {
+      background-color: #ccc;
+    }
+
+    td.matrix-unknown {
+      background-color: #eee;
+    }
   }
 }
 
 #primary-container table.incremental-builds {
-  font-size: 95%;
   ul {
     list-style-type: circle;
   }
@@ -350,19 +387,17 @@ table.incremental-builds {
   a { 
     color: #444;
   }
-  .col-build {
-    width: 25%;
+  .build-info {
+    width: 15%;
   }
-  .col-dist {
-    width: 20%;
+  .binary {
+    width: 15%;
   }
-  .col-docs {
-    width: 20%;
+  .docs {
+    width: 15%;
   }
-  .col-changes {
-    width: 20%;
-  }
-  .col-git {
+  .git{
+    width: 10%;
   }
 }
 

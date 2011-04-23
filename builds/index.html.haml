@@ -3,7 +3,8 @@ title: Incremental Builds
 layout: default
 ---
 
-%script{:type=>'text/javascript', :src=>'jenkins.js'}
+%script{:type=>'text/javascript', :src=>'/javascripts/jenkins.js'}
+%script{:type=>'text/javascript', :src=>'incremental-builds.js'}
 
 %a{:href=>'http://cloudbees.com/', :style=>'display: block; float:right; margin-left: 3em; margin-bottom: 3em;'}
   %img{:src=>'/images/cloudbees_logo.png'}
@@ -34,12 +35,12 @@ layout: default
 
 %table.downloads.incremental-builds#latest-stable
   %tr.header
-    %th.col-build Build
-    %th.col-dist Binary Distribution
-    %th.col-docs Documentation
-    %th.col-git Git
-    %th Ruby 1.8
-    %th Ruby 1.9
+    %th.build-info Build
+    %th.binary Binary Distribution
+    %th.docs Documentation
+    %th.git Git
+    %th.matrix Ruby 1.8
+    %th.matrix Ruby 1.9
 
 .spacer{:style=>'height: 2em;'}
   &nbsp;
@@ -53,15 +54,10 @@ layout: default
 
 %table.downloads.incremental-builds#builds
   %tr.header
-    %th.col-build Build
-    %th.col-dist Binary Distribution
-    %th.col-docs Documentation
-    %th.col-git Git
-    %th Ruby 1.8
-    %th Ruby 1.9
+    %th.build-info Build
+    %th.binary Binary Distribution
+    %th.docs Documentation
+    %th.git Git
+    %th.matrix Ruby 1.8
+    %th.matrix Ruby 1.9
   
-:javascript
-  j = new Jenkins( 'https://torquebox.ci.cloudbees.com', 'torquebox-m2', [
-        'ruby_compat_version=1.8',
-        'ruby_compat_version=1.9',
-      ] );
