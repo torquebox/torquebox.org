@@ -54,7 +54,6 @@ renderer = {
 
     column.append( ": " + duration + " min" );
 
-    console.debug( build );
     if ( build.building ) {
       column.append( $( '<ul class="links"/>' ).append( 
           $( '<li><a href="' + build.url + '../ws/integration-tests/target/integ-dist/jboss/server/default/log/boot.log">boot.log</a></li>'  ),
