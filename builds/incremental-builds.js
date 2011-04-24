@@ -52,7 +52,7 @@ renderer = {
 
     duration = Math.floor( duration / ( 60 * 1000 ) );
 
-    column.append( ": " + duration + " min" );
+    column.append( '<span class="duration">: ' + duration + ' min</span>' );
 
     if ( build.building ) {
       column.append( $( '<ul class="links"/>' ).append( 
@@ -75,6 +75,14 @@ renderer = {
     }
     if ( row.find( '.matrix-failure' ).size() > 0 ) {
       row.addClass( 'build-failure' );
+    }
+    if ( row.find( '.matrix' ).size() == row.find( '.matrix-aborted' ).size() ) {
+      row.addClass( 'build-aborted' );
+      row.find( 'td *' ).hide();
+      row.find( 'td .number' ).show();
+      row.find( 'td .number a' ).show();
+      $( '.build-' + build.number + '.build-details td *' ).hide();
+      $( '.build-' + build.number + '.build-details' ).addClass( 'hidden' );
     }
     
   },

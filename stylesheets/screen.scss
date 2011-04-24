@@ -367,6 +367,10 @@ table.downloads {
     }
   }
 
+  tr.build-aborted {
+    font-size: 60%;
+  }
+
   tr.build-failure {
     td.first {
       border-left: 12px solid #ffcccc - #222;
@@ -393,6 +397,13 @@ table.downloads {
       background-color: #eee;
     }
   }
+
+  tr.build-details.hidden td {
+    margin: 0px;
+    padding: 0px;
+    height: 1px;
+  }
+
 }
 
 #primary-container table.incremental-builds {
@@ -403,17 +414,19 @@ table.downloads {
   a { 
     color: #444;
   }
-  .build-info {
-    width: 15%;
-  }
+
   .binary {
-    width: 15%;
+    width: 17%;
   }
   .docs {
-    width: 15%;
+    width: 17%;
   }
   .git{
     width: 10%;
+  }
+
+  .matrix {
+    width: 20%;
   }
 }
 
