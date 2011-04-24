@@ -9,7 +9,8 @@ renderer = {
     $.each( row, function(i,r) {
       $( '#builds' ).append( row[i] );
     } );
-    if ( self.lastSuccessfulBuild.number == build.number ) {
+    
+    if ( self.lastSuccessfulBuilder && ( self.lastSuccessfulBuild.number == build.number ) ) {
       $( '#latest-stable' ).append( row[0].clone() ); 
     }
 
@@ -222,7 +223,7 @@ renderer = {
 
 };
 
-j = new Jenkins( renderer, 'http://torquebox.ci.cloudbees.com', 'torquebox-m2', [
+j = new Jenkins( renderer, 'http://torquebox.ci.cloudbees.com', 'torquebox', [
                    [ 'label=m1.large,ruby_compat_version=1.8', '1_8' ],
                    [ 'label=m1.large,ruby_compat_version=1.9', '1_9' ],
                  ] );
