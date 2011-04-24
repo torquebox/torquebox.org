@@ -23,22 +23,22 @@ renderer = {
     if ( build.result == 'SUCCESS' ) {
       column.addClass( 'matrix-success' );
       column.append( 
-        $( '<a href="' + build.url + '/console' + '">Passed</a>' )
+        $( '<a href="' + build.url + '/console' + '" class="status">Passed</a>' )
       );
     } else if ( build.result == 'FAILURE' ) {
       column.addClass( 'matrix-failure' );
       column.append( 
-        $( '<a href="' + build.url + '/console' + '">Failed</a>' )
+        $( '<a href="' + build.url + '/console' + '" class="status">Failed</a>' )
       );
     }  else if ( build.result == 'ABORTED' ) {
       column.addClass( 'matrix-aborted' );
       column.append(
-        $( '<a href="' + build.url + '/console' + '">Aborted</a>' )
+        $( '<a href="' + build.url + '/console' + '" class="status">Aborted</a>' )
       );
     }  else if ( build.building ) {
       column.addClass( 'matrix-building' );
       column.append(
-        $( '<a href="' + build.url + '/console' + '"><em>Building</em></a>' )
+        $( '<a href="' + build.url + '/console' + '" class="status"><em>Building</em></a>' )
       );
     }
 
@@ -53,6 +53,17 @@ renderer = {
     duration = Math.floor( duration / ( 60 * 1000 ) );
 
     column.append( ": " + duration + " min" );
+
+    console.debug( build );
+    if ( build.building ) {
+      column.append( $( '<ul class="links"/>' ).append( 
+          $( '<li><a href="' + build.url + '../ws/integration-tests/target/integ-dist/jboss/server/default/log/boot.log">boot.log</a></li>'  ),
+          $( '<li><a href="' + build.url + '../ws/integration-tests/target/integ-dist/jboss/server/default/log/output.log">output.log</a></li>'  ),
+          $( '<li><a href="' + build.url + '../ws/integration-tests/target/integ-dist/jboss/server/default/log/server.log">server.log</a></li>'  )
+        ) 
+      );
+    }
+
 
     if ( label == '1_8' ) {
       self.populate_artifacts( build );
@@ -118,26 +129,32 @@ renderer = {
             $( '<td class="build-info first"/>' ).append(
               $( '<span class="number"><a href="' + build.url + '">' + build.number + '</a></span>' ),
               $( '<span class="date">' + self.build_date( build ) + '</span>' ),
-              $( '<span class="time">' + self.build_time( build ) + '</span>' ),
-              $( '<span class="sha1"/>' ).append( 
-                $('<a href="https://github.com/torquebox/torquebox/commits/' + self.build_sha1( build )+ '">' + self.build_sha1_short( build ) + '</a>' )
-              )
+              $( '<span class="time">' + self.build_time( build ) + '</span>' )
             ),
             $( '<td class="binary"/>' ),
             $( '<td class="docs"/>' ),
-            $( '<td class="git"/>' ).append(
-              $( '<ul/>' ).append(
-                $( '<li/>').append(
-                  $( '<a href="https://github.com/torquebox/torquebox/commits/' + self.build_sha1( build ) + '">Commits</a>' )
-                ),
-                $( '<li/>').append(
-                  $( '<a href="https://github.com/torquebox/torquebox/tree/' + self.build_sha1( build )+ '">Tree</a>' )
-                )
-              )
-            ),
+            $( '<td class="git"/>' ),
             $( '<td rowspan="2" class="matrix 1_8 matrix-unknown"/>' ),
             $( '<td rowspan="2" class="matrix 1_9 matrix-unknown"/>' )
           );
+
+    if ( self.build_sha1( build ) ) {
+      row.find( '.build-info' ).append(          
+        $( '<span class="sha1"/>' ).append( 
+          $('<a href="https://github.com/torquebox/torquebox/commits/' + self.build_sha1( build )+ '">' + self.build_sha1_short( build ) + '</a>' )
+        )
+      );
+      row.find( '.git').append(
+        $( '<ul/>' ).append(
+          $( '<li/>').append(
+            $( '<a href="https://github.com/torquebox/torquebox/commits/' + self.build_sha1( build ) + '">Commits</a>' )
+          ),
+          $( '<li/>').append(
+            $( '<a href="https://github.com/torquebox/torquebox/tree/' + self.build_sha1( build )+ '">Tree</a>' )
+          )
+        )
+      );
+    }
 
     details_row = $( '<tr class="build-details build-' + build.number + '"/>' ).append( 
       $( '<td class="first" colspan="4"/>' )
@@ -172,11 +189,17 @@ renderer = {
   },
 
   build_sha1: function(build) {
-    return build.actions[1].lastBuiltRevision.SHA1;
+    if ( build.actions && build.actions.length >= 2 ) {
+      return build.actions[1].lastBuiltRevision.SHA1;
+    }
+    return null;
   },
 
   build_sha1_short: function(build) {
-    return build.actions[1].lastBuiltRevision.SHA1.substring(0,8);
+    if ( build.actions && build.actions.length >= 2 ) {
+      return build.actions[1].lastBuiltRevision.SHA1.substring(0,8);
+    }
+    return null;
   },
 
   locate_artifact: function(build, filename) {

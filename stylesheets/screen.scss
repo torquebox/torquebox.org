@@ -265,14 +265,14 @@ table.downloads {
   }
 }
 
-table#latest-stable {
+#primary-container table#latest-stable {
   border-bottom: 1px solid #999;
   tr td.matrix {
     border-bottom: 0 none;
   }
 }
 
-table.incremental-builds {
+#primary-container table.incremental-builds {
   font-size: 90%;
   border-right: 1px solid #999;
   border-left: 1px solid #999;
@@ -323,14 +323,30 @@ table.incremental-builds {
     background-color: white;
   }
 
-  td.matrix {
+  tr td.matrix {
     border-left: 1px solid #999;
     border-bottom: 1px solid #999;
     background-color: #ccc;
     a {
       text-decoration: none;
     }
+    .status {
+      font-size: 120%;
+      font-weight: bold;
+    }
     
+    ul.links {
+      list-style-type: none;
+      padding: 0px;
+      margin: 0px;
+      margin-top: 1em;
+      li {
+        margin: 0;
+        padding: 0;
+        margin-right: 1ex;
+        display: inline;
+      }
+    } 
   }
 
   tr.build-building {
