@@ -10,7 +10,7 @@ renderer = {
       $( '#builds' ).append( row[i] );
     } );
     
-    if ( self.lastSuccessfulBuilder && ( self.lastSuccessfulBuild.number == build.number ) ) {
+    if ( self.lastSuccessfulBuild && ( self.lastSuccessfulBuild.number == build.number ) ) {
       $( '#latest-stable' ).append( row[0].clone() ); 
     }
 
