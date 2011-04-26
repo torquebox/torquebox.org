@@ -3,7 +3,7 @@ title: 'TorqueBox 1.0.0.CR2: now!'
 author: The Entire TorqueBox Team
 layout: release
 version: 1.0.0.CR2
-tags: [ release ]
+tags: [ releases ]
 ---
 
 [download]: /download

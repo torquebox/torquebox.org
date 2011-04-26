@@ -3,6 +3,7 @@ title: 'TorqueBox 1.0.0.CR1, for reals'
 author: The Entire TorqueBox Team
 layout: release
 version: 1.0.0.CR1
+tags: [ releases ]
 ---
 
 [backgroundables]: /documentation/1.0.0.CR1/messaging.html#backgroundable
