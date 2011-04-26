@@ -73,6 +73,9 @@ title: Download
                 %a{:href=>release.urls.docs.html_single_zip} Single-page HTML ZIP
             %li
               %a{:href=>release.urls.docs.pdf} PDF 
+            - unless ( release.urls.docs.epub.empty? )
+              %li
+                %a{:href=>release.urls.docs.epub} ePub
         %td
           %ul
             %li

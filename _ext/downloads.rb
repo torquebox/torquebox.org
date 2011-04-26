@@ -33,7 +33,7 @@ class Downloads
 
       case ( v )
         when ( v('1.0.0.CR1')..('1.0.0') )
-          all_releases(release)
+          all_releases(v, release)
           release.urls.dist_zip = "#{REPO_PREFIX}/torquebox-dist/#{release.version}/torquebox-dist-#{release.version}-bin.zip"
       end
     end
@@ -43,12 +43,17 @@ class Downloads
     Versionomy.parse( version, FORMAT )
   end
 
-  def all_releases(release)
+  def all_releases(version, release)
     release.urls      ||= OpenStruct.new
     release.urls.docs ||= OpenStruct.new
     release.urls.docs.browse          = "/documentation/#{release.version}/"
     release.urls.docs.pdf             = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}.pdf"
     release.urls.docs.html_multi_zip  = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}-html.zip"
+
+    if ( (v('1.0.0.CR2')..v('1.0.0')).include?( version ) ) 
+      release.urls.docs.epub          = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}.epub"
+    end
+
 
     release.urls.jira = "https://jira.jboss.org/jira/secure/IssueNavigator.jspa?reset=true&amp;fixfor=#{release.jira_version}&amp;pid=12310812&amp;sorter/field=issuekey&amp;sorter/order=DESC"
 
