@@ -8,14 +8,15 @@ tags: [ release ]
 
 [download]: /download
 [docs]: /documentation/1.0.0.CR2/
+[epub]: http://repository-torquebox.forge.cloudbees.com/release/org/torquebox/torquebox-docs-en_US/1.0.0.CR2/torquebox-docs-en_US-1.0.0.CR2.epub
 
 Our schedule originally called for 1.0.0.CR2 to be released on Friday, 22 April, but we
-then realized that was a holiday.  We considered a day early release but just weren't feeling
+then realized that was a holiday.  We considered releasing a day early but just weren't feeling
 it.  Which was good, because Amazon broke on Thursday.  We perform our builds and releases on
 EC2.
 
 So, today, 25 April, TorqueBox 1.0.0.CR2 is available.  Go [download it][download] and [read the documentation][docs].
-Heck, maybe even read the documentation in ePub format on your electronic reading device.
+Heck, maybe even read the documentation in [ePub][epub] format on your electronic reading device.
 
 Trying to keep to a pure CR release cycle, this release includes no new features, but
 a small handful of bug-fixes, including solving some resource-leaks.
