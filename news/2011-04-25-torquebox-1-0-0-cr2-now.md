@@ -24,8 +24,6 @@ a small handful of bug-fixes, including solving some resource-leaks.
 Here's what we've done since the CR1 release on 15 April:
 
 
-<h2>        Bug
-</h2>
 <ul>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-355'>TORQUE-355</a>] -         Cannot inject a class from a pl. top-level package
 </li>
@@ -37,25 +35,10 @@ Here's what we've done since the CR1 release on 15 April:
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-367'>TORQUE-367</a>] -         Dir[] barfs on multiple args
 </li>
-</ul>
-                
-<h2>        Enhancement
-</h2>
-<ul>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-368'>TORQUE-368</a>] -         Use non-leaking form of LoadServiceResource from VFSLoadService
 </li>
-</ul>
-    
-<h2>        Feature Request
-</h2>
-<ul>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-357'>TORQUE-357</a>] -         Provide docs in .mobi format
 </li>
-</ul>
-                        
-<h2>        Task
-</h2>
-<ul>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-359'>TORQUE-359</a>] -         Stash the .gems somewhere on CI when we build a release
 </li>
 </ul>
