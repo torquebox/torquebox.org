@@ -1,6 +1,6 @@
 ErrorDocument 404 /404.html
 
-SetEnvIf Request_URI .* base_artifact_url=https://torquebox.ci.cloudbees.com/job/torquebox/label=m1.large,ruby_compat_version=1.8/lastStableBuild/artifact
+SetEnvIf Request_URI .* base_artifact_url=https://torquebox.ci.cloudbees.com/job/torquebox/lastSuccessfulBuild/label=m1.large,ruby_compat_version=1.8/artifact
 SetEnvIf Request_URI .* base_repo_url=http://repository.torquebox.org/maven2/releases
 
 RewriteEngine on
@@ -11,7 +11,7 @@ RewriteRule ^documentation/LATEST$          /documentation/LATEST/ [R]
 RewriteRule ^documentation/LATEST/?$        %{ENV:base_artifact_url}/docs/en-US/target/docbook/publish/en-US/xhtml/index.html [P]
 RewriteRule ^documentation/LATEST/(.*)$     %{ENV:base_artifact_url}/docs/en-US/target/docbook/publish/en-US/xhtml/$1 [P]
 
-RewriteRule ^builds/([0-9]+)/torquebox-dist-bin.zip$  https://torquebox.ci.cloudbees.com/job/torquebox/label=m1.large,ruby_compat_version=1.8/$1/artifact/dist/target/torquebox-dist-bin.zip [P]
+RewriteRule ^builds/([0-9]+)/torquebox-dist-bin.zip$  https://torquebox.ci.cloudbees.com/job/torquebox/$1/label=m1.large,ruby_compat_version=1.8/artifact/dist/target/torquebox-dist-bin.zip [P]
 RewriteRule ^builds/LATEST/torquebox-dist-bin.zip$    %{ENV:base_artifact_url}/dist/target/torquebox-dist-bin.zip [P]
 
 SetEnvIfNoCase Request_URI torquebox-dist-bin\.zip$ torquebox-latest
