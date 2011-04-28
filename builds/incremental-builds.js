@@ -122,7 +122,7 @@ renderer = {
       ul.append( $( '<li><a href="' + build.url + '/artifact/' + pdf_doc_artifact.relativePath + '">PDF</a></li>' ) );
     }
 
-    epub_doc_artifact = self.locate_artifact(build, '.repository/org/torquebox/torquebox-docs-en_US/1.0.0.CR2-SNAPSHOT/torquebox-docs-en_US-1.0.0.CR2-SNAPSHOT.epub' );
+    epub_doc_artifact = self.locate_artifact(build, '.repository/org/torquebox/torquebox-docs-en_US/.*/torquebox-docs-en_US-.*\.epub' );
     if ( epub_doc_artifact ) {
       ul.append( $( '<li><a href="' + build.url + '/artifact/' + epub_doc_artifact.relativePath + '">ePub</a></li>' ) );
     }
@@ -212,8 +212,9 @@ renderer = {
 
   locate_artifact: function(build, filename) {
     result = null;
+    var filename_regexp = new RegExp( filename );
     $.each( build.artifacts, function(i, artifact) {
-      if ( artifact.relativePath == filename ) {
+      if ( artifact.relativePath.match( filename_regexp )  ) {
         result = artifact;
         return false;
       }
