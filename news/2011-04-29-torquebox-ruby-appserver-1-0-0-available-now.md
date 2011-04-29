@@ -13,6 +13,7 @@ tags: [ release ]
 [features]: /features/
 [firstcommit]: https://github.com/bobmcwhirter/jboss-rails/commit/42ef271f42f8bfb3219862c26e9955c4e8806abb
 [CloudBees]: http://cloudbees.com/
+[JUDCon]: http://www.jboss.org/events/JUDCon
 
 # TorqueBox v1.0.0 Released
 
