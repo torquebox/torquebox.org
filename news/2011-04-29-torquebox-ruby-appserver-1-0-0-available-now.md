@@ -31,7 +31,7 @@ TorqueBox builds upon the JBoss AS Java application server,
 mixing in JRuby, to provide a scalable platform for Ruby applications,
 including support for Rails, Sinatra and other Rack-based frameworks.
 
-In addition to supporting popular web framework, TorqueBox [bridges
+In addition to supporting popular web frameworks, TorqueBox [bridges
 many common Java facilities][features] provided by JBoss, including *scheduled jobs*,
 *caching*, *messaging*, and *services*.
 
