@@ -50,6 +50,11 @@ Here's how we deploy our app to our two cluster nodes:
     $ JBOSS_CONF=node1 jruby -S rake torquebox:deploy[/test]
     $ JBOSS_CONF=node2 jruby -S rake torquebox:deploy[/test]
 
+**UPDATE 4/29/11** Setting `JBOSS_CONF` in recent TorqueBox versions
+  is no longer necessary.  Since all configurations now share the
+  `$TORQUEBOX_HOME/apps` deployment directory, a single invocation of
+  `torquebox:deploy` is enough to deploy the app in each configuration.
+
 I encourage you to read the **Application Deployment** chapter of the
 [TorqueBox documentation](/documentation) to understand what those
 commands are doing, but essentially, each is dropping a YAML file
