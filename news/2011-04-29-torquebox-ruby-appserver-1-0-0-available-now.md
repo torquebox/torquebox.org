@@ -95,7 +95,7 @@ builds.
 Mark Little, my current boss, also deserves credit for continuing to provide
 his support, guidance, and even a little bit of code.
 
-Rayme Jernigan has done a fantastic job of helping to spread the word, and 
+Rayme Jernigan has done a fantastic job of helping to spread the word and 
 deserves a beer or two next week during [JUDCon].
 
 James Cobb holds a very special place in our heart for designing our logo:
