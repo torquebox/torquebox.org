@@ -14,6 +14,7 @@ tags: [ release ]
 [firstcommit]: https://github.com/bobmcwhirter/jboss-rails/commit/42ef271f42f8bfb3219862c26e9955c4e8806abb
 [CloudBees]: http://cloudbees.com/
 [JUDCon]: http://www.jboss.org/events/JUDCon
+[JRuby]: http://jruby.org/
 
 # TorqueBox v1.0.0 Released
 
@@ -64,7 +65,7 @@ many common Java facilities][features] provided by JBoss, including *scheduled j
 </li>
 </ul>
 
-# A Special Message From I (Bob)
+# A Special Message From Me (Bob)
 
 Reaching *v1.0.0* has been a long journey.  The [first commit][firstcommit] towards this
 goal was on 5 September 2008.  That's over 2.5 years ago.  If you were to draw a graph of the
@@ -104,3 +105,16 @@ James Cobb holds a very special place in our heart for designing our logo:
 It goes without saying (but I'm going to say it anyhow), that our active community
 deserves kudos for finding and fixing bugs, making suggestions, and generally providing
 great feedback.
+
+None of this would have been possible without the untiring work of Charlie Nutter, 
+Tom Enebo, Nick Sieger and all of the other [JRuby] contributors.
+
+# What's next?
+
+After this release, we do already anticipate some smaller 1.x releases to wrap
+up a few more things we'd like to do on this codebase.
+
+We will also concurrently kick off the next major release version, to be based
+upon JBoss AS 7.
+
+Stay tuned!
