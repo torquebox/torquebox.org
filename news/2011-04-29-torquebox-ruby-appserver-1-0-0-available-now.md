@@ -14,6 +14,9 @@ tags: [ release ]
 [firstcommit]: https://github.com/bobmcwhirter/jboss-rails/commit/42ef271f42f8bfb3219862c26e9955c4e8806abb
 [CloudBees]: http://cloudbees.com/
 [JUDCon]: http://www.jboss.org/events/JUDCon
+[JBoss AS]: http://jboss.org/jbossas/
+[Infinispan]: http://infinispan.org/
+[HornetQ]: http://hornetq.org/
 [JRuby]: http://jruby.org/
 
 # TorqueBox v1.0.0 Released
@@ -106,8 +109,9 @@ It goes without saying (but I'm going to say it anyhow), that our active communi
 deserves kudos for finding and fixing bugs, making suggestions, and generally providing
 great feedback.
 
-None of this would have been possible without the untiring work of Charlie Nutter, 
-Tom Enebo, Nick Sieger and all of the other [JRuby] contributors.
+Everything we've accomplish has been because we've been standing on the shoulders
+of giants behind projects such as [JBoss AS], [HornetQ], [Infinispan], and of 
+course [JRuby].
 
 # What's next?
 
