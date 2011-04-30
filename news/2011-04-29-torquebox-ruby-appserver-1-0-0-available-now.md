@@ -3,7 +3,7 @@ title: 'TorqueBox Ruby App-Server: v1.0.0 Available Now'
 author: The Entire TorqueBox Team
 layout: release
 version: 1.0.0
-tags: [ release ]
+tags: [ releases ]
 ---
 
 [download]: http://repository-torquebox.forge.cloudbees.com/release/org/torquebox/torquebox-dist/1.0.0/torquebox-dist-1.0.0-bin.zip
@@ -109,7 +109,7 @@ It goes without saying (but I'm going to say it anyhow), that our active communi
 deserves kudos for finding and fixing bugs, making suggestions, and generally providing
 great feedback.
 
-Everything we've accomplish has been because we've been standing on the shoulders
+Everything we've accomplished has been because we've been standing on the shoulders
 of giants behind projects such as [JBoss AS], [HornetQ], [Infinispan], and of 
 course [JRuby].
 
