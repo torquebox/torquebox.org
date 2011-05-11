@@ -57,16 +57,23 @@ keeping with Adam's methods, let's use a Procfile and Foreman to generate a set
 of Upstart configuration files so JBoss starts on boot.  For this example, put
 this Procfile in `$TORQUEBOX_HOME/jboss.`
 
-<script src="https://gist.github.com/966889.js?file=Procfile"></script>
+    torquebox: ./bin/run.sh
 
 In the terminal, be sure you are in `$TORQUEBOX_HOME/jboss` and run foreman.
 
-<script src="https://gist.github.com/966889.js?file=foreman"></script>
+    $ foreman export upstart /etc/init
+    [foreman export] writing: /etc/init/jboss.conf
+    [foreman export] writing: /etc/init/jboss-torquebox.conf
+    [foreman export] writing: /etc/init/jboss-torquebox-1.conf
 
 Once you've done this, JBoss will startup on system boot. You can also start and
 restart JBoss from the command line.
 
-<script src="https://gist.github.com/966889.js?file=starting-and-stopping-jboss"></script>
+    $ start jboss
+    jboss start/running
+
+    $ restart jboss
+    jboss start/running
 
 That's all you need to get TorqueBox running on system startup.  Easy peasy! 
 
@@ -83,7 +90,28 @@ under TorqueBox, so are your scheduled jobs, background tasks, and services.
 To get all of this automagical goodness, all you have to do is edit your
 torquebox.yml configuration file.
 
-<script src="https://gist.github.com/966889.js?file=torquebox.yml"></script>
+    application:
+      root: /path/to/app
+
+    queues:
+      /queues/slow_task_queue:
+      /queues/fast_task_queue:
+
+    messaging:
+      /queues/slow_task_queue: SlowTaskHandler
+      /queues/fast_task_queue: FastTaskHandler
+
+    jobs:
+      mail.notifier:
+        job:         Mail::Notifier
+        cron:        '0 */5 * * * ?'
+        description: Deliver queued mail notifications
+
+    services:
+      TwitterFeedConsumer:
+        singleton: true
+        name: Twitter Feed Consumer
+    
 
 Now when JBoss fires up and your application is deployed, you've got a web
 context, 2 message queues running under HornetQ, a couple of handlers to deal
