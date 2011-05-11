@@ -23,7 +23,7 @@ all of the mainstream deployment options - such as [Trinidad][trinidad] for
 JRuby and [Passenger][passenger] for MRI - tend to focus almost exclusively on
 the web bits.  This is why I have been a big fan of [Heroku][heroku] over the years.
 
-Heroku is nice because it takes care of lots of those niggly details while staying
+Heroku is nice because it takes care of lots of those pesky details while staying
 out of your way so you can focus on your application code.  Ready to deploy?
 Just `git push heroku`.  Need another worker for your `Delayed::Job`? No
 problem, just turn it on with `heroku workers 1`. Add cron services with a
@@ -63,7 +63,7 @@ In the terminal, be sure you are in `$TORQUEBOX_HOME/jboss` and run foreman.
 
 <script src="https://gist.github.com/966889.js?file=foreman"></script>
 
-Once you've done this, JBoss will starup on system boot. You can also start and
+Once you've done this, JBoss will startup on system boot. You can also start and
 restart JBoss from the command line.
 
 <script src="https://gist.github.com/966889.js?file=starting-and-stopping-jboss"></script>
@@ -80,32 +80,26 @@ Using Procfile and Foreman for these parts of your application is not
 necessary.  With TorqueBox these services are an integral part of your app and
 as such, they share the same life cycle.  When your application is deployed
 under TorqueBox, so are your scheduled jobs, background tasks, and services.
+To get all of this automagical goodness, all you have to do is edit your
+torquebox.yml configuration file.
 
-TorqueBox uses HornetQ (one of the fastest message busses around) as its 
-messaging system.  To make a queue available to your application, just
-specify it in your torquebox.yml file along with the Ruby classes that
-handle messages placed on the queue.
+<script src="https://gist.github.com/966889.js?file=torquebox.yml"></script>
 
-<script src="https://gist.github.com/966889.js?file=torquebox-queues.yml"></script>
+Now when JBoss fires up and your application is deployed, you've got a web
+context, 2 message queues running under HornetQ, a couple of handlers to deal
+with those messages, a scheduled job managed by Quartz, and a long-running
+service to suck on the Twitter firehose.  Boom!
 
-The message handlers are simple ruby classes that respond to `on_message(payload)`.
-For more information about how to write message processors in TorqueBox, check out
-our [Messaging docs][messaging].
+The message handlers are simple ruby classes that respond to `on_message(payload)`;
+while the long running service is a plain ruby class that responds to `start`
+and `stop`; and scheduled jobs are just classes that respond to `run`. Don't you
+love duck typing?
 
-Scheduled jobs (think cron) are just as easy. Just tell TorqueBox what you want 
-to do in that very same torquebox.yml file.
-
-<script src="https://gist.github.com/966889.js?file=torquebox-jobs.yml"></script>
-
-More information about scheduled jobs and how they work in TorqueBox is also
-available in our [documentation][scheduled-jobs].
-
-Lastly, we need to set up our long-running service.  Again, we go to
-torquebox.yml.  This time we add a services section.
-
-<script src="https://gist.github.com/966889.js?file=torquebox-services.yml"></script>
-
-And of course, you can read all about [TorqueBox services][services] in our docs.
+For more information about how to write message processors in
+TorqueBox, check out our [Messaging docs][messaging].  More information about
+scheduled jobs and how they work in TorqueBox is also available in our
+[documentation][scheduled-jobs].  And of course, you can read all about
+[TorqueBox services][services] in our docs as well.
 
 ## Conclusion
 
