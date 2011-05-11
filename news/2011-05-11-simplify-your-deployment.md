@@ -2,7 +2,7 @@
 title: 'Using TorqueBox to Simplify Application Deployment'
 author: Lance Ball
 layout: news
-tags: [ deployment, caching, jobs, tasks ]
+tags: [ deployment, queues, jobs, tasks ]
 ---
 
 [wiggins]: http://adam.heroku.com/past/2011/5/9/applying_the_unix_process_model_to_web_apps/
