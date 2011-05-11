@@ -97,8 +97,8 @@ love duck typing?
 
 For more information about how to write message processors in
 TorqueBox, check out our [Messaging docs][messaging].  More information about
-scheduled jobs and how they work in TorqueBox is also available in our
-[documentation][scheduled-jobs].  And of course, you can read all about
+[scheduled jobs][scheduled-jobs] and how they work in TorqueBox is also
+available in our documentation.  And of course, you can read all about
 [TorqueBox services][services] in our docs as well.
 
 ## Conclusion
