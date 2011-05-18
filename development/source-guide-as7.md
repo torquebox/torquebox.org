@@ -3,7 +3,6 @@ title: TorqueBox Source Guide for TorqueBox 2.0 on JBoss AS 7.x
 layout: default
 ---
 
-
 [jdk]: http://www.oracle.com/technetwork/java/javase/downloads/index.html
 [maven]: http://maven.apache.org/
 [msysgit]: http://code.google.com/p/msysgit/downloads/list
@@ -231,6 +230,10 @@ All of this XML editing is performed automatically by the build.
 
 The `<subsystem>` element is handled by our `FooSubsystemParser`
 
+#### FooSubsystemProvider.java
+
+Just copy, adjust, it makes very little sense.
+
 #### FooSubsystemParser.java
 
 When JBoss AS boots and reads the `standalone.xml` file, it reaches
@@ -255,6 +258,220 @@ the the list-of-operations to be done.
 
 The 6 lines above basically tell the AS we want our `FooSubsystemAdd`
 class to be fired.
+
+#### Namespace.java
+
+Just a fancy way to store a String constant representing the XML namespace
+for our subsystem. Used when registering our parser.
+
+#### FooSubsystemAdd.java
+
+The `FooSubsystemAdd` class represents our first real hook to perform subsystem-specific
+setup and configuration.  This is where we set up any services that our subsystem provides,
+along with registering our `DeploymentUnitProcessors`, aka "deployers".
+
+Copy from an existing working module to get the basic shape.  
+
+To install deployers, the `addDeploymentProcessors(...)` method is called.  Add any
+new deployers here.
+
+    protected void addDeploymentProcessors(final BootOperationContext context, final InjectableHandlerRegistry registry) {
+        context.addDeploymentProcessor( Phase.STRUCTURE, 10, new KnobStructureProcessor() );
+        context.addDeploymentProcessor( Phase.STRUCTURE, 20, new AppKnobYamlParsingProcessor() );
+        context.addDeploymentProcessor( Phase.STRUCTURE, 100, new AppJarScanningProcessor() );
+    }
+
+Deployment occurs in phases, deterministically, with every deployer in the list getting a chance
+to fire.
+
+Available phases are defined in [org.jboss.as.servicer.deployment.Phase](https://github.com/jbossas/jboss-as/blob/master/server/src/main/java/org/jboss/as/server/deployment/Phase.java):
+
+* STRUCTURE - Shape of the deployment, lib/**.jar handling
+* PARSE - Reading configuration files, .yml
+* DEPENDENCIES - Making modules/classes available to the deployment
+* CONFIGURE_MODULE - Additional configuration of the deployment's classes
+* POST_MODULE - After the deployment's full classloader has been configured
+* INSTALL - Installing services
+* CLEANUP - Un-making messes, I guess
+
+Each core JBoss AS `DeploymentUnitProcessor` also has a constant in the same `Phase` file denoting
+its phase and order-within-phase.  We should consider our deployers as running within that context.
+It is useful to follow uses of various constants to determine what other deployers might affect
+deployment, and what services they deploy.
+
+## Services
+
+In the AS6 codebase, anything we ended up describing as a `BeanMetaData<T>` ends up
+being a [Service<T>](https://github.com/jbossas/jboss-msc/blob/master/src/main/java/org/jboss/msc/service/Service.java) in MSC's architecture. 
+A service can have other values injected into it, and has a start/stop lifecycle.
+
+One distinction from AS6, though, is a service may return a value, which is ultimately
+used if the service is injected into another service.
+
+For instance, in psuedo-code
+
+    public class ConnectionFactoryService implements Service<ConnectionFactory> {
+
+      public start(...) {
+        this.factory = new ConnectionFactory();
+        this.factory.setSomething( getSomeInjectedValue() )
+        this.factory.start();
+      }
+
+      public getValue() {
+        return this.factory;
+      }
+
+      public stop(...) {
+        this.factory.shutdown();
+        this.factory = null;
+      }
+    }
+
+If the `ConnectionFactoryService` is used as an injected-value, `getValue()` will
+be called, and the underlying `ConnectionFactory` is what will actually be injected.
+
+### Lifecycle
+
+Each service must implement `start(StartContext context)` and `stop(StopContext context)`.
+In the `start(..)` method, the context is used to report completion, and may be used to
+signal an asynchronous start for slow-starting services.  The `StartContext` also
+provides facilities for executing a `Runnable` task to perform the async start.
+
+### Injection
+
+Unlike JBoss-MC, where injection used Java reflection, MSC uses the idea of an
+[Injector](https://github.com/jbossas/jboss-msc/blob/master/src/main/java/org/jboss/msc/inject/Injector.java).
+
+An `Injector` is a bucket that is handed to MSC to fill with the injected value.  A common
+pattern is to use the concrete class of `InjectedValue<T>`.  Typically name the method
+as `getFooInjector()`.  Here we inject a `FactoryFinder` into our service, storing
+it in an `InjectedValue<FactoryFinder>`.
+
+
+    public class ConnectionFactoryService implements Service<ConnectionFactory> {
+      
+      public Injector<FactoryFinder> getFactoryFinderInjector() {
+        return this.factoryFinderInjector;
+      }
+
+      public start(...) {
+        this.factory = this.factoryFinderInjector.getValue().findMyConnectionFactoryPlease();
+        this.factory.setSomething( getSomeInjectedValue() ) 
+        this.factory.start();
+      }
+    
+      public getValue() {
+        return this.factory;
+      }
+
+      public stop(...) {
+        this.factory.shutdown();
+        this.factory = null;
+      }
+
+      private InjectedValue<FactoryFinder> factoryFinderInjector = new InjectedValue<FactoryFinder>();
+    }
+
+Instead of using an `InjectedValue<T>` bucket to hold the value, you certainly
+may use an anonymous implementation class of the `Injector<T>` interface to directly
+insert the injected value into some location.
+
+All injections will occur before `start(...)` will be called.
+
+### Setting up services
+
+Most services are set up during deployment of an artifact, by implementations
+of `DeploymentUnitProcessors`.  During deployment, you can get ahold of a
+[ServiceTarget](https://github.com/jbossas/jboss-msc/blob/master/src/main/java/org/jboss/msc/service/ServiceTarget.java).
+
+When installing a new service, you actually instantiate the service object,
+and add it to the registery with a unique `ServiceName`.  You can describe
+its dependencies and injections, and then install it.
+
+    ServiceRegistry target = phaseContext.getServiceTarget()
+
+    Foo foo = new Foo();
+    FooService service = new FooService( foo );
+    ServiceName serviceName = FooServices.someService( "name" );
+
+    target.addService( serviceName, service )
+      .addDependency( BarServices.WEB_SERVER )
+      .addDependency( FooServices.anotherService( "name" ), AnotherService.class, service.getAnotherServiceInjector() )
+      .setInitialMode( Mode.PASSIVE )
+      .install();
+
+This code instantiates an actual `Foo`, wraps it in a `FooService` which implements
+`Service<Foo>` and adds it to the `ServiceTarget`.
+
+It then adds a dependency upon another service (`BarServices.WEB_SERVER` is a `ServiceName`),
+while injecting a second sevice through an `Injector<AnotherService>`.
+
+#### ServiceName and FooServices
+
+Every service is identified through a `ServiceName`, which is composable/hierarchic.
+
+Each extension may provide a `FooServices` class that defines any ServiceName constants
+used to compose names, and helper static methods to create names.
+
+For instance, to create unique `ServiceNames` to register ruby runtime pools, we
+build the name off the application's own `ServiceName`, plus the name of the pool.
+
+    ServiceName poolName = unit.getServiceName().append( 'torquebox', 'pools', poolName );
+
+Or more easily wrap it in a helper on `CoreServices`
+
+    public static final ServiceName TORQUEBOX = ServiceName.of( "torquebox" );
+    public static final ServiceName POOLS = TORQUEBOX.append( "pools" );
+
+    public static ServiceName rubyRuntimePool(DeploymentUnit unit, String poolName) {
+        return unit.getServiceName().append( POOLS ).append( poolName );
+    }
+     
+Now, to add a dependency/injection on the application's "messaging" pool, simply do
+something akin to
+
+    target.addService( serviceName, service )
+      .addDependency( CoreService.rubyRuntimePool( unit, "messaging" ), RubyRuntimePool.class, service.getRubyRuntimePoolInjector() )
+      .install();
+
+## DeploymentUnitProcessors
+
+`DeploymentUnitProcessors` are the new deployers.
+
+They implement two methods: `deploy(..)` and `undeploy(..)`.
+
+### deploy(...)
+
+    public void deploy(DeploymentPhaseContext phaseContext) throws DeploymentUnitProcessingException {
+        DeploymentUnit unit         = phaseContext.getDeploymentUnit();
+        ResourceRoot   resourceRoot = unit.getAttachment( Attachments.DEPLOYMENT_ROOT );
+        VirtualFile    root         = resourceRoot.getRoot();
+
+        # do work
+    }
+
+### Attachments
+
+You still attach things to the `DeploymentUnit` to carry them between deployers.  The key, though,
+is a plural-safe unique identifier, not a string or a class.
+
+Attachable things should define an `ATTACHMENT_KEY` if only one can be attached under that key,
+or `ATTACHMENTS_KEY` if multiple may be attached.
+
+Single attachment keys are created on the attachable class such as:
+
+    public static final AttachmentKey<RackApplicationMetaData> ATTACHMENT_KEY = AttachmentKey.create(RackApplicationMetaData.class);
+
+Plural or list attachment keys are created like:
+
+    public static final AttachmentKey<AttachmentList<PoolMetaData>> ATTACHMENTS_KEY = AttachmentKey.createList(PoolMetaData.class);
+
+
+### Unit markers
+
+FooMarker.mark, isMarked(...)
+
 
 # Testing
 
