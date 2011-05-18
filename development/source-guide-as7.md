@@ -441,6 +441,12 @@ something akin to
 
 They implement two methods: `deploy(..)` and `undeploy(..)`.
 
+*Note*: All DeploymentUnitProcessors get called for every
+ deployment. This means you need to check for the existence of the
+ appropriate attachment (RubyApplicationMetaData,
+ RackApplicationMetaData, etc) before writing code that uses those
+ attachments.
+
 ### deploy(...)
 
     public void deploy(DeploymentPhaseContext phaseContext) throws DeploymentUnitProcessingException {
