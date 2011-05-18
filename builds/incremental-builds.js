@@ -96,12 +96,12 @@ renderer = {
     binary_column = $( '.build-summary.build-' + build.number ).find( 'td.binary' );
     ul = $( '<ul/>' );
 
-    dist_bin_artifact = self.locate_artifact(build, 'dist/target/torquebox-dist-bin.zip' );
+    dist_bin_artifact = self.locate_artifact(build, 'build/dist/target/torquebox-dist-bin.zip' );
     if ( dist_bin_artifact ) {
       ul.append( $( '<li><a href="/builds/' +  build.number + '/torquebox-dist-bin.zip">Binary ZIP</a></li>' ) );
     }
 
-    gem_repo_artifact = self.locate_artifact(build, 'assemblage/assembly/target/stage/gem-repo/simple-index' );
+    gem_repo_artifact = self.locate_artifact(build, 'build/assembly/target/stage/gem-repo/simple-index' );
     if ( gem_repo_artifact ) {
       ul.append( $( '<li><a href="http://rubygems.torquebox.org/' +  build.number + '/">Gems Repository</a></li>' ) );
     }
