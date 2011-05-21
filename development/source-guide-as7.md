@@ -248,7 +248,6 @@ of the action-to-take that was registered in `FooExtension` above.
     address.protect();
 
     list.add(FooSubsystemAdd.createOperation(address));
-    list.add(InjectableHandlerAdd.createOperation(address, FooExtension.SUBSYSTEM_NAME, Module.getCallerModule().getIdentifier().getName() ) );
 
 This code is responsible, I think, for converting the XML DOM-like model from
 `standalone.xml` into operations that should be fired.  When our module
@@ -256,8 +255,14 @@ is handed the parsing responsibility, we know we've seen a `<subsystem>`
 tag matching our subsystem, so we should add our start-up action
 the the list-of-operations to be done.
 
-The 6 lines above basically tell the AS we want our `FooSubsystemAdd`
+The 4 lines above basically tell the AS we want our `FooSubsystemAdd`
 class to be fired.
+
+If your subsystem provides injection-support through an `InjectableHandler`
+this is also the location to inform the injection-subsystem that your
+extension would like to participate:
+
+    list.add(InjectableHandlerAdd.createOperation(address, FooExtension.SUBSYSTEM_NAME, Module.getCallerModule().getIdentifier().getName() ) );
 
 #### Namespace.java
 
