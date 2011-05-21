@@ -55,6 +55,9 @@ for you fearless early-adopter types.  Yeah, **you**.
 The plan is to release 2.0.0 when we reach parity with 1.x, but based on
 JBoss AS7.
 
+The team would like to thank David Lloyd, Stuart Douglas, Jason Greene and
+Anil Saldhana for their assistance during our transition to AS7. 
+
 Exciting times ahead.  And these are the guys who are bringing it to you:
 
 <a href="http://www.flickr.com/photos/goldmann/5727002430/" title="Untitled by Marek Goldmann, on Flickr"><img src="http://farm2.static.flickr.com/1430/5727002430_8928e06bbf.jpg" width="500" height="333" alt=""></a>
