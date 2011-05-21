@@ -43,12 +43,12 @@ application.  It also means that we have more opportunities for concurrency,
 so you don't have to wait for several Ruby runtime pools to boot up
 sequentially.
 
-It means you can run you application (for some values of "application") in
-under 100MB.  It means the distribution is now under 100MB.
+It means you can run you application (for some values of "run" and "application") in
+under 100MB of RAM.  It means the distribution is now under 100MB.
 
-The team has worked awesomely in the past week, and as of today, all of
+The team has worked awesomely over the past two weeks, and as of today, all of
 our integration tests from TorqueBox 1.0 pass on the new [AS7-based TorqueBox 2.0 branch][as7branch]
-in Ruby 1.8 mode.  We've still got some more to do, but we definitely
+in Ruby 1.8 and 1.9 modes.  We've still got some more to do, but we definitely
 hope to start producing incremental builds and releases in short order,
 for you fearless early-adopter types.  Yeah, **you**.
 
