@@ -1,5 +1,4 @@
 
 RewriteEngine on
 
-RewriteRule ^.*$    https://torquebox.ci.cloudbees.com//job/jboss-as7/lastSuccessfulBuild/artifact/.repository/$1
-
+RewriteRule ^(.*)$    https://torquebox.ci.cloudbees.com//job/jboss-as7/lastSuccessfulBuild/artifact/.repository/$1 [R]
