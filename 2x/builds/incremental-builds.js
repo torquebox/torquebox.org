@@ -197,7 +197,7 @@ renderer = {
   },
 
   build_sha1: function(build) {
-    if ( build.actions && build.actions.length >= 2 ) {
+    if ( build.actions && build.actions.length >= 2 && build.actions[1].lastBuiltRevision ) {
       return build.actions[1].lastBuiltRevision.SHA1;
     }
     return null;
