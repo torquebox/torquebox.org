@@ -1,3 +1,5 @@
+- version: 1.0.1
+  jira_version: 12316420
 - version: 1.0.0
   jira_version: 12313638
 - version: 1.0.0.CR2

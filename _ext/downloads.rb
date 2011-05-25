@@ -32,7 +32,7 @@ class Downloads
       v = Versionomy.parse( release.version, FORMAT )
 
       case ( v )
-        when ( v('1.0.0.CR1')..('1.0.0') )
+        when ( v('1.0.0.CR1')..('1.0.1') )
           all_releases(v, release)
           release.urls.dist_zip = "#{REPO_PREFIX}/torquebox-dist/#{release.version}/torquebox-dist-#{release.version}-bin.zip"
       end
