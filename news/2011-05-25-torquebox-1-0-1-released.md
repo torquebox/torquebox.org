@@ -12,7 +12,7 @@ tags: [ releases ]
 [epubdocs]: http://repository-torquebox.forge.cloudbees.com/release/org/torquebox/torquebox-docs-en_US/1.0.1/torquebox-docs-en_US-1.0.1.epub
 [features]: /features/
 [externaljms]: /documentation/1.0.1/messaging.html#d0e2092
-[pete]: http://twitter.com/#!/peteroyle
+[pete]: http://screamingcoder.com/
 [upstart]: http://upstart.ubuntu.com/
 [upstarttasks]: /documentation/1.0.1/installation.html#running-torquebox
 
