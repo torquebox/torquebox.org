@@ -38,6 +38,7 @@ select the **local** profile.
 
 After each pre-flight build, you will need to reset the release repository:
 
+    git push release :1.0.2
     git push release master -f
     
 When you are happy with the pre-flight build (in other words, it completes successfully), 
