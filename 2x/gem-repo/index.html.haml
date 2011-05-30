@@ -1,14 +1,16 @@
 ---
 title: RubyGems Repo
-layout: default
+layout: gems
 ---
 
 %script{:type=>'text/javascript', :src=>'/javascripts/jquery.js' }
 %script{:type=>'text/javascript', :src=>'/2x/gem-repo/gem-repo.js'}
 
-%h2#build_header
-  Build 
-
 %table#gems
   %tr
-    %th Gems
+    %th Available Gems
+
+:javascript
+  $(document).ready( function() {
+    $('#repo-url').text( window.location.href );
+  });

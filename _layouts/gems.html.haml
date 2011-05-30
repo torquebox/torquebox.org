@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+#right-sidebar
+  #main-column
+    .body
+      %h1#build_header
+        Build
+      %p
+        This URL represents a valid RubyGems repository for use by 
+        the <code>gem</code> command in association with 
+        <a href="/2x/builds">incremental pre-release builds</a>
+        of TorqueBox.
+
+      %p
+        Official releases of these gems may be found at the official RubyGems repository.
+
+      %p
+        The most common case for using this repository is if you're using an unreleased incremental 
+        build of TorqueBox and require a matching gemset. In that case, simply add the following 
+        source to your RubyGem or Bundler-based project: 
+
+      %pre#repo-url
+
+      %p
+        <b>Don't forget!</b> If attempting to use pre-release gems (Alpha, Beta, CR) with the 
+        <code>gem</code> commandline too, you will need to add <code>--pre</code> to your invocations.
+
+      %p
+        Advanced cases, where you would like to pin the repository against a particular CI build number, 
+        select the correct gem-repository from the 
+        <a href="/2x/builds">incremental builds page</a>
+
+      %p
+        Using build-number based repositories is dependent upon the active builds maintained 
+        by our continuous integration system. 
+  
+  #sidebar-column
+    ~ content
+
+:javascript
+

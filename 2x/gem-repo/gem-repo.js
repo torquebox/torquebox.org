@@ -1,12 +1,10 @@
 
 $(document).ready(function() {
   var handle_job_jsonp = function(data) {
-    //console.debug( data );
     $( '#build_header' ).text( "Build " + data.number ); 
     var gem_regexp = new RegExp( '^(.*).gem$' );
     $.each( data.artifacts, function(i, artifact) {
       if ( gem_regexp.exec( artifact.fileName ) ) {
-        console.debug( artifact );
         $( '#gems' ).append( 
           $( '<tr/>' ).append( 
             $( '<td/>' ).append(
@@ -21,7 +19,6 @@ $(document).ready(function() {
   };
 
   regexp = new RegExp( "^/2x/gem-repo/([0-9]+)/?$" );
-  console.debug( window.location );
 
   match = regexp.exec( window.location.pathname );
 
@@ -30,9 +27,6 @@ $(document).ready(function() {
     effective_version = match[1];
   }
 
-  console.debug( "Effective: " + effective_version );
-
-  
   $.ajax( { 
     url: 'https://torquebox.ci.cloudbees.com/job/torquebox-2x/label=m1.large,ruby_compat_version=1.8/' + effective_version + '/api/json?depth=1',
     jsonp: 'jsonp',
