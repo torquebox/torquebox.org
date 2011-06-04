@@ -2,28 +2,51 @@
 #header-quick-links
   .title
     Download
-  .stable.section
-    .section-title
-      Latest Stable
-    .download-latest-stable-dist
-      %a{:href=>site.releases.first.urls.dist_zip} 
-        #{site.releases.first.version} (#{site.releases.first.dist_size}mb ZIP)
-    .download-latest-stable-docs
-      %a{:href=>site.releases.first.urls.docs.pdf}
-        PDF
-      |
-      %a{:href=>'/documentation/current'}
-        HTML
-  .development.section
-    .section-title
-      Incremental
-    .download-latest-dev-dist
-      %a{:href=>'/builds/LATEST/torquebox-dist-bin.zip'}
-        Latest incremental build (ZIP)
-    .download-latest-dev-docs
-      %a{:href=>'/documentation/LATEST/torquebox-doc.pdf'}
-        PDF
-      |
-      %a{:href=>'/documentation/LATEST/'}
-        HTML
+
+  %table.downloads
+    %tr.stable
+      %th
+        #{site.releases.first.version} Stable
+      %td
+        #{site.releases.first.dist_size}mb
+      %td
+        %a{:href=>site.releases.first.urls.dist_zip} 
+          ZIP
+        |
+        %a{:href=>site.releases.first.urls.docs.pdf}
+          PDF
+        |
+        %a{:href=>'/documentation/current'}
+          HTML
+    %tr.incremental
+      %th
+        %a{:href=>'/1x/builds'}
+          1.x Incremental
+      %td
+        &nbsp;
+      %td
+        %a{:href=>'/builds/LATEST/torquebox-dist-bin.zip'}
+          ZIP
+        |
+        %a{:href=>'/documentation/LATEST/torquebox-doc.pdf'}
+          PDF
+        |
+        %a{:href=>'/documentation/LATEST/'}
+          HTML
+    %tr.incremental
+      %th
+        %a{:href=>'/2x/builds'}
+          2.x Incremental
+      %td
+        &nbsp;
+      %td
+        %a{:href=>'/2x/builds/torquebox-dist-bin.zip'}
+          ZIP
+        |
+        %a{:href=>'/2x/builds/torquebox-docs.pdf'}
+          PDF
+        |
+        %a{:href=>'/2x/builds/html-docs/'}
+          HTML
+
 

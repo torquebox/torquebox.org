@@ -91,41 +91,25 @@ renderer = {
   populate_artifacts: function(build) {
     var self = this;
 
+    if ( build.result != 'SUCCESS' ) {
+      return;
+    }
+
     //Binary
 
     binary_column = $( '.build-summary.build-' + build.number ).find( 'td.binary' );
     ul = $( '<ul/>' );
-
-    dist_bin_artifact = self.locate_artifact(build, 'dist/target/torquebox-dist-bin.zip' );
-    if ( dist_bin_artifact ) {
-      ul.append( $( '<li><a href="/2x/builds/' +  build.number + '/torquebox-dist-bin.zip">Binary ZIP</a></li>' ) );
-    }
-
-    gem_repo_artifact = self.locate_artifact(build, 'build/assembly/target/stage/gem-repo/specs.4.8' );
-    if ( gem_repo_artifact ) {
-      ul.append( $( '<li><a href="/2x/gem-repo/' +  build.number + '/">Gems Repository</a></li>' ) );
-    }
+    ul.append( $( '<li><a href="/2x/builds/' + build.number + '/torquebox-dist-bin.zip">Binary ZIP</a></li>' ) );
+    ul.append( $( '<li><a href="/2x/builds/' + build.number + '/gem-repo/">Gems Repository</a></li>' ) );
     binary_column.append( ul );
 
-
     // Docs
+
     docs_column = $( '.build-summary..build-' + build.number ).find( 'td.docs' );
     ul = $( '<ul/>' );
-
-    html_doc_artifact = self.locate_artifact(build, 'docs/en-US/target/docbook/publish/en-US/xhtml/index.html' );
-    if ( html_doc_artifact ) {
-      ul.append( $( '<li><a href="' + build.url + '/artifact/' + html_doc_artifact.relativePath + '">HTML</a></li>' ) );
-    }
-
-    pdf_doc_artifact = self.locate_artifact(build, 'docs/en-US/target/docbook/publish/en-US/pdf/torquebox-docs-en_US.pdf' );
-    if ( pdf_doc_artifact ) {
-      ul.append( $( '<li><a href="' + build.url + '/artifact/' + pdf_doc_artifact.relativePath + '">PDF</a></li>' ) );
-    }
-
-    epub_doc_artifact = self.locate_artifact(build, '.repository/org/torquebox/torquebox-docs-en_US/.*/torquebox-docs-en_US-.*\.epub' );
-    if ( epub_doc_artifact ) {
-      ul.append( $( '<li><a href="' + build.url + '/artifact/' + epub_doc_artifact.relativePath + '">ePub</a></li>' ) );
-    }
+    ul.append( $( '<li><a href="/2x/builds/' + build.number + '/html-docs/">Browse HTML</a></li>' ) );
+    ul.append( $( '<li><a href="/2x/builds/' + build.number + '/torquebox-docs.pdf">PDF</a></li>' ) );
+    ul.append( $( '<li><a href="/2x/builds/' + build.number + '/torquebox-docs.epub">ePub</a></li>' ) );
     docs_column.append( ul );
 
   },
@@ -224,7 +208,7 @@ renderer = {
 
 };
 
-j = new Jenkins( renderer, 'http://torquebox.ci.cloudbees.com', 'torquebox-2x', [
+j = new Jenkins( renderer, 'http://torquebox.ci.cloudbees.com', 'torquebox-2x-incremental', [
                    [ 'label=m1.large,ruby_compat_version=1.8', '1_8' ],
                    [ 'label=m1.large,ruby_compat_version=1.9', '1_9' ],
                  ] );

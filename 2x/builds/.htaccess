@@ -1,8 +1,17 @@
 
 RewriteEngine on
 
-RewriteRule ^([0-9]+)/torquebox-dist-bin.zip$   https://torquebox.ci.cloudbees.com/job/torquebox-2x/label=m1.large,ruby_compat_version=1.8/$1/artifact/build/dist/target/torquebox-dist-bin.zip [P]
-RewriteRule ^(LATEST/)?torquebox-dist-bin.zip$     https://torquebox.ci.cloudbees.com/job/torquebox-2x/label=m1.large,ruby_compat_version=1.8/lastSuccessfulBuild/artifact/build/dist/target/torquebox-dist-bin.zip [P]
+RewriteRule ^([0-9]+)/html-docs$                    $1/html-docs/ [R,L]
+RewriteRule ^([0-9]+)/html-docs/$                   http://repository-torquebox.forge.cloudbees.com/incremental/$1/html-docs/index.html [P]
+RewriteRule ^([0-9]+)/(.*)$                         http://repository-torquebox.forge.cloudbees.com/incremental/$1/$2 [P]
+
+RewriteRule ^(LATEST/)?html-docs$                    http://torquebox.local/2x/builds/$1html-docs/ [R,L]
+RewriteRule ^(LATEST/)?html-docs/$                   http://repository-torquebox.forge.cloudbees.com/incremental/LATEST/html-docs/index.html [P]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(LATEST/)?(.*)$                        http://repository-torquebox.forge.cloudbees.com/incremental/LATEST/$2 [P]
+
 
 SetEnvIfNoCase Request_URI torquebox-dist-bin\.zip$ torquebox-latest
 Header set Content-Disposition \

@@ -841,13 +841,12 @@ form {
     font-weight: bold;
     color: $header_color - #222;
   }
-  .section-title {
-    font-weight: bold;
-    border-bottom: 1px solid $bar_background_color - #333;
-  }
-  .stable, .development {
-    float: left;
-    margin-right: 2em;
+  table {
+    margin: 0px;
+    padding: 0px;
+    th, td {
+      border: none;
+    }
   }
 }
 
