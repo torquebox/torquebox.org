@@ -15,11 +15,11 @@ tags: [ infinispan ]
 [Infinispan][infinispan] is a highly-scalable, distributed data grid that ships
 with JBoss AS.  Since it's built into the AS, TorqueBox already puts it to good
 use for session storage and [ActiveSupport caching][torquebox-cache].  The
-infinispan-ruby-client gem takes things a step further, providing ruby access
+`infinispan-ruby-client` gem takes things a step further, providing ruby access
 to a remote Infinispan data grid utilizing the Hot Rod binary protocol.
 
 As a bonus, it's straight-up Ruby. Unlike a lot of what we produce, the
-infnispan-ruby-client does not require JRuby, TorqueBox, or any other
+`infnispan-ruby-client` does not require JRuby, TorqueBox, or any other
 Java-related technology.  Just install the gem and go.
 
 # Installation
@@ -61,5 +61,5 @@ This is a first release.  There is still plenty to do.  Here are some items on t
 * Support for transactions
 
 If you end up trying out the gem or using it in any way, really, we'd love to hear from you.
-You can almost always find us hanging out in #torquebox on chat.freenode.net.
+You can almost always find us hanging out in #torquebox on irc.freenode.net.
 
