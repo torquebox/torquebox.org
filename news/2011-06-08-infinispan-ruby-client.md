@@ -39,16 +39,16 @@ started, [download] Infinispan and run the server.
 2) Then write some code
 
     require 'infinispan-ruby-client'
-    cache = Infinispan::RemoteCache.new => #<Infinispan::RemoteCache:0x100365a78 @name="", @host="localhost", @port=11222> 
+    cache = Infinispan::RemoteCache.new 
 
     # Store and retrieve a string
-    cache.put("Name", "Lance") => true 
-    cache.get("Name") => "Lance" 
+    cache.put("Name", "Lance") 
+    cache.get("Name") # returns "Lance" 
 
     # Store and retrieve a ruby object
-    cache.put("Time", Time.now) => true
-    time = cache.get("Time") => Tue Jun 07 17:45:17 -0400 2011
-    time.class => Time
+    cache.put("Time", Time.now) 
+    time = cache.get("Time") 
+    time.class # returns Time
 
 
 # What's next?
