@@ -19,7 +19,7 @@ use for session storage and [ActiveSupport caching][torquebox-cache].  The
 to a remote Infinispan data grid utilizing the Hot Rod binary protocol.
 
 As a bonus, it's straight-up Ruby. Unlike a lot of what we produce, the
-`infnispan-ruby-client` does not require JRuby, TorqueBox, or any other
+`infinispan-ruby-client` does not require JRuby, TorqueBox, or any other
 Java-related technology.  Just install the gem and go.
 
 # Installation
