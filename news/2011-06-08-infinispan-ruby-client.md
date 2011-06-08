@@ -53,7 +53,7 @@ started, [download] Infinispan and run the server.
 
 # What's next?
 
-This is a first release.  There is still plenty to do.  Here are some items on the list.
+This is a first release.  There is still plenty to do, including:
 
 * Support cache names so the client can connect to something other than the default cache.
 * Provide an operation to expose various server statistcs as reported by hotrod.
