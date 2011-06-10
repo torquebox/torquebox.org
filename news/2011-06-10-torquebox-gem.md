@@ -2,6 +2,7 @@
 title: 'Install TorqueBox 2.x as a Gem'
 author: Ben Browning
 layout: news
+timestamp: 2011-06-10t12:45:00.0-04:00
 tags: [ installation gems rvm ]
 ---
 
@@ -11,10 +12,12 @@ tags: [ installation gems rvm ]
 
 We tried to make TorqueBox 1.x as easy to install as possible but it
 still involved downloading and unzipping an archive and setting some
-environment variables. And, if you wanted to use an existing JRuby
-with TorqueBox 1.x, it required even more steps. Don't you think it
-would be so much easier if there was one `gem install` command to
-install everything? We sure do!
+environment variables. If you wanted to use TorqueBox 1.x with RVM or
+an existing JRuby installation, it required even more steps. Don't you
+think it would be so much easier if there was one `gem install`
+command to install everything?
+
+We thought so, too!
 
 
 # gem install torquebox-server
@@ -100,8 +103,8 @@ Use `ctrl-c` to kill the server. Then let's undeploy our application:
 I mentioned it above but it's worth pointing out again. Installing
 TorqueBox as a gem means you no longer need special instructions to
 run [TorqueBox under RVM][tb_rvm]. No matter how you installed your
-JRuby the same gem install command should work and if you'll notice I
-used RVM in all my examples above.
+JRuby the same gem install command should work; in fact, I used RVM in
+all my examples above.
 
 
 # Remember, These Are Incremental Builds
