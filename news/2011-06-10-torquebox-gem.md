@@ -12,9 +12,9 @@ tags: [ installation gems rvm ]
 We tried to make TorqueBox 1.x as easy to install as possible but it
 still involved downloading and unzipping an archive and setting some
 environment variables. And, if you wanted to use an existing JRuby
-with TorqueBox 1.x, it required even more steps. Don't you think it be
-so much easier if there was one `gem install` command to install
-everything? We sure do!
+with TorqueBox 1.x, it required even more steps. Don't you think it
+would be so much easier if there was one `gem install` command to
+install everything? We sure do!
 
 
 # gem install torquebox-server
