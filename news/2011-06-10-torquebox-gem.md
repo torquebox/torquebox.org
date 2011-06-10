@@ -1,5 +1,5 @@
 ---
-title: 'TorqueBox 2.x Installable as a Gem'
+title: 'Install TorqueBox 2.x as a Gem'
 author: Ben Browning
 layout: news
 tags: [ installation gems rvm ]
@@ -9,26 +9,30 @@ tags: [ installation gems rvm ]
 [tb_rvm]: /news/2011/02/25/using-rvm-with-torquebox/
 [community]: /community/
 
-# TorqueBox 2.x
+We tried to make TorqueBox 1.x as easy to install as possible but it
+still involved downloading and unzipping an archive and setting some
+environment variables. And, if you wanted to use an existing JRuby
+with TorqueBox 1.x, it required even more steps. Don't you think it be
+so much easier if there was one `gem install` command to install
+everything? We sure do!
 
-If you don't hang out in IRC or on our mailing lists, you may not know
-that we've been hard at work on a TorqueBox 2.x release based off of
-JBoss AS7 instead of the JBoss AS6 used for our 1.x releases. AS7 is
-substantially smaller and faster than AS6 which means TorqueBox 2.x
-builds are half the download size of 1.x and boot much faster.
 
 # gem install torquebox-server
 
-Because TorqueBox 2.x is smaller and lighter, you can now install it
-as a gem. We haven't made any official releases of the 2.x series yet
-so for now you'll need to grab the gem off our gem repository instead
-of rubygems.org with a command like below:
+    $ gem install torquebox-server --pre \
+      --source http://torquebox.org/2x/builds/LATEST/gem-repo/
 
-    $ gem install torquebox-server --pre --source http://torquebox.org/2x/builds/LATEST/gem-repo/
+That one command installs TorqueBox 2.x. This isn't a crippled
+web-only clone of TorqueBox, this is the entire TorqueBox application
+server installed as a gem! No environment variables, no symlinks, no
+special cases for RVM. All you need is an existing JRuby 1.6.1 or
+higher interpreter.
 
-This will install the latest successful incremental build from our CI
-server. Check out our [2.x Incremental Builds][2x-builds] page for
-details on the most recent incremental builds.
+Once we put out an official 2.x release you'll be able to drop the
+`--source` and `--pre` arguments from the command. Until then, the
+command above installs the latest successful incremental build from
+our CI server. Check out our [2.x Incremental Builds][2x-builds] page
+for details on the most recent incremental builds.
 
 If all goes well you should see sample output like below:
 
@@ -52,17 +56,18 @@ If all goes well you should see sample output like below:
     Successfully installed torquebox-server-2.x.incremental.107-java
     9 gems installed
 
+
 # Deploy and Run Your Application
 
 After installation you have a new `torquebox` command available
 
       $ torquebox
       Tasks:
-        torquebox cli            # Run the JBoss AS7 CLI
         torquebox deploy ROOT    # Deploy an application to TorqueBox
-        torquebox help [TASK]    # Describe available tasks or one specific task
-        torquebox run            # Run TorqueBox
         torquebox undeploy ROOT  # Undeploy an application from TorqueBox
+        torquebox run            # Run TorqueBox
+        torquebox cli            # Run the JBoss AS7 CLI
+        torquebox help [TASK]    # Describe available tasks or one specific task
 
 Let's deploy a Sinatra application:
 
@@ -92,10 +97,12 @@ Use `ctrl-c` to kill the server. Then let's undeploy our application:
 
 # First-Class RVM Support
 
-Installing TorqueBox as a gem means you no longer need special
-instructions to run [TorqueBox under RVM][tb_rvm]. No matter how you
-installed your JRuby the same gem install command should work and if
-you'll notice I used RVM in all my examples above.
+I mentioned it above but it's worth pointing out again. Installing
+TorqueBox as a gem means you no longer need special instructions to
+run [TorqueBox under RVM][tb_rvm]. No matter how you installed your
+JRuby the same gem install command should work and if you'll notice I
+used RVM in all my examples above.
+
 
 # Remember, These Are Incremental Builds
 
@@ -105,3 +112,10 @@ it's fairly stable, you may run into bugs and hurdles not present in
 our 1.x releases. As always if you run into any issues join us in [IRC
 or on the mailing lists][community] and we'll help get things sorted
 out.
+
+
+# Stay Tuned for More on 2.x
+
+A simplified installation is only one of the many great new things
+about TorqueBox 2.x. We'll talk more over the coming weeks about
+TorqueBox 2.x and JBoss AS7 as we march towards our first 2.x release.
