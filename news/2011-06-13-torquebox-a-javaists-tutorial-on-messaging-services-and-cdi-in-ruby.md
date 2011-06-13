@@ -3,7 +3,7 @@ title: "TorqueBox: A Javaist's Tutorial on Messaging, Services and CDI in Ruby"
 author: Marek Goldmann
 layout: news
 tags: [ cdi, tutorial, confitura, messaging, jms ]
-timestamp: 2011-06-13t18:30:00.10+02:00 
+timestamp: 2011-06-13t21:10:00.10+02:00 
 ---
 
 After my presentation at [Confitura 2011](http://confitura.pl), I decided to write a tutorial describing the details of my demo. Please remember that this was a Java conference, so we'll look at TorqueBox from a Java developer point of view.
