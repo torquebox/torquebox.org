@@ -110,6 +110,10 @@ renderer = {
     ul.append( $( '<li><a href="/2x/builds/' + build.number + '/html-docs/">Browse HTML</a></li>' ) );
     ul.append( $( '<li><a href="/2x/builds/' + build.number + '/torquebox-docs.pdf">PDF</a></li>' ) );
     ul.append( $( '<li><a href="/2x/builds/' + build.number + '/torquebox-docs.epub">ePub</a></li>' ) );
+    if (build.number > 135) {
+      ul.append( $( '<li><a href="/2x/builds/' + build.number + '/javadocs/">Java API Docs</a></li>' ) );
+      ul.append( $( '<li><a href="/2x/builds/' + build.number + '/yardocs/">Gem RDocs</a></li>' ) );
+    }
     docs_column.append( ul );
 
   },
