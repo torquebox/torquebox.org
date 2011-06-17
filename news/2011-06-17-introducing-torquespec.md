@@ -130,8 +130,7 @@ valid Twitter credentials in order to run successfully:
     $ USERNAME=username PASSWORD=password rspec spec
 
 Note that the web app has a Rakefile but the service does not, and I'm
-just lazy enough to not add one.  This test should run a good bit
-faster, unless you gave it bad credentials, which might make it hang.
+just lazy enough to not add one.
 
 Ok, that's it.  We're done!  You installed TorqueBox.  You installed
 an app.  You ran tests that deployed your *REAL APP* and then
