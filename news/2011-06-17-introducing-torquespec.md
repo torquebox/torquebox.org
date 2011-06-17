@@ -81,16 +81,11 @@ please.
 
 # Alright you Sinners... Swing!
 
-I'll be using [rvm] for this, but I'm not gonna use any fancy-pants
-gemsets.  I'm just gonna blow away my entire jruby install and all its
-gems:
-
-    $ rvm --gems remove jruby
-
-And then I'm gonna re-install it:
+I'll be using [rvm] for this, so let's first initialize a new gemset:
 
     $ rvm install jruby
-    $ rvm use jruby
+    $ rvm gemset create torquespec
+    $ rvm jruby@torquespec
     $ gem install bundler
 
 Now I'm gonna check out my fork of Marek's demo:
