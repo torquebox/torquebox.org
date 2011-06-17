@@ -47,7 +47,14 @@ tests to be running in an actual TorqueBox "container", ideally on a
 changes are committed.
 
 TorqueSpec aims to make this easy and intuitive, especially if you're
-already familiar with [RSpec].
+already familiar with [RSpec] and [Capybara].  For example:
+
+    it "should retrieve tweets using a Capybara DSL" do
+      visit "/tweets"
+      page.should have_content( "Last 20 tweets" )
+      page.find("h1").text.should == "Tweets"
+      page.find("table")[:class].should be_nil
+    end
 
 # Oysters for the Walrus and Carpenter
 
@@ -124,13 +131,7 @@ valid Twitter credentials in order to run successfully:
 
 Note that the web app has a Rakefile but the service does not, and I'm
 just lazy enough to not add one.  This test should run a good bit
-faster, unless you gave it fake credentials, which might make it hang.
-
-*Unnecessary Aside:* The `tweetstream` gem uses `EventMachine`, which
-isn't very robust in the face of errors and could cause JBoss
-processes to hang until forcibly killed.  Hopefully, we'll have that
-figured out before we release 2.x, but to avoid hangs in your
-EventMachine-based app, validate the input you pass to it.
+faster, unless you gave it bad credentials, which might make it hang.
 
 Ok, that's it.  We're done!  You installed TorqueBox.  You installed
 an app.  You ran tests that deployed your *REAL APP* and then
@@ -162,7 +163,7 @@ Here are the gems I added:
 
 And here are the specs...
 
-## twitter/spec/basic_spec.rb
+## twitter/spec/basic\_spec.rb
 
 <script src='https://gist.github.com/1030828.js'></script>
 
@@ -182,7 +183,7 @@ A few things to note about it:
   block containing the `deploy` call.  This enables us to run both
   local and remote tests on a single deployment of our app.
 
-## twitter_service/spec/basic_spec.rb
+## twitter\_service/spec/basic\_spec.rb
 
 <script src='https://gist.github.com/1030856.js'></script>
 
@@ -219,9 +220,10 @@ which won't work well on a CI server.
 So Akephalos (get it? it's *headless*!) comes to our rescue.
 
 Note that all of the Capybara configuration happens within a
-`TorqueSpec.local` block.  This is because in-container tests will
-load this file, too, but the capybara and akephalos gems won't be
-available in the server's load path.
+`TorqueSpec.local` block, which means it only executes for the specs
+run outside of TorqueBox.  This is because in-container tests will
+load this file, too, but the capybara and akephalos gems won't
+necessarily be available in the server's runtime.
 
 # Testing From Within
 
