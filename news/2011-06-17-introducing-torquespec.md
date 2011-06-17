@@ -171,8 +171,8 @@ A few things to note about it:
   it with the way-cool [Capybara] DSL.
 - The `remote_describe` block will be run remotely, inside the
   TorqueBox runtime, therefore I can inject container-specific objects
-  into my test.  The commented injection of a CDI component will be
-  supported any minute now.
+  into my test.  This means **you can test your Java CDI components
+  with RSpec!**
 - The `remote_describe` block is nested within the local `describe`
   block containing the `deploy` call.  This enables us to run both
   local and remote tests on a single deployment of our app.
@@ -185,8 +185,8 @@ Some notes on it:
 
 - The top-level group is denoted by `remote_describe` so it runs
   entirely remotely.
-- The commented `inject_queue` call will be supported... um... real
-  soon now!
+- Injection is fully-supported in your examples, e.g. `inject_queue`,
+  as long as you `include TorqueBox::Injectors`.
 - String substitution is used in the deployment descriptor to pass the
   credentials via environment variables.
 - Any output, i.e. `puts "foo"`, won't display in your shell. Because
