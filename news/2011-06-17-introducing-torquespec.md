@@ -30,13 +30,14 @@ since we eat our own dogfood, of course, we use it to test TorqueBox
 itself.
 
 Rather than regurgitate here what's there, take a few minutes to read
-its aptly-named [README] file on github.  Basically, TorqueSpec
-handles all the JBoss lifecycle management and deployment.  All you
-have to do is tell TorqueSpec which apps to deploy prior to running
-your RSpec examples and whether you want the tests to run inside or
-outside of TorqueBox.  Running outside, i.e. poking at it with HTTP,
-is typical for end-to-end CI tests, but in-container testing can be
-very convenient at times.
+its aptly-named [README] file on github.  Go ahead.  I'll wait.
+
+Basically, TorqueSpec handles all the JBoss lifecycle management and
+deployment.  All you have to do is tell TorqueSpec which apps to
+deploy prior to running your RSpec examples and whether you want the
+tests to run inside or outside of TorqueBox.  Running outside,
+i.e. poking at it with HTTP, is typical for end-to-end CI tests, but
+in-container testing can be very convenient at times.
 
 As your apps evolve to take advantage of the built-in
 [features provided by TorqueBox](/features), e.g. messaging,
@@ -125,13 +126,22 @@ Note that the web app has a Rakefile but the service does not, and I'm
 just lazy enough to not add one.  This test should run a good bit
 faster, unless you gave it fake credentials, which might make it hang.
 
-*The `tweetstream` gem uses `EventMachine`, which isn't very robust in
-the face of errors and could cause JBoss processes to hang around.
-Kill 'em if you see 'em.  Hopefully, we'll have that figured out
-before we release 2.x.  To avoid hangs in your EventMachine app,
-validate the input you pass to it.*
+*Unnecessary Aside:* The `tweetstream` gem uses `EventMachine`, which
+isn't very robust in the face of errors and could cause JBoss
+processes to hang until forcibly killed.  Hopefully, we'll have that
+figured out before we release 2.x, but to avoid hangs in your
+EventMachine-based app, validate the input you pass to it.
+
+Ok, that's it.  We're done!  You installed TorqueBox.  You installed
+an app.  You ran tests that deployed your *REAL APP* and then
+interacted with it just like a *REAL USER* might.
+
+Pretty sweet, right?
 
 # Wait... What?
+
+Here's what we did in order to make the above work... assuming it did
+work for you, of course.  
 
 To the web app in the `twitter/` directory of the demo, I did three
 things:
