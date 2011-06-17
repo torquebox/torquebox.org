@@ -185,7 +185,7 @@ Some notes on it:
 
 - The top-level group is denoted by `remote_describe` so it runs
   entirely remotely.
-- Injection is fully-supported in your examples, e.g. `inject_queue`,
+- Injection is fully supported in your examples, e.g. `inject_queue`,
   as long as you `include TorqueBox::Injectors`.
 - String substitution is used in the deployment descriptor to pass the
   credentials via environment variables.
