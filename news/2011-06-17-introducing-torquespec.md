@@ -42,7 +42,7 @@ in-container testing can be very convenient at times.
 As your apps evolve to take advantage of the built-in
 [features provided by TorqueBox](/features), e.g. messaging,
 backgrounding, jobs, daemons, etc, it becomes more important for your
-tests to be running in an actual TorqueBox "container", ideally on a
+automated tests to involve an actual TorqueBox instance, ideally on a
 [dedicated CI server][bees], triggering end-to-end tests whenever
 changes are committed.
 
