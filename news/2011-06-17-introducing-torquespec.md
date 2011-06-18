@@ -17,6 +17,7 @@ tags: [ testing, rspec, torquespec, rvm, gems, tutorial ]
 [Capybara]:   https://github.com/jnicklas/capybara
 [Akephalos]:  https://github.com/bernerdschaefer/akephalos
 [quote]:      http://twitter.com/#!/bobmcwhirter/status/79417826041004032
+[fork]:       https://github.com/jcrossley/confitura-2011-torquebox-demo
 
 
 I think the time has come to talk of [TorqueSpec].  As its name
@@ -26,8 +27,7 @@ implies, it is the metaphorical mutant love-spawn of TorqueBox and
 Inspired by the most excellent Java testing tool, [Arquillian],
 TorqueSpec is a handy way to perform automated
 [Continuous Integration][ci] testing of your TorqueBox apps.  And
-since we eat our own dogfood, of course, we use it to test TorqueBox
-itself.
+since we eat our own dogfood, we even use it to test TorqueBox itself.
 
 Rather than regurgitate here what's there, take a few minutes to read
 its aptly-named [README] file on github.  Go ahead.  I'll wait.
@@ -88,7 +88,7 @@ I'll be using [rvm] for this, so let's first initialize a new gemset:
     $ rvm jruby@torquespec
     $ gem install bundler
 
-Now I'm gonna check out my fork of Marek's demo:
+Now I'm gonna check out [my fork][fork] of Marek's demo:
 
     $ git clone git@github.com:jcrossley/confitura-2011-torquebox-demo.git
 
