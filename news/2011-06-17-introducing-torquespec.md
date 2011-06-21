@@ -81,11 +81,12 @@ please.
 
 # Alright you Sinners... Swing!
 
-I'll be using [rvm] for this, so let's first initialize a new gemset:
+Make sure you're using a recent version of [rvm]. Also, it should
+install at least JRuby 1.6.2.  We'll use a gemset called 'torquespec'
+just to keep things clean:
 
     $ rvm install jruby
-    $ rvm gemset create torquespec
-    $ rvm jruby@torquespec
+    $ rvm --create jruby@torquespec
     $ gem install bundler
 
 Now I'm gonna check out [my fork][fork] of Marek's demo:
