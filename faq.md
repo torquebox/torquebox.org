@@ -29,14 +29,6 @@ right in the tin.
 no longer distribute Rack, Rails, and other gems.  You can simply grab them
 from RubyGems, of course.
 
-## Why is TorqueBox still in "beta"?
-
-TorqueBox is initially created by Bob McWhirter, the master of the perma-beta.
-
-Ultimately, the APIs are still shifting with each release, while we attempt
-to figure out the correct way to make the power of JBoss technologies available
-naturally to Rubyists.
-
 ## Will TorqueBox ever support {Python,Scala,Groovy,...}
 
 Not directly, no.
