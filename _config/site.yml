@@ -2,10 +2,6 @@
 #skin_dir: ../site-skin
 profiles:
   development:
-    base_url: http://localhost:4242
-    deploy:
-      host: localhost
-      path: /Users/mdobozy/Development/Code/torquebox.org/
   staging:
     base_url: http://staging.torquebox.org/
     deploy:
