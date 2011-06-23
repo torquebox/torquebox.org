@@ -54,7 +54,7 @@ of May.
 
 # Yay community!
 
-Community contributor Bruno Oliveira has started diving into our documentation to ensure it makes 
+Community contributor Bruno Oliveira (`abstractj`) has started diving into our documentation to ensure it makes 
 sense and adjusting it to the changes that AS7 and TorqueBox 2.x have brought.  Everyone hates writing
 docs, so we love having Bruno pitch in.
 
