@@ -63,6 +63,11 @@ about this once we've straightened out our strategy.  This is cool stuff.  Relat
 I (Bob) dropped the [Stomplet API](http://stilts.projectodd.org/stomplet/) and will be integrating
 it shortly.
 
+# What's up, doc?
+
+Speaking of documentation, Toby has linked up [YARD doc](http://torquebox.org/2x/builds/LATEST/yardocs/) creation for 
+our Ruby code (woefully under-documentated at this point), and we're exposed the [JavaDocs](http://torquebox.org/2x/builds/LATEST/javadocs/) 
+to our Java bits.
 
 # TorqueBox 2.x
 
