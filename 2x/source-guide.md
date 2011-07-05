@@ -31,9 +31,9 @@ GitHub repository:
 
 * [https://github.com/torquebox/torquebox](https://github.com/torquebox/torquebox)
 
-# Switch to the `as7` branch
+# Switch to the `2x-dev` branch
 
-    git checkout -b as7 origin/as7 -u
+    git checkout -b 2x-dev origin/2x-dev -u
 
 # Maven setup
 
@@ -45,10 +45,10 @@ The TorqueBox distribution includes a `settings.xml` that you may use directly
 from the commandline, or integrate into your personal `settings.xml`.
 
 In the checked-out source tree, it is located as
-`build-support/settings.xml`.  In GitHub you may find it
-[here](https://github.com/torquebox/torquebox/blob/master/build-support/settings.xml). To
+`support/settings.xml`.  In GitHub you may find it
+[here](https://github.com/torquebox/torquebox/blob/2x-dev/support/settings.xml). To
 use our `settings.xml` directly from the commandline, replace all
-`mvn` commands below with `mvn -s build-support/settings.xml`.
+`mvn` commands below with `mvn -s support/settings.xml`.
 
 You'll also need to give Maven extra memory for the build by setting
 the `MAVEN_OPTS` environment variable.
@@ -84,7 +84,7 @@ assembly by changing into the component's directory and invoking
 
 From the root of the source-tree, to perform a complete `clean`:
 
-    mvn clean -Pinteg,dist
+    mvn clean -Pfull
 
 Additionally, to begin from a nil state, you may desire to cleanse
 portions of your local Maven repository under `$HOME/.m2/repository/`.
@@ -127,22 +127,6 @@ handled as a traditional RubyGem.  These are kept under the
 
 Contains sub-projects for building the assembly (see above)
 and packaging it into a ZIP archive.
-
-### `clients/` **DEPRECATED**
-
-Code under `clients/` should move to an appropriate location
-under `gems/`
-
-### `system/` **DEPRECATED**
-
-Integrations with other systems, like rake and capistrano.
-
-Code under `system/` should move to an appropriate location
-under `gems/`
-
-### `assemblage/` **DEPRECATED**
-
-This should be removed once `build/assembly/` is fully correct.
 
 # Source Patterns and Wayfinding
 
@@ -498,8 +482,12 @@ To run a subset of JUnit tests for a given module, you may use a matching string
     mvn test -Dtest=*SomeTest
     mvn test -Dtest=*.rails3.*Test
 
-To run single RSpec tests, you must first run a typical `mvn test` run.  Then
-you may use the generated `target/rspec-runner.rb` in the same way you would use
+To run single RSpec tests, you can specify `-Dspec=` and provide the path to the
+spec, optionally including a line number.
+
+    mvn test -Dspec=./specs/some_spec.rb:82
+
+You may also use the generated `target/rspec-runner.rb` in the same way you would use
 the normal `rspec` command-line tool.
 
     jruby ./target/rspec-runner.rb ./spec/some_spec.rb -l 82
