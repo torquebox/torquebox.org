@@ -24,9 +24,9 @@ page, powered by [CloudBees], and others in the Twitterverse asked how it all wo
 
 First, what we call **incremental builds** are what other people might refer to as 
 **CI builds**, **developer builds**, or **nightly builds**.  We felt that none of those terms
-matched what we were doing.  "Nightly" implies that it is produced, well, every night.  
-Our builds occur every time there's a commit though.  A "developer build" implies a certain
-scariness of a random build produced by a developer, yet our builds are produced by
+matched what we were doing.  "Nightly" implies that it is produced, well, every night. Our builds 
+occur every time there's a commit though.  A "developer build" implies a certain
+scariness of a random build produced by a developer on his laptop; yet our builds are produced by
 the same sanctioned infrastructure that produces our "real" releases. And "CI builds" focuses
 on the tooling, not the product.
 
@@ -73,7 +73,7 @@ produce links under `torquebox.org` to the binaries and documentation.
 
 Additionally, TorqueBox includes a handful of RubyGems, and instead of publishing
 our incremental gems to **rubygems.org**, our build creates a fresh RubyGem repository
-for each build (also linked from the [incremental builds]2x-builds] page for each
+for each build (also linked from the [incremental builds][2x-builds] page for each
 build).  Once again using `mod_rewrite` we're able to gather it all under our
 `torquebox.org` site, proxying back to our DAV repository.
 
@@ -91,9 +91,14 @@ entirely too much to be effective.  On the other hand, had we consumed *their* C
 there would have been too much churn.
 
 Instead, we followed the strategy of producing our own AS7 builds, and rebasing TorqueBox
-against the JBoss AS code on our own schedule, with builds we created.
+against the JBoss AS code on our own schedule, with builds we created.  Tyipcally every week to
+10 days we'd adjust our build to use the latest nightly of AS7.  While we ultimately still
+had to accomodate all the changes occurring within AS7 (some of them rather large), we were able
+to organize our time and jump through these hoops when convenient for us.  Additionally,
+since we consider AS7 our upstream, we were able to submit patches to their repository, and
+see the changes much quicker than if we'd waited for their next official drop.
 
-This represents a slight challenge, because working with Maven **SNAPSHOT** dependencies
+This strategy represetned a slight challenge, because working with Maven **SNAPSHOT** dependencies
 is a recipe for insanity and non-repeatable builds.  What we wanted was "real" releases
 of AS7 to work against, but on our schedule.
 
@@ -104,7 +109,11 @@ POMs before performing the build.
 ![AS7 reversion][as7-reversion]
 
 This produces JBoss AS7 builds with versions like **7.x.incremental.50**.  We collect all
-of these artifacts in another [DAV-based Maven repository][jboss-as-dist].
+of these artifacts in another [DAV-based Maven repository][jboss-as-dist]. Since these
+are not `SNAPSHOT` dependencies, but rather are discretely versioned, we don't have to be
+concerned about unintentional version skew.  Additionally, each team member can fetch
+the rebased mainline at their own convenience, instead of being forced to take the
+latest `SNAPSHOT` at some inopportune moment.
 
 # Tangential
 
@@ -112,11 +121,13 @@ One of the nice things about Jenkins is that you can trigger builds from your re
 instead of having your CI tool poll routinely.  One of the nice things about Git is that
 you can have many branches.  Unfortunately, pushing to any branch on GitHub causes the
 trigger to fire against Jenkins.  Our team works with a fair number of branches, and 
-this caused some spurious un-needed builds.
+this caused some spurious un-needed builds.  In our default case, without any "extra"
+branches, we are maintaining both the 1.x and 2.x code-lines currently.  Each has its own
+job in Jenkins, but obviously share the same GitHub repository and post-commit hook.
 
 To solve this, a [quick Sinatra app][tangle] sitting between GitHub and Jenkins inspects the 
 payload from the post-commit hook, and filters/routes the trigger to the appropriate
-Jenkins job.
+Jenkins job based upon the branch that is actually being pushed.
 
 # CI is for more than just code
 
@@ -130,3 +141,4 @@ and when we push to our `production` branch, CI publishes it all to the live pro
 * [Basic `jenkins.js`](https://github.com/torquebox/torquebox.org/blob/master/javascripts/jenkins.js)
 * [Our 2.x page renderer](https://github.com/torquebox/torquebox.org/blob/master/2x/builds/incremental-builds.js)
 * [`Tangle` post-commit hook router](https://github.com/torquebox/tangle)
+* [`.htaccess` for build artifact proxying](https://github.com/torquebox/torquebox.org/blob/master/2x/builds/.htaccess)
