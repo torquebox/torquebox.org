@@ -98,7 +98,7 @@ to organize our time and jump through these hoops when convenient for us.  Addit
 since we consider AS7 our upstream, we were able to submit patches to their repository, and
 see the changes much quicker than if we'd waited for their next official drop.
 
-This strategy represetned a slight challenge, because working with Maven **SNAPSHOT** dependencies
+This strategy represented a slight challenge, because working with Maven **SNAPSHOT** dependencies
 is a recipe for insanity and non-repeatable builds.  What we wanted was "real" releases
 of AS7 to work against, but on our schedule.
 
