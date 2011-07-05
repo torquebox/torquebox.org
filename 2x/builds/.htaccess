@@ -3,18 +3,18 @@ RewriteEngine on
 
 RewriteRule ^([0-9]+)/html-docs$                    $1/html-docs/ [R,L]
 RewriteRule ^([0-9]+)/html-docs/$                   http://repository-torquebox.forge.cloudbees.com/incremental/$1/html-docs/index.html [P]
-RewriteRule ^([0-9]+)/javadocs$                    $1/javadocs/ [R,L]
-RewriteRule ^([0-9]+)/javadocs/$                   http://repository-torquebox.forge.cloudbees.com/incremental/$1/javadocs/index.html [P]
-RewriteRule ^([0-9]+)/yardocs$                    $1/yardocs/ [R,L]
-RewriteRule ^([0-9]+)/yardocs/$                   http://repository-torquebox.forge.cloudbees.com/incremental/$1/yardocs/index.html [P]
+RewriteRule ^([0-9]+)/javadocs$                     $1/javadocs/ [R,L]
+RewriteRule ^([0-9]+)/javadocs/$                    http://repository-torquebox.forge.cloudbees.com/incremental/$1/javadocs/index.html [P]
+RewriteRule ^([0-9]+)/yardocs$                      $1/yardocs/ [R,L]
+RewriteRule ^([0-9]+)/yardocs/$                     http://repository-torquebox.forge.cloudbees.com/incremental/$1/yardocs/index.html [P]
 RewriteRule ^([0-9]+)/(.*)$                         http://repository-torquebox.forge.cloudbees.com/incremental/$1/$2 [P]
 
-RewriteRule ^(LATEST/)?html-docs$                    http://torquebox.local/2x/builds/$1html-docs/ [R,L]
-RewriteRule ^(LATEST/)?html-docs/$                   http://repository-torquebox.forge.cloudbees.com/incremental/LATEST/html-docs/index.html [P]
+RewriteRule ^(LATEST/)?html-docs$                   http://torquebox.local/2x/builds/$1html-docs/ [R,L]
+RewriteRule ^(LATEST/)?html-docs/$                  http://repository-torquebox.forge.cloudbees.com/incremental/LATEST/html-docs/index.html [P]
 RewriteRule ^(LATEST/)?javadocs$                    http://torquebox.local/2x/builds/$1javadocs/ [R,L]
 RewriteRule ^(LATEST/)?javadocs/$                   http://repository-torquebox.forge.cloudbees.com/incremental/LATEST/javadocs/index.html [P]
-RewriteRule ^(LATEST/)?yardocs$                    http://torquebox.local/2x/builds/$1yardocs/ [R,L]
-RewriteRule ^(LATEST/)?yardocs/$                   http://repository-torquebox.forge.cloudbees.com/incremental/LATEST/yardocs/index.html [P]
+RewriteRule ^(LATEST/)?yardocs$                     http://torquebox.local/2x/builds/$1yardocs/ [R,L]
+RewriteRule ^(LATEST/)?yardocs/$                    http://repository-torquebox.forge.cloudbees.com/incremental/LATEST/yardocs/index.html [P]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
