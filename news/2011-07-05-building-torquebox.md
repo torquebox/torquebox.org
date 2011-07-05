@@ -50,10 +50,10 @@ leg of the matrix build.
 
 # The friendly page
 
-While jenkins is awesome for driving the builds, we wanted the results gathered
+While Jenkins is awesome for driving the builds, we wanted the results gathered
 nicely, along with producing links to the artifacts from the build, and branded
 to match the TorqueBox site.   Thankfully, Jenkins supports a rich **jsonp** 
-API which was drive with some jQuery to produce the [incremental builds][2x-builds]
+API which we drive with some jQuery to produce the [incremental builds][2x-builds]
 page.  The site is produced using [Awestruct] and is 100% static, so being able to
 add dynamic data from our build tools using JavaScript is fantastic.
 
@@ -68,8 +68,18 @@ and wire up the "last good build" links at the top.
 # Build artifacts
 
 The tail end of the build uses `curl` to push built artifacts from the 1.8 build
-to our DAV repository.  We apply liberal use of `mod_rewrite` in `.htaccess` files to
+to our DAV repository.  We liberally apply `mod_rewrite` in `.htaccess` files to
 produce links under `torquebox.org` to the binaries and documentation.
+
+Additionally, TorqueBox includes a handful of RubyGems, and instead of publishing
+our incremental gems to **rubygems.org**, our build creates a fresh RubyGem repository
+for each build (also linked from the [incremental builds]2x-builds] page for each
+build).  Once again using `mod_rewrite` we're able to gather it all under our
+`torquebox.org` site, proxying back to our DAV repository.
+
+This enables easy consumption of TorqueBox via:
+
+    gem install torquebox-server --pre --source http://torquebox.org/2x/builds/213/gem-repo/
 
 # Moving target
 
@@ -116,6 +126,6 @@ and when we push to our `production` branch, CI publishes it all to the live pro
 
 # Helpful links
 
-* [Basic jenkins.js](https://github.com/torquebox/torquebox.org/blob/master/javascripts/jenkins.js)
+* [Basic `jenkins.js`](https://github.com/torquebox/torquebox.org/blob/master/javascripts/jenkins.js)
 * [Our 2.x page renderer](https://github.com/torquebox/torquebox.org/blob/master/2x/builds/incremental-builds.js)
 * [`Tangle` post-commit hook router](https://github.com/torquebox/tangle)
