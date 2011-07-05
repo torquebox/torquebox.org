@@ -23,8 +23,8 @@ Last week, Douglas Campos (@[qmx]) brought attention to our [incremental builds]
 page, powered by [CloudBees], and others in the Twitterverse asked how it all works.  
 
 First, what we call **incremental builds** are what other people might refer to as 
-**CI builds**, **developer builds**, or **nightly builds**.  We felt none of those terms
-matched what we were doing that.  "Nightly" implies that it is produced, well, every night.  
+**CI builds**, **developer builds**, or **nightly builds**.  We felt that none of those terms
+matched what we were doing.  "Nightly" implies that it is produced, well, every night.  
 Our builds occur every time there's a commit though.  A "developer build" implies a certain
 scariness of a random build produced by a developer, yet our builds are produced by
 the same sanctioned infrastructure that produces our "real" releases. And "CI builds" focuses
@@ -73,8 +73,8 @@ produce links under `torquebox.org` to the binaries and documentation.
 
 # Moving target
 
-Since May, the team has been tracking the progress of JBoss AS7. They have been working
-fast an furiously, but their official releases (Beta, CR, etc) have included large gaps
+Since May, the TorqueBox team has been tracking the progress of JBoss AS7. The AS7 team has been 
+working fast and furiously, but their official releases (Beta, CR, etc) have included large gaps
 between them.  If we had only followed their release schedule, our code would have diverged
 entirely too much to be effective.  On the other hand, had we consumed *their* CI builds,
 there would have been too much churn.
