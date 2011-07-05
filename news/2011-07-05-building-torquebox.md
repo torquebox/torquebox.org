@@ -79,7 +79,7 @@ build).  Once again using `mod_rewrite` we're able to gather it all under our
 
 This enables easy consumption of TorqueBox via:
 
-    gem install torquebox-server --pre --source http://torquebox.org/2x/builds/213/gem-repo/
+    gem install torquebox-server --pre --source http://torquebox.org/2x/builds/LATEST/gem-repo/
 
 # Moving target
 
