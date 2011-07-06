@@ -110,10 +110,13 @@ renderer = {
     ul.append( $( '<li><a href="/2x/builds/' + build.number + '/html-docs/">Browse HTML</a></li>' ) );
     ul.append( $( '<li><a href="/2x/builds/' + build.number + '/torquebox-docs.pdf">PDF</a></li>' ) );
     ul.append( $( '<li><a href="/2x/builds/' + build.number + '/torquebox-docs.epub">ePub</a></li>' ) );
-    if (build.number > 135) {
-      ul.append( $( '<li><a href="/2x/builds/' + build.number + '/javadocs/">Java API Docs</a></li>' ) );
+    
+    this.with_path( build, '/javadocs/', function() {
+      ul.append( $( '<li><a href="/2x/builds/' + build.number + '/javadocs/">Java API Docs</a></li>' ) ); 
+    });
+    this.with_path( build, '/yardocs/', function() {
       ul.append( $( '<li><a href="/2x/builds/' + build.number + '/yardocs/">Gem RDocs</a></li>' ) );
-    }
+    });
     docs_column.append( ul );
 
   },
@@ -210,9 +213,29 @@ renderer = {
     return result;
   },
 
+  with_path: function(build, path, callback) {
+    $.path_exists( '/2x/builds/' + build.number + path, callback );
+  }
 };
 
 j = new Jenkins( renderer, 'http://torquebox.ci.cloudbees.com', 'torquebox-2x-incremental', [
                    [ 'label=m1.large,ruby_compat_version=1.8', '1_8' ],
                    [ 'label=m1.large,ruby_compat_version=1.9', '1_9' ],
                  ] );
+
+// modified from: http://binarykitten.me.uk/dev/jq-plugins/88-jquery-plugin-ajax-head-request.html
+(function ($) {
+  $.extend({
+	path_exists: function( url, callback ) {
+	    return $.ajax({
+		type: "HEAD",
+		url: url,
+    	        success: function (data, textStatus, jqXHR) {
+		  if ($.isFunction(callback)) {
+			callback();
+		  }
+		}
+	  });
+	}
+  });
+})(jQuery);
