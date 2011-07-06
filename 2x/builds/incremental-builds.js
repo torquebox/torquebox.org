@@ -67,6 +67,7 @@ renderer = {
 
     if ( label == '1_8' ) {
       self.populate_artifacts( build );
+      self.update_artifacts( build );
     }
 
     row = $( '.build-' + build.number );
@@ -99,28 +100,49 @@ renderer = {
 
     binary_column = $( '.build-summary.build-' + build.number ).find( 'td.binary' );
     ul = $( '<ul/>' );
-    ul.append( $( '<li><a href="/2x/builds/' + build.number + '/torquebox-dist-bin.zip">Binary ZIP</a></li>' ) );
-    ul.append( $( '<li><a href="/2x/builds/' + build.number + '/gem-repo/">Gems Repository</a></li>' ) );
+    ul.append( $( '<li class="artifact"><a href="/2x/builds/' + build.number + '/torquebox-dist-bin.zip">Binary ZIP</a></li>' ) );
+    ul.append( $( '<li class="artifact"><a href="/2x/builds/' + build.number + '/gem-repo/">Gems Repository</a></li>' ) );
     binary_column.append( ul );
 
     // Docs
 
-    docs_column = $( '.build-summary..build-' + build.number ).find( 'td.docs' );
+    docs_column = $( '.build-summary.build-' + build.number ).find( 'td.docs' );
     ul = $( '<ul/>' );
-    ul.append( $( '<li><a href="/2x/builds/' + build.number + '/html-docs/">Browse HTML</a></li>' ) );
-    ul.append( $( '<li><a href="/2x/builds/' + build.number + '/torquebox-docs.pdf">PDF</a></li>' ) );
-    ul.append( $( '<li><a href="/2x/builds/' + build.number + '/torquebox-docs.epub">ePub</a></li>' ) );
-    
-    this.with_path( build, '/javadocs/', function() {
-      ul.append( $( '<li><a href="/2x/builds/' + build.number + '/javadocs/">Java API Docs</a></li>' ) ); 
-    });
-    this.with_path( build, '/yardocs/', function() {
-      ul.append( $( '<li><a href="/2x/builds/' + build.number + '/yardocs/">Gem RDocs</a></li>' ) );
-    });
+    ul.append( $( '<li class="artifact"><a href="/2x/builds/' + build.number + '/html-docs/">Browse HTML</a></li>' ) );
+    ul.append( $( '<li class="artifact"><a href="/2x/builds/' + build.number + '/torquebox-docs.pdf">PDF</a></li>' ) );
+    ul.append( $( '<li class="artifact"><a href="/2x/builds/' + build.number + '/torquebox-docs.epub">ePub</a></li>' ) );
+    ul.append( $( '<li class="artifact newdocs"><a href="/2x/builds/' + build.number + '/javadocs/">Java API Docs</a></li>' ) );    
+    ul.append( $( '<li class="artifact newdocs"><a href="/2x/builds/' + build.number + '/yardocs/">Gem RDocs</a></li>' ) );
+
     docs_column.append( ul );
 
   },
 
+
+  update_artifacts: function(build) {
+    if ( build.result != 'SUCCESS' ) {
+      return;
+    }
+
+    $( '.build-summary.build-' + build.number ).find( 'li.artifact.newdocs' ).hide();
+
+    $.get( '/2x/builds/' + build.number + '/published-artifacts.json',
+           function(data) {
+               $( '.build-summary.build-' + build.number ).find( 'li.artifact' ).each( function(idx, li) {
+                   href = $( li ).find( 'a' ).attr( 'href' );
+                   artifact_name = href.match( new RegExp( "/([^/]*)/?$" ) )[1];
+                   for(i=0; i < data.length; i++) {
+                       url = data[i]
+                       if (url.match( new RegExp( artifact_name ) )) {
+                           $( li ).show();
+                           return;
+                       }
+                   }
+                   $( li ).hide();
+               } );
+           },
+         'json' );
+  },
 
   create_build_row: function(build) {
     var self = this;
@@ -211,11 +233,8 @@ renderer = {
       }
     } );
     return result;
-  },
-
-  with_path: function(build, path, callback) {
-    $.path_exists( '/2x/builds/' + build.number + path, callback );
   }
+
 };
 
 j = new Jenkins( renderer, 'http://torquebox.ci.cloudbees.com', 'torquebox-2x-incremental', [
@@ -223,19 +242,3 @@ j = new Jenkins( renderer, 'http://torquebox.ci.cloudbees.com', 'torquebox-2x-in
                    [ 'label=m1.large,ruby_compat_version=1.9', '1_9' ],
                  ] );
 
-// modified from: http://binarykitten.me.uk/dev/jq-plugins/88-jquery-plugin-ajax-head-request.html
-(function ($) {
-  $.extend({
-	path_exists: function( url, callback ) {
-	    return $.ajax({
-		type: "HEAD",
-		url: url,
-    	        success: function (data, textStatus, jqXHR) {
-		  if ($.isFunction(callback)) {
-			callback();
-		  }
-		}
-	  });
-	}
-  });
-})(jQuery);
