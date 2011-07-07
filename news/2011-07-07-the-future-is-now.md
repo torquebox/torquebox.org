@@ -8,7 +8,8 @@ tags: [async, backgroundable, futures, tasks]
 
 [Wikipedia]: http://en.wikipedia.org/wiki/Futures_and_promises
 [documentation]: http://torquebox.org/documentation/LATEST/messaging.html#messaging-futures
-[rdocs]: http://torquebox.org/2x/builds/LATEST/yardocs/TorqueBox/Messaging/FutureResult.html
+[FutureResponder]: http://torquebox.org/2x/builds/LATEST/yardocs/TorqueBox/Messaging/FutureResponder.html
+[FutureResult]: http://torquebox.org/2x/builds/LATEST/yardocs/TorqueBox/Messaging/FutureResult.html
 [Backgroundable methods]: http://torquebox.org/documentation/LATEST/messaging.html#backgroundable
 [Async Tasks]: http://torquebox.org/documentation/LATEST/messaging.html#async-tasks
 [CI]: https://torquebox.ci.cloudbees.com/
@@ -17,24 +18,26 @@ tags: [async, backgroundable, futures, tasks]
 
 
 Have you ever wanted to see into the future? Well, now you can! Calls to [Backgroundable methods]
-or [Async Tasks] in TorqueBox now return 'future' objects that let you monitor the progress of 
+or [Async Tasks] in TorqueBox now return **Futures** that let you monitor the progress of 
 the asynchronous task.
 
-# What the heck is a 'future' object?
+# What the heck is a Future object?
 
-I'm glad you asked! A 'future' object is a proxy that provides a channel for communicating the 
+I'm glad you asked! A Future is a proxy that provides a channel for communicating the 
 progress and results of an asynchronous operation back to the caller. If you aren't familiar
 with the concept, there is a nice dry overview on [Wikipedia].
 
-Within TorqueBox, a future allows you see when an asynchronous task has started, completed, or 
+Within TorqueBox, a Future allows you to see when an asynchronous task has started, completed, or 
 raised an error. You can also access the return value of the task, and get periodic status 
-updates from the task (if you configure the task to send updates). Some implementations of futures
-allow you to cancel the running task from the 'client' side, but the TorqueBox implementation
-is currently just one-way: data only flows from the task to the future.
+updates from the task if the task is so configured. Some implementations of Futures
+allow you to cancel the running task from the Future itself, but the TorqueBox implementation
+is currently just one-way: data only flows from the task to the Future.
 
 # Example Usage
 
-For our examples, we'll model the family car of the future: The Aero Car!
+For our examples, we'll model the family car of the future: The Aero Car! We're using 
+[Backgroundable methods] in our example, but Futures work in the exact same manner with 
+[Async Tasks].
 
 <img src="/images/futures/jetsons.jpg"/>
 
@@ -42,12 +45,9 @@ For our examples, we'll model the family car of the future: The Aero Car!
   include TorqueBox::Messaging::Backgroundable
   
   always_background :recharge_battery, :auto_fly
-  
+   
   def recharge_battery
-    until battery.fully_charged?
-      battery.charge_some
-      TorqueBox::Messaging::FutureResponder.status = battery.charge_percentage
-    end
+    battery.charge_some until battery.fully_charged?
   end
     
   def auto_fly(to_location)
@@ -57,77 +57,104 @@ For our examples, we'll model the family car of the future: The Aero Car!
   ...
 end</pre>
 
-## Waiting for the task to complete
+## Checking the state of the task
 
-The rest of the examples are snippets from the API we can use to control our AeroCar 
-(this is the future, where everything has an API!).
+Let's take a look at how you can use a Future to see the state of the asynchronous task:
 
-<pre class="syntax ruby">post '/fly_home' do
-  session[:fly_home_future] ||= @aerocar.auto_fly( :home )
-end
+<pre class="syntax ruby">future = @aerocar.auto_fly( :home )
 
-get '/flying_home' do
-  flying = session[:fly_home_future] && 
-             session[:fly_home_future].started? && 
-             !session[:fly_home_future].complete?
-  { :flying_home => flying }.to_json
-end
+# check to see if the task has starte
+future.started?
 
-get '/fly_home_flight_time' do
-  future = session[:fly_home_future]
-  flight_time = nil
-  flight_time = future.result if future && future.complete?
-  { :flight_time => flight_time }.to_json
-end</pre>
+# check to see if the task completed
+future.complete?
 
-in our `/fly_home` action, we tell the AeroCar to do exactly that, and get a future object 
-returned to us, since `auto_fly` is tagged to always execute in the background. We then store
-the returned future in the session (poorly, I might add, but you get the idea). We can then 
-see if that task is in progress via the `/flying_home` action. Since our `auto_fly` method 
-returns the flight time, we expose that in the API as well via `/fly_home_flight_time`.
+# check to see if an error occurred 
+future.error?</pre>
+
+**Note:** In all of these examples, we access the Future immediately, but you could easily
+stash it (in a session, for example) and access it later. In fact, it is probably much more
+useful when used in that fashion.
+
+## Accessing the result of the task
+
+In addition to checking the state of the task, we can also access the result (return value) 
+from the task:
+
+<pre class="syntax ruby">future = @aerocar.auto_fly( :home )
+
+# this will block until:
+# * the task completes
+# * the task generates an error
+# * a timeout of 30s expires
+puts "flying home took " + future.result
+
+# you can also specify your own timeout (in ms)
+puts "flying home took " + future.result( 60_000 )</pre>
+
+A Future also implements a `method_missing` that delegates to the result, blocking 
+with the same rules above using the default timeout.
+
+## Handling an error from the task
+
+If an error occurs in the remote task, it will be available on the Future:
+
+<pre class="syntax ruby">future = @aerocar.auto_fly( :home )
+
+if future.error?
+  puts "something went wrong: " + future.error
+end</pre>  
+
+This error will also contain the full backtrace from the task, making debugging a bit easier.
 
 ## Status
 
-An asynchronous task can optionally report its status via its future, which can be useful
-for tasks that take a considerable amount of time to complete. To do so, simply assign a
-value to `TorqueBox::Messaging::FutureResponder.status`, as in the `recharge_battery` method
-above in the `AeroCar` class. Let's use that status in our API:
+An asynchronous task can optionally report its status via its Future, which can be useful
+for tasks that take a considerable amount of time to complete. Our `recharge_battery` 
+method is a good candidate for that, since it runs in a loop. First, we'll need to modify the
+task method a bit to report its status:
 
-<pre class="syntax ruby">post '/recharge_battery' do
-  session[:recharge_battery_future] = @aerocar.recharge_battery
-end
-
-get '/recharge_status' do
-  future = session[:fly_home_future]
-  status = nil
-  status = future.status if future
-  { :status => status }.to_json
-end</pre>
-
-Now any call to the `/recharge_status` action will return the current charge percentage
-of the battery. But what happens if an error occurs during the asynchronous task? Let's modify
-`/recharge_status` to account for that:
-
-<pre class="syntax ruby">get '/recharge_status' do
-  future = session[:fly_home_future]
-  if future.error?
-    status 500 
-    header "error" => future.error.to_json
-  else
-    status = nil
-    status = future.status if future
-    { :status => status }.to_json
+<pre class="syntax ruby">def recharge_battery
+  until battery.fully_charged?
+    battery.charge_some 
+    TorqueBox::Messaging::FutureResponder.status = battery.current_charge
   end
 end</pre>
 
-This is just a sample of the methods available on a future. You can read more about them in
-the TorqueBox [documentation] and [rdocs].
+**Wait, what? I'm setting a class variable?!?** Not really, no. The `status=` method on 
+[FutureResponder] actually uses a `FutureResponder` instance that is stored as a thread-local 
+variable. Since an asynchronous task in TorqueBox runs in its own thread to completion, 
+there is no danger of this instance being accessed by multiple task executions. However, if
+your task spins up its own threads, you are on your own.
+ 
+But back to the task at hand - getting the status from the Future. The `status=` call 
+above queues up the statuses that you give it, so you can call it as many times as you want.
+To access those statuses from the Future, simply call its `status` method:
 
-We used [Backgroundable methods] in our examples, but futures work in the same manner with 
-[Async Tasks] (as I mentioned earlier).
+<pre class="syntax ruby">future = @aerocar.recharge_battery
+
+# each call pops the next status off of the queue, and 
+# returns nil if no status is available
+puts future.status
+puts future.status
+puts future.status</pre>
+
+The status you pass back can be any marshalable ruby object.
+
+# The behind the scenes tour
+
+Under the hood, tasks use a HornetQ queue to communicate with the Future object. The messages
+sent to the Future have a time-to-live of 1 hour set on them so they won't hang around forever if you
+never have the Future retrieve them. The message types (:started, :status, :error, :result) have
+different priorities, so the Future will see the most important message first. If an error 
+occurred, you'll want to see that instead of any status messages that may have queued up.
 
 # Availability
 
 Futures are available now in the latest [incremental][CI] builds for the [1.x] and [2.x] branches. Give it a try,
 and feel free to [get in touch](/community) if you have any questions or issues. 
 
+# Resources
+
+* The official TorqueBox [documentation] on Futures
+* The RDocs for [FutureResult] and [FutureResponder]
