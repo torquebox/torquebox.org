@@ -2,7 +2,7 @@
 title: 'The Future Is Now For Async Processing in TorqueBox'
 author: Toby Crawley
 layout: news
-timestamp: 2011-07-07t13:45:00.0-04:00
+timestamp: 2011-07-07t16:30:00.0-04:00
 tags: [async, backgroundable, futures, tasks]
 ---
 
@@ -47,7 +47,9 @@ For our examples, we'll model the family car of the future: The Aero Car! We're 
   always_background :recharge_battery, :auto_fly
    
   def recharge_battery
-    battery.charge_some until battery.fully_charged?
+    until battery.fully_charged? 
+      battery.charge_some 
+    end
   end
     
   def auto_fly(to_location)
@@ -63,7 +65,7 @@ Let's take a look at how you can use a Future to see the state of the asynchrono
 
 <pre class="syntax ruby">future = @aerocar.auto_fly( :home )
 
-# check to see if the task has starte
+# check to see if the task has started
 future.started?
 
 # check to see if the task completed
