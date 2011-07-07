@@ -136,7 +136,8 @@ To access those statuses from the Future, simply call its `status` method:
 <pre class="syntax ruby">future = @aerocar.recharge_battery
 
 # each call pops the next status off of the queue, and 
-# returns nil if no status is available
+# returns the most recent status if no new status messages
+# have been received
 puts future.status
 puts future.status
 puts future.status</pre>
