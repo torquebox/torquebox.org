@@ -2,7 +2,7 @@
 title: 'The Future Is Now For Async Processing in TorqueBox'
 author: Toby Crawley
 layout: news
-timestamp: 2011-07-07t16:30:00.0-04:00
+timestamp: 2011-07-08t10:00:00.0-04:00
 tags: [async, backgroundable, futures, tasks]
 ---
 
@@ -119,18 +119,12 @@ task method a bit to report its status:
 <pre class="syntax ruby">def recharge_battery
   until battery.fully_charged?
     battery.charge_some 
-    TorqueBox::Messaging::FutureResponder.status = battery.current_charge
+    future.status = battery.current_charge
   end
 end</pre>
 
-**Wait, what? I'm setting a class variable?!?** Not really, no. The `status=` method on 
-[FutureResponder] actually uses a `FutureResponder` instance that is stored as a thread-local 
-variable. Since an asynchronous task in TorqueBox runs in its own thread to completion, 
-there is no danger of this instance being accessed by multiple task executions. However, if
-your task spins up its own threads, you are on your own.
- 
-But back to the task at hand - getting the status from the Future. The `status=` call 
-above queues up the statuses that you give it, so you can call it as many times as you want.
+The only real change we made was to add a call to **`future.status=`**. The `future.status=` 
+call queues up the statuses that you give it, so you can call it as many times as you want.
 To access those statuses from the Future, simply call its `status` method:
 
 <pre class="syntax ruby">future = @aerocar.recharge_battery
