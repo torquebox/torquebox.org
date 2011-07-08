@@ -8,8 +8,7 @@ tags: [async, backgroundable, futures, tasks]
 
 [Wikipedia]: http://en.wikipedia.org/wiki/Futures_and_promises
 [documentation]: http://torquebox.org/documentation/LATEST/messaging.html#messaging-futures
-[FutureResponder]: http://torquebox.org/2x/builds/LATEST/yardocs/TorqueBox/Messaging/FutureResponder.html
-[FutureResult]: http://torquebox.org/2x/builds/LATEST/yardocs/TorqueBox/Messaging/FutureResult.html
+[Future]: http://torquebox.org/2x/builds/LATEST/yardocs/TorqueBox/Messaging/Future.html
 [Backgroundable methods]: http://torquebox.org/documentation/LATEST/messaging.html#backgroundable
 [Async Tasks]: http://torquebox.org/documentation/LATEST/messaging.html#async-tasks
 [CI]: https://torquebox.ci.cloudbees.com/
@@ -157,4 +156,4 @@ and feel free to [get in touch](/community) if you have any questions or issues.
 # Resources
 
 * The official TorqueBox [documentation] on Futures
-* The RDocs for [FutureResult] and [FutureResponder]
+* The RDocs for the [Future] class
