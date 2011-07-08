@@ -5,10 +5,10 @@ layout: default
   $( function () {
     var syntax_root = "/javascripts/jquery-syntax/"
 
-    if ($( '.syntax' ).length) {
+    if (!$.browser.msie && $( '.syntax' ).length) {
       $.getScript( syntax_root + "jquery.syntax.min.js", function () {
-          $.syntax( {root: syntax_root,
-                    blockLayout: 'plain'} )
+        $.syntax( {root: syntax_root,
+                  blockLayout: 'plain'} )
       } )
     }
   } )
