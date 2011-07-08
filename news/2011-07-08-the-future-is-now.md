@@ -123,8 +123,11 @@ task method a bit to report its status:
   end
 end</pre>
 
-The only real change we made was to add a call to **`future.status=`**. The `future.status=` 
-call queues up the statuses that you give it, so you can call it as many times as you want.
+The only real change we made was to add a call to `future.status=`**. The `future` method
+returns a proxy object with only a `status=` method. This `status=` 
+method puts each status you give it onto a queue for the real Future object to consume.
+You may call it as often as you like.
+
 To access those statuses from the Future, simply call its `status` method:
 
 <pre class="syntax ruby">future = @aerocar.recharge_battery
