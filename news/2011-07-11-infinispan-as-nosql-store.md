@@ -2,7 +2,7 @@
 title: DataMapper, Infinispan, NoSQL, Oh My!
 author: Lance Ball
 layout: news
-timestamp: Mon Jul 11 11:41:48 EDT 2011
+timestamp: 2011-07-11t11:44:00.0-04:00
 tags: [infinispan, gems, nosql, orm, datamapper]
 ---
 
@@ -16,12 +16,10 @@ tags: [infinispan, gems, nosql, orm, datamapper]
 [ActiveRecord]: https://issues.jboss.org/browse/TORQUE-393
 [community page]: http://torquebox.org/community/
 
-# Introduction
-
 We've mentioned Infinispan a lot on this blog. That's because we think it's
 fantastic.  If you're new to Infinispan, you should definitely check it out.
 It's a 100% Open Source, highly scalable data grid, with multiple language
-bindings and a remote protocol that opens it's awesomeness up to anything that
+bindings and a remote protocol that opens its awesomeness up to anything that
 can communicate over a network.
 
 Jim Crossley was the first to take advantage of Infinispan by
@@ -39,8 +37,11 @@ API.  Let's look at an example.
 
 # Example Usage
 
-Here is a simple Sinatra application that uses the `dm-infinispan-adapter` that is
-now available in the TorqueBox 2x-dev incremental builds.
+Here is a simple Sinatra application that uses the `dm-infinispan-adapter` 
+now available in the TorqueBox 2x-dev incremental builds.  How about a little
+app to keep track of your favorite beers?
+
+<img src="/images/beer.jpg"/>
 
 <script src="https://gist.github.com/1076576.js?file=beers.rb"></script>
 
@@ -59,6 +60,10 @@ When your models are stored in the cache, Infinispan recognizes that they are in
 passes them along to Lucene.  This allows us to search, what is essentially a key-value store
 for values on specific properties of specific types.  Win!
 
+Infinispan has been available to TorqueBox users for a while now.  But previously, you could
+only ever stuff things in and get them out by key.  You had to know what you were looking for.
+Now, well, you can perform the full gamut of properties-based searches, such as
+those already exposed by DataMapper: range, text, numeric, dates.  This is really awesome.
 
 # What's Next?
 
