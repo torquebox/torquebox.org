@@ -1,5 +1,5 @@
 ---
-title: Infinispan as a NoSQL Data Store in Your JRuby Apps
+title: DataMapper, Infinispan, NoSQL, Oh My!
 author: Lance Ball
 layout: news
 timestamp: Mon Jul 11 11:41:48 EDT 2011
@@ -11,7 +11,7 @@ tags: [infinispan, gems, nosql, orm, datamapper]
 [2.x]: /2x/builds/
 
 [ruby hotrod client]: http://torquebox.org/news/2011/06/08/infinispan-ruby-client/
-[active support]: http://torquebox.org/news/2011/03/09/torquebox-caching/
+[wiring it up]: http://torquebox.org/news/2011/03/09/torquebox-caching/
 [noSQL datastore]: https://issues.jboss.org/browse/TORQUE-224
 [ActiveRecord]: https://issues.jboss.org/browse/TORQUE-393
 [community page]: http://torquebox.org/community/
@@ -25,12 +25,12 @@ bindings and a remote protocol that opens it's awesomeness up to anything that
 can communicate over a network.
 
 Jim Crossley was the first to take advantage of Infinispan by
-[active-support][wiring it up] as an `ActiveSupport::Cache::Store`.  And not too long
+[wiring it up] as an `ActiveSupport::Cache::Store`.  And not too long
 after that, we released the first version of a [ruby hotrod client] which spoke the
 native infinispan protocol.  But one of the most requested features we get for
 Infinispan functionality is exposing it as a [noSQL datastore].
 
-# Announcement: Infinispan DataMapper Adapter Early Availability
+# Announcement
 
 Today we're announcing early availability for a DataMapper Infinispan Adapter.
 Now, with just a few lines of code, you get the scalability, replication, and
@@ -70,7 +70,7 @@ incremental builds only.  But this work opens the door to many other exciting
 possiblities, and brings "enterprise" scalability to an easy to use Ruby ORM.
 This work allowed us to dip our toes into the popular noSQL world.  But
 DataMapper isn't the only game in town, and we're actively interested in
-pursuing integration with other ORM libraries such as `[ActiveRecord]`.
+pursuing integration with other ORM libraries such as [ActiveRecord].
 
 
 # Staying Involved
