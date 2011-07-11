@@ -88,6 +88,6 @@ Check out our [community page] for other ways of keeping up to date.
 
 # Availability
 
-`dm-infinispan-adapter` is available now in the latest [incremental][CI] builds for the [2.x] branche. Give it a try.
+`dm-infinispan-adapter` is available now in the latest [incremental][CI] builds for the [2.x] branch. Give it a try.
 We love feedback.
 
