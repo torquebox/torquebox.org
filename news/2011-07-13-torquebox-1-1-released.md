@@ -41,7 +41,7 @@ This is mostly a bug fix release, but does include few notable improvements:
 * Topics now support durable subscriptions via the `receive` method. See the [docs][durable_topics]
   for more details.
 
-* The newrelic gem again properly recognizes a TorqueBox application. 
+* The [New Relic] gem (version 3.1.0 and newer) now properly recognizes a TorqueBox application. 
 
 ## What's changed since 1.0.1?
 
@@ -112,3 +112,4 @@ but in the meantime, feel free to give our [incremental builds][2x] a try.
 [futures_docs]: /documentation/1.1/messaging.html#messaging-futures
 [as7]: http://www.jboss.org/as7.html
 [2x]: /2x/builds/
+[New Relic]: http://newrelic.com/
