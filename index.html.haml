@@ -63,6 +63,8 @@ inhibit_title: true
             .body
               #{summarize( html_to_text( post.content ), 50 )}...
             .tail
+              = post.intense_debate_comments_link
+              | 
               %a{:href=>post.url} Read more
         #even-more
           %a{:href=>'/news'}Even more news!
