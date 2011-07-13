@@ -28,7 +28,7 @@ many common Java facilities][features] provided by JBoss, including *scheduled j
 
 # What's in this release?
 
-This is mostly a bug fix release, but does include few notable improvements:
+This is mostly a bug-fix release, but does include few notable improvements:
 
 * This version includes JRuby 1.6.3. If you aren't using the bundled JRuby, 
   we recommend that you upgrade to 1.6.3, especially if you are using JRuby's 1.9 
