@@ -20,6 +20,8 @@ body.bp {
   @include blueprint-utilities;
   @include blueprint-debug;
   @include blueprint-interaction;
+
+  font-family: Interstate,Helvetica,Arial,sans-serif;
 }
 
 form.bp {
