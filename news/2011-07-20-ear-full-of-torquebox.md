@@ -20,7 +20,7 @@ Bruno (better known in the community as `abstractj`) will be presenting
 **TorqueBox: o melhor dos dois mundos**, which translates either into
 "TorqueBox: my shoes are too tight" or "TorqueBox: the best in the world".
 
-<img src="/images/events/osconjava2011.png" style="width: 120px; float: right;"/>
+<img src="/images/events/osconjava2011.png" style="width: 140px; float: right;"/>
 
 # Bob McWhirter
 ## 25 July, 3:30pm
@@ -34,7 +34,7 @@ Ruby can be beautiful and fun, without having to give up your enterprise goodnes
 
 
 
-<img src="/images/events/jrubyconf.png" style="width: 200px; float: right;"/>
+<img src="/images/events/jrubyconf.png" style="width: 280px; float: right;"/>
 
 # Ben Browning
 ## 3-5 August
@@ -52,7 +52,7 @@ make developing Ruby applications on JRuby even more productive.
 
 # Lance Ball
 ## 26-27 August 
-### Ruby Howdown, Nashville, Tennessee
+### Ruby Hoedown, Nashville, Tennessee
 
 Lance will be presenting **TorqueBox: A True Application Server for Ruby** at
 the Hoedown.  Lance will be convincing a room full of Rubyists that a Java-based
