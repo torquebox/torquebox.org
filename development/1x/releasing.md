@@ -16,7 +16,7 @@ Set up this repository as an additional remote for your workspace:
 Ensure that the tag you are attempting to release does not exist in the release repository,
 or maven will fail part way through the build
 
-    git push release :1.0.2
+    git push release :1.1.2
 
 Ensure that the `master` branch has the contents you wish to release.  Using the `-f`
 flag to force is allowed in this case, since the **torquebox-release** repository is not
@@ -38,7 +38,7 @@ select the **local** profile.
 
 After each pre-flight build, you will need to reset the release repository:
 
-    git push release :1.0.2
+    git push release :1.1.2
     git push release master -f
     
 When you are happy with the pre-flight build (in other words, it completes successfully), 
@@ -60,12 +60,10 @@ Verify that the artifacts you expect have been uploaded and deployed to
 # Manually deploy RubyGems
 
 Once the build has completed, grab the gems from 
-[https://torquebox.ci.cloudbees.com//job/torquebox-release/lastSuccessfulBuild/artifact/assemblage/assembly/target/stage/gem-repo/gems/](https://torquebox.ci.cloudbees.com//job/torquebox-release/lastSuccessfulBuild/artifact/assemblage/assembly/target/stage/gem-repo/gems/}}) using the 'all files as zip' link push each gem to rubygems.org (you'll need owner rights to do so - bug bobmcw or tcrawley):
-
-    gem push <gem_name>.gem
+[https://torquebox.ci.cloudbees.com//job/torquebox-release/lastSuccessfulBuild/artifact/assemblage/assembly/target/stage/gem-repo/gems/](https://torquebox.ci.cloudbees.com//job/torquebox-release/lastSuccessfulBuild/artifact/assemblage/assembly/target/stage/gem-repo/gems/) using the 'all files as zip' link.
     
 Since rubygems checks that the dependencies are available on push, you'll have to push them in a proper order. The
-order that worked for the 1.0.1 release was:
+order that worked for the 1.1.1 release was:
 
 * torquebox-vfs
 * torquebox-base
@@ -78,6 +76,13 @@ order that worked for the 1.0.1 release was:
 * torquebox-messaging
 * torquebox-web
 * torquebox
+
+The **_build-support/publish-gems.rb_** will publish the gems for you in the proper order. You'll just need to invoke it from
+within the gems directory, or you can push each gem manually:
+
+    gem push <gem_name>.gem
+    
+Either way, you'll need owner rights to do so - bug bobmcw or tcrawley.
 
 # Push changes from the release repository to the official repository
 
@@ -95,7 +100,7 @@ order that worked for the 1.0.1 release was:
 
 ## Push the tag to the official repository
 
-    git push origin 1.0.2
+    git push origin 1.1.2
 
 # Release the project in JIRA
 
