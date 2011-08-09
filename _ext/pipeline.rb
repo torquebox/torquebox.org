@@ -7,6 +7,7 @@ require 'release_helper'
 require 'toc'
 require 'events_munger'
 require 'tagger_atomizer'
+require 'tag_implier'
 
 
 Awestruct::Extensions::Pipeline.new do
@@ -23,6 +24,7 @@ Awestruct::Extensions::Pipeline.new do
   helper ReleaseHelper
 
   extension Awestruct::Extensions::Posts.new('/news')
+  extension Awestruct::Extensions::TagImplier.new( :posts, [ :presentations, :conference, :conferences, :talks ], [ :event ] )
   extension Awestruct::Extensions::Paginator.new(:posts, '/news/index', :per_page => 5 )
   extension Awestruct::Extensions::Indexifier.new
   extension Awestruct::Extensions::Atomizer.new(:posts, '/news.atom')
