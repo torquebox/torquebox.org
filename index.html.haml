@@ -70,9 +70,8 @@ inhibit_title: true
           %a{:href=>'/news'}Even more news!
     .right-column
       #upcoming-talks
-        - talks = site.talks.values.sort{|l,r| l.effective_date <=> r.effective_date}
         %h1 Upcoming Talks
-        - for talk in talks
+        - for talk in site.upcoming_talks
           .item{:effective_date=>talk.effective_date}
             .event_details
               .event_date

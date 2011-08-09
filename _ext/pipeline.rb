@@ -5,17 +5,20 @@ require 'downloads'
 require 'old_downloads'
 require 'release_helper'
 require 'toc'
+require 'events_munger'
+require 'tagger_atomizer'
 
 
 Awestruct::Extensions::Pipeline.new do
   extension Awestruct::Extensions::DataDir.new
 
-
+  extension EventsMunger.new()
+  extension Awestruct::Extensions::Atomizer.new(:events, '/events.atom')
 
   extension Downloads.new()
   extension OldDownloads.new()
 
-  extension ReleaseSizes.new()
+  #extension ReleaseSizes.new()
 
   helper ReleaseHelper
 
@@ -29,6 +32,7 @@ Awestruct::Extensions::Pipeline.new do
                                                '/news/index', 
                                                '/news/tags', 
                                                :per_page=>5 )
+  extension Awestruct::Extensions::TaggerAtomizer.new(:posts, '/news/tags' )
 
   extension Awestruct::Extensions::TagCloud.new( :posts, 
                                                  '/news/tags/index.html',

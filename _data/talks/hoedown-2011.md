@@ -7,4 +7,5 @@ event_url: http://rubyhoedown.com
 event_logo_url: /images/events/hoedown2011.png
 location: Nashville, TN
 effective_date: 20110828
+posted: 2011-07-25
 ---
