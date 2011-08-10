@@ -19,7 +19,7 @@ Awestruct::Extensions::Pipeline.new do
   extension Downloads.new()
   extension OldDownloads.new()
 
-  #extension ReleaseSizes.new()
+  extension ReleaseSizes.new()
 
   helper ReleaseHelper
 
