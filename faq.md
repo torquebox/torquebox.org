@@ -80,3 +80,9 @@ a single `torquebox.yml` file.
       
 Please see [this article for more information](/news/2011/02/05/grand-unification-and-knobs/).
 
+## How to install TorqueBox to start on system boot?
+
+Just run `cd $TORQUEBOX_HOME && rake torquebox:upstart:install`. This will install an upstart script and symlink `$TORQUEBOX_HOME` to `/opt/torquebox`.
+
+Please see [this article for more information](news/2011/05/11/simplify-your-deployment/).
+
