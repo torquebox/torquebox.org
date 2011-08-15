@@ -16,23 +16,23 @@ tags: [ websockets, stomp, messaging ]
 <img src="/images/push.jpg" style="float: right; width: 150px; margin-left: 1em; margin-bottom: 1em;"/>
 
 After a few misdirections, we've finally started to bring home
-the latest incarnation of our WebSockets support in TorqueBox.
+the latest incarnation of our WebSocket support in TorqueBox.
 WebSockets are exciting because they enable dynamic user interfaces via a browser *push* model.
 It allows the application server to have the ability to send chunks
 of data to a browser-based Javascript client.
 
-TorqueBox implements [WebSockets][websockets-spec] with [STOMP][stomp-spec] to make the 
+TorqueBox implements [the WebSocket protocol][websockets-spec] with [STOMP][stomp-spec] to make the 
 programming model even richer.
 
 ## WebSockets
 
 WebSockets, supported by many newer browsers (and other browsers
-using a Flash plugin), allows the browser to have a synchronous
+using a Flash plugin), allow the browser to have a synchronous
 and bidirectional channel to communicate back with the server.
 
 WebSockets are very useful for *push* types of applications, where
 data may be actively and continously loaded into a dynamic Javascript-based
-user interface.  WebSockets operate on top of TCP/IP, and involve
+user interface.  The WebSockets protocol operates on top of TCP/IP, and involve
 passing discrete "frames" of arbitrary between the two endpoints.  
 
 While supporting basic WebSockets could be useful, we decided to
@@ -40,10 +40,9 @@ layer on some more useful technology, in the form of STOMP.
 
 ## STOMP
 
-STOMP is a wire-level protocol (unrelated to WebSockets) defining 
-messaging semantics.  STOMP does layer
-nicely on top of WebSockets, though, and keeps applications from
-having to deal with the lower-level data-framing.  STOMP also
+STOMP is a wire-level protocol (unrelated to the WebSockets protocol) defining 
+messaging semantics.  STOMP does layer nicely on top of WebSockets, though, and 
+keeps applications from having to deal with the lower-level data-framing.  STOMP also
 adds the benefit of multiplexing multiple named streams of
 data (in the form of messaging destinations) across a single
 WebSocket connection, which results is lower resource usage
@@ -57,7 +56,7 @@ a designable API endpoint, but separately from your core
 JMS implementation.
 
 We think it's a fundamentally bad idea to directly expose
-your JMS broker to WebSockets clients on the public internet.
+your JMS broker to WebSocket-based clients on the public internet.
 Just as MVC frameworks provide for the concept of a *controller*
 to arbitrate the interaction between the user and underlying
 resources such as a database, the Stilts project introduces
