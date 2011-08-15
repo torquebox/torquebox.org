@@ -33,7 +33,7 @@ and bidirectional channel to communicate back with the server.
 WebSockets are very useful for *push* types of applications, where
 data may be actively and continously loaded into a dynamic Javascript-based
 user interface.  The WebSockets protocol operates on top of TCP/IP, and involve
-passing discrete "frames" of arbitrary between the two endpoints.  
+passing discrete "frames" of arbitrary data between the two endpoints.  
 
 While supporting basic WebSockets could be useful, we decided to
 layer on some more useful technology, in the form of STOMP.
@@ -259,6 +259,9 @@ on IRC or leave a comment right here.
 There are absolutely opportunities to simplify some usage scenarios.
 
 The current documentation can be [found here](/2x/builds/html-docs/websockets.html).
+
+This functionality is available for preview in the 2.x codeline through
+our [incremental builds](/2x/builds).
 
 # Thanks
 
