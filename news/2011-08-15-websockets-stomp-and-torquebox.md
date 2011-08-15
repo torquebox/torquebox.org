@@ -17,9 +17,8 @@ tags: [ websockets, stomp, messaging ]
 
 After a few misdirections, we've finally started to bring home
 the latest incarnation of our WebSockets support in TorqueBox.
-The reason WebSockets is exciting is because of the *push*
-model of dynamic user-interfaces it allows for.  It allows
-the application server to have the ability to send chunks
+WebSockets are exciting because they enable dynamic user interfaces via a browser *push* model.
+It allows the application server to have the ability to send chunks
 of data to a browser-based Javascript client.
 
 TorqueBox implements [WebSockets][websockets-spec] with [STOMP][stomp-spec] to make the 
@@ -41,8 +40,8 @@ layer on some more useful technology, in the form of STOMP.
 
 ## STOMP
 
-STOMP is a protocol (unrelated to WebSockets) defining an
-on-the-wire protocol for messaging semantics.  STOMP does layer
+STOMP is a wire-level protocol (unrelated to WebSockets) defining 
+messaging semantics.  STOMP does layer
 nicely on top of WebSockets, though, and keeps applications from
 having to deal with the lower-level data-framing.  STOMP also
 adds the benefit of multiplexing multiple named streams of
@@ -221,6 +220,9 @@ client.connect( 'username', 'password', function() {
 
 The username and password parameters are currently ignored while
 we determine what they should actually connect to.
+
+Currently, the STOMP server runs on port 8675, until the IANA assigns
+a port specifically for the protocol.
 
 The Javascript client is provided in `$TORQUEBOX_HOME/share/javascript` directory.
 
