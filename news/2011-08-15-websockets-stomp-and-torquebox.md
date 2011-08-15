@@ -8,6 +8,8 @@ tags: [ websockets, stomp, messaging ]
 [Stilts project]: http://stilts.projectodd.org/
 [Netty]: http://www.jboss.org/netty
 [jmesnil-stomp]: https://github.com/jmesnil/stomp-websocket
+[websockets-spec]: http://www.whatwg.org/specs/web-socket-protocol/
+[stomp-spec]: http://stomp.github.com/stomp-specification-1.1.html
 
 # Push and Shove
 
@@ -20,7 +22,7 @@ model of dynamic user-interfaces it allows for.  It allows
 the application server to have the ability to send chunks
 of data to a browser-based Javascript client.
 
-TorqueBox implements WebSockets with STOMP to make the 
+TorqueBox implements [WebSockets][websockets-spec] with [STOMP][stomp-spec] to make the 
 programming model even richer.
 
 ## WebSockets
@@ -218,7 +220,7 @@ client.connect( 'username', 'password', function() {
 </pre>
 
 The username and password parameters are currently ignored while
-we surmise what they should actually connect to.
+we determine what they should actually connect to.
 
 The Javascript client is provided in `$TORQUEBOX_HOME/share/javascript` directory.
 
