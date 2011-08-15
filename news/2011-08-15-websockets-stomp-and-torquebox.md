@@ -32,7 +32,7 @@ and bidirectional channel to communicate back with the server.
 
 WebSockets are very useful for *push* types of applications, where
 data may be actively and continously loaded into a dynamic Javascript-based
-user interface.  The WebSockets protocol operates on top of TCP/IP, and involve
+user interface.  The WebSockets protocol operates on top of TCP/IP, and involves
 passing discrete "frames" of arbitrary data between the two endpoints.  
 
 While supporting basic WebSockets could be useful, we decided to
