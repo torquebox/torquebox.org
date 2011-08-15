@@ -109,7 +109,7 @@ the message is quietly dropped.
   end
 
   def on_unsubscribe(subscriber)
-    @cheeses[ subscriber.destination ].delete( subscriber )
+    ( @cheeses[ subscriber.destination ] || [] ).delete( subscriber )
   end
 
   def on_message(message)
@@ -251,6 +251,8 @@ of how you actually intend to use this functionality.  Find us in `#torquebox`
 on IRC or leave a comment right here.
 
 There are absolutely opportunities to simplify some usage scenarios.
+
+The current documentation can be [found here](/2x/builds/html-docs/websockets.html).
 
 # Thanks
 
