@@ -59,7 +59,7 @@ JMS implementation.
 
 We think it's a fundamentally bad idea to directly expose
 your JMS broker to WebSockets clients on the public internet.
-Just as MVW frameworks provide for the concept of a *controller*
+Just as MVC frameworks provide for the concept of a *controller*
 to arbitrate the interaction between the user and underlying
 resources such as a database, the Stilts project introduces
 a controller role for messaging APIs.
