@@ -6,6 +6,8 @@ tags: [ websockets, stomp, messaging ]
 ---
 
 [Stilts project]: http://stilts.projectodd.org/
+[Netty]: http://www.jboss.org/netty
+[jmesnil-stomp]: https://github.com/jmesnil/stomp-websocket
 
 # Push and Shove
 
@@ -48,7 +50,7 @@ and easier application authoring.
 
 # Stomplets
 
-Part of the tanget between TorqueBox and WebSockets involved
+Part of the tangent between TorqueBox and WebSockets involved
 the [Stilts project], which decided to treat messaging as 
 a designable API endpoint, but separately from your core
 JMS implementation.
@@ -56,7 +58,7 @@ JMS implementation.
 We think it's a fundamentally bad idea to directly expose
 your JMS broker to WebSockets clients on the public internet.
 Just as MVW frameworks provide for the concept of a *controller*
-to arbitrary the interaction between the user and underlying
+to arbitrate the interaction between the user and underlying
 resources such as a database, the Stilts project introduces
 a controller role for messaging APIs.
 
@@ -201,7 +203,7 @@ It could be configured in `torquebox.yml` like this, where the Stomplet's
 
 The whole point of this exercise is to push things to the browser.  
 That requires a little Javascript.  The Stilts project provides a
-STOMP-over-WebSockets Javascript client based upon the work of Jeff Mesnil.
+STOMP-over-WebSockets Javascript client based upon [the work of Jeff Mesnil][jmesnil-stomp].
 
 <pre class="syntax javascript">client = Stomp.client( "ws://localhost:8675/" );
 client.connect( 'username', 'password', function() {
@@ -215,7 +217,8 @@ client.connect( 'username', 'password', function() {
 } );
 </pre>
 
-Currently the username and password parameters are ignored.
+The username and password parameters are currently ignored while
+we surmise what they should actually connect to.
 
 The Javascript client is provided in `$TORQUEBOX_HOME/share/javascript` directory.
 
@@ -240,7 +243,7 @@ run app
 
 In large-scale deployments, there's the opportunity to have thousands of
 clients connected with WebSockets at any point in time.  We're using
-Netty by Trustin Lee, which is a highly-scalable NIO framework capable
+[Netty] by Trustin Lee, which is a highly-scalable NIO framework capable
 of dealing with a ton of clients without spawning a bajillion threads.
 
 # Moving Target
