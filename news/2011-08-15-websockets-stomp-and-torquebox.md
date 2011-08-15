@@ -5,7 +5,7 @@ layout: news
 tags: [ websockets, stomp, messaging ]
 ---
 
-[Stilts]: http://stilts.projectodd.org/
+[Stilts project]: http://stilts.projectodd.org/
 
 # Push and Shove
 
