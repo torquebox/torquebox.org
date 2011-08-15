@@ -45,7 +45,7 @@ messaging semantics.  STOMP does layer nicely on top of WebSockets, though, and
 keeps applications from having to deal with the lower-level data-framing.  STOMP also
 adds the benefit of multiplexing multiple named streams of
 data (in the form of messaging destinations) across a single
-WebSocket connection, which results is lower resource usage
+WebSocket connection, which results in lower resource usage
 and easier application authoring.
 
 # Stomplets
