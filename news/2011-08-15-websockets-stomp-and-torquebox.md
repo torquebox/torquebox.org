@@ -82,10 +82,12 @@ with a subscriber object used to return messages to the client.
 Likewise, upon unsubscription (or if the client closes the connection),
 the Stomplet's `on_unsubscribe(...)` will be called.
 
-### `on_message(message)`
+### `on_message(message, session)`
 
 For any message sent to a destination bound to the Stomplet, it's
 `on_message(...)` will be called with the message from the client.
+If your app has a web component, the same session data will be
+available within the STOMP parts.
 
 ### Example
 
@@ -114,7 +116,7 @@ the message is quietly dropped.
     ( @cheeses[ subscriber.destination ] || [] ).delete( subscriber )
   end
 
-  def on_message(message)
+  def on_message(message, session)
     ( @cheeses[ message.destination ] || [] ).each do |subscriber|
       subscriber.send( message )
     end
@@ -175,7 +177,7 @@ class BridgeStomplet < TorqueBox::Stomp::JmsStomplet
     @destination_name = stomplet_config['destination']
   end
 
-  def on_message(stomp_message)
+  def on_message(stomp_message, session)
     send_to( stomp_message, @destination_name, @destination_type )
   end
 
