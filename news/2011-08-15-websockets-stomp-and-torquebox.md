@@ -84,7 +84,9 @@ the Stomplet's `on_unsubscribe(...)` will be called.
 
 The subscriber object provides access to a few interesting 
 attributes, including `destination` and `session` matching
-the user's web session, if any.
+the user's web session, if any.  Using the `send(...)` method
+of the subscriber object will deliver a message to the client's
+subscription.
 
 ### `on_message(message, session)`
 
