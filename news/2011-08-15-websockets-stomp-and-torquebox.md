@@ -82,6 +82,10 @@ with a subscriber object used to return messages to the client.
 Likewise, upon unsubscription (or if the client closes the connection),
 the Stomplet's `on_unsubscribe(...)` will be called.
 
+The subscriber object provides access to a few interesting 
+attributes, including `destination` and `session` matching
+the user's web session, if any.
+
 ### `on_message(message, session)`
 
 For any message sent to a destination bound to the Stomplet, it's
