@@ -18,6 +18,12 @@ The functionality presented in our demo includes
 * System-generated announcements
 * Notification to the chat from the web tier
 
+The walk-through below includes simplified example code
+with lots of the jQuery cruft removed.  The full source
+for this demo may be found on GitHub, of course
+
+* <http://github.com/torquebox/stomp-chat-demo>
+
 # I see what you're saying...
 
 <img src="/images/stomp-chat-demo/marvin.png" style="width: 550px;"/>
@@ -60,21 +66,26 @@ Javascript-based chat UI.
 
 The server is written as a simple Sinatra application:
 
-    # chat_demo.rb
+<pre class="syntax ruby"># chat_demo.rb
 
-    get '/' do
-      haml :login
-    end
+require 'sinatra/base'
 
-    post '/' do
-      username = params[:username]
-      redirect to( '/' ) and return if username.nil?
-      username.strip!
-      redirect to( '/' ) and return if ( ! ( username =~ /^[a-zA-Z0-9_]+$/ ) )
+class ChatDemo < Sinatra::Base
+  get '/' do
+    haml :login
+  end
   
-      session[:username] = username
-      haml :chat 
-    end
+  post '/' do
+    username = params[:username]
+    redirect to( '/' ) and return if username.nil?
+    username.strip!
+    redirect to( '/' ) and return if ( ! ( username =~ /^[a-zA-Z0-9_]+$/ ) )
+  
+    session[:username] = username
+    haml :chat 
+  end
+end
+</pre>
 
 The bulk of the client is written primarily as a Javascript application, using the
 STOMP-over-WebSockets Javascript client.  It performs a few duties when
@@ -94,27 +105,28 @@ a user wanders off, if possible.
 The client also involves a little jQuery to display a "connecting..."
 notice, and to change to the chat interface upon successful connection.
 
-    // chat.js
+<pre class="syntax javascript">// chat.js
 
-    client = Stomp.client( stomp_url );
+client = Stomp.client( stomp_url );
 
-    client.connect( null, null, function() {
+client.connect( null, null, function() {
 
-      $(window).unload(function() {
-        client.disconnect();
-      });
+  $(window).unload(function() {
+    client.disconnect();
+  });
 
-      $( '#connecting' ).hide();
-      $( '#chat-panel' ).show();
+  $( '#connecting' ).hide();
+  $( '#chat-panel' ).show();
 
-      client.subscribe( '/private', function(message) {
-        // handle private messages
-      } );
+  client.subscribe( '/private', function(message) {
+    // handle private messages
+  } );
 
-      client.subscribe( '/public', function(message) {
-        // handle public messages
-      } );
-    }
+  client.subscribe( '/public', function(message) {
+    // handle public messages
+  } );
+} );
+</pre>
 
 # Public messages
 
@@ -124,9 +136,10 @@ To send a message publicly to everyone, when a user submits a message,
 using jQuery we grab it and publish a message onto the `/public` STOMP
 destination.
 
-    // chat.js
+<pre class="syntax javascript">// chat.js
 
-    client.send( '/public', {}, $('#input').val() );
+client.send( '/public', {}, $('#input').val() );
+</pre>
 
 At no point is the browser client responsible for setting the `sender`
 or "from" address of the message. The client simply delivers the bare
@@ -148,21 +161,24 @@ It then uses the `send_to(...)` method of `JmsStomplet` to
 convert and deliver a STOMP message to a JMS destination, 
 which was obtained through injection.
 
-    # public_stomplet.rb
+<pre class="syntax ruby"># public_stomplet.rb
 
-    class PublicStomplet < TorqueBox::Stomp::JmsStomplet
-      def initialize()
-        super
-        @destination = inject( '/topics/chat' )
-      end
-  
-      def on_message(stomp_message, session)
-        username = session[:username]
-        stomp_message.headers['sender'] = username
-        stomp_message.headers['recipient'] = 'public'
-        send_to( @destination, stomp_message )
-      end
-    end
+require 'torquebox-stomp'
+
+class PublicStomplet < TorqueBox::Stomp::JmsStomplet
+  def initialize()
+    super
+    @destination = inject( '/topics/chat' )
+  end
+
+  def on_message(stomp_message, session)
+    username = session[:username]
+    stomp_message.headers['sender'] = username
+    stomp_message.headers['recipient'] = 'public'
+    send_to( @destination, stomp_message )
+  end
+end
+</pre>
 
 In diagram form, you can see that the `PublicStomplet`
 receives STOMP messages, sets some headers, and then
@@ -195,22 +211,22 @@ our available-user roster.  And every time a user connects,
 we drop a message from the `system` user to the public channel
 announcing the newly-connected user.
 
-    # public_stomplet.rb
+<pre class="syntax ruby"># public_stomplet.rb
 
-    class PublicStomplet < TorqueBox::Stomp::JmsStomplet
+class PublicStomplet < TorqueBox::Stomp::JmsStomplet
 
-      on_subscribe(subscriber)
-        username = subscriber.session[:username]
+  on_subscribe(subscriber)
+    username = subscriber.session[:username]
 
-        subscribe_to( subscriber, @destination, "recipient='public'" )
-        update_roster :add=>username
-        send_to( @destination, 
-                "\#{username} joined", 
-                :sender=>:system, 
-                :recipient=>:public )
-      end
-
-    end
+    subscribe_to( subscriber, @destination, "recipient='public'" )
+    update_roster :add=>username
+    send_to( @destination, 
+            "\#{username} joined", 
+            :sender=>:system, 
+            :recipient=>:public )
+  end
+end
+</pre>
 
 # Private messages
 
@@ -230,10 +246,11 @@ who should receive the message.  As with public messages, the client
 is not responsible for setting the `sender` header, and is given no
 opportunity to spoof arbitrary other users.
 
-    // chat.js
+<pre class="syntax javascript">// chat.js
 
-    recipient = $( '.recipient.current' ).attr( 'recipient' );
-    client.send( '/private', { recipient: recipient }, $('#input').val() );
+recipient = $( '.recipient.current' ).attr( 'recipient' );
+client.send( '/private', { recipient: recipient }, $('#input').val() );
+</pre>
 
 
 ## Server-side 
@@ -243,19 +260,25 @@ is responsible for setting the bonafide `sender` header based on the
 authenticated username kept in the session, and forwards the message
 to the JMS topic.
 
-    class PrivateStomplet < TorqueBox::Stomp::JmsStomplet
+<pre class="syntax ruby"># private_stomplet.rb
 
-      def initialize()
-        super
-        @destination = inject( '/topics/chat' )
-      end
+require 'torquebox-stomp'
 
-      def on_message(stomp_message, session)
-        username = session[:username]
-        stomp_message.headers['sender'] = username
-        send_to( @destination, stomp_message )
-      end
-    end
+class PrivateStomplet < TorqueBox::Stomp::JmsStomplet
+
+  def initialize()
+    super
+    @destination = inject( '/topics/chat' )
+  end
+
+  def on_message(stomp_message, session)
+    username = session[:username]
+    stomp_message.headers['sender'] = username
+    send_to( @destination, stomp_message )
+  end
+
+end
+</pre>
 
 ## Client receiving
 
@@ -264,14 +287,19 @@ the `/private` STOMP destination.  As with the `/public` subscriptions,
 JMS selectors are used to enforce receiving only a specific sub-set of
 all messages on the underlying JMS topic.
 
-    class PrivateStomplet < TorqueBox::Stomp::JmsStomplet
-      def on_subscribe(subscriber)
-        username = subscriber.session[:username]
-        subscribe_to( subscriber, 
-                      @destination, 
-                      "recipient='\#{username}' OR ( sender='\#{username}' AND NOT recipient='public')" )
-      end
-    end
+<pre class="syntax ruby"># private_stomplet.rb
+
+class PrivateStomplet < TorqueBox::Stomp::JmsStomplet
+
+  def on_subscribe(subscriber)
+    username = subscriber.session[:username]
+    subscribe_to( subscriber, 
+                  @destination, 
+                  "recipient='\#{username}' OR ( sender='\#{username}' AND NOT recipient='public')" )
+  end
+
+end
+</pre>
 
 In this case, we wish to receive private messages sent by others,
 where `recipient='\#{username}'` would be true.  Additionally, though,
@@ -301,22 +329,32 @@ roster updates are sent with header named `roster` with the value
 of `true`.  The client-side Javascript processes the body of
 roster messages as JSON containing the list of user, and updates 
 the UI accordingly.
+    
+<pre class="syntax ruby"># public_stomplet.rb
 
-    def update_roster(changes={})
-      @lock.synchronize do
-        [ (changes[:remove] || []) ].flatten.each do |username|
-          @roster.delete_at(@roster.index(username) || @roster.length)
-        end
-        [ (changes[:add] || []) ].flatten.each do |username|
-          @roster << username
-        end
-        send_to( @destination, 
-                 @roster.uniq.to_json, 
-                 :sender=>:system, 
-                 :recipient=>:public, 
-                 :roster=>true )
+require 'json'
+
+class PublicStomplet < JmsStomplet 
+
+  def update_roster(changes={})
+    @lock.synchronize do
+      [ (changes[:remove] || []) ].flatten.each do |username|
+        @roster.delete_at(@roster.index(username) || @roster.length)
       end
+      [ (changes[:add] || []) ].flatten.each do |username|
+        @roster << username
+      end
+
+      send_to( @destination, 
+               @roster.uniq.to_json, 
+               :sender=>:system, 
+               :recipient=>:public, 
+               :roster=>true )
     end
+  end
+
+end
+</pre>
 
 A lot of the punctuation above is simply to allow `update_roster()`
 to take one-or-more usernames to `:add` or `:remove`. Since clients
@@ -341,26 +379,31 @@ the user from the roster.
 So far this example has demonstrated primarily round-trips from
 one browser to another, through the magic of STOMP.
 
-But sometimes the web tier would like to initiate a message to
-a party connected over STOMP.
+But sometimes the web tier (or other component) would like to initiate a 
+message to a party connected over STOMP.
 
-In our case, if a user named 'jim' is connected to the chat application,
+In our case, if a user named **'jim'** is connected to the chat application,
 any time a web visitor hits the URL of `/profile/jim`, we want Jim to
 be notified, privately, in real-time.  To accomplish this, we have 
 the `system` user send him a private message from the Sinatra controller
 for that URL.  And of course we display the profile to the web user
 who has no idea he just alerted the authorities of his presence.
 
-    // chat_demo.rb
+<pre class="syntax ruby"># chat_demo.rb
 
-    get '/profile/:username' do
-      username = params[:username]
-      message = "\#{username}, someone from \#{env['REMOTE_ADDR']} checked out your profile"
-      inject( '/topics/chat' ).publish( message, 
-                                        :properties=>{ 
-                                          :recipient=>username, 
-                                          :sender=>'system' 
-                                         } )
-      haml :profile
-    end
+class ChatDemo < Sinatra::Base
+
+  get '/profile/:username' do
+    username = params[:username]
+    message = "\#{username}, someone from \#{env['REMOTE_ADDR']} checked out your profile"
+    inject( '/topics/chat' ).publish( message, 
+                                      :properties=>{ 
+                                        :recipient=>username, 
+                                        :sender=>'system' 
+                                       } )
+    haml :profile
+  end
+
+end
+</pre>
 
