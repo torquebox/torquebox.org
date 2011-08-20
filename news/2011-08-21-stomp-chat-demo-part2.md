@@ -1,114 +1,24 @@
 ---
-title: 'STOMP (and WebSockets) chat demo'
+title: 'STOMP Chat Demo - Part 2'
 author: Bob McWhirter
 layout: news
 tags: [ websockets, stomp, messaging ]
 ---
 
-# Chatty Cathy
+This is part 2 of a multi-part series, walking you through the
+new STOMP-over-WebSockets functionality in TorqueBox.  This
+is a set of technologies that enabled advanced *push* applications
+over the web.
 
-It seems every browser *push* solution needs to demonstrate how
-it works using a chat example.  TorqueBox is at least as good as
-other solutions, so we also have a chat example.
+In this part, we will describe how our previous-connected client
+actually sends and receives messages, and how they move around
+the system.
 
-The functionality presented in our demo includes
+In the first part, we showed how the Javascript client connects
+and sets up some subscriptions:
 
-* Public messaging to all connected parties
-* Private messaging with individuals
-* System-generated announcements
-* Notification to the chat from the web tier
-
-The walk-through below includes simplified example code
-with lots of the jQuery cruft removed.  The full source
-for this demo may be found on GitHub, of course
-
-* <http://github.com/torquebox/stomp-chat-demo>
-
-# I see what you're saying...
-
-<img src="/images/stomp-chat-demo/marvin.png" style="width: 550px;"/>
-
-When a user connects, a roster of other users, along with entries
-for **Everyone** and **System** are added.  The user can then send
-and receive public messages, or communicate privately with any 
-other user.
-
-Additionally, if some other web user browses to the **profile page**
-for any connected user, the user will be notified in real-time,
-demonstrating how components such as web-tier controllers can
-interact with the messaging system.
-
-# Destination multiplexing
-
-From the user's point-of-view, there is an unbounded set of destinations:
-one for every other user connected for private chat.  Plus the destination for 
-public chat.
-
-Implementationlly, this is handled by two STOMP destinations, simply
-`/private' and `/public`.
-
-In the end, though, all chat traffic travels over a single `/topics/chat`
-JMS topic.
-
-<img src="/images/stomp-chat-demo/destination-mux.png" style="width: 550px;"/>
-
-Using the Stomplet API, we are able to define a simple messaging-based API
-for a Javascript client to work with, while moving complexity to the server.
-
-# Connecting
-
-## Web-based login and Sinatra server
-
-The user first surfs to a normal web-page to login.  This example trusts
-that users only log in as themselves, and after validating their username,
-sets `session[:username]` in their web session, and redirects to the 
-Javascript-based chat UI.
-
-The server is written as a simple Sinatra application:
-
-<pre class="syntax ruby"># chat_demo.rb
-
-require 'sinatra/base'
-
-class ChatDemo < Sinatra::Base
-  get '/' do
-    haml :login
-  end
-  
-  post '/' do
-    username = params[:username]
-    redirect to( '/' ) and return if username.nil?
-    username.strip!
-    redirect to( '/' ) and return if ( ! ( username =~ /^[a-zA-Z0-9_]+$/ ) )
-  
-    session[:username] = username
-    haml :chat 
-  end
-end
-</pre>
-
-The bulk of the client is written primarily as a Javascript application, using the
-STOMP-over-WebSockets Javascript client.  It performs a few duties when
-initially loaded, once a user signs in and is redirected.
-
-1. Connect to the STOMP server
-2. Subscribe to `/public` with a message handler
-3. Subscribe to `/private` with a message handler
-
-## STOMP connection
-
-When the Javascript client has loaded, the chat-demo application
-initializes a new client and connects it.  It binds to the
-unload of the window in an attempt to cleanly shutdown when
-a user wanders off, if possible.
-
-The client also involves a little jQuery to display a "connecting..."
-notice, and to change to the chat interface upon successful connection.
 
 <pre class="syntax javascript">// chat.js
-
-client = Stomp.client( stomp_url );
-
 client.connect( null, null, function() {
 
   $(window).unload(function() {
@@ -125,8 +35,9 @@ client.connect( null, null, function() {
   client.subscribe( '/public', function(message) {
     // handle public messages
   } );
-} );
 </pre>
+
+Now let's see what actually happens to move messages around.
 
 # Public messages
 
@@ -315,95 +226,4 @@ On the client-side, receiving private messages operates about the same
 as receiving public messages.  The only complexity is the messages 
 representing the client's half of the conversation should be matched
 with the remote party's portion of the conversation in the UI.
-
-# Roster Roosters
-
-During the above discussion of `PublicStomplet`, we glossed over the
-`update_roster(...)` call.  The `PublicStomplet` maintains a list of
-all usernames currently connected.  Every time a new user connects or
-an existing user disconnects, the Stomplet sends the current roster
-of currently-connected users to every client on the `/public` channel.
-
-To differentiate roster messages from normal text messages, the 
-roster updates are sent with header named `roster` with the value 
-of `true`.  The client-side Javascript processes the body of
-roster messages as JSON containing the list of user, and updates 
-the UI accordingly.
-    
-<pre class="syntax ruby"># public_stomplet.rb
-
-require 'json'
-
-class PublicStomplet < JmsStomplet 
-
-  def update_roster(changes={})
-    @lock.synchronize do
-      [ (changes[:remove] || []) ].flatten.each do |username|
-        @roster.delete_at(@roster.index(username) || @roster.length)
-      end
-      [ (changes[:add] || []) ].flatten.each do |username|
-        @roster << username
-      end
-
-      send_to( @destination, 
-               @roster.uniq.to_json, 
-               :sender=>:system, 
-               :recipient=>:public, 
-               :roster=>true )
-    end
-  end
-
-end
-</pre>
-
-A lot of the punctuation above is simply to allow `update_roster()`
-to take one-or-more usernames to `:add` or `:remove`. Since clients
-may be connecting at arbitrary times, the `on_subscribe` and `on_unsubscribe`
-methods need to be thread-safe.  We wrap our roster-management code
-in a mutex block to ensure we're not having threads trampling each other.
-
-## I've got you listed twice
-
-Due to the nature of JMS topics, the chat application allows any user
-to be connected multiple times, and receive the same messages through
-all clients.  This even operates as expected for private messages 
-between two parties.  Each half of the conversation will appear at all
-clients connected with the same username.
-
-The roster-management allows for multiple subscriptions, and requires
-all of a user's subscriptions to be cancelled before completely removing
-the user from the roster.
-
-# King of the wild web tier
-
-So far this example has demonstrated primarily round-trips from
-one browser to another, through the magic of STOMP.
-
-But sometimes the web tier (or other component) would like to initiate a 
-message to a party connected over STOMP.
-
-In our case, if a user named **'jim'** is connected to the chat application,
-any time a web visitor hits the URL of `/profile/jim`, we want Jim to
-be notified, privately, in real-time.  To accomplish this, we have 
-the `system` user send him a private message from the Sinatra controller
-for that URL.  And of course we display the profile to the web user
-who has no idea he just alerted the authorities of his presence.
-
-<pre class="syntax ruby"># chat_demo.rb
-
-class ChatDemo < Sinatra::Base
-
-  get '/profile/:username' do
-    username = params[:username]
-    message = "\#{username}, someone from \#{env['REMOTE_ADDR']} checked out your profile"
-    inject( '/topics/chat' ).publish( message, 
-                                      :properties=>{ 
-                                        :recipient=>username, 
-                                        :sender=>'system' 
-                                       } )
-    haml :profile
-  end
-
-end
-</pre>
 
