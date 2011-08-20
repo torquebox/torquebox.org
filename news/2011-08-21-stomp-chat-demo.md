@@ -302,24 +302,27 @@ of `true`.  The client-side Javascript processes the body of
 roster messages as JSON containing the list of user, and updates 
 the UI accordingly.
 
-  def update_roster(changes={})
-    @lock.synchronize do
-      [ (changes[:remove] || []) ].flatten.each do |username|
-        @roster.delete_at(@roster.index(username) || @roster.length)
+    def update_roster(changes={})
+      @lock.synchronize do
+        [ (changes[:remove] || []) ].flatten.each do |username|
+          @roster.delete_at(@roster.index(username) || @roster.length)
+        end
+        [ (changes[:add] || []) ].flatten.each do |username|
+          @roster << username
+        end
+        send_to( @destination, 
+                 @roster.uniq.to_json, 
+                 :sender=>:system, 
+                 :recipient=>:public, 
+                 :roster=>true )
       end
-      [ (changes[:add] || []) ].flatten.each do |username|
-        @roster << username
-      end
-      send_to( @destination, 
-               @roster.uniq.to_json, 
-               :sender=>:system, 
-               :recipient=>:public, 
-               :roster=>true )
     end
-  end
 
 A lot of the punctuation above is simply to allow `update_roster()`
-to take one-or-more usernames to `:add` or `:remove`.  
+to take one-or-more usernames to `:add` or `:remove`. Since clients
+may be connecting at arbitrary times, the `on_subscribe` and `on_unsubscribe`
+methods need to be thread-safe.  We wrap our roster-management code
+in a mutex block to ensure we're not having threads trampling each other.
 
 ## I've got you listed twice
 
