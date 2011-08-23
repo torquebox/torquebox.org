@@ -74,7 +74,7 @@ to ensure we're not having threads trampling each other.
 
 Beyond that, though, for every user added to the roster, the system originates 
 a message announcing the user who joined. Likewise, the system originates a 
-message annoucing each departure.
+message announcing each departure.
 
 After sending any announcement messages, the `PublicStomplet` sends the roster array, 
 as JSON, with the recipient set to public, and an extra header of roster set to true. 

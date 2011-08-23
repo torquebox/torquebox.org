@@ -86,7 +86,7 @@ delivers the bare text to either the `/public` or `/private` destinations.
 
 For messages intended for the public, our event-handler simply 
 posts the raw text as a message to the `/public` STOMP destination. 
-No headers, either sender nor recipient are set.
+No headers, neither sender nor recipient are set.
 
 For private messages being sent to a specific individual, our 
 event-handler sets the `recipient` (but not sender) header, and 
@@ -104,7 +104,7 @@ properties and selectors.
 ### Wiring up some Stomplets
 
 Since we have two STOMP destinations, we have two Stomplets to manage
-ment.  All things related to the `/public` destination are handled
+them.  All things related to the `/public` destination are handled
 by `PublicStomplet`, while everything related to `/private` is handled
 by `PrivateStomplet`.  These Stomplets ultimately bridge the gap 
 between STOMP and JMS.
@@ -129,7 +129,7 @@ stomp:
 ### Messages sent to `/public`
 
 On the server-side, we've wired the `/public` STOMP destination to our `PublicStomplet`. 
-This Stomplet handles all messages sent by ever client to the `/public` destination, and 
+This Stomplet handles all messages sent by every client to the `/public` destination, and 
 is responsible for moving them along. This Stomplet enforces the sender of each value, 
 to prevent anyone else from spoofing messages from others.
 
@@ -166,13 +166,13 @@ placed onto the JMS queue as a JMS message.
 
 ### Messages sent to `/private`
 
-Private messages involve more JMS selector magic. We implement the entire `/private` STOMP 
-destination through the `PrivateStomplet` which once again uses the `JmsStomplet` superclass 
-to connect to the same `/topics/chat` JMS topic.
+We implement the entire `/private` STOMP destination through the `PrivateStomplet` which 
+once again uses the `JmsStomplet` superclass to connect to the same `/topics/chat` JMS topic.
 
 The `PrivateStomplet` is about as simple as the `PublicStomplet`. It is responsible for 
 setting the bonafide sender header based on the authenticated username kept in the session, 
-and forwards the message to the JMS topic.
+and forwards the message to the JMS topic.  The `recipient` header of the STOMP message,
+as set by the browser, is copied over to the JMS message as a text property.
 
 <pre class="syntax ruby"># private_stomplet.rb
 require 'torquebox-stomp'

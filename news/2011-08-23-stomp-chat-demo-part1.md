@@ -60,7 +60,7 @@ And then start the application-server from the JBoss directory:
 
 To connect to the chat server, the following browsers are known to work out-of-the-box:
 
-* Safari on OSX an iOS
+* Safari on OSX and iOS
 * Google Chrome 13.0.782.112
 * Firefox 6
 
@@ -123,10 +123,6 @@ class ChatDemo < Sinatra::Base
   
   post '/' do
     username = params[:username]
-    redirect to( '/' ) and return if username.nil?
-    username.strip!
-    redirect to( '/' ) and return if ( ! ( username =~ /^[a-zA-Z0-9_]+$/ ) )
-  
     session[:username] = username
     haml :chat 
   end
