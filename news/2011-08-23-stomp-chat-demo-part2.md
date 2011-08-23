@@ -20,7 +20,7 @@ that enabled advanced push applications over the web.
 2. [Part 2]: Sending and receiving messages
 3. [Part 3]: Originating messages from other components
 
-In this part, we will describe how our previous-connected client actually 
+In this part, we will describe how our previously-connected client actually 
 sends and receives messages, and how they move around the system.
 
 In the first part, we showed how the Javascript client connects and sets up some 
@@ -65,7 +65,7 @@ Now let's see what actually happens to move messages around.
 ## Browser-side
 
 When a user submits a message, our handler figures out which 
-recipient is being targetted based on the current-displayed 
+recipient is being targeted based on the current-displayed 
 recipient panel.
 
 It then fires the TorqueBox.Chat.NewMessage event with the 

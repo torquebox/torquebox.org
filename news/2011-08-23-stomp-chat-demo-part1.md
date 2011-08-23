@@ -28,7 +28,7 @@ The functionality presented in this demo includes:
 * Notification to the chat from the web tier
 
 The walk-through below includes simplified example code with lots of the jQuery cruft 
-removed. The full source for this demo may be found on GitHub, of course
+removed. The full source for this demo may be found on GitHub, of course:
 
 * <http://github.com/torquebox/stomp-chat-demo>
 
@@ -43,7 +43,7 @@ This demonstration has been broken into 3 parts:
 ## Deploy and Launch
 
 If you would like to play along at home, you may clone the above repository, 
-install a recent incremental build (#340 or higher), and get started.
+install a [recent incremental build](/2x/builds) (#340 or higher), and get started.
 
 We assume you've installed TorqueBox, set $TORQUEBOX_HOME and you've got a good 
 JRuby in your path. From the demo's directory, you should run the following commands:
@@ -64,7 +64,8 @@ To connect to the chat server, the following browsers are known to work out-of-t
 * Google Chrome 13.0.782.112
 * Firefox 6
 
-With some adjustment to enable WebSockets, which is disabled by default, Firefox 5 works well, also.
+With [some adjustment to enable WebSockets](https://developer.mozilla.org/en/WebSockets), 
+which is disabled by default, Firefox 5 works well, also.
 
 # I see what you're saying...
 
@@ -134,8 +135,8 @@ end
 
 By setting the `session[:username]` after our admittedly-poor authentication, 
 we make the user available to the message-handling components described shortly. 
-The entire stack provides a unified view of a user's session across both STOMP 
-and web component.
+As we will see in [part 2], the entire stack provides a unified view of a user's session across 
+both STOMP and web components.
 
 ## Javascript Client in the Browser
 
@@ -146,8 +147,9 @@ loaded, once a user signs in and is redirected.
 1. Connect to the STOMP server
 2. Subscribe to `/public` with a message handler
 3. Subscribe to `/private` with a message handler
-4. Connection to the STOMP server in this case requires no authentication, 
-   since the user already authenticated from the web portion of the application.
+
+Connection to the STOMP server in this case requires no authentication, 
+since the user already authenticated from the web portion of the application.
 
 ### Core Client
 
@@ -201,6 +203,9 @@ down and sending new messages.
 
 Additionally, the STOMP client is configured to subscribe to two STOMP destinations, 
 `/private` and `/public` and then notify the UI view once all of this is accomplished.
+The `NewPublicMessage` and `NewPrivateMessage` event handlers are bound by the 
+view layer in `chat_view.js`, which decides how inbound messages should be processed and displayed.
+We'll explore how they are triggered in [part 2].
 
 1. Connection is triggered.
 2. The on connection handler is fired once connected.
