@@ -136,3 +136,9 @@ simply interact with messaging like normal.
 While the STOMP support continues to evolve, we think it, along with JMS, is an excellent 
 way to provide push capabilities to large number of clients, using few resources, and supporting 
 clustered environments.
+
+# Further Reading
+
+* [STOMP](http://stomp.github.com/stomp-specification-1.1.html)
+* [WebSockets](http://en.wikipedia.org/wiki/WebSocket)
+* [STOMP-over-WebSockets documentation](http://torquebox.org/2x/builds/html-docs/websockets.html)
