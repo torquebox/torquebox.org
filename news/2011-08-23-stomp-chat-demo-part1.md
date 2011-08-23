@@ -18,7 +18,7 @@ it works using a chat example. With our recent introduction of
 [STOMP]-over-[WebSockets], TorqueBox is at least as good as other solutions, 
 so we also have a chat example. If you missed what all this 
 STOMP-over-WebSockets stuff is about, please check out [the blog-post _WebSockets, 
-STOMP & TorqueBox_][/news/2011/08/15/websockets-stomp-and-torquebox/].
+STOMP & TorqueBox_](/news/2011/08/15/websockets-stomp-and-torquebox/).
 
 The functionality presented in this demo includes:
 
