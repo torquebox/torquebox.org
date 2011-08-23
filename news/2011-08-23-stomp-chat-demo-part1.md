@@ -43,18 +43,21 @@ This demonstration has been broken into 3 parts:
 ## Deploy and Launch
 
 If you would like to play along at home, you may clone the above repository, 
-install a [recent incremental build](/2x/builds) (#340 or higher), and get started.
+install a [recent incremental build](/2x/builds) (#344 or higher), and get started.
 
 We assume you've installed TorqueBox, set $TORQUEBOX_HOME and you've got a good 
 JRuby in your path. From the demo's directory, you should run the following commands:
 
-    demo$ jruby -S gem install bundler
     demo$ jruby -S bundle install
     demo$ jruby -S rake torquebox:deploy
 
 And then start the application-server from the JBoss directory:
 
     jboss$ ./bin/standalone.sh
+
+Using an appropriate client, connect to:
+
+* <http://localhost:8080/>
 
 # Appropriate Clients
 
