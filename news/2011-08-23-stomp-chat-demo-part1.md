@@ -8,15 +8,17 @@ tags: [ websockets, stomp, messaging ]
 [Part 1]: /news/2011/08/23/stomp-chat-demo-part1/
 [Part 2]: /news/2011/08/23/stomp-chat-demo-part2/
 [Part 3]: /news/2011/08/23/stomp-chat-demo-part3/
+[STOMP]: http://stomp.github.com/stomp-specification-1.1.html
+[WebSockets]: http://en.wikipedia.org/wiki/WebSocket
 
 # Chatty Cathy
 
 It seems every browser push solution needs to demonstrate how 
 it works using a chat example. With our recent introduction of 
-STOMP-over-WebSockets, TorqueBox is at least as good as other solutions, 
+[STOMP]-over-[WebSockets], TorqueBox is at least as good as other solutions, 
 so we also have a chat example. If you missed what all this 
-STOMP-over-WebSockets stuff is about, please check out the blog-post WebSockets, 
-STOMP & TorqueBox.
+STOMP-over-WebSockets stuff is about, please check out [the blog-post _WebSockets, 
+STOMP & TorqueBox_][/news/2011/08/15/websockets-stomp-and-torquebox/].
 
 The functionality presented in this demo includes:
 
@@ -76,6 +78,8 @@ any connected user, the user will be notified in real-time, demonstrating
 how components such as web-tier controllers can interact with the messaging 
 system.
 
+<img src="/images/stomp-chat-demo/chat-window.png" style="width: 550px;"/>
+
 # Cascading destinations
 
 From the user's point-of-view, there is an unbounded set 
@@ -87,6 +91,8 @@ simply `/private` and `/public`.
 
 In the end, though, all chat traffic travels over a single 
 `/topics/chat` JMS topic.
+
+<img src="/images/stomp-chat-demo/destination-mux.png" style="width: 450px;"/>
 
 Using the Stomplet API, we are able to define a simple messaging-based 
 API for a Javascript client to work with, while moving complexity to 
@@ -138,8 +144,8 @@ STOMP-over-WebSockets Javascript client. It performs a few duties when initially
 loaded, once a user signs in and is redirected.
 
 1. Connect to the STOMP server
-2. Subscribe to /public with a message handler
-3. Subscribe to /private with a message handler
+2. Subscribe to `/public` with a message handler
+3. Subscribe to `/private` with a message handler
 4. Connection to the STOMP server in this case requires no authentication, 
    since the user already authenticated from the web portion of the application.
 
@@ -199,13 +205,13 @@ Additionally, the STOMP client is configured to subscribe to two STOMP destinati
 1. Connection is triggered.
 2. The on connection handler is fired once connected.
 3. disconnect and message sending events are configured.
-4. Client subscribes to /private STOMP destination, delegating received messages to another event-handler.
-4. Client subscribes to /public STOMP destination, delegating received messages to another event-handler.
+4. Client subscribes to `/private` STOMP destination, delegating received messages to another event-handler.
+4. Client subscribes to `/public` STOMP destination, delegating received messages to another event-handler.
 5. Notify the UI layer that the STOMP layer has successfully connected, subscribed, and is ready to go.
 
 ### Client UI
 
-The primary bits of the view are defined in chat_view.js and involves the logistics necessary to 
+The primary bits of the view are defined in `chat_view.js` and involves the logistics necessary to 
 maintain a panel for each chat participant. Additionally, the view keeps up with the 
 currently-displayed recipient, and uses that information, along with messages typed by the user, 
 to invoke our onNewMessage event-handler defined above in chat.js.
@@ -213,3 +219,5 @@ to invoke our onNewMessage event-handler defined above in chat.js.
 # Next...
 
 In the next part of this series, we'll see how a Javascript-based application actually sends and receives messages.
+
+* [Part 2]: Sending and receiving messages

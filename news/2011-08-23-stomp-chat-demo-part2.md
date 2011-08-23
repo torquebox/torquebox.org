@@ -1,5 +1,5 @@
 ---
-title: 'STOMP Chat Demo - Part 3'
+title: 'STOMP Chat Demo - Part 2'
 author: Bob McWhirter
 layout: news
 tags: [ websockets, stomp, messaging ]
@@ -137,6 +137,8 @@ In diagram form, you can see that the PublicStomplet receives STOMP messages,
 sets some headers, and then uses the JmsStomplet superclass to get the message 
 placed onto the JMS queue as a JMS message.
 
+<img src="/images/stomp-chat-demo/public-stomplet.png"/>
+
 ### Messages sent to `/private`
 
 Private messages involve more JMS selector magic. We implement the entire `/private` STOMP 
@@ -225,7 +227,7 @@ class PrivateStomplet < TorqueBox::Stomp::JmsStomplet
     username = subscriber.session[:username]
     subscribe_to( subscriber, 
                   @destination, 
-                  "recipient='#{username}' OR ( sender='#{username}' AND NOT recipient='public')" )
+                  "recipient='\#{username}' OR ( sender='\#{username}' AND NOT recipient='public')" )
   end
 
 end
@@ -238,8 +240,14 @@ While we definitely want to receive messages which are targetted to our confirme
 we also need to receive a copy of any non-public message we send, so that it may be interleaved 
 into private responses we receive from people.
 
+# A picture
+
+<img src="/images/stomp-chat-demo/full-topo.png"/>
+
 # Moving along...
 
 In the next part, we'll demonstrate how advanced data, in the form of JSON, can be used to manage 
 our connect-used roster. Additionally, you'll see how other components within your application 
 can originate messages destined for browser-based clients.
+
+* [Part 3]: Originating messages from other components
