@@ -68,7 +68,7 @@ When a user submits a message, our handler figures out which
 recipient is being targeted based on the current-displayed 
 recipient panel.
 
-It then fires the TorqueBox.Chat.NewMessage event with the 
+It then fires the `TorqueBox.Chat.NewMessage` event with the 
 message and recipient as arguments.
 
 <pre class="syntax javascript">// chat_view.js
@@ -101,6 +101,31 @@ an awesome JMS broker. We've designed the application to only use one
 JMS topic for everything, differentiating messages using JMS message 
 properties and selectors.
 
+### Wiring up some Stomplets
+
+Since we have two STOMP destinations, we have two Stomplets to manage
+ment.  All things related to the `/public` destination are handled
+by `PublicStomplet`, while everything related to `/private` is handled
+by `PrivateStomplet`.  These Stomplets ultimately bridge the gap 
+between STOMP and JMS.
+
+<img src="/images/stomp-chat-demo/full-topo.png"/>
+
+The Stomplets and destinations are associated with each other through
+a `stomp:` section of your `torquebox.yml`.
+
+<pre class="syntax yaml"># torquebox.yml
+stomp:
+  stomplets:
+    chat:
+      class: PublicStomplet
+      route: /public
+    private:
+      class: PrivateStomplet
+      route: /private
+</pre>
+
+
 ### Messages sent to `/public`
 
 On the server-side, we've wired the `/public` STOMP destination to our `PublicStomplet`. 
@@ -110,9 +135,9 @@ to prevent anyone else from spoofing messages from others.
 
 The user's web-based session is available to every Stomplet, and it can be used to enforce 
 identity. It also ensures that the `recipient` header is set to the value of `public`, 
-taking the burden off the browser client.
+taking the burden off the browser-based client.
 
-The then uses the `send_to(...)` method of `JmsStomplet` to convert and deliver a STOMP 
+The Stomplet then uses the `send_to(...)` method of `JmsStomplet` to convert and deliver a STOMP 
 message to a JMS destination, which was obtained through injection.
 
 <pre class="syntax ruby"># public_stomplet.rb
@@ -214,9 +239,9 @@ Notice, we receive all messages sent to the `public` recipient, even those we se
 The UI only displays messages it receives, resulting in seeing our own messages only once 
 they've been received by the server and redistributed.
 
-### PrivateStopmlet#on_subscribe(subscriber)
+### PrivateStomplet#on_subscribe(subscriber)
 
-The PrivateStomplet is responsible for handling all subscriptions to the `/private` STOMP 
+The `PrivateStomplet` is responsible for handling all subscriptions to the `/private` STOMP 
 destination. As with the `/public` subscriptions, JMS selectors are used to enforce receiving 
 only a specific sub-set of all messages on the underlying JMS topic.
 
@@ -237,17 +262,13 @@ In this case, since the client only ever displays messages it receives, in order
 own half of the conversation, we need a slightly more complex JMS selector.
 
 While we definitely want to receive messages which are targetted to our confirmed username, 
-we also need to receive a copy of any non-public message we send, so that it may be interleaved 
-into private responses we receive from people.
-
-# A picture
-
-<img src="/images/stomp-chat-demo/full-topo.png"/>
+we also need to receive a copy of any non-public message that we have sent, so that they may 
+be interleaved into private responses we receive from other people.
 
 # Moving along...
 
 In the next part, we'll demonstrate how advanced data, in the form of JSON, can be used to manage 
-our connect-used roster. Additionally, you'll see how other components within your application 
+our connected-user roster. Additionally, you'll see how other components within your application 
 can originate messages destined for browser-based clients.
 
 * [Part 3]: Originating messages from other components
