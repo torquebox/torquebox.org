@@ -43,14 +43,14 @@ class PublicStomplet < TorqueBox::Stomp::JmsStomplet
       [ (changes[:remove] || []) ].flatten.each do |username|
         @roster.delete_at(@roster.index(username) || @roster.length)
         send_to( @destination, 
-                 " left", 
+                 "\#{username} left", 
                  :sender=>:system, 
                  :recipient=>:public )
       end
       [ (changes[:add] || []) ].flatten.each do |username|
         @roster << username
         send_to( @destination, 
-                 " joined", 
+                 "\#{username} joined", 
                  :sender=>:system, 
                  :recipient=>:public )
       end
@@ -139,6 +139,7 @@ clustered environments.
 
 # Further Reading
 
-* [STOMP](http://stomp.github.com/stomp-specification-1.1.html)
-* [WebSockets](http://en.wikipedia.org/wiki/WebSocket)
-* [STOMP-over-WebSockets documentation](http://torquebox.org/2x/builds/html-docs/websockets.html)
+* [STOMP 1.1 Specification](http://stomp.github.com/stomp-specification-1.1.html)
+* [WebSockets on ye olde Wikipedia](http://en.wikipedia.org/wiki/WebSocket)
+* [TorqueBox STOMP-over-WebSockets documentation](http://torquebox.org/2x/builds/html-docs/websockets.html)
+* [The Stilts Project](http://stilts.projectodd.org/)
