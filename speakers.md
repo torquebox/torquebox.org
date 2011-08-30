@@ -13,8 +13,12 @@ If you'd like to have someone come by, we may be able to arrange
 that, depending on the expected audience, and distance from 
 an engineer who is willing to go.
 
+While we can normally foot the travel bill ourselves, if your organization
+offers travel or lodging assistance, that is of course always
+appreciated, but not a requiremet.
+
 Just shoot an email to *<span>speakers</span>@torquebox<span>.org</span>*
-and we will try to work something out.
+and we will try to work something out. 
 
 # Want to speak at conferences?
 
