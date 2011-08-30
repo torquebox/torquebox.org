@@ -15,7 +15,7 @@ an engineer who is willing to go.
 
 While we can normally foot the travel bill ourselves, if your organization
 offers travel or lodging assistance, that is of course always
-appreciated, but not a requiremet.
+appreciated, but not a requirement.
 
 Just shoot an email to *<span>speakers</span>@torquebox<span>.org</span>*
 and we will try to work something out. 
@@ -32,6 +32,10 @@ to route them to you.
 Find us on [IRC](/community#irc), or you may also ping the
 *<span>speakers</span>@torquebox<span>.org</span>* address.
 
+Or fork the [torquebox.org site repository](http://github.com/torquebox/torquebox.org/)
+and send a patch against [this very page](https://github.com/torquebox/torquebox.org/blob/master/speakers.md),
+adding yourself to the roster below.
+
 # Speaking at an upcoming conference?
 
 We like to promote anyone who speaks, anywhere in the world,
@@ -40,3 +44,18 @@ and where you are speaking, and we'll get it up.
 
 Find us on [IRC](/community#irc), or you may also ping the
 *<span>speakers</span>@torquebox<span>.org</span>* address.
+
+# Roster
+
+Here's a list of known speakers, and their general geographic
+location.
+
+|Name            | aka                  | Geography    |
+|----------------|----------------------|--------------|
+| Ben Browning   | bbrowning            | United States, Georgia
+| Jim Crossley   | jcrossley3           | United States, Georgia
+| Lance Ball     | lanceball            | United States, North Carolina
+| Toby Crawley   | tcrawley             | United States, North Carolina
+| Bob McWhirter  | bobmcw               | United States, Virginia
+| Bruno Oliveira | abstractj            | Brazil 
+| Adam Warski    | awarski              | Poland
