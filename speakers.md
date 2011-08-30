@@ -6,12 +6,12 @@ layout: narrow
 # Need a speaker at your conference, user-group, or bar mitzvah?
 
 While the TorqueBox team is centered around the southeast United
-States, we can normally can locate our car keys or find our way
+States, we can normally locate our car keys or find our way
 to an airport.
 
 If you'd like to have someone come by, we may be able to arrange
 that, depending on the expected audience, and distance from 
-an engineering who is willing to go.
+an engineer who is willing to go.
 
 Just shoot an email to *<span>speakers</span>@torquebox<span>.org</span>*
 and we will try to work something out.
