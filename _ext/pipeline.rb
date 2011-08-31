@@ -8,6 +8,7 @@ require 'toc'
 require 'events_munger'
 require 'tagger_atomizer'
 require 'tag_implier'
+require 'json'
 
 
 Awestruct::Extensions::Pipeline.new do

@@ -1,0 +1,5 @@
+
+RewriteEngine on
+
+RewriteRule ^gems/([^/]+)\.json$  http://rubygems.org/api/v1/versions/$1.json [P]
+

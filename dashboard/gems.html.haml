@@ -1,0 +1,87 @@
+---
+title: Gem Tracking Dashboard
+layout: default
+gems:
+  - rack
+  - rails
+  - sinatra
+  - sprockets
+  - json
+  - json_pure
+  - rspec
+---
+
+%script{:type=>'text/javascript', :src=>'/javascripts/jquery.js'}
+
+:css
+  table {
+    border-collapse: collapse;
+  }
+  td {
+    border: 1px solid #999;
+  }
+  .updated {
+    background-color: #fcc;
+    font-weight: bold;
+  }
+
+
+:javascript
+  $(document).ready( function() {
+    dashboard = {};
+
+    dashboard.gems = #{page.gems.to_json};
+
+    dashboard.fetch = function(gem_name) {
+      console.log( "fetching " + gem_name );
+      $.getJSON( '/dashboard/gems/' + gem_name + '.json', dashboard.add_gem(gem_name) );
+    };
+
+    dashboard.fetch_all = function() {
+      $.each( dashboard.gems, function(i, gem_name) {
+        dashboard.fetch( gem_name );
+      } ); 
+    };
+
+    dashboard.add_gem = function(gem_name) {
+      $( '#gems' ).append( 
+        $( '<tr/>' ).attr( 'id', gem_name )
+      );
+        
+      return function(gem) {
+        dashboard.populate_gem( gem_name, gem );
+      };
+    };
+
+    dashboard.populate_gem = function(gem_name, gem) {
+      console.debug( gem );
+      d = new Date( gem[0].built_at );
+      $( '#' + gem_name ).append( 
+        $( '<td/>' ).text( gem_name ),
+        $( '<td/>' ).text( gem[0].number ),
+        $( '<td/>' ).text( '' + d )
+      );
+
+      now = new Date();
+
+      diff = ( now - d ) / ( 3600 * 1000 );
+
+      console.debug( diff );
+
+      if ( diff < 100 ) {
+        $( '#' + gem_name ).addClass( 'updated' );
+      }
+    };
+ 
+    dashboard.fetch_all();
+
+  } );
+
+
+%h1 Gems we track
+
+%table#gems
+  
+
+
+
