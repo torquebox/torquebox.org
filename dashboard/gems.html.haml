@@ -33,7 +33,6 @@ gems:
     dashboard.gems = #{page.gems.to_json};
 
     dashboard.fetch = function(gem_name) {
-      console.log( "fetching " + gem_name );
       $.getJSON( '/dashboard/gems/' + gem_name + '.json', dashboard.add_gem(gem_name) );
     };
 
@@ -54,7 +53,6 @@ gems:
     };
 
     dashboard.populate_gem = function(gem_name, gem) {
-      console.debug( gem );
       d = new Date( gem[0].built_at );
       $( '#' + gem_name ).append( 
         $( '<td/>' ).text( gem_name ),
@@ -65,8 +63,6 @@ gems:
       now = new Date();
 
       diff = ( now - d ) / ( 3600 * 1000 );
-
-      console.debug( diff );
 
       if ( diff < 100 ) {
         $( '#' + gem_name ).addClass( 'updated' );
