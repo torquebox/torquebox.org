@@ -13,7 +13,7 @@ Vanderbilt University.  And Jeremy lined up some excellent local musicians for o
 breaks.  Well done!
 
 <strong>So, here is the video:</strong>
-<iframe src="http://player.vimeo.com/video/28452265?title=0&amp;byline=0&amp;portrait=0" width="512" height="384" frameborder="0"></iframe>
+<iframe src="http://player.vimeo.com/video/28452265?title=0&amp;byline=0&amp;portrait=0" width="512" height="288" frameborder="0"></iframe>
 
 
 
