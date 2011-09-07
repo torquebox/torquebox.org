@@ -8,6 +8,7 @@ tags: [ openshift, announcements ]
 
 [express]: https://openshift.redhat.com/app/
 [torquebox-openshift-express]: https://github.com/torquebox/torquebox-openshift-express
+[register]: https://openshift.redhat.com/app/user/new/express
 [user-guide]: https://docs.redhat.com/docs/en-US/OpenShift_Express/1.0/html/User_Guide/index.html
 [rails-quickstart]: https://www.redhat.com/openshift/kb/kb-e1005-ruby-on-rails-express-quickstart-guide
 [2x-builds]: http://torquebox.org/2x/builds/
@@ -25,9 +26,27 @@ applications you can deploy.
 
 # Try It Out
 
-Follow the instructions in our [torquebox-openshift-express][]
-repository to get up and running on OpenShift Express in a few
-minutes.
+The most up-to-date instructions live in our
+[torquebox-openshift-express][] repository but I've included the steps
+below to get up and running on OpenShift Express in a few minutes.
+
+* [Register][] for OpenShift Express
+* Install OpenShift client gems - `gem install rhc`
+* Create a domain name - `rhc-create-domain -n mydomain -l username`
+* Create an AS7 application - `rhc-create-app -a myapp -t jbossas-7.0`
+* Convert the newly created Java application to Ruby for use with TorqueBox
+  * `cd myapp`
+  * wget `https://raw.github.com/torquebox/torquebox-openshift-express/master/java_to_ruby.rb`
+  * `ruby java_to_ruby.rb` to convert your application
+* Confirm changes and commit result - be sure to `git add` the new files
+  * `git add .openshift/config/modules`
+  * `git add config.ru`
+  * `git commit -am "Converted to TorqueBox"`
+* `git push` your new Ruby application
+  * During this first push Express will download the necessary TorqueBox and
+    JRuby installations then start your application
+* Visit your new application at http://myapp-mydomain.rhcloud.com
+* Edit your application and `git push` to deploy new changes
 
 Once you get your sample application running check out the [OpenShift
 Express User Guide][user-guide] and the [Ruby on Rails Express
