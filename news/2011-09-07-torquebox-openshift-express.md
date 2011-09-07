@@ -2,12 +2,14 @@
 title: 'TorqueBox Now Available On Red Hat OpenShift PaaS'
 author: Ben Browning
 layout: news
-timestamp: 2011-09-07t09:00:00.0-04:00
+timestamp: 2011-09-07t09:20:00.0-04:00
 tags: [ openshift, announcements ]
 ---
 
 [express]: https://openshift.redhat.com/app/
 [torquebox-openshift-express]: https://github.com/torquebox/torquebox-openshift-express
+[user-guide]: https://docs.redhat.com/docs/en-US/OpenShift_Express/1.0/html/User_Guide/index.html
+[rails-quickstart]: https://www.redhat.com/openshift/kb/kb-e1005-ruby-on-rails-express-quickstart-guide
 [2x-builds]: http://torquebox.org/2x/builds/
 
 <img src="/images/openshift_logo.png"/>
@@ -27,6 +29,11 @@ Follow the instructions in our [torquebox-openshift-express][]
 repository to get up and running on OpenShift Express in a few
 minutes.
 
+Once you get your sample application running check out the [OpenShift
+Express User Guide][user-guide] and the [Ruby on Rails Express
+Quickstart Guide][rails-quickstart] to learn more about the OpenShift
+client tools (rhc-* commands) and how to deploy a Rails application.
+
 # The Details
 
 For the curious, we piggy-back on top of the JBoss AS7 support in
@@ -42,8 +49,12 @@ higher build number found on our [2.x builds][2x-builds] page.
 
 We don't yet have messaging or stomp support in OpenShift Express but
 will continue to work on adding support for the full TorqueBox
-stack. Even without these bits TorqueBox still provides a lot of
-features and performance compared to a vanilla Ruby application
-running on Passenger.
+stack. Memory is also quite constrained so you'll need to be careful
+when deploying applications that use multiple Ruby runtimes (jobs,
+services) that you don't run out of memory.
+
+Even with these limitations TorqueBox still provides a lot of features
+and performance compared to a vanilla Ruby application running on
+Passenger.
 
 Please try it out and give us your feedback!
