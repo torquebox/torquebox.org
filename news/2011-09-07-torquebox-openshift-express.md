@@ -12,6 +12,7 @@ tags: [ openshift, announcements ]
 [user-guide]: https://docs.redhat.com/docs/en-US/OpenShift_Express/1.0/html/User_Guide/index.html
 [rails-quickstart]: https://www.redhat.com/openshift/kb/kb-e1005-ruby-on-rails-express-quickstart-guide
 [2x-builds]: http://torquebox.org/2x/builds/
+[flex]: https://openshift.redhat.com/app/flex
 
 <img src="/images/openshift_logo.png"/>
 
@@ -73,7 +74,11 @@ when deploying applications that use multiple Ruby runtimes (jobs,
 services) that you don't run out of memory.
 
 Even with these limitations TorqueBox still provides a lot of features
-and better performance compared to a vanilla Ruby application running on
-Passenger.
+and better performance compared to a vanilla Ruby application running
+on Passenger.
+
+If you need the full power of TorqueBox, it will soon be available on
+[OpenShift Flex][flex] without memory or feature constraints. We'll
+post more details once that happens.
 
 Please try it out and give us your feedback!
