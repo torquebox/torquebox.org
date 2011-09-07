@@ -44,7 +44,8 @@ below to get up and running on OpenShift Express in a few minutes.
 1. `git push` your new Ruby application
     * During this first push Express will download the necessary TorqueBox and
       JRuby installations then start your application
-1. Visit your new application at http://myapp-mydomain.rhcloud.com
+1. Visit your new application at http://myapp-mydomain.rhcloud.com -
+   if everything worked you should see an OpenShift splash page
 1. Edit your application and `git push` to deploy new changes
 
 Once you get your sample application running check out the [OpenShift
