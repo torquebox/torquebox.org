@@ -2,7 +2,7 @@
 title: 'TorqueBox Now Available On Red Hat OpenShift PaaS'
 author: Ben Browning
 layout: news
-timestamp: 2011-09-07t09:20:00.0-04:00
+timestamp: 2011-09-07t09:40:00.0-04:00
 tags: [ openshift, announcements ]
 ---
 
@@ -21,7 +21,7 @@ We are pleased to announce that you can now run Ruby applications on
 top of TorqueBox with the free Red Hat [OpenShift Express][express]
 Platform-as-a-Service. OpenShift Express has supported Ruby
 applications for some time on Passenger but now you have the option of
-using TorqueBox for greater power and flexibility..
+using TorqueBox for greater power and flexibility.
 
 # Try It Out
 
@@ -72,7 +72,7 @@ when deploying applications that use multiple Ruby runtimes (jobs,
 services) that you don't run out of memory.
 
 Even with these limitations TorqueBox still provides a lot of features
-and performance compared to a vanilla Ruby application running on
+and better performance compared to a vanilla Ruby application running on
 Passenger.
 
 Please try it out and give us your feedback!
