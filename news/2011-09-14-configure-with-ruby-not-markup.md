@@ -1,5 +1,5 @@
 ---
-title: 'torquebox.rb - A Configuration DSL'
+title: 'Configure your TorqueBox apps with Ruby, not markup'
 author: Toby Crawley
 layout: news
 timestamp: 2011-09-14t16:40:00.0-04:00
@@ -7,6 +7,7 @@ tags: [ configuration ]
 ---
 
 [descriptors]: /2x/builds/LATEST/html-docs/deployment-descriptors.html
+[ruby-descriptors]: /2x/builds/LATEST/html-docs/deployment-descriptors.html#ruby-descriptor-layout
 [2x-builds]: /2x/builds/
 [documentation]: /2x/builds/LATEST/html-docs/
 [community]: /community
@@ -54,7 +55,7 @@ torquebox.rb:
     SOME_API_USERNAME 'joe'
     SOME_API_PASSWORD 'vagabond'
   end
-  
+
   queue '/queue/work' do 
     processor SmallHandler, :filter => 'size < 50'
     
@@ -86,56 +87,33 @@ Things to note about the above example:
   In the DSL, those are combined under the `queue` or `topic' definition.
 * Most of the DSL directives can take their options as a hash, as method calls 
   within the block, or a combination of the two (see the queue and processor 
-  definitions above).
+  definitions above). 
+* The DSL can only be used in the `torquebox.rb` file, which follows
+  the same location rules as the `torquebox.yml` file: it must be in the
+  `config/` dir of a Rails app, or in the root of a Sinatra app. 
 * This obviously isn't an exhaustive example of the configuration options;
   see the [documentation] for more examples.
 
 # Sharing configuration
 
 Since the DSL is just Ruby, sharing configuration options between several directives
-is easy, with one 'gotcha'. If you have common settings you want to share between entries 
-in the configuration, you could try this, but it won't work:
-
-<pre class="syntax ruby">TorqueBox.configure do 
-  queue '/queue/my_queue' do 
-    common_options = { :x => 'ex', :y => 'wye', :z => 'zee' }
-
-    processor SomeProcessor do 
-      # this won't work!
-      config common_options
-    end
-    
-    processor SomeOtherProcessor do 
-      # neither will this!
-      config common_options.merge!(:z => 'zed')
-    end
-  end
-end</pre>
-
-The DSL uses `instance_eval` to parse the configuration, which prevents variables
-defined outside of a block from being seen within that block. To work around this,
-the DSL supports single argument blocks. If you provide an argument for the block,
-`instance_eval` is disabled, and you are passed a configuration object to use instead.
-Since there is no `instance_eval`, you will need treat any DSL directives within
-that block as method calls on the given configuration object.
-Here is the above example again, but with a couple of changes that allow it to
-work as we intend it:
+is easy:
 
 <pre class="syntax ruby">TorqueBox.configure do 
   queue '/queue/my_queue' do 
     common_options = { :x => 'ex', :y => 'wye', :z => 'zee' }
 
     processor SomeProcessor do |proc|
-      # this will work!
       proc.config common_options
     end
     
     processor SomeOtherProcessor do |proc|
-      # and so will this!
       proc.config common_options.merge!(:z => 'zed')
     end
   end
 end</pre>
+
+See the [DSL documentation][ruby-descriptors] for more information on sharing options.
 
 # Current status
 
