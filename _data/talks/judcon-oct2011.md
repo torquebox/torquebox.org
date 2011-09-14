@@ -1,5 +1,5 @@
 ---
-title: 'TorqueBox'
+title: 'TorqueBox - Where Ruby meets CDI'
 presentor: Marek Goldmann
 event: 'JUDCon 2011:London'
 event_date: 31 October - 1 November, 2011
