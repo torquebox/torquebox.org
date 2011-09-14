@@ -17,6 +17,22 @@ layout: default
  
   
     #main-content
+      #irc.section 
+        %h1 
+          IRC
+    
+        %img.screencap{:src=>'/images/screencaps/irc.png'}
+    
+        %p
+          The TorqueBox team is a distributed team, so you can be
+          as close to the action as anyone else by participating 
+          on IRC.  IRC is our virtual office (and virtual watercooler)
+          so fire up an IRC client and stop in.
+    
+        %a{:href=>'irc://irc.freenode.net/torquebox'}
+          %code
+            irc.freenode.net #torquebox
+
       .section 
         %h1
           %a{:href=>'/community/mailing_lists/'}
@@ -55,25 +71,8 @@ layout: default
     
         %p.more
           %a{:href=>'/community/issues/'}
-            More information about our issue-tracker
-       
-    
-      #irc.section 
-        %h1 
-          IRC
-    
-        %img.screencap{:src=>'/images/screencaps/irc.png'}
-    
-        %p
-          The TorqueBox team is a distributed team, so you can be
-          as close to the action as anyone else by participating 
-          on IRC.  IRC is our virtual office (and virtual watercooler)
-          so fire up an IRC client and stop in.
-    
-        %a{:href=>'irc://irc.freenode.net/torquebox'}
-          %code
-            irc.freenode.net #torquebox
-      
+            More information about our issue-tracker    
+         
       .section 
         %h1
           %a{:href=>"http://twitter.com/torquebox"}
