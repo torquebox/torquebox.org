@@ -1,8 +1,8 @@
 ---
-title: 'Configure your TorqueBox apps with Ruby, not markup'
+title: 'Configure your TorqueBox apps with Ruby, not YAML'
 author: Toby Crawley
 layout: news
-timestamp: 2011-09-14t16:40:00.0-04:00
+timestamp: 2011-09-14t17:15:00.0-04:00
 tags: [ configuration ]
 ---
 
@@ -14,13 +14,13 @@ tags: [ configuration ]
 
 TorqueBox has traditionally used a YAML configuration syntax, both for its
 internal (`torquebox.yml`) and external (`*-knob.yml`) [descriptors]. 
-In addition to that YAML syntax, you can now use a Ruby DSL in your internal
-descriptor. To use the DSL, simply replace your `torquebox.yml` file with a 
-`torquebox.rb` file.
+Now, in place of a YAML-based internal descriptor, you can use a Ruby-based internal
+descriptor. We now provide a Ruby configuration DSL. To use it, simply replace
+ your `torquebox.yml` file with a `torquebox.rb` file.
 
 # But what goes in that file?
 
-The best way to see that is through an example. We'll take the following 
+The best way to see that is with an example. We'll take the following 
 `torquebox.yml` and convert it into a `torquebox.rb`:
 
 <pre class="syntax yaml">environment:
@@ -48,7 +48,7 @@ jobs:
       notifier_url: http://my.notification.service.com/</pre>
       
 Here is the same configuration expressed using the Ruby DSL in
-torquebox.rb:
+`torquebox.rb`:
 
 <pre class="syntax ruby">TorqueBox.configure do
   environment do 
@@ -84,13 +84,10 @@ Things to note about the above example:
   exception to that is with destinations and message processors: in the YAML
   syntax, the destination itself is defined in a `queues:` or `topics:` block,
   with processors wired to the destinations in a `messaging:` block.
-  In the DSL, those are combined under the `queue` or `topic' definition.
+  In the DSL, those are combined under the `queue` or `topic` definition.
 * Most of the DSL directives can take their options as a hash, as method calls 
   within the block, or a combination of the two (see the queue and processor 
   definitions above). 
-* The DSL can only be used in the `torquebox.rb` file, which follows
-  the same location rules as the `torquebox.yml` file: it must be in the
-  `config/` dir of a Rails app, or in the root of a Sinatra app. 
 * This obviously isn't an exhaustive example of the configuration options;
   see the [documentation] for more examples.
 
@@ -122,5 +119,11 @@ it's brand new, it may get tweaked a bit before the actual 2.0 release. The
 [documentation] has been updated throughout with DSL examples for all of the
 available configuration options.
 
+The DSL can currently only be used in the `torquebox.rb` file, which follows
+the same location rules as the `torquebox.yml` file: it *must* be in the
+`config/` dir of a Rails app, or in the root of a Sinatra app, and it
+*must* be named `torquebox.rb`. It cannot be used anywhere else within your code, nor
+in the external (`*-knob.yml`) descriptor.
+  
 If you have any questions, comments, or feature requests in regards to the DSL, please 
 [get in touch][community] - we'd love to hear from you!
