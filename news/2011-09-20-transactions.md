@@ -198,6 +198,19 @@ And here's the TorqueBox version which creates neither 'Kotori' nor
   end
 end</pre>
 
+Alternatively, you can fix the original, surprising code by simply
+passing it to `TorqueBox.transaction`:
+
+<pre class="syntax ruby">TorqueBox.transaction do
+  User.transaction do
+    User.create(:username => 'Kotori')
+    User.transaction do
+      User.create(:username => 'Nemu')
+      raise ActiveRecord::Rollback
+    end
+  end
+end</pre>
+
 To prevent Nemu's failures from discouraging Kotori, use
 `:requires_new` just like with ActiveRecord, and only Kotori will be
 created:
@@ -213,8 +226,9 @@ end</pre>
 Here's an example of enlisting a message destination into a
 transaction saving a Post instance, but I'll admit the syntax for
 obtaining the JMS session is a tad obtuse. In practice, I'd recommend
-doing this in a MessageProcessor instead, but it does show an example
-of adding an XAResource to a transaction.
+doing this in a MessageProcessor instead, but it does illustrate how
+to enlist any kind of XAResource, e.g. an Infinispan cache, into the
+current transaction.
 
 <pre class="syntax ruby">queue = inject('/queues/foo')
 queue.with_session do |session|
