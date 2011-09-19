@@ -12,7 +12,7 @@ tags: [ xa, transactions ]
 [MessageProcessors]: http://torquebox.org/documentation/LATEST/messaging.html#messaging-consumers
 [Backgroundable]: http://torquebox.org/documentation/LATEST/messaging.html#backgroundable
 [art]: http://api.rubyonrails.org/classes/ActiveRecord/Transactions/ClassMethods.html
-[activerecord-jdbc-adapter]: https://github.com/jruby/activerecord-jdbc-adapter
+[ar-jdbc]: https://github.com/jruby/activerecord-jdbc-adapter
 [rails]: http://torquebox.org/documentation/LATEST/web.html#rails
 [jbossds]: https://docs.jboss.org/author/display/AS7/DataSource+configuration
 [IronJacamar]: http://www.jboss.org/ironjacamar
@@ -24,7 +24,7 @@ tags: [ xa, transactions ]
 # TorqueBox is [Atomic, Dog](http://www.youtube.com/watch?v=LuyS9M8T03A)
 
 Ever since I came to work at Red Hat, my [boss'][Bob] [boss][MarkL],
-the JBoss CTO and a reputed transactions expert, has been politely
+the JBoss CTO and reputed transactions expert, has been politely
 nagging us to bring transactions to TorqueBox. Well, I'm proud to
 announce we finally got around to it: TorqueBox 2.x features
 distributed XA transaction support in what we believe is a darn
@@ -33,8 +33,9 @@ elegant Ruby API... because it's mostly transparent. ;)
 Few things get an enterprise architect's blood pumping (boiling?) more
 than distributed transactions, though many anti-enterprisyists dismiss
 them as heavyweight, preferring comparatively complex alternatives,
-e.g. idempotent receiver, that are arguably just as resource-intensive
-(though potentially more distributable) and often more error-prone.
+e.g. "idempotent receiver", that are arguably just as
+resource-intensive (though potentially more distributable) and often
+more error-prone.
 
 To those naysayers, we proudly say **"Pfft!"**
 
@@ -90,8 +91,8 @@ TorqueBox, so contrary to the [ActiveRecord Transactions docs][art]:
 - Transactions **can** be distributed across database connections when
   you have multiple class-specific databases.
 - The behavior of nested transaction rollbacks won't surprise you: if
-  the child rolls back, the parent will, too, excepting the
-  `:requires_new=>true` option passed to the child.
+  the child rolls back, the parent will, too, excepting when the
+  `:requires_new=>true` option is passed to the child.
 - Nested transactions should work correctly on more than just MySQL
   and PostgreSQL; in theory, they should work on any database
   providing an XA driver known to work with JBoss, including H2,
@@ -102,34 +103,33 @@ TorqueBox, so contrary to the [ActiveRecord Transactions docs][art]:
 # Configuration
 
 All ActiveRecord-dependent apps running on TorqueBox must use the most
-excellent JRuby [activerecord-jdbc-adapter] as described in the
+excellent JRuby [activerecord-jdbc-adapter][ar-jdbc] as described in the
 [docs][rails].
 
-It's certainly possible to configure the JDBC adapter in your
-`database.yml` with the JNDI name of an XA datasource [you configured
-by either clicking through some admin web page or tab-completing
-through a convenient console script or even adding some raw XML to a
-config file yourself, not to mention bundling and/or uploading the
-hand-modified jar file containing your database driver!][jbossds]
+Typically, [XA datasources are configured][jbossds] in non-standard,
+often complicated ways involving XML and direct manipulation of jar
+files. These datasources are then bound to a logical name in a JNDI
+naming service, and the [ar-jdbc] adapter supports referring to that
+JNDI name in your `database.yml`.
 
-*But **ZOMFG** what a **FPITA** that would be!*
+But that's gross.
 
-Worse still, that JNDI name wouldn't work for your database
-migrations, since you'd be running those outside of TorqueBox, hence
-no JNDI. Frankly, we'd rather you not even know how to spell JNDI.
+Further, that JNDI name won't work for your database migrations, since
+you'll be running those outside of TorqueBox, hence you'll have no
+JNDI. Frankly, we'd rather you not even know how to spell JNDI.
 
 So TorqueBox creates those XA datasources for you automatically when
-your app deploys, using the normal AR-JDBC config in your
-`database.yml`, and that works perfectly well for your migrations,
-too.
+your app deploys, using the conventional [ar-jdbc] config in your
+`database.yml`, which just so happens to work perfectly well for your
+migrations, too.
 
-Bottome line: no extra configuration required.
+Bottom line: no extra configuration is required.
 
 # Let's see some code, kk? kk!
 
 Here's a typical TorqueBox message handler:
 
-<pre class="syntax ruby">class Processor &lt; TorqueBox::Messaging::MessageProcessor
+<pre class="syntax ruby">class Processor < TorqueBox::Messaging::MessageProcessor
   always_background :send_thanks_email
   def on_message(msg)
     thing = Thing.create(:name => msg).id
@@ -150,16 +150,16 @@ execution of `:on_message`, no `Thing` instance is created, no
 The above code is certainly valid in TorqueBox 1.x, but uncommenting
 the raise statement would only cause the message to be redelivered, by
 default another 9 times, effectively resulting in the creation of 10
-like-named Thing objects, 10 messages sent to the post-process queue,
-and 10 emails of gratitude sent out. Without transactions, you're
-gonna need some more code, e.g. "idempotent receiver", to ensure the
-integrity of your data.
+like-named `Thing` objects, 10 messages sent to the `post-process`
+queue, and 10 emails of gratitude sent out. Without transactions,
+you're gonna need some more code, e.g. "idempotent receiver", to
+ensure the integrity of your data.
 
 Occasionally, you may not want all published messages to assume the
 transaction of `on_message`. In that case, pass `:requires_new =>
 true`:
 
-<pre class="syntax ruby">class Processor &lt; TorqueBox::Messaging::MessageProcessor
+<pre class="syntax ruby">class Processor < TorqueBox::Messaging::MessageProcessor
   def on_message(msg)
     inject('/queues/post-process').publish("foo", :requires_new => true)
     raise "you're gonna post-process ten 'foo' messages"
