@@ -244,8 +244,9 @@ It's still early days for this, so be gentle when reporting [bugs]!
 It's only been tested with Rails 3 so far, on H2 and PostgreSQL
 backends, but not with a "real application", if you know what I mean.
 
-The API is still subject to further coagulation up until we officially
-release 2.0, of course. So get your cards and letters in now!
+Up until we officially release TorqueBox 2.0, the API is subject to
+further coagulation. Feedback is always appreciated, of course, so
+[keep those cards and letters coming in!](http://www.youtube.com/watch?v=1mzmO8eovt8)
 
 # Acknowledgments
 
