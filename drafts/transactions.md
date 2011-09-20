@@ -107,21 +107,22 @@ excellent JRuby [activerecord-jdbc-adapter][ar-jdbc] as described in the
 [docs][rails].
 
 Typically, [XA datasources are configured][jbossds] in non-standard,
-often complicated ways involving XML and direct manipulation of jar
-files. These datasources are then bound to a logical name in a JNDI
-naming service, and the [ar-jdbc] adapter supports referring to that
-JNDI name in your `database.yml`.
+often complicated ways involving XML and occasional jar file
+manipulation. These datasources are then bound to a logical name in a
+JNDI naming service, to which your application refers at runtime. The
+[ar-jdbc] adapter supports putting that JNDI name in your Rails
+`database.yml` config file.
 
 But that's gross.
 
-Further, that JNDI name won't work for your database migrations, since
-you'll be running those outside of TorqueBox, hence you'll have no
-JNDI. Frankly, we'd rather you not even know how to spell JNDI.
+Referring to a JNDI name makes your app dependent on a JNDI service,
+which is fine when your app is running inside TorqueBox, but it breaks
+your ability to run database migrations, the `rails console`, or
+anything else you might do *outside* of TorqueBox.
 
 So TorqueBox creates those XA datasources for you automatically when
-your app deploys, using the conventional [ar-jdbc] config in your
-`database.yml`, which just so happens to work perfectly well for your
-migrations, too.
+your app deploys, using conventional [ar-jdbc] settings in your
+`database.yml`.
 
 Bottom line: no extra configuration is required.
 
