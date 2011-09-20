@@ -20,6 +20,7 @@ tags: [ xa, transactions ]
 [JBossTS]: http://www.jboss.org/jbosstm
 [JRuby]: http://jruby.org
 [bugs]: https://jira.jboss.org/jira/secure/CreateIssue.jspa?issuetype=1&pid=12310812
+[ir]: http://eaipatterns.com/IdempotentReceiver.html
 
 # TorqueBox is [Atomic, Dog](http://www.youtube.com/watch?v=LuyS9M8T03A)
 
@@ -33,9 +34,8 @@ elegant Ruby API... because it's mostly transparent. ;)
 Few things get an enterprise architect's blood pumping (boiling?) more
 than distributed transactions, though many anti-enterprisyists dismiss
 them as heavyweight, preferring comparatively complex alternatives,
-e.g. "idempotent receiver", that are arguably just as
-resource-intensive (though potentially more distributable) and often
-more error-prone.
+e.g. [idempotent receiver][ir], that are arguably just as
+resource-intensive and often more error-prone.
 
 To those naysayers, we proudly say **"Pfft!"**
 
@@ -121,8 +121,9 @@ your ability to run database migrations, the `rails console`, or
 anything else you might do *outside* of TorqueBox.
 
 So TorqueBox creates those XA datasources for you automatically when
-your app deploys, using conventional [ar-jdbc] settings in your
-`database.yml`.
+your app deploys, using the conventional [ar-jdbc] settings in your
+`database.yml`. When running outside of TorqueBox,
+`TorqueBox.transaction` should gracefully resolve to a no-op.
 
 Bottom line: no extra configuration is required.
 
@@ -225,17 +226,17 @@ created:
 end</pre>
 
 Here's an example of enlisting a message destination into a
-transaction saving a Post instance, but I'll admit the syntax for
-obtaining the JMS session is a tad obtuse. In practice, I'd recommend
-doing this in a MessageProcessor instead, but it does illustrate how
-to enlist any kind of XAResource, e.g. an Infinispan cache, into the
-current transaction.
+transaction persisting a `Thing` instance, but I'll admit the syntax
+for obtaining the JMS session is a tad obtuse. In practice, I'd
+recommend doing this in a MessageProcessor instead, but it does
+illustrate how to enlist any kind of XAResource, e.g. an Infinispan
+cache, into the current transaction.
 
 <pre class="syntax ruby">queue = inject('/queues/foo')
 queue.with_session do |session|
   TorqueBox.transaction(session) do 
     queue.publish("a message")
-    post.save!
+    thing.save!
   end
 end</pre>
 
