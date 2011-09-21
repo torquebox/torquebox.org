@@ -49,12 +49,12 @@ attempt at achieving that goal.
 It's important to understand the difference between a conventional
 database transaction and a *distributed* transaction: *multiple
 resources* may participate in a distributed transaction. The most
-common transactional resource is a database, of course. But a message
-broker may also be a transactional resource. Distributed transactions
-allow your application to say, tie the success of a database update to
-the delivery of a message, i.e. the message is only sent if the
-database update succeeds, and vice versa. If either fails, both
-rollback.
+common example of a transactional resource is a database, of
+course. But a message broker is another good example. Distributed
+transactions allow your application to say, tie the success of a
+database update to the delivery of a message, i.e. the message is only
+sent if the database update succeeds, and vice versa. If either fails,
+both rollback.
 
 *X/Open XA* is a standard specification for implementing distributed
 transactions. It uses a *two-phase commit (2PC)* protocol. Often these
@@ -243,8 +243,9 @@ end</pre>
 # The Fine Print
 
 It's still early days for this, so be gentle when reporting [bugs]!
-It's only been tested with Rails 3 so far, on H2 and PostgreSQL
-backends, but not with a "real application", if you know what I mean.
+It's only been tested with Rails 3.0 and 3.1 so far, on H2 and
+PostgreSQL backends, but not with a "real application", if you know
+what I mean.
 
 Up until we officially release TorqueBox 2.0, the API is subject to
 further coagulation. Feedback is always appreciated, of course, so
