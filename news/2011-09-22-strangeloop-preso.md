@@ -5,13 +5,13 @@ layout: news
 tags: [ presentations, strangeloop, datamapper, infinispan ]
 ---
 
-The Strange Loop 2011 conference was held in St. Louis this past
-Sunday-Tuesday. It was a really fun event, and I learned about lots of
-not-necesssarily-ruby stuff. It was nice to mix things up a little.  [Alex
-Miller](https://twitter.com/#!/puredanger) did a great job with the event. It
-was well organized, had plenty of video coverage, and excellent speakers.
-Gerald Sussman blew my mind with crazy math and then said he wasn't really a
-mathematician, and Erik Meijer opened my eyes to coSQL.
+The [Strange Loop 2011](https://thestrangeloop.com/) conference was held in St.
+Louis this past Sunday-Tuesday. It was a really fun event, and I learned about
+lots of not-necesssarily-ruby stuff. It was nice to mix things up a little.
+[Alex Miller](https://twitter.com/#!/puredanger) did a great job with the
+event. It was well organized, had plenty of video coverage, and excellent
+speakers.  Gerald Sussman blew my mind with crazy math and then said he wasn't
+really a mathematician, and Erik Meijer opened my eyes to coSQL.
 
 From the Strange Loop [website](http://thestrangeloop.com),
 
@@ -43,4 +43,5 @@ You can download the slides, code and other detritus from
 If you don't want to bother downloading all of that, just check out the slides
 from the DataMapper on Infinispan presentation here.
 
+<div style="width:425px" id="__ss_9378857"><iframe src="http://www.slideshare.net/slideshow/embed_code/9378857" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
 
