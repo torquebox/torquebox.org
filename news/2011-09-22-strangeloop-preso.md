@@ -37,6 +37,9 @@ Monday's catered lunch (thanks [Splunk](http://splunk.com) and
 [Partek](http://partek.com)!) I gave a 5 minute lightning talk about TorqueBox.
 Those slides are included too.
 
+You can download the slides, code and other detritus from
+[github](https://github.com/downloads/torquebox/presentations/2011-strangeloop-materials.tgz).
+
 If you don't want to bother downloading all of that, just check out the slides
 from the DataMapper on Infinispan presentation here.
 
