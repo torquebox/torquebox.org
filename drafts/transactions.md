@@ -229,8 +229,8 @@ Here's an example of enlisting a message destination into a
 transaction persisting a `Thing` instance, but I'll admit the syntax
 for obtaining the JMS session is a tad obtuse. In practice, I'd
 recommend doing this in a MessageProcessor instead, but it does
-illustrate how to enlist any kind of XAResource, e.g. an Infinispan
-cache, into the current transaction.
+illustrate how to enlist any kind of XAResource into the current
+transaction.
 
 <pre class="syntax ruby">queue = inject('/queues/foo')
 queue.with_session do |session|
@@ -248,7 +248,9 @@ PostgreSQL backends, but not with a "real application", if you know
 what I mean.
 
 Up until we officially release TorqueBox 2.0, the API is subject to
-further coagulation. Feedback is always appreciated, of course, so
+further coagulation. Feedback is always appreciated, of course,
+especially if you're able to test some of the database types we don't
+have access to, so
 [keep those cards and letters coming in!](http://www.youtube.com/watch?v=1mzmO8eovt8)
 
 # Acknowledgments
