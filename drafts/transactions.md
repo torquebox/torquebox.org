@@ -37,7 +37,7 @@ them as heavyweight, preferring comparatively complex alternatives,
 e.g. [idempotent receiver][ir], that are arguably just as
 resource-intensive and often more error-prone.
 
-To those naysayers, we proudly say **"Pfft!"**
+To those naysayers, we proudly say **"Pfffftt!"**
 
 The goal of the TorqueBox project is to make robust enterprise
 services [simple] and [fun] to use, combining the power of JBoss with
@@ -65,14 +65,14 @@ terms are used interchangeably to refer to the same thing.
 Here's how we've made messaging transactional in 2.x:
 
 - By default, all [MessageProcessors] are transactional, so each
-  `on_message(msg)` invocation demarcates a transaction.
-- Any messages published to any JMS destinations inside
-  `on_message(msg)` become a part of its transaction by default, so if
-  an exception is raised, none of the messages will be delivered, and
-  the failed message will be scheduled for redelivery.
-- All [Backgroundable] tasks are transactional and, when invoked
-  within `on_message(msg)`, will only start if `on_message` doesn't
-  raise an exception, i.e. it commits.
+  `on_message(msg)` invocation demarcates a transaction. If no
+  exceptions are raised, the transaction commits. Otherwise, it rolls
+  back.
+- Any messages published to any JMS destinations automatically become
+  part of the current transaction, by default. So they won't be
+  delivered until that transaction commits.
+- All [Backgroundable] tasks are transactional, so if invoked within a
+  transaction, it will only start when the transaction commits.
 - Any manipulations of your Rails ActiveRecord models (persisted to
   your XA-compliant database) within `on_message(msg)` will become
   part of its transaction.
@@ -110,7 +110,7 @@ Typically, [XA datasources are configured][jbossds] in non-standard,
 often complicated ways involving XML and occasional jar file
 manipulation. These datasources are then bound to a logical name in a
 JNDI naming service, to which your application refers at runtime. The
-[ar-jdbc] adapter supports putting that JNDI name in your Rails
+[ar-jdbc] adapter indeed supports putting that JNDI name in your Rails
 `database.yml` config file.
 
 But that's gross.
@@ -154,29 +154,22 @@ the raise statement would only cause the message to be redelivered, by
 default another 9 times, effectively resulting in the creation of 10
 like-named `Thing` objects, 10 messages sent to the `post-process`
 queue, and 10 emails of gratitude sent out. Without transactions,
-you're gonna need some more code, e.g. "idempotent receiver", to
-ensure the integrity of your data.
-
-Occasionally, you may not want all published messages to assume the
-transaction of `on_message`. In that case, pass `:requires_new =>
-true`:
-
-<pre class="syntax ruby">class Processor < TorqueBox::Messaging::MessageProcessor
-  def on_message(msg)
-    inject('/queues/post-process').publish("foo", :requires_new => true)
-    raise "you're gonna post-process ten 'foo' messages"
-  end
-end</pre>
+you'll need to introduce compensation logic, i.e. more design, more
+code, more tests, etc. to ensure the integrity of your data.
 
 The `on_message` method is invoked after an implicit transaction is
 started, but you can do this explicitly yourself using
 `TorqueBox.transaction`. It accepts the following arguments:
 
 - An arbitrary number of resources to enlist in the current
-  transaction (you probably won't use this)
+  transaction *(you probably won't ever use this)*
 - An optional hash of options; currently only `:requires_new` is
-  supported, defaulting to `false` (often handy)
-- A block defining your transaction (kind of the whole point)
+  supported, defaulting to `false` *(this might come in handy)*
+- A block defining your transaction *(kind of the whole point)*
+
+If the block runs to completion without raising an exception, the
+transaction commits. Otherwise, it rolls back. That's pretty much all
+there is to it.
 
 Here's the "surprising" example from the [Rails docs][art] which
 results in the creation of both 'Kotori' and 'Nemu':
@@ -225,18 +218,32 @@ created:
   end
 end</pre>
 
-Here's an example of enlisting a message destination into a
-transaction persisting a `Thing` instance, but I'll admit the syntax
-for obtaining the JMS session is a tad obtuse. In practice, I'd
-recommend doing this in a MessageProcessor instead, but it does
-illustrate how to enlist any kind of XAResource into the current
-transaction.
+Message destinations are automatically enlisted into the active
+transaction, so transactionally sending a message and persisting a
+`Thing` instance, for example, is simple:
 
-<pre class="syntax ruby">queue = inject('/queues/foo')
-queue.with_session do |session|
-  TorqueBox.transaction(session) do 
-    queue.publish("a message")
-    thing.save!
+<pre class="syntax ruby">TorqueBox.transaction do 
+  inject('/queues/foo').publish("a message")
+  thing.save!
+end</pre>
+
+Occasionally, you may not want a published message to assume the
+active transaction. In that case, pass `:tx => false`, and the message
+will be delivered whether `thing.save!` succeeds or not.
+
+<pre class="syntax ruby">TorqueBox.transaction do 
+  inject('/queues/foo').publish("a message", :tx => false)
+  thing.save!
+end</pre>
+
+Be careful publishing messages outside the transaction of a
+`MessageProcessor`, though. Exceptions raised trigger redelivery
+attempts, 10 by default, so...
+
+<pre class="syntax ruby">class Processor < TorqueBox::Messaging::MessageProcessor
+  def on_message(msg)
+    inject('/queues/post-process').publish("foo", :tx => false)
+    raise "you're gonna post-process ten 'foo' messages"
   end
 end</pre>
 
@@ -255,7 +262,9 @@ have access to, so
 
 # Acknowledgments
 
-Transactions are hard. Much thanks and credit goes to the JBoss teams
+Transactions are hard.
+
+Much thanks and credit goes to the JBoss teams
 and communities behind [IronJacamar], [HornetQ], [JBossTS], and
 everyone else I forgot. You guys rock!
 
@@ -264,5 +273,7 @@ of, and continued support from, the [JRuby] team. You guys are
 awesome!
 
 And last but not least, my [team](http://projectodd.org), and
-especially [Bob], who single-handedly wrote all the "automatic XA
-datasouce creation from database.yml" stuff. Thanks! :)
+especially [Bob], who pretty much single-handedly wrote all the
+"automatic XA datasouce creation from database.yml" magic.
+
+Thanks! :)
