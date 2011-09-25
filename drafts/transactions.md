@@ -21,6 +21,8 @@ tags: [ xa, transactions ]
 [JRuby]: http://jruby.org
 [bugs]: https://jira.jboss.org/jira/secure/CreateIssue.jspa?issuetype=1&pid=12310812
 [ir]: http://eaipatterns.com/IdempotentReceiver.html
+[2pc]: http://en.wikipedia.org/wiki/Two-phase_commit_protocol
+[xa]: http://en.wikipedia.org/wiki/X/Open_XA
 
 # TorqueBox is [Atomic, Dog](http://www.youtube.com/watch?v=LuyS9M8T03A)
 
@@ -56,9 +58,10 @@ database update to the delivery of a message, i.e. the message is only
 sent if the database update succeeds, and vice versa. If either fails,
 both rollback.
 
-*X/Open XA* is a standard specification for implementing distributed
-transactions. It uses a *two-phase commit (2PC)* protocol. Often these
-terms are used interchangeably to refer to the same thing.
+[X/Open XA][xa] is a standard specification for implementing
+distributed transactions. It uses a [two-phase commit (2PC)][2pc]
+protocol. Often these terms are used interchangeably to refer to the
+same thing.
 
 # Messaging
 
@@ -113,7 +116,7 @@ JNDI naming service, to which your application refers at runtime. The
 [ar-jdbc] adapter indeed supports putting that JNDI name in your Rails
 `database.yml` config file.
 
-But that's gross.
+But that is so totally gross.
 
 Referring to a JNDI name makes your app dependent on a JNDI service,
 which is fine when your app is running inside TorqueBox, but it breaks
@@ -125,7 +128,7 @@ your app deploys, using the conventional [ar-jdbc] settings in your
 `database.yml`. When running outside of TorqueBox,
 `TorqueBox.transaction` should gracefully resolve to a no-op.
 
-Bottom line: no extra configuration is required.
+Bottom line: **no extra configuration is required**.
 
 # Let's see some code, kk? kk!
 
@@ -168,8 +171,8 @@ started, but you can do this explicitly yourself using
 - A block defining your transaction *(kind of the whole point)*
 
 If the block runs to completion without raising an exception, the
-transaction commits. Otherwise, it rolls back. That's pretty much all
-there is to it.
+transaction commits. Otherwise, it rolls back. And that's pretty much
+all there is to it.
 
 Here's the "surprising" example from the [Rails docs][art] which
 results in the creation of both 'Kotori' and 'Nemu':
@@ -237,13 +240,13 @@ will be delivered whether `thing.save!` succeeds or not.
 end</pre>
 
 Be careful publishing messages outside the transaction of a
-`MessageProcessor`, though. Exceptions raised trigger redelivery
-attempts, 10 by default, so...
+`MessageProcessor`, though. Exceptions raised from `on_message`
+trigger redelivery attempts, 9 by default, so...
 
 <pre class="syntax ruby">class Processor < TorqueBox::Messaging::MessageProcessor
   def on_message(msg)
     inject('/queues/post-process').publish("foo", :tx => false)
-    raise "you're gonna post-process ten 'foo' messages"
+    raise "you're gonna post-process 10 'foo' messages"
   end
 end</pre>
 
@@ -274,6 +277,6 @@ awesome!
 
 And last but not least, my [team](http://projectodd.org), and
 especially [Bob], who pretty much single-handedly wrote all the
-"automatic XA datasouce creation from database.yml" magic.
+"automatic XA datasouce creation from database.yml" magic himself.
 
 Thanks! :)
