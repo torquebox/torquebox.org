@@ -23,6 +23,7 @@ tags: [ xa, transactions ]
 [ir]: http://eaipatterns.com/IdempotentReceiver.html
 [2pc]: http://en.wikipedia.org/wiki/Two-phase_commit_protocol
 [xa]: http://en.wikipedia.org/wiki/X/Open_XA
+[Infinispan]: http://infinispan.org
 
 # TorqueBox is [Atomic, Dog](http://www.youtube.com/watch?v=LuyS9M8T03A)
 
@@ -51,12 +52,12 @@ attempt at achieving that goal.
 It's important to understand the difference between a conventional
 database transaction and a *distributed* transaction: *multiple
 resources* may participate in a distributed transaction. The most
-common example of a transactional resource is a database, of
-course. But a message broker is another good example. Distributed
-transactions allow your application to say, tie the success of a
-database update to the delivery of a message, i.e. the message is only
-sent if the database update succeeds, and vice versa. If either fails,
-both rollback.
+common example of a transactional resource is a relational database,
+of course. But other examples include [message brokers][HornetQ] and
+[NoSQL data grids][Infinispan]. Distributed transactions allow your
+application to say, tie the success of a database update to the
+delivery of a message, i.e. the message is only sent if the database
+update succeeds, and vice versa. If either fails, both rollback.
 
 [X/Open XA][xa] is a standard specification for implementing
 distributed transactions. It uses a [two-phase commit (2PC)][2pc]
@@ -88,8 +89,8 @@ deployed on TorqueBox 2.x. No extra config is required.
 In addition, we've introduced a new method, `TorqueBox.transaction`,
 that can be used to enlist multiple XA-compliant resources into a
 single distributed transaction from anywhere in your application. This
-includes messaging destinations, backgroundable tasks, and the
-Infinispan-backed TorqueBox cache, which are all automatically
+includes message destinations, background tasks, and the
+[Infinispan]-backed TorqueBox cache, which are all automatically
 transactional, by default.
 
 But wait, there's more!
@@ -280,9 +281,9 @@ have access to, so
 
 Transactions are hard.
 
-Much thanks and credit goes to the JBoss teams
-and communities behind [IronJacamar], [HornetQ], [JBossTS], and
-everyone else I forgot. You guys rock!
+Much thanks and credit goes to the JBoss teams and communities behind
+[IronJacamar], [HornetQ], [JBossTS], [Infinispan] and everyone else I
+forgot. You guys rock!
 
 Of course, none of this would be possible without the excellent work
 of, and continued support from, the [JRuby] community. You guys are
