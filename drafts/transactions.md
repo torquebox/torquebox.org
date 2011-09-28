@@ -7,6 +7,7 @@ tags: [ xa, transactions ]
 
 [MarkL]: http://twitter.com/nmcl
 [Bob]: http://twitter.com/bobmcwhirter
+[Nick]: http://twitter.com/nicksieger
 [simple]: http://diveintomark.org/archives/2010/02/23/simplicity-is-hard-lets-go-shopping
 [fun]: http://people.apache.org/~acmurthy/WhyIsProgrammingFun.html
 [MessageProcessors]: http://torquebox.org/documentation/LATEST/messaging.html#messaging-consumers
@@ -286,8 +287,9 @@ Much thanks and credit goes to the JBoss teams and communities behind
 forgot. You guys rock!
 
 Of course, none of this would be possible without the excellent work
-of, and continued support from, the [JRuby] community. You guys are
-awesome!
+of -- and continued support from -- the [JRuby]
+community. [Nick Sieger][Nick] in particular deserves a special
+shout-out for his care and feeding of [ar-jdbc].
 
 And last but not least, my [team](http://projectodd.org), and
 especially [Bob], who pretty much single-handedly wrote all the
