@@ -1,7 +1,7 @@
 ---
 title: 'Distributed Transactions with TorqueBox'
 author: Jim Crossley
-layout: narrow
+layout: news
 tags: [ xa, transactions ]
 ---
 
