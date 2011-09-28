@@ -88,8 +88,15 @@ deployed on TorqueBox 2.x. No extra config is required.
 In addition, we've introduced a new method, `TorqueBox.transaction`,
 that can be used to enlist multiple XA-compliant resources into a
 single distributed transaction from anywhere in your application. This
-includes Rails ActiveRecord models, which are enhanced when run in
-TorqueBox, so contrary to the [ActiveRecord Transactions docs][art]:
+includes messaging destinations, backgroundable tasks, and the
+Infinispan-backed TorqueBox cache, which are all automatically
+transactional, by default.
+
+But wait, there's more!
+
+You can also include Rails ActiveRecord models, which are enhanced
+when run in TorqueBox, so contrary to the
+[ActiveRecord Transactions docs][art]:
 
 - Transactions **can** be distributed across database connections when
   you have multiple class-specific databases.
@@ -130,6 +137,9 @@ your app deploys, using the conventional [ar-jdbc] settings in your
 
 Bottom line: **no extra configuration is required**.
 
+Line below bottom line: hopefully not a deal breaker, but we don't
+fully support using ERB scriptlets in `database.yml` yet.
+
 # Let's see some code, kk? kk!
 
 Here's a typical TorqueBox message handler:
@@ -157,8 +167,8 @@ the raise statement would only cause the message to be redelivered, by
 default another 9 times, effectively resulting in the creation of 10
 like-named `Thing` objects, 10 messages sent to the `post-process`
 queue, and 10 emails of gratitude sent out. Without transactions,
-you'll need to introduce compensation logic, i.e. more design, more
-code, more tests, etc. to ensure the integrity of your data.
+you'll need to introduce compensation logic -- more design, code,
+tests, bugs, and meetings -- to ensure the integrity of your data.
 
 The `on_message` method is invoked after an implicit transaction is
 started, but you can do this explicitly yourself using
@@ -253,9 +263,12 @@ end</pre>
 # The Fine Print
 
 It's still early days for this, so be gentle when reporting [bugs]!
-It's only been tested with Rails 3.0 and 3.1 so far, on H2 and
-PostgreSQL backends, but not with a "real application", if you know
-what I mean.
+It's only been tested with Rails 3.0 and 3.1 so far, on H2,
+PostgreSQL, and MySQL backends, but not with a "real application", if
+you know what I mean.
+
+There seem to be issues when running a Rails 3.1 app under 1.9 mode in
+JRuby 1.6.4, but these should be addressed in JRuby 1.6.5.
 
 Up until we officially release TorqueBox 2.0, the API is subject to
 further coagulation. Feedback is always appreciated, of course,
@@ -272,7 +285,7 @@ and communities behind [IronJacamar], [HornetQ], [JBossTS], and
 everyone else I forgot. You guys rock!
 
 Of course, none of this would be possible without the excellent work
-of, and continued support from, the [JRuby] team. You guys are
+of, and continued support from, the [JRuby] community. You guys are
 awesome!
 
 And last but not least, my [team](http://projectodd.org), and
