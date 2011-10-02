@@ -149,13 +149,10 @@ Here's a typical TorqueBox message handler:
 <pre class="syntax ruby">class Processor < TorqueBox::Messaging::MessageProcessor
   always_background :send_thanks_email
   def on_message(msg)
-    thing = Thing.create(:name => msg).id
+    thing = Thing.create(:name => msg)
     inject('/queues/post-process').publish(thing.id)
     send_thanks_email(thing)
     # raise "rollback everything"
-  end
-  def send_thanks_email(thing)
-    ...
   end
 end</pre>
 
