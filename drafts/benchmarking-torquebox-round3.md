@@ -85,7 +85,7 @@ wrong choosing either JRuby server.
 However, what about the latency graph? This is a graph of the average
 time taken for each request - in other words the average time a user
 would have to wait for a page on the site to load. This is where the
-difference in web servers, not runtimes, is readily present.
+difference in web servers, not runtimes, is readily apparent.
 
 At peak load, TorqueBox has a lower latency than the nearest
 competitor, Passenger, by a factor of 8 and beats out Trinidad by a
@@ -102,11 +102,19 @@ second, and TorqueBox 130 requests per second. At peak load of 130
 requests per seconds the average response time from TorqueBox is only
 256ms, well under our 1 second requirement.
 
-Thanks in a large part to AS7, TorqueBox 2.x has retained its low
-latency and high throughput while greatly reducing memory usage. And,
-if you were still skeptical about the performance benefits of
-switching to JRuby, maybe this data will convince you to give it a
-shot.
+If you were still skeptical about the performance benefits of
+switching to JRuby, the above graphs should be convincing enough to
+give it a shot.
+
+**TorqueBox 2.x vs TorqueBox 1.1.1**
+
+[<img src="/images/benchmarks/round3/compare_torquebox_thumb.png" alt="TorqueBox 2.x vs 1.1.1"/>](/images/benchmarks/round3/compare_torquebox.png)
+
+We've seen how TorqueBox 2.x stacks up against the competition, but
+how does it compare to the latest 1.x stable release, TorqueBox 1.1.1?
+Thanks in a large part to AS7, TorqueBox 2.x has lower latency, higher
+peak throughput, less CPU usage, and less memory usage than TorqueBox
+1.1.1.
 
 **REE vs Ruby 1.9.2**
 
