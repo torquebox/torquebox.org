@@ -1,8 +1,8 @@
 ---
 title: 'TorqueBox 2.x Performance Benchmarks'
 author: Ben Browning
-layout: narrow
-timestamp: 2011-10-06t10:45:00.0-04:00
+layout: news
+timestamp: 2011-10-06t12:00:00.0-04:00
 tags: [performance, benchmarks, jruby, ruby-1.9]
 ---
 
