@@ -90,7 +90,11 @@ difference in web servers, not runtimes, is readily apparent.
 At peak load, TorqueBox has a lower latency than the nearest
 competitor, Passenger, by a factor of 8 and beats out Trinidad by a
 factor of 32. Note that the latency graph's y-axis has a logarithmic
-scale.
+scale. To help illustrate this point, here's the same latency graph
+with a linear y-axis and Unicorn removed because its latency is so bad
+at the end of the test.
+
+[<img src="/images/benchmarks/round3/compare_latency_thumb.png" alt="Latency"/>](/images/benchmarks/round3/compare_latency.png)
 
 So, in a common real-world scenario, let's assume our application has
 a requirement that it must have an average response time of 1
