@@ -3,7 +3,7 @@ title: 'Install TorqueBox 2.x as a Gem'
 author: Ben Browning
 layout: news
 timestamp: 2011-06-10t12:45:00.0-04:00
-tags: [ installation gems rvm ]
+tags: [ installation, gems, rvm ]
 ---
 
 [2x-builds]: /2x/builds/
@@ -22,7 +22,7 @@ We thought so, too!
 
 # gem install torquebox-server
 
-    $ gem install torquebox-server --pre \
+    $ jruby -J-Xmx1024m -S gem install torquebox-server --pre \
       --source http://torquebox.org/2x/builds/LATEST/gem-repo/
 
 That one command installs TorqueBox 2.x. This isn't a crippled
