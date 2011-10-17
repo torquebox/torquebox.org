@@ -7,7 +7,7 @@ layout: default
 
 # Preparation
 
-Code is released from the `master` branch of the [torquebox/torquebox-release][release-repo].
+Code is released from the `1x-dev` branch of the [torquebox/torquebox-release][release-repo].
 
 Set up this repository as an additional remote for your workspace:
 
@@ -18,11 +18,11 @@ or maven will fail part way through the build
 
     git push release :1.1.2
 
-Ensure that the `master` branch has the contents you wish to release.  Using the `-f`
+Ensure that the `1x-dev` branch has the contents you wish to release.  Using the `-f`
 flag to force is allowed in this case, since the **torquebox-release** repository is not
 a public-facing human-cloneable repository.
 
-    git push release master -f
+    git push release 1x-dev -f
 
 # Pre-flight build
 
@@ -39,7 +39,7 @@ select the **local** profile.
 After each pre-flight build, you will need to reset the release repository:
 
     git push release :1.1.2
-    git push release master -f
+    git push release 1x-dev -f
     
 When you are happy with the pre-flight build (in other words, it completes successfully), 
 you're ready to run the real build.
@@ -92,11 +92,11 @@ Either way, you'll need owner rights to do so - bug bobmcw or tcrawley.
 
 ## Merge in the release commits:
 
-    git merge release/master
+    git merge release/1x-dev
 
 ## Push to the official repository
 
-    git push origin master
+    git push origin 1x-dev
 
 ## Push the tag to the official repository
 
