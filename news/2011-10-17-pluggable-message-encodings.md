@@ -27,13 +27,13 @@ an object tree.
 TorqueBox includes three built-in message encodings:
 
 * *:marshal* - The message in encoded/decoded via Marshal, and is transmitted as a binary message 
-  (via javax.jms.BytesMessage). This is the default encoding.
+  (via a [javax.jms.BytesMessage]). This is the default encoding.
 * *:marshal_base64* - The message in encoded/decoded via Marshal,
-  and is transmitted as a base64 encoded text message (via javax.jms.TextMessage). This was the 
+  and is transmitted as a base64 encoded text message (via a [javax.jms.TextMessage]). This was the 
   encoding scheme used in TorqueBox 1.x, and is considerably slower than *:marshal*. You would
   only want to use this encoding if you need interoperability with TorqueBox 1.x consumers.
 * *:json* - The message in encoded/decoded via JSON, and is transmitted as a text message 
-   (via javax.jms.TextMessage). This encoding is intended to provide interoperability
+   (via a [javax.jms.TextMessage]). This encoding is intended to provide interoperability
    with other languages, and won't support the simple and painless serialization you get
    with *:marshal*. Any binary data will need to be base64 encoded to a string before
    publishing, and generally only primitive types should be used. This will work
@@ -130,6 +130,8 @@ questions/issues [get in touch]!
 
 
 [incremental builds]: http://torquebox.org/2x/builds/
+[javax.jms.BytesMessage]: http://download.oracle.com/javaee/6/api/javax/jms/BytesMessage.html
+[javax.jms.TextMessage]: http://download.oracle.com/javaee/6/api/javax/jms/TextMessage.html
 [Backgroundable]: http://torquebox.org/2x/builds/LATEST/html-docs/messaging.html#backgroundable
 [JSONMessage]: https://github.com/torquebox/torquebox/blob/2x-dev/gems/messaging/lib/torquebox/messaging/json_message.rb
 [MarshalMessage]: https://github.com/torquebox/torquebox/blob/2x-dev/gems/messaging/lib/torquebox/messaging/marshal_message.rb
