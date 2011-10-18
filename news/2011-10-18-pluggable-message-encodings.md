@@ -119,7 +119,7 @@ require 'yaml_message'
 
 data = [1, 2, 3]
 some_queue.publish(data, :encoding => :yaml)
-puts some_queue.receive # [1, 2, 3]</pre>
+puts some_queue.receive.inspect # [1, 2, 3]</pre>
 
 For additional encoding class examples, see the message classes defined in the 
 TorqueBox source: [JSONMessage], [TextMessage], [MarshalMessage], and [MarshalBase64Message].
@@ -140,6 +140,6 @@ questions/issues [get in touch]!
 [TextMessage]: https://github.com/torquebox/torquebox/blob/34673384c0718ed19ec1d580150a0f4a6342c551/gems/messaging/lib/torquebox/messaging/text_message.rb
 [MarshalMessage]: https://github.com/torquebox/torquebox/blob/34673384c0718ed19ec1d580150a0f4a6342c551/gems/messaging/lib/torquebox/messaging/marshal_message.rb
 [MarshalBase64Message]: https://github.com/torquebox/torquebox/blob/34673384c0718ed19ec1d580150a0f4a6342c551/gems/messaging/lib/torquebox/messaging/marshal_base64_message.rb
-[messaging docs]: http://torquebox.org/2x/builds/LATEST/html-docs/messaging.html
+[messaging docs]: http://torquebox.org/2x/builds/LATEST/html-docs/messaging.html#message-encodings
 [image]: http://www.flickr.com/photos/epitti/2585357353/in/photostream/
 [get in touch]: /community
