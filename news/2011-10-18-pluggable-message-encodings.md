@@ -136,10 +136,10 @@ questions/issues [get in touch]!
 [javax.jms.BytesMessage]: http://download.oracle.com/javaee/6/api/javax/jms/BytesMessage.html
 [javax.jms.TextMessage]: http://download.oracle.com/javaee/6/api/javax/jms/TextMessage.html
 [Backgroundable]: http://torquebox.org/2x/builds/LATEST/html-docs/messaging.html#backgroundable
-[JSONMessage]: https://github.com/torquebox/torquebox/blob/2x-dev/gems/messaging/lib/torquebox/messaging/json_message.rb
-[TextMessage]: https://github.com/torquebox/torquebox/blob/2x-dev/gems/messaging/lib/torquebox/messaging/text_message.rb
-[MarshalMessage]: https://github.com/torquebox/torquebox/blob/2x-dev/gems/messaging/lib/torquebox/messaging/marshal_message.rb
-[MarshalBase64Message]: https://github.com/torquebox/torquebox/blob/2x-dev/gems/messaging/lib/torquebox/messaging/marshal_base64_message.rb
+[JSONMessage]: https://github.com/torquebox/torquebox/blob/34673384c0718ed19ec1d580150a0f4a6342c551/gems/messaging/lib/torquebox/messaging/json_message.rb
+[TextMessage]: https://github.com/torquebox/torquebox/blob/34673384c0718ed19ec1d580150a0f4a6342c551/gems/messaging/lib/torquebox/messaging/text_message.rb
+[MarshalMessage]: https://github.com/torquebox/torquebox/blob/34673384c0718ed19ec1d580150a0f4a6342c551/gems/messaging/lib/torquebox/messaging/marshal_message.rb
+[MarshalBase64Message]: https://github.com/torquebox/torquebox/blob/34673384c0718ed19ec1d580150a0f4a6342c551/gems/messaging/lib/torquebox/messaging/marshal_base64_message.rb
 [messaging docs]: http://torquebox.org/2x/builds/LATEST/html-docs/messaging.html
 [image]: http://www.flickr.com/photos/epitti/2585357353/in/photostream/
 [get in touch]: /community
