@@ -122,7 +122,7 @@ some_queue.publish(data, :encoding => :yaml)
 puts some_queue.receive # [1, 2, 3]</pre>
 
 For additional encoding class examples, see the message classes defined in the 
-TorqueBox source: [JSONMessage], [MarshalMessage], and [MarshalBase64Message].
+TorqueBox source: [JSONMessage], [TextMessage], [MarshalMessage], and [MarshalBase64Message].
 
 # Resources
 
