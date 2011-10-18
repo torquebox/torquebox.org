@@ -6,7 +6,7 @@ timestamp: 2011-10-18t09:00:00.0-04:00
 tags: [messaging, interop]
 ---
 
-The latest [incremental builds] of TorqueBox (build 535 and newer) support 
+The latest [incremental builds] of TorqueBox (build 538 and newer) support 
 pluggable message encoding. This paves the way for interoperability via messaging with applications 
 written in languages other than Ruby. In the process, we also replaced the default message encoding
 scheme with one that is considerably faster, and made it easy for you to create your own encodings.
