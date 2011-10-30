@@ -99,10 +99,10 @@ with a much lower memory footprint. We hope to have a 2.0 beta soon,
 but in the meantime, feel free to give our [incremental builds][2x] a try.
 
 
-[download]: http://repository-torquebox.forge.cloudbees.com/release/org/torquebox/torquebox-dist/1.1/torquebox-dist-1.1-bin.zip
+[download]: http://repository-projectodd.forge.cloudbees.com/release/org/torquebox/torquebox-dist/1.1/torquebox-dist-1.1-bin.zip
 [htmldocs]: /documentation/1.1/
-[pdfdocs]:  http://repository-torquebox.forge.cloudbees.com/release/org/torquebox/torquebox-docs-en_US/1.1/torquebox-docs-en_US-1.1.pdf
-[epubdocs]: http://repository-torquebox.forge.cloudbees.com/release/org/torquebox/torquebox-docs-en_US/1.1/torquebox-docs-en_US-1.1.epub
+[pdfdocs]:  http://repository-projectodd.forge.cloudbees.com/release/org/torquebox/torquebox-docs-en_US/1.1/torquebox-docs-en_US-1.1.pdf
+[epubdocs]: http://repository-projectodd.forge.cloudbees.com/release/org/torquebox/torquebox-docs-en_US/1.1/torquebox-docs-en_US-1.1.epub
 [features]: /features/
 [JRUBY-5839]: http://jira.codehaus.org/browse/JRUBY-5839
 [Backgroundable method]: /documentation/1.1/messaging.html#backgroundable

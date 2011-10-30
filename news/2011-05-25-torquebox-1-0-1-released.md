@@ -6,10 +6,10 @@ version: 1.0.1
 tags: [ releases ]
 ---
 
-[download]: http://repository-torquebox.forge.cloudbees.com/release/org/torquebox/torquebox-dist/1.0.1/torquebox-dist-1.0.1-bin.zip
+[download]: http://repository-projectodd.forge.cloudbees.com/release/org/torquebox/torquebox-dist/1.0.1/torquebox-dist-1.0.1-bin.zip
 [htmldocs]: /documentation/1.0.1/
-[pdfdocs]:  http://repository-torquebox.forge.cloudbees.com/release/org/torquebox/torquebox-docs-en_US/1.0.1/torquebox-docs-en_US-1.0.1.pdf
-[epubdocs]: http://repository-torquebox.forge.cloudbees.com/release/org/torquebox/torquebox-docs-en_US/1.0.1/torquebox-docs-en_US-1.0.1.epub
+[pdfdocs]:  http://repository-projectodd.forge.cloudbees.com/release/org/torquebox/torquebox-docs-en_US/1.0.1/torquebox-docs-en_US-1.0.1.pdf
+[epubdocs]: http://repository-projectodd.forge.cloudbees.com/release/org/torquebox/torquebox-docs-en_US/1.0.1/torquebox-docs-en_US-1.0.1.epub
 [features]: /features/
 [externaljms]: /documentation/1.0.1/messaging.html#d0e2092
 [pete]: http://screamingcoder.com/

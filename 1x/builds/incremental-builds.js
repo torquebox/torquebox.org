@@ -224,7 +224,7 @@ renderer = {
 
 };
 
-j = new Jenkins( renderer, 'http://torquebox.ci.cloudbees.com', 'torquebox', [
+j = new Jenkins( renderer, 'http://projectodd.ci.cloudbees.com', 'torquebox', [
                    [ 'label=m1.large,ruby_compat_version=1.8', '1_8' ],
                    [ 'label=m1.large,ruby_compat_version=1.9', '1_9' ],
                  ] );

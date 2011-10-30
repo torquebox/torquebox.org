@@ -26,7 +26,7 @@ a public-facing human-cloneable repository.
 
 # Pre-flight build
 
-Using the [build system](http://torquebox.ci.cloudbees.com/), select the 
+Using the [build system](http://projectodd.ci.cloudbees.com/), select the 
 **torquebox-release** job.
 
 <img src="/images/releasing/ci.png" style="width: 100%"/>
@@ -46,7 +46,7 @@ you're ready to run the real build.
 
 # Perform the Builds
 
-Using the [build system](http://torquebox.ci.cloudbees.com/), again select the 
+Using the [build system](http://projectodd.ci.cloudbees.com/), again select the 
 **torquebox-release** job, selecting the **bees** profile this time.
 
 <img src="/images/releasing/start-build.png" style="width: 100%"/>
@@ -55,12 +55,12 @@ Using the [build system](http://torquebox.ci.cloudbees.com/), again select the
 
 Verify that the artifacts you expect have been uploaded and deployed to
 
-[http://repository-torquebox.forge.cloudbees.com/release](http://repository-torquebox.forge.cloudbees.com/release)
+[http://repository-projectodd.forge.cloudbees.com/release](http://repository-projectodd.forge.cloudbees.com/release)
 
 # Manually deploy RubyGems
 
 Once the build has completed, grab the gems from 
-[https://torquebox.ci.cloudbees.com//job/torquebox-release/lastSuccessfulBuild/artifact/assemblage/assembly/target/stage/gem-repo/gems/](https://torquebox.ci.cloudbees.com//job/torquebox-release/lastSuccessfulBuild/artifact/assemblage/assembly/target/stage/gem-repo/gems/) using the 'all files as zip' link.
+[https://projectodd.ci.cloudbees.com//job/torquebox-release/lastSuccessfulBuild/artifact/assemblage/assembly/target/stage/gem-repo/gems/](https://projectodd.ci.cloudbees.com//job/torquebox-release/lastSuccessfulBuild/artifact/assemblage/assembly/target/stage/gem-repo/gems/) using the 'all files as zip' link.
     
 Since rubygems checks that the dependencies are available on push, you'll have to push them in a proper order. The
 order that worked for the 1.1.1 release was:

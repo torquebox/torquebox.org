@@ -2,8 +2,8 @@ RewriteEngine on
 
 RewriteRule ^(.*\.js)$          $1 [L]
 RewriteRule ^([0-9]+)(/index.html|/?)$      index.html [L]
-RewriteRule ^([0-9]+)/(.*)$   https://torquebox.ci.cloudbees.com/job/torquebox-2x/$1/label=m1.large,ruby_compat_version=1.8/artifact/build/assembly/target/stage/gem-repo/$2 [P]
+RewriteRule ^([0-9]+)/(.*)$   https://projectodd.ci.cloudbees.com/job/torquebox-2x/$1/label=m1.large,ruby_compat_version=1.8/artifact/build/assembly/target/stage/gem-repo/$2 [P]
 
 RewriteRule ^(index.html|/?)$      index.html [L]
-RewriteRule ^(.*)$    https://torquebox.ci.cloudbees.com/job/torquebox-2x/lastSuccessfulBuild/label=m1.large,ruby_compat_version=1.8/artifact/build/assembly/target/stage/gem-repo/$1 [P]
+RewriteRule ^(.*)$    https://projectodd.ci.cloudbees.com/job/torquebox-2x/lastSuccessfulBuild/label=m1.large,ruby_compat_version=1.8/artifact/build/assembly/target/stage/gem-repo/$1 [P]
 

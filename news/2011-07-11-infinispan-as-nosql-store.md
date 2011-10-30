@@ -6,7 +6,7 @@ timestamp: 2011-07-11t11:44:00.0-04:00
 tags: [infinispan, gems, nosql, orm, datamapper]
 ---
 
-[CI]: https://torquebox.ci.cloudbees.com/
+[CI]: https://projectodd.ci.cloudbees.com/
 [1.x]: /1x/builds/
 [2.x]: /2x/builds/
 

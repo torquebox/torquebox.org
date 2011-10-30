@@ -9,12 +9,12 @@ tags: [ ci, builds, incremental, cloudbees]
 [qmx]: http://twitter.com/#!/qmx/status/85571888990003200
 [2x-builds]: /2x/builds/
 [CloudBees]: http://cloudbees.com/
-[ci]: https://torquebox.ci.cloudbees.com/
+[ci]: https://projectodd.ci.cloudbees.com/
 [matrix]: /images/ci-post/jenkins-matrix.png
 [Awestruct]: http://awestruct.org/
 [Versions Maven Plugin]: http://mojo.codehaus.org/versions-maven-plugin/
 [as7-reversion]: /images/ci-post/as7-reversion.png
-[jboss-as-dist]: https://repository-torquebox.forge.cloudbees.com/upstream/org/jboss/as/jboss-as-dist/
+[jboss-as-dist]: https://repository-projectodd.forge.cloudbees.com/upstream/org/jboss/as/jboss-as-dist/
 [tangle]: https://github.com/torquebox/tangle
 
 # Incremental Builds

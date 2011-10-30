@@ -8,7 +8,7 @@ tags: [ releases ]
 
 [download]: /download
 [docs]: /documentation/1.0.0.CR2/
-[epub]: http://repository-torquebox.forge.cloudbees.com/release/org/torquebox/torquebox-docs-en_US/1.0.0.CR2/torquebox-docs-en_US-1.0.0.CR2.epub
+[epub]: http://repository-projectodd.forge.cloudbees.com/release/org/torquebox/torquebox-docs-en_US/1.0.0.CR2/torquebox-docs-en_US-1.0.0.CR2.epub
 
 Our schedule originally called for 1.0.0.CR2 to be released on Friday, 22 April, but we
 then realized that was a holiday.  We considered releasing a day early but just weren't feeling

@@ -4,7 +4,7 @@ layout: default
 ---
 
 [asfork]: https://github.com/torquebox/jboss-as
-[asci]: https://torquebox.ci.cloudbees.com/job/jboss-as7/
+[asci]: https://projectodd.ci.cloudbees.com/job/jboss-as7/
 
 # These are not the droids you are looking for.
 

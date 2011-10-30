@@ -6,10 +6,10 @@ version: 1.0.0
 tags: [ releases ]
 ---
 
-[download]: http://repository-torquebox.forge.cloudbees.com/release/org/torquebox/torquebox-dist/1.0.0/torquebox-dist-1.0.0-bin.zip
+[download]: http://repository-projectodd.forge.cloudbees.com/release/org/torquebox/torquebox-dist/1.0.0/torquebox-dist-1.0.0-bin.zip
 [htmldocs]: /documentation/1.0.0/
-[pdfdocs]:  http://repository-torquebox.forge.cloudbees.com/release/org/torquebox/torquebox-docs-en_US/1.0.0/torquebox-docs-en_US-1.0.0.pdf
-[epubdocs]: http://repository-torquebox.forge.cloudbees.com/release/org/torquebox/torquebox-docs-en_US/1.0.0/torquebox-docs-en_US-1.0.0.epub
+[pdfdocs]:  http://repository-projectodd.forge.cloudbees.com/release/org/torquebox/torquebox-docs-en_US/1.0.0/torquebox-docs-en_US-1.0.0.pdf
+[epubdocs]: http://repository-projectodd.forge.cloudbees.com/release/org/torquebox/torquebox-docs-en_US/1.0.0/torquebox-docs-en_US-1.0.0.epub
 [features]: /features/
 [firstcommit]: https://github.com/bobmcwhirter/jboss-rails/commit/42ef271f42f8bfb3219862c26e9955c4e8806abb
 [CloudBees]: http://cloudbees.com/

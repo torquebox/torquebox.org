@@ -28,7 +28,7 @@ $(document).ready(function() {
   }
 
   $.ajax( { 
-    url: 'https://torquebox.ci.cloudbees.com/job/torquebox-2x/label=m1.large,ruby_compat_version=1.8/' + effective_version + '/api/json?depth=1',
+    url: 'https://projectodd.ci.cloudbees.com/job/torquebox-2x/label=m1.large,ruby_compat_version=1.8/' + effective_version + '/api/json?depth=1',
     jsonp: 'jsonp',
     dataType: 'jsonp',
     type: 'GET',

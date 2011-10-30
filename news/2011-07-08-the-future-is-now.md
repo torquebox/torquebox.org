@@ -11,7 +11,7 @@ tags: [async, backgroundable, futures, tasks]
 [Future]: http://torquebox.org/2x/builds/LATEST/yardocs/TorqueBox/Messaging/Future.html
 [Backgroundable methods]: http://torquebox.org/documentation/LATEST/messaging.html#backgroundable
 [Async Tasks]: http://torquebox.org/documentation/LATEST/messaging.html#async-tasks
-[CI]: https://torquebox.ci.cloudbees.com/
+[CI]: https://projectodd.ci.cloudbees.com/
 [1.x]: /1x/builds/
 [2.x]: /2x/builds/
 

@@ -18,7 +18,7 @@ class Downloads
              end
            end
 
-  REPO_PREFIX = "http://repository-torquebox.forge.cloudbees.com/release/org/torquebox"
+  REPO_PREFIX = "http://repository-projectodd.forge.cloudbees.com/release/org/torquebox"
   DOCS_PREFIX = "#{REPO_PREFIX}/torquebox-docs-en_US"
 
   def initialize(enabled=true)
