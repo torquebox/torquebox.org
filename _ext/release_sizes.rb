@@ -2,7 +2,6 @@ require 'net/http'
 require 'uri'
 
 class ReleaseSizes
-  SERVER = 'repository.torquebox.org'
 
   def initialize()
   end
