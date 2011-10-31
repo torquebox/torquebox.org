@@ -1,7 +1,0 @@
-RewriteEngine on
-
-RewriteRule ^(index.html|/?)$ index.html [L]
-RewriteRule ^.*.sha1$ / [G]
-RewriteRule ^.*.md5$  / [G]
-RewriteRule ^(.*)/maven-metadata.xml$    https://projectodd.ci.cloudbees.com//job/jboss-as7/lastSuccessfulBuild/artifact/.repository/$1/maven-metadata-local.xml [P]
-RewriteRule ^(.*)$    https://projectodd.ci.cloudbees.com//job/jboss-as7/lastSuccessfulBuild/artifact/.repository/$1 [P]
