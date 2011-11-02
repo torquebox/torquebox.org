@@ -39,6 +39,7 @@ body.bp {
     background-color: $bar_background_color;
     border-bottom: 1px solid $bar_background_color - #333; 
     border-top: 1px solid $bar_background_color - #333; 
+    #project-logo { margin-top: 1ex; } // To compensate for the 1ex of padding on the header bar
   }
   #header {
   }
