@@ -11,7 +11,7 @@ class Documentation
     current_path = File.join( site.output_dir, 'documentation', 'current' ) 
     FileUtils.rm( current_path ) if File.exist?( current_path )
 
-    (site.releases + site.old_releases).each do |release|
+    (site.releases).each do |release|
       doc_bundle_name = "torquebox-docs-en_US-#{release.version}-html.zip"
       doc_bundle_path = File.join( site.tmp_dir, doc_bundle_name )
       doc_root = File.join( site.output_dir, 'documentation', release.version )

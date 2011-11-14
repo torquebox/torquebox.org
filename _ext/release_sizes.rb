@@ -7,7 +7,7 @@ class ReleaseSizes
   end
 
   def execute(site)
-    (site.releases + site.old_releases).each do |release|
+    (site.releases).each do |release|
       if ( release.dist_size?.nil? )
         uri = URI.parse( release.urls.dist_zip )
         Net::HTTP.start( uri.host, uri.port ) do |http|

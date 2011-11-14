@@ -2,7 +2,6 @@ require 'rss_widget'
 require 'documentation'
 require 'release_sizes'
 require 'downloads'
-require 'old_downloads'
 require 'release_helper'
 require 'toc'
 require 'events_munger'
@@ -18,7 +17,6 @@ Awestruct::Extensions::Pipeline.new do
   extension Awestruct::Extensions::Atomizer.new(:events, '/events.atom')
 
   extension Downloads.new()
-  extension OldDownloads.new()
 
   extension ReleaseSizes.new()
 

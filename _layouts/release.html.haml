@@ -35,13 +35,14 @@ layout: default
           %a{:href=>page.next_post.url}= page.next_post.title
     .box
       %h1
-        Release: #{release.version}
-      %ul
-        %li
-          %a{:href=>release.urls.dist_zip} Download #{release.version} binary
-        %li
-          %a{:href=>release.urls.docs.browse} Browse docs for #{release.version}
-        %li
-          %a{:href=>release.urls.github.tree} Browse sources for #{release.version}
+        Release: #{page.version}
+      - if release
+        %ul
+          %li
+            %a{:href=>release.urls.dist_zip} Download #{release.version} binary
+          %li
+            %a{:href=>release.urls.docs.browse} Browse docs for #{release.version}
+          %li
+            %a{:href=>release.urls.github.tree} Browse sources for #{release.version}
     .tag-cloud
       = site.posts_tag_cloud
