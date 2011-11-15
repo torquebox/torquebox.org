@@ -1,0 +1,13 @@
+---
+---
+!!! XML
+
+%urlset{ :xmlns=>'http://www.sitemaps.org/schemas/sitemap/0.9' }
+  - unless page.sitemap_entries.empty?
+    - for entry in page.sitemap_entries
+      %url
+        %loc #{site.base_url}#{entry.url}
+        %lastmod= entry.date
+        %priority= entry.priority
+        %changefreq= entry.change_frequency
+  

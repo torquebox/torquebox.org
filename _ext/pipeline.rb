@@ -8,6 +8,7 @@ require 'events_munger'
 require 'tagger_atomizer'
 require 'tag_implier'
 require 'json'
+require 'sitemap'
 
 
 Awestruct::Extensions::Pipeline.new do
@@ -47,4 +48,5 @@ Awestruct::Extensions::Pipeline.new do
   helper RssWidget
 
   extension Documentation.new()
+  extension Sitemap.new( 'sitemap.xml', :pages )
 end
