@@ -7,50 +7,30 @@ class Sitemap
   end
 
   def execute( site )
-    entries = site.send( @entries_name )
+    # Get a bundle of pages we want to add to our sitemap
+    # and set some metadata on them
     sitemap_pages = []
-
-    entries.each do |entry|
-      if valid_sitemap_entry( entry )
-        sitemap_entry = site.engine.load_page(entry.source_path, :relative_path => entry.relative_source_path, :html_entities => false)
-        sitemap_entry.output_path = entry.output_path
-        sitemap_entry.date = last_update( entry, sitemap_entry )
-        sitemap_entry.priority = 1
-        sitemap_entry.change_frequency = change_frequency( entry, sitemap_entry )
-        sitemap_pages << sitemap_entry
-      end
-    end
-
+    entries = site.send( @entries_name )
+    entries.each { |entry| sitemap_pages << set_sitemap_data( entry ) if valid_sitemap_entry( entry ) } if entries
     site.engine.set_urls( sitemap_pages )
 
+    # Create a sitemap.xml file from our template
     sitemap = File.join( File.dirname(__FILE__), 'sitemap.xml.haml' )
-    page = site.engine.load_page( sitemap )
-    page.date = Time.now
-    page.output_path = @output_path
+    page                 = site.engine.load_page( sitemap )
+    page.output_path     = @output_path
     page.sitemap_entries = sitemap_pages
-    page.title = site.title || site.base_url
+
+    # Add the sitemap to our site
     site.pages << page
   end
 
   protected
-  def change_frequency( page, sitemap_entry )
-    if page.change_frequency.nil?
-      if sitemap_entry.change_frequency.nil?
-        'never'
-      else
-        sitemap_entry.change_frequency
-      end
-    else
-      page.change_frequency
-    end
-  end
-
-  def last_update( page, sitemap_entry )
-    if sitemap_entry.timestamp.nil? 
-      page.date.nil? ? Time.now : page.date 
-    else
-      sitemap_entry.timestamp
-    end
+  def set_sitemap_data( page )
+    site = page.site
+    page.date             ||= Time.now
+    page.priority         ||= (site.priority or 0.1)
+    page.change_frequency ||= (site.change_frequency or 'never')
+    page
   end
 
   def valid_sitemap_entry( page )

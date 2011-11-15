@@ -17,3 +17,8 @@ title: TorqueBox
 intense_debate_base_url: http://torquebox.org
 intense_debate_acct: 82f59e335081be13846c34fa627b3208
 google_analytics:    UA-6435340-2
+
+# Default page properties in sitemap.xml
+priority: 0.5 
+change_frequency: monthly
+
