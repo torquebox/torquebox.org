@@ -1,17 +1,10 @@
 ---
 layout: default
 title: Documentation
+priority: 0.9
 ---
 
-.span-24.last.append-bottom
-  %h1{:style=>'text-align: center;'}
-    %a{:href=>"/documentation/#{site.releases.first.version}/"}Browse the #{site.releases.first.version} documentation.
-  
-
 .prepend-top
-  %p
-    Or you can browse historic documentation for prior releases.
-
   %table.downloads
     %tr
       %th
@@ -20,6 +13,18 @@ title: Documentation
         Browse
       %th
         Download
+
+      %tr
+        %td
+          %a{:href=>'/2x/builds'}
+            2.x.incremental
+        %td
+          %a{:href=>'/2x/builds/html-docs/'}
+            Browse
+        %td
+          %a{:href=>'/2x/builds/torquebox-docs.pdf'}
+            PDF
+
     - for release in ( site.releases )
       %tr
         %td

@@ -48,5 +48,6 @@ Awestruct::Extensions::Pipeline.new do
   helper RssWidget
 
   extension Documentation.new()
-  extension Sitemap.new( 'sitemap.xml', :pages )
+
+  extension Sitemap.new
 end

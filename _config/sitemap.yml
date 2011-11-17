@@ -1,0 +1,6 @@
+---
+pages:
+  - 
+    url: /2x/builds/html-docs/
+    priority: 1
+    change_frequency: daily
