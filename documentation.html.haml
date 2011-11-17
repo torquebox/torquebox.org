@@ -16,29 +16,30 @@ priority: 0.9
 
       %tr
         %td
-          %a{:href=>'/2x/builds'}
+          %a{:href=>'/2x/builds', :rel=>'documentation'}
             2.x.incremental
         %td
-          %a{:href=>'/2x/builds/html-docs/'}
+          %a{:href=>'/2x/builds/html-docs/', :rel=>'documentation'}
             Browse
         %td
-          %a{:href=>'/2x/builds/torquebox-docs.pdf'}
+          %a{:href=>'/2x/builds/torquebox-docs.pdf', :rel=>'documentation'}
             PDF
 
     - for release in ( site.releases )
+      - rel = release.latest? ? 'documentation' : 'nofollow'
       %tr
         %td
           #{release.version}
         %td
-          %a{:href=>"/documentation/#{release.version}/"}Browse
+          %a{:href=>"/documentation/#{release.version}/", :rel=>rel}Browse
         %td
-          %a{:href=>release.urls.docs.pdf} PDF
+          %a{:href=>release.urls.docs.pdf, :rel=>rel} PDF
           |
-          %a{:href=>release.urls.docs.html_multi_zip} Multi-page HTML Bundle
+          %a{:href=>release.urls.docs.html_multi_zip, :rel=>rel} Multi-page HTML Bundle
           - unless release.urls.docs.html_single_zip.empty?
             |
-            %a{:href=>release.urls.docs.html_single_zip} Single-page HTML Bundle
+            %a{:href=>release.urls.docs.html_single_zip, :rel=>rel} Single-page HTML Bundle
           - unless release.urls.docs.epub.empty?
             |
-            %a{:href=>release.urls.docs.epub} ePub
+            %a{:href=>release.urls.docs.epub, :rel=>rel} ePub
   
