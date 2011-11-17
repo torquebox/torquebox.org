@@ -49,5 +49,5 @@ Awestruct::Extensions::Pipeline.new do
 
   extension Documentation.new()
 
-  extension Sitemap.new
+  extension Awestruct::Extensions::Sitemap.new
 end
