@@ -8,7 +8,6 @@ require 'events_munger'
 require 'tagger_atomizer'
 require 'tag_implier'
 require 'json'
-require 'awestruct/extensions/sitemap'
 
 
 Awestruct::Extensions::Pipeline.new do
