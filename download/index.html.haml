@@ -67,22 +67,24 @@ priority: 1
             .release-date
               = announcement.date.strftime( '%d %B %Y' )
         %td
-          %a{:href=>release.urls.dist_zip}
+          - rel = release.latest? ? 'download' : 'nofollow'
+          %a{:href=>release.urls.dist_zip, :rel=>rel}
             ZIP archive (#{release.dist_size}mb)
         %td
+          - rel = release.latest? ? 'documentation' : 'nofollow'
           %ul
             %li
-              %a{:href=>release.urls.docs.browse} Browse
+              %a{:href=>release.urls.docs.browse, :rel=>rel} Browse
             %li
-              %a{:href=>release.urls.docs.html_multi_zip} Multi-page HTML ZIP
+              %a{:href=>release.urls.docs.html_multi_zip, :rel=>rel} Multi-page HTML ZIP
             - unless ( release.urls.docs.html_single_zip.empty? )
               %li
-                %a{:href=>release.urls.docs.html_single_zip} Single-page HTML ZIP
+                %a{:href=>release.urls.docs.html_single_zip, :rel=>rel} Single-page HTML ZIP
             %li
-              %a{:href=>release.urls.docs.pdf} PDF 
+              %a{:href=>release.urls.docs.pdf, :rel=>rel} PDF 
             - unless ( release.urls.docs.epub.empty? )
               %li
-                %a{:href=>release.urls.docs.epub} ePub
+                %a{:href=>release.urls.docs.epub, :rel=>rel} ePub
         %td
           %ul
             %li
