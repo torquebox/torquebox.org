@@ -31,14 +31,18 @@ from RubyGems, of course.
 
 ## Will TorqueBox ever support Clojure, Python, Scala, Groovy, etc?
 
-Great question! The team is hard at work developing [Immutant](http://www.immutant.org), which brings
-the same enterprise-grade services found in TorqueBox to the world of Clojure. 
+Great question! The team is hard at work developing
+[Immutant](http://www.immutant.org), which brings the same
+enterprise-grade services found in TorqueBox to the world of Clojure,
+even to the point of deploying both Ruby and Clojure apps to the same
+stack!
 
-Beyond Clojure, Python is the most interesting, and could certainly benefit
-from a similar initiative. 
+Beyond Clojure, Python is the most interesting, and could certainly
+benefit from a similar initiative.
 
-Scala, Groovy, and any other more Java-natural language already integrate
-pretty well with Java application servers, so what more is there to do? 
+We would welcome ideas on how best to use Scala, Groovy, or maybe even
+Javascript to harness the JBoss services in useful and interesting
+ways. But we have no definite plans to do so at this time.
 
 ## 11?  What?
 
