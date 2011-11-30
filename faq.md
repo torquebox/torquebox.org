@@ -10,9 +10,9 @@ toc: true
 
 ## What is TorqueBox?
 
-TorqueBox is a small adaptation layer on top of Java application server from JBoss, [JBoss AS](http://jboss.org/jbossas/).
+TorqueBox is a small adaptation layer on top of JBoss's Java application server, [JBoss AS](http://jboss.org/jbossas/).
 
-It attempts to go beyond providing web-centric services (supporting Rails, Rack, Sinatra, etc),
+TorqueBox goes beyond providing web-centric services (supporting Rails, Rack, Sinatra, etc),
 to also expose other enterprise-grade services to Ruby applications.
 
 ## If it's a small layer, why is it a large download?
@@ -29,15 +29,16 @@ right in the tin.
 no longer distribute Rack, Rails, and other gems.  You can simply grab them
 from RubyGems, of course.
 
-## Will TorqueBox ever support {Python,Scala,Groovy,...}
+## Will TorqueBox ever support Clojure, Python, Scala, Groovy, etc?
 
-Not directly, no.
+Great question! The team is hard at work developing [Immutant](http://www.immutant.org), which brings
+the same enterprise-grade services found in TorqueBox to the world of Clojure. 
 
-Of those, Python is the most interesting, and could certainly benefit
+Beyond Clojure, Python is the most interesting, and could certainly benefit
 from a similar initiative. 
 
 Scala, Groovy, and any other more Java-natural language already integrate
-pretty well with Java application servers, so what's there to do? 
+pretty well with Java application servers, so what more is there to do? 
 
 ## 11?  What?
 
