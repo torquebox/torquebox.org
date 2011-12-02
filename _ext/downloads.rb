@@ -21,6 +21,7 @@ class Downloads
   REPO_PREFIX = "http://repository-projectodd.forge.cloudbees.com/release/org/torquebox"
   LOCAL_REPO_PREFIX = "/release/org/torquebox"
   DOCS_PREFIX = "#{LOCAL_REPO_PREFIX}/torquebox-docs-en_US"
+  REMOTE_DOCS_PREFIX = "#{REPO_PREFIX}/torquebox-docs-en_US"
 
   def initialize(enabled=true)
     @enabled = enabled
@@ -49,9 +50,10 @@ class Downloads
   def all_releases(version, release)
     release.urls      ||= OpenStruct.new
     release.urls.docs ||= OpenStruct.new
-    release.urls.docs.browse          = "/documentation/#{release.version}/"
-    release.urls.docs.pdf             = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}.pdf"
-    release.urls.docs.html_multi_zip  = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}-html.zip"
+    release.urls.docs.browse                = "/documentation/#{release.version}/"
+    release.urls.docs.pdf                   = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}.pdf"
+    release.urls.docs.html_multi_zip        = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}-html.zip"
+    release.urls.docs.remote_html_multi_zip = "#{REMOTE_DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}-html.zip"
 
     if ( (v('1.0.0.CR2')..v('2.0')).include?( version ) )
       release.urls.docs.epub          = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}.epub"

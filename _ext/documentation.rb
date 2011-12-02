@@ -27,7 +27,7 @@ class Documentation
       unless ( File.exist?( doc_bundle_path ) )
         puts "Fetching doc bundle for #{release.version}"
 
-        doc_url = release.urls.docs.html_multi_zip
+        doc_url = release.urls.docs.remote_html_multi_zip
 
         `wget --quiet -P #{site.tmp_dir} #{doc_url}`
       end
