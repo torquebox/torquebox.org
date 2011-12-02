@@ -42,9 +42,10 @@ label change for you.
 # What's next?
 
 
-[download]: fixme
-[htmldocs]: fixme
-[pdfdocs]:  fixme
-[epubdocs]: fixme
+[download]: /release/org/torquebox/torquebox-dist/2.0.0.beta1/torquebox-dist-2.0.0.beta1-bin.zip
+[htmldocs]: /documentation/2.0.0.beta1/
+[pdfdocs]:  /release/org/torquebox/torquebox-docs-en_US/2.0.0.beta1/torquebox-docs-en_US-2.0.0.beta1.pdf
+[epubdocs]: /release/org/torquebox/torquebox-docs-en_US/2.0.0.beta1/torquebox-docs-en_US-2.0.0.beta1.epub
+[features]: /features
 [as7]: http://www.jboss.org/as7.html
 [incremental builds]: /2x/builds/
