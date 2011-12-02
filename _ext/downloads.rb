@@ -19,7 +19,8 @@ class Downloads
            end
 
   REPO_PREFIX = "http://repository-projectodd.forge.cloudbees.com/release/org/torquebox"
-  DOCS_PREFIX = "#{REPO_PREFIX}/torquebox-docs-en_US"
+  LOCAL_REPO_PREFIX = "/release/org/torquebox"
+  DOCS_PREFIX = "#{LOCAL_REPO_PREFIX}/torquebox-docs-en_US"
 
   def initialize(enabled=true)
     @enabled = enabled
@@ -34,7 +35,9 @@ class Downloads
       case ( v )
         when ( v('1.0.0.CR1')..('2.0') )
           all_releases(v, release)
-          release.urls.dist_zip = "#{REPO_PREFIX}/torquebox-dist/#{release.version}/torquebox-dist-#{release.version}-bin.zip"
+          release_suffix = "/torquebox-dist/#{release.version}/torquebox-dist-#{release.version}-bin.zip"
+          release.urls.dist_zip = "#{LOCAL_REPO_PREFIX}#{release_suffix}"
+          release.urls.remote_dist_zip = "#{REPO_PREFIX}#{release_suffix}"
       end
     end
   end
@@ -63,11 +66,15 @@ class Downloads
   end
   
   def before_beta21(release)
-    release.urls.dist_zip = "#{REPO_PREFIX}/torquebox-bin/#{release.version}/torquebox-bin-#{release.version}.zip"
+    release_suffix = "/torquebox-bin/#{release.version}/torquebox-bin-#{release.version}.zip"
+    release.urls.dist_zip = "#{LOCAL_REPO_PREFIX}#{release_suffix}"
+    release.urls.remote_dist_zip = "#{REPO_PREFIX}#{release_suffix}"
   end
 
   def after_beta21(release)
-    release.urls.dist_zip = "#{REPO_PREFIX}/torquebox-dist/#{release.version}/torquebox-dist-#{release.version}-bin.zip"
+    release_suffix = "/torquebox-dist/#{release.version}/torquebox-dist-#{release.version}-bin.zip"
+    release.urls.dist_zip = "#{LOCAL_REPO_PREFIX}#{release_suffix}"
+    release.urls.remote_dist_zip = "#{REPO_PREFIX}#{release_suffix}"
   end
 
   def before_beta22(release)
