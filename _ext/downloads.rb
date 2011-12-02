@@ -58,7 +58,7 @@ class Downloads
     end
 
 
-    release.urls.jira = "https://jira.jboss.org/jira/secure/IssueNavigator.jspa?reset=true&amp;fixfor=#{release.jira_version}&amp;pid=12310812&amp;sorter/field=issuekey&amp;sorter/order=DESC"
+    release.urls.jira = "https://jira.jboss.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project=TORQUE+AND+fixVersion=#{release.jira_version}&sorter/field=issuekey&sorter/order=DESC"
 
     release.urls.github ||= OpenStruct.new
     release.urls.github.log = "http://github.com/torquebox/torquebox/commits/#{release.version}"
