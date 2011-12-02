@@ -41,6 +41,11 @@ label change for you.
 
 # What's next?
 
+We'd like everyone to give our beta1 release a whirl, report any issues you find
+in [JIRA], and we hope to have another beta before the end of the year.  We absolutely
+promise not to let Bob run this beta cycle, in order to keep it a reasonable length.
+
+The final 2.0.0 really shouldn't be too far down the line, now.
 
 [download]: /release/org/torquebox/torquebox-dist/2.0.0.beta1/torquebox-dist-2.0.0.beta1-bin.zip
 [htmldocs]: /documentation/2.0.0.beta1/
@@ -49,3 +54,4 @@ label change for you.
 [features]: /features
 [as7]: http://www.jboss.org/as7.html
 [incremental builds]: /2x/builds/
+[JIRA]: http://issues.jboss.org/
