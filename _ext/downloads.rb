@@ -53,7 +53,7 @@ class Downloads
     release.urls.docs.pdf             = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}.pdf"
     release.urls.docs.html_multi_zip  = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}-html.zip"
 
-    if ( (v('1.0.0.CR2')..v('1.0.0')).include?( version ) ) 
+    if ( (v('1.0.0.CR2')..v('2.0')).include?( version ) )
       release.urls.docs.epub          = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}.epub"
     end
 
