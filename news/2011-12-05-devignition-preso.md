@@ -1,8 +1,8 @@
 ---
-title: 'Slides From My Recent DevIgnition TorqueBox/Immutant Presentation'
+title: 'Slides From My DevIgnition Polyglot AS Presentation'
 author: Toby Crawley
 layout: news
-tags: [ presentations ]
+tags: [ presentations, immutant, polyglot ]
 ---
 
 This past Friday I had the pleasure of presenting "The Polyglot Future of JBoss AS" to an audience of 
