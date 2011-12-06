@@ -31,10 +31,6 @@ GitHub repository:
 
 * [https://github.com/torquebox/torquebox](https://github.com/torquebox/torquebox)
 
-# Switch to the `2x-dev` branch
-
-    git checkout -b 2x-dev origin/2x-dev -u
-
 # Maven setup
 
 Building of TorqueBox uses the Maven build system.  Maven pulls dependencies from
