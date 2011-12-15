@@ -14,8 +14,8 @@ basics like installation of the server and running a rails app. So with that
 in mind, we're offering 2 short screencasts to help new users get up and 
 running on what we think is one of the best Ruby deployment platforms around.
 
-      * [Installing TorqueBox 2.0](http://vimeo.com/33299335)
-      * [Getting Started With Rails Apps on TorqueBox](http://vimeo.com/33417394)
+* [Installing TorqueBox 2.0](http://vimeo.com/33299335)
+* [Getting Started With Rails Apps on TorqueBox](http://vimeo.com/33417394)
 
 I hope you find them useful. And if you would like to see more, let us know what
 topics you are interested in. We have a number of other screencasts to produce
