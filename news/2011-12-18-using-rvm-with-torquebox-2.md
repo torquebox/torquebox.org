@@ -14,7 +14,7 @@ tags: [ rvm, setup, installation, torquebox2 ]
 [@torquebox]: http://twitter.com/torquebox
 
 Back in February I wrote a [blog post] showing how to use RVM with TorqueBox
-1.x. Well, we're already a few weeks into the 2.0.beta1 release, and things
+1.x. Well, we're already a few weeks into the 2.0.0.beta1 release, and things
 have changed quite a lot since the original post.  It's about time I show
 you how easy it is to make TorqueBox 2.x and RVM play nicely together. 
 
@@ -48,7 +48,7 @@ Next, create a gemset for torquebox.
 
     $ # Be sure you are using jruby
     $ rvm jruby-1.6.5
-    $ rvm gemset create torquebox-2.0
+    $ rvm gemset create torquebox
 
 
 # Installing TorqueBox
