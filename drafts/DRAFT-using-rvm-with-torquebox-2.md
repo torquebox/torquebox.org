@@ -53,10 +53,10 @@ Next, create a gemset for torquebox.
 
 # Installing TorqueBox
 With 2.0 we've introduced [torquebox-server] a gem that makes installation a
-breeze, [torquebox-server], which includes all of the torquebox-* gems and a
-copy of JBoss AS7.  Because AS7 is pretty large on it's own, you'll need to
-tell JRuby to give it a little more memory. And because we're still in beta, be
-sure to provide the `--pre` flag.
+breeze. It includes all of the torquebox-* gems and a copy of JBoss AS7.
+Because AS7 is pretty large on it's own, you'll need to tell JRuby to give it a
+little more memory. And because we're still in beta, be sure to provide the
+`--pre` flag.
 
     $ rvm jruby-1.6.5@torquebox
     $ jruby -J-Xmx1024m -S gem install torquebox-server --pre
