@@ -1,8 +1,7 @@
 ---
 title: 'TorqueBox 2.x and RVM'
 author: Lance Ball
-layout: news
-tags: [ rvm, setup, installation, torquebox2 ]
+layout: narrow
 ---
 
 [rvm]: http://rvm.beginrescueend.com/
