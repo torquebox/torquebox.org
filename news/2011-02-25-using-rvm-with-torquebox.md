@@ -10,10 +10,15 @@ tags: [rvm, setup, installation]
 [rvm-install]: http://rvm.beginrescueend.com/rvm/install/
 [ci]: http://torquebox.org/torquebox-dev.zip
 [gem-changes]: http://torquebox.org/news/2011/02/25/using-rvm-with-torquebox/
+[the new article]: /news/2011/12/19/using-rvm-with-torquebox/
 
 We've been getting quite a few requests in IRC lately asking how to set up and use [RVM][rvm] with TorqueBox.
 In this post, we'll take a look at RVM, talk about why you might want to use it in your development
 environment, and show you how to set it up for use with TorqueBox.
+
+## Update - Tuesday, December 20, 2011
+With the release of 2.0.0.beta1, the information in this article is obsolete for all but the 
+1.x line.  For (simpler) instructions on 2.0.0.beta1, please see [the new article].
 
 ## Update - Friday, March 4, 2011
 This article has been modified to reflect the changes in gem names recently [announced][gem-changes].
