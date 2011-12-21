@@ -50,7 +50,7 @@ priority: 1.0
       %img#stack{:src=>"/images/stack.png"}
     .more_feature_info
       %a{:href=>'/features'}
-        Read more about the TorqueBox stack!
+        Read more about the TorqueBox stack
     
   #bottom-row
     .left-column
@@ -92,6 +92,10 @@ priority: 1.0
             .links
               %a{:href=>talk.event_url}
                 #{talk.event} Site
+        #speakers-link
+          Interested in hosting or giving a TorqueBox talk? See our
+          %a{:href=>"/speakers/"}speakers
+          page.
 
 :javascript
   $(document).ready( function() {
