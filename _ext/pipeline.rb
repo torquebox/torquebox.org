@@ -27,6 +27,10 @@ Awestruct::Extensions::Pipeline.new do
   extension Awestruct::Extensions::Paginator.new(:posts, '/news/index', :per_page => 5 )
   extension Awestruct::Extensions::Indexifier.new
   extension Awestruct::Extensions::Atomizer.new(:posts, '/news.atom')
+
+  extension Awestruct::Extensions::Posts.new('/podcasts')
+  extension Awestruct::Extensions::Podcasts.new(:podcasts, '/podcasts.atom')
+
   extension Awestruct::Extensions::IntenseDebate.new()
 
   extension Awestruct::Extensions::Tagger.new( :posts, 
