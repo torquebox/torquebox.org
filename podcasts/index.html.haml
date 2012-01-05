@@ -1,0 +1,29 @@
+---
+title: Podcasts
+layout: default
+---
+%link{:rel=>"self",      :type=>"application/rss+xml", :href=>"#{site.base_url}/podcasts.xml" }
+%link{:rel=>"alternate", :type=>"text/html", :href=>"#{site.base_url}/podcasts" }
+#right-sidebar
+  #main-column
+    - for episode in page.podcasts
+      .post
+        %h1.title
+          %a{:href=>episode.url}= episode.title
+        .byline
+          .author
+            = episode.author
+          .date
+            #{episode.date.strftime( '%d %B %Y' )}
+          .tags
+            - episode.tags.each do |tag|
+              %a{:href=>tag.primary_page.url}
+                = tag
+        .body
+          ~ episode.content
+        .tail
+          = episode.intense_debate_comments_link
+    = page.podcasts.links
+  #sidebar-column
+    .tag-cloud
+      = site.podcasts_tag_cloud

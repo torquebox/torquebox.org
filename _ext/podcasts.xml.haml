@@ -1,0 +1,42 @@
+---
+---
+!!! XML
+
+%rss{ 'xmlns:itunes'=>'http://www.itunes.com/dtds/podcast-1.0.dtd', 'version'=>'2.0' }
+  %channel
+    %title= escape_once( "#{site.title}: #{site.itunes.subtitle}" )
+    %link= site.base_url
+
+    %language= site.itunes.language || "en-us"
+    %copyright= site.itunes.copyright || "All rights reserved"
+
+    %itunes:subtitle= site.itunes.subtitle
+    %itunes:author= site.itunes.author
+    %itunes:summary= site.itunes.summary
+    %description= site.itunes.summary
+    %itunes:owner
+      %itunes:name= site.itunes.owner.name
+      %itunes:email= site.itunes.owner.email
+    %itunes:image= page.itunes_image
+
+    - site.itunes.categories.each do |category|
+      %itunes:category{:text=>category}
+      - if category.respond_to? :subcategory
+        &nbsp;
+        %itunes:category{:text=>category.subcategory}
+
+    - unless page.episodes.empty?
+      - for episode in page.episodes
+        %item
+          %title= escape_once( episode.title )
+          %itunes:author= episode.author if episode.author
+          %itunes:subtitle= escape_once( episode.subtitle ) if episode.subtitle
+          %itunes:summary
+            #{summarize( html_to_text( episode.content ), 100 )}...
+          %itunes:image= episode.itunes_image
+          %enclosure{:url=>episode.enclosure_url, :length=>episode.length, :type=>episode.mime_type}
+          %guid= episode.enclosure_url
+          %pubdate= episode.date.xmlschema
+          %itunes:duration= episode.duration
+          %itunes:keywords= episode.tags.join(', ')
+    

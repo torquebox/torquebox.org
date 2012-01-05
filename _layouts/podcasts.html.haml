@@ -1,0 +1,39 @@
+---
+layout: default
+change_frequency: yearly
+---
+
+#right-sidebar
+  #main-column
+    .post
+      .byline
+        .author
+          = page.author
+        .date
+          = page.date.strftime('%d %b %Y')
+        .tags
+          - page.tags.each do |tag|
+            %a{:href=>tag.primary_page.url}
+              = tag
+      .body
+        ~ content
+        .duration
+          Duration:
+          = page.duration
+        .enclosure
+          %a{:href=>"#{site.base_url}/#{page.enclosure}"}
+            Watch Now
+      .comments
+        = page.intense_debate_comments
+  #sidebar-column
+    .post-navigation
+      .previous
+        - if page.previous_podcast
+          .label
+            previous
+          %a{:href => page.previous_podcast.url}= page.previous_podcast.title
+      .next
+        - if page.next_podcast
+          .label
+            next
+          %a{:href => page.next_podcast.url}= page.next_podcast.title

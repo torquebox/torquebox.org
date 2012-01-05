@@ -8,6 +8,7 @@ require 'events_munger'
 require 'tagger_atomizer'
 require 'tag_implier'
 require 'json'
+require 'podcasts'
 
 
 Awestruct::Extensions::Pipeline.new do
@@ -27,9 +28,6 @@ Awestruct::Extensions::Pipeline.new do
   extension Awestruct::Extensions::Paginator.new(:posts, '/news/index', :per_page => 5 )
   extension Awestruct::Extensions::Indexifier.new
   extension Awestruct::Extensions::Atomizer.new(:posts, '/news.atom')
-
-  extension Awestruct::Extensions::Posts.new('/podcasts')
-  extension Awestruct::Extensions::Podcasts.new(:podcasts, '/podcasts.atom')
 
   extension Awestruct::Extensions::IntenseDebate.new()
 
@@ -52,5 +50,19 @@ Awestruct::Extensions::Pipeline.new do
 
   extension Documentation.new()
 
+  extension Awestruct::Extensions::Podcasts.new
+  extension Awestruct::Extensions::Paginator.new(:podcasts, '/podcasts/index', :per_page => 5 )
+
+  extension Awestruct::Extensions::Tagger.new( :podcasts, 
+                                               '/podcasts/index', 
+                                               '/podcasts/tags', 
+                                               :per_page=>5 )
+  extension Awestruct::Extensions::TagCloud.new( :podcasts, 
+                                                 '/podcasts/tags/index.html',
+                                                 :layout=>'default' )
+
+
+
   extension Awestruct::Extensions::Sitemap.new
+
 end
