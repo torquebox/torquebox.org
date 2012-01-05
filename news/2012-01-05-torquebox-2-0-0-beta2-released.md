@@ -41,7 +41,7 @@ the 1.x you may already be familiar with.  Notable inclusions in 2.0.0 include:
 If you've been following our [incremental builds], this will mostly be just a 
 label change for you.
 
-# What's changed since beta1?
+# You're in luck, VFS is gone!
 
 We've fixed quite a few issues since beta1, but one large change is how
 we handle file paths and how those file paths are exposed to ruby. Before 
@@ -74,7 +74,15 @@ still have to use VFS internally to communicate with AS7, so it is possible
 that there are places where vfs: urls are still bleeding through to ruby. If 
 you see any, please let us know.
 
-## The full list of issues resolved since beta1
+# What's next?
+
+We'd like everyone to give our beta2 release a whirl, report any issues you find
+in [JIRA], and we hope to have another beta in a few weeks.  We absolutely
+promise not to let Bob run this beta cycle, in order to keep it a reasonable length.
+
+The final 2.0.0 really shouldn't be too far down the line, now.
+
+# Issues resolved since beta1
 
 <ul>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-407'>TORQUE-407</a>] -         &#39;rails console&#39; Throws Error When Gemfile Includes &#39;torquebox&#39;
@@ -129,14 +137,6 @@ you see any, please let us know.
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-670'>TORQUE-670</a>] -         Need ability to set the client_id on a MessageProcessor for durable topics.
 </li>
 </ul>
-
-# What's next?
-
-We'd like everyone to give our beta2 release a whirl, report any issues you find
-in [JIRA], and we hope to have another beta in a few weeks.  We absolutely
-promise not to let Bob run this beta cycle, in order to keep it a reasonable length.
-
-The final 2.0.0 really shouldn't be too far down the line, now.
 
 [download]: /release/org/torquebox/torquebox-dist/2.0.0.beta2/torquebox-dist-2.0.0.beta2-bin.zip
 [htmldocs]: /documentation/2.0.0.beta2/
