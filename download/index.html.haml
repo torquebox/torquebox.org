@@ -16,29 +16,31 @@ priority: 1
 
       # Incremental Builds
 
-      Unstable incremental builds for [1.x](/1x/builds/) and [2.x](/2x/builds/) are produced regularly from our 
-      [continuous integration server](/development#ci). The 2.x builds are currently *much* closer in functionality
-      than the 1.x builds to the latest official release (#{site.releases.first.version}).
+      Unstable [incremental builds](/2x/builds/) are produced regularly from our 
+      [continuous integration server](/development#ci). 
       
-    
       A developer build has no guarantee of actually working.  *At all.*  But it probably will.  Feel free to try it.
 
-      * [Download the latest 1.x incremental build](/builds/LATEST/torquebox-dist-bin.zip)
-      * [Download the latest 2.x incremental build](/2x/builds/torquebox-dist-bin.zip)
+      * [Download the latest incremental build](/2x/builds/torquebox-dist-bin.zip)
      
 
   #right-column
     :markdown
       # Documentation
   
-      You may [browse the documentation online](#{site.releases.first.urls.docs.browse})
-  
-      Downloadable documentation is available in several forms:
+      You may browse the documentation online:
+      
+      * [Manual for #{site.releases.first.version}](#{site.releases.first.urls.docs.browse})
+      * [JavaDocs for #{site.releases.first.version}](#{site.releases.first.urls.docs.javadocs})
+      * [Gem RDocs for #{site.releases.first.version}](#{site.releases.first.urls.docs.yardocs})
+
+      The manual is available for download in several forms:
   
       * [PDF Manual for #{site.releases.first.version}](#{site.releases.first.urls.docs.pdf})
       * [Multi-page HTML Manual for #{site.releases.first.version}](#{site.releases.first.urls.docs.html_multi_zip})
+      * [ePub Manual for #{site.releases.first.version}](#{site.releases.first.urls.docs.epub})
 
-      You may also obtain a pdf containing the latest, un-released documentation that coincides with our developer build.
+      You may also obtain a pdf containing the latest, un-released manual that coincides with our developer build.
 
       * [Download the latest documentation](http://torquebox.org/torquebox-doc.pdf)
 
@@ -74,17 +76,28 @@ priority: 1
           - rel = release.latest? ? 'documentation' : 'nofollow'
           %ul
             %li
-              %a{:href=>release.urls.docs.browse, :rel=>rel} Browse
+              - if release.urls.docs.javadocs.empty?
+                %a{:href=>release.urls.docs.browse, :rel=>rel} Browse Manual
+              - else
+                Browse:
+                %ul
+                  %li
+                    %a{:href=>release.urls.docs.browse, :rel=>rel} Manual
+                  %li
+                    %a{:href=>release.urls.docs.javadocs, :rel=>rel} JavaDocs
+                  %li
+                    %a{:href=>release.urls.docs.yardocs, :rel=>rel} Gem RDocs
+
             %li
-              %a{:href=>release.urls.docs.html_multi_zip, :rel=>rel} Multi-page HTML ZIP
+              %a{:href=>release.urls.docs.html_multi_zip, :rel=>rel} Multi-page HTML Manual (ZIP)
             - unless ( release.urls.docs.html_single_zip.empty? )
               %li
-                %a{:href=>release.urls.docs.html_single_zip, :rel=>rel} Single-page HTML ZIP
+                %a{:href=>release.urls.docs.html_single_zip, :rel=>rel} Single-page HTML Manual (ZIP)
             %li
-              %a{:href=>release.urls.docs.pdf, :rel=>rel} PDF 
+              %a{:href=>release.urls.docs.pdf, :rel=>rel} Manual (PDF)
             - unless ( release.urls.docs.epub.empty? )
               %li
-                %a{:href=>release.urls.docs.epub, :rel=>rel} ePub
+                %a{:href=>release.urls.docs.epub, :rel=>rel} Manual (ePub)
         %td
           %ul
             %li

@@ -51,6 +51,11 @@ class Downloads
     release.urls      ||= OpenStruct.new
     release.urls.docs ||= OpenStruct.new
     release.urls.docs.browse                = "/documentation/#{release.version}/"
+    if release.api_docs === true
+      release.urls.docs.javadocs              = "/documentation/#{release.version}/javadoc/"
+      release.urls.docs.yardocs               = "/documentation/#{release.version}/yardoc/"
+    end
+    
     release.urls.docs.pdf                   = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}.pdf"
     release.urls.docs.html_multi_zip        = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}-html.zip"
     release.urls.docs.remote_html_multi_zip = "#{REMOTE_DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}-html.zip"

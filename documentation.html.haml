@@ -12,15 +12,18 @@ priority: 0.9
       %th
         Browse
       %th
-        Download
+        Download Manual
 
       %tr
         %td
           %a{:href=>'/2x/builds', :rel=>'beta documentation'}
             2.x.incremental
         %td
-          %a{:href=>'/2x/builds/html-docs/', :rel=>'beta documentation'}
-            Browse
+          %a{:href=>'/2x/builds/html-docs/', :rel=>'beta documentation'}Manual
+          |
+          %a{:href=>'/2x/builds/javadocs/', :rel=>'beta documentation'}JavaDocs
+          |
+          %a{:href=>'/2x/builds/yardocs/', :rel=>'beta documentation'}Gem RDocs
         %td
           %a{:href=>'/2x/builds/torquebox-docs.pdf', :rel=>'beta documentation'}
             PDF
@@ -31,7 +34,12 @@ priority: 0.9
         %td
           #{release.version}
         %td
-          %a{:href=>"/documentation/#{release.version}/", :rel=>rel}Browse
+          %a{:href=>"/documentation/#{release.version}/", :rel=>rel}Manual
+          - unless release.urls.docs.javadocs.empty?
+            |
+            %a{:href=>"/documentation/#{release.version}/javadoc", :rel=>rel}JavaDocs
+            |
+            %a{:href=>"/documentation/#{release.version}/yardoc", :rel=>rel}Gem RDocs
         %td
           %a{:href=>release.urls.docs.pdf, :rel=>rel} PDF
           |
