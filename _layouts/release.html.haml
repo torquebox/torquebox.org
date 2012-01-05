@@ -43,7 +43,12 @@ change_frequency: monthly
           %li
             %a{:href=>release.urls.dist_zip} Download #{release.version} binary
           %li
-            %a{:href=>release.urls.docs.browse} Browse docs for #{release.version}
+            %a{:href=>release.urls.docs.browse} Browse manual for #{release.version}
+          - unless release.urls.docs.javadocs.empty?
+            %li
+              %a{:href=>release.urls.docs.javadocs} Browse JavaDocs for #{release.version}
+            %li
+              %a{:href=>release.urls.docs.yardocs} Browse Gem rDocs for #{release.version}
           %li
             %a{:href=>release.urls.github.tree} Browse sources for #{release.version}
     .tag-cloud
