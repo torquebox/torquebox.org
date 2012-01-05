@@ -1,6 +1,6 @@
 
 class Documentation
-  API_DOC_REPO = "http://repository-projectodd.forge.cloudbees.com/staging/org/torquebox/torquebox-complete/"
+  API_DOC_REPO = "http://repository-projectodd.forge.cloudbees.com/release/org/torquebox/torquebox-complete/"
   
   def initialize(enabled=true)
     @enabled = enabled

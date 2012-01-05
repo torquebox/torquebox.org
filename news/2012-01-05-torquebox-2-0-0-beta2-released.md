@@ -6,8 +6,6 @@ version: '2.0.0.beta2'
 tags: [ releases ]
 ---
 
-# TorqueBox v2.0.0.beta2
-
 The entire TorqueBox team is proud to announce immediate availability
 of *TorqueBox v2.0.0.beta2*.
 

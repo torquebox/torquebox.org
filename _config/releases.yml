@@ -1,9 +1,9 @@
 - version: '2.0.0.beta2'
   jira_version: 12318602
-  api_docs: false
+  latest: true
+  api_docs: true
 - version: '2.0.0.beta1'
   jira_version: 12315931
-  api_docs: true
 - version: '1.1.1'
   jira_version: 12317226
 - version: '1.1'
