@@ -20,9 +20,9 @@ change_frequency: yearly
         .duration
           Duration:
           = page.duration
-        .enclosure
-          %a{:href=>"#{site.base_url}/#{page.enclosure}"}
-            Watch Now
+        .enclosure.leanback-player-video
+          %video{:width=>"640", :height=>"360", :preload=>"auto", :controls=>'true'}
+            %source{:src=>"#{site.base_url}/#{page.enclosure}", :type=>'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'}
       .comments
         = page.intense_debate_comments
   #sidebar-column

@@ -61,6 +61,8 @@ module Awestruct
         case File.extname(enclosure)
         when '.mp4' 
           "video/mp4"
+        when '.m4v' 
+          "video/mp4"
         when '.mov'
           "video/quicktime"
         when '.mpg'
