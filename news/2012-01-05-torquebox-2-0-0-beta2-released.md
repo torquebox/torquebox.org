@@ -43,10 +43,38 @@ label change for you.
 
 # What's changed since beta1?
 
-We've fixed quite a few issues since beta1, and you can browse the list below.
-One notable change that may affect your application code is [TORQUE-659], where
-we stopped exposing VFS urls to ruby code. You can read more about this change
-in [this announcement][vfs].
+We've fixed quite a few issues since beta1, but one large change is how
+we handle file paths and how those file paths are exposed to ruby. Before 
+this change, paths given to ruby (via `__FILE__`, `Dir.pwd`, `RAILS_ROOT`, etc.) 
+were vfs: urls instead of regular paths. Now, any paths that pass into ruby 
+from TorqueBox will be regular platform-specific file paths.
+
+## What is VFS?
+
+VFS stands for 'Virtual File System', and is used internally by AS7 to be
+able to transparently mount jars/wars and treat them as filesystems. At one
+time, TorqueBox needed to expose VFS to support archived ruby applications,
+but this is no longer the case since we now explode archived apps to a 
+temporary folder instead of using them archived.
+
+## Why remove VFS?
+
+Exposing VFS to ruby required us to do extensive monkeypatching to `File`, `IO`,
+`Dir`, and various other classes to teach them to properly understand vfs:
+urls, and has been a constant source of issues. Recent changes in the Rails
+asset pipeline code exposed even more issues, causing us to reevaluate the
+need for exposing VFS to ruby.
+
+## How will removing VFS affect me?
+
+Well, hopefully you'll see less bugs. Seriously though, you shouldn't see
+any difference in your application, unless you have already had to work
+around VFS issues. In that case, you'll want to remove the workarounds. We
+still have to use VFS internally to communicate with AS7, so it is possible 
+that there are places where vfs: urls are still bleeding through to ruby. If 
+you see any, please let us know.
+
+## The full list of issues resolved since beta1
 
 <ul>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-407'>TORQUE-407</a>] -         &#39;rails console&#39; Throws Error When Gemfile Includes &#39;torquebox&#39;
