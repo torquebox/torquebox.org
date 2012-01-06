@@ -145,6 +145,4 @@ The final 2.0.0 really shouldn't be too far down the line, now.
 [features]: /features
 [as7]: http://www.jboss.org/as7.html
 [incremental builds]: /2x/builds/
-[TORQUE-659]: https://issues.jboss.org/browse/TORQUE-659
-[vfs]: http://markmail.org/thread/qblmcfcnnuk4c7ui
 [JIRA]: http://issues.jboss.org/
