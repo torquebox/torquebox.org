@@ -6,6 +6,17 @@ change_frequency: yearly
 #right-sidebar
   #main-column
     .post
+      .body
+        .summary
+          ~ content
+        .enclosure.leanback-player-video
+          %video{:width=>"550", :height=>"320", :autoplay=>'true', :preload=>"auto", :controls=>'true', :poster=>page.itunes_image}
+            %source{:src=>"#{page.enclosure_url}", :type=>'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'}
+            .leanback-player-html-fallback
+              %img{:src=>page.itunes_image, :width=>"550", :height=>"320", :alt=>"TorqueBox Knob", :title=>"No HTML5 media playback capabilities available."}
+              .downloads
+                %strong Download Video:
+                %a{:href=>page.enclosure_url}= page.title
       .byline
         .author
           = page.author
@@ -18,12 +29,6 @@ change_frequency: yearly
         .duration
           Duration:
           = page.duration
-      .body
-        .summary
-          ~ content
-        .enclosure.leanback-player-video
-          %video{:width=>"640", :height=>"360", :preload=>"auto", :controls=>'true'}
-            %source{:src=>"#{page.enclosure_url}", :type=>'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'}
       .comments
         = page.intense_debate_comments
   #sidebar-column

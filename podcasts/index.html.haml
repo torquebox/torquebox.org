@@ -1,5 +1,5 @@
 ---
-title: Podcasts
+title: TorqueBox Screencasts
 layout: default
 ---
 %link{:rel=>"self",      :type=>"application/rss+xml", :href=>"#{site.base_url}/podcasts.xml" }
@@ -23,6 +23,8 @@ layout: default
             = episode.duration
         .body
           ~ episode.content
+          %a{:href=>episode.url, :style=>'font-size:16px;font-weight:bold'} Watch Now!
+          
         .tail
           = episode.intense_debate_comments_link
     = page.podcasts.links
