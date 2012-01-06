@@ -150,4 +150,4 @@ The final 2.0.0 really shouldn't be too far down the line, now.
 [features]: /features
 [as7]: http://www.jboss.org/as7.html
 [incremental builds]: /2x/builds/
-[JIRA]: http://issues.jboss.org/
+[JIRA]: http://issues.jboss.org/browse/TORQUE
