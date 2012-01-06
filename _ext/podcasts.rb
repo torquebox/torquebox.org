@@ -29,16 +29,21 @@ module Awestruct
         episodes.each do |episode|
           feed_episode = site.engine.load_page(episode.source_path, :relative_path => episode.relative_source_path, :html_entities => false)
 
-          feed_episode.output_path = episode.output_path
+          #feed_episode.output_path = episode.output_path
           feed_episode.date ||= feed_episode.timestamp.nil? ? episode.date : feed_episode.timestamp
 
-          if feed_episode.enclosure
+          if feed_episode.enclosure && File.exist?( feed_episode.enclosure )
             stats = File::Stat.new( feed_episode.enclosure )
             feed_episode.length = stats.size
-            feed_episode.enclosure_url = "#{base_media_url( feed_episode )}/#{feed_episode.enclosure}"
-            feed_episode.mime_type ||= mime_type( feed_episode )
+            episode.length = stats.size
           end
 
+          episode.enclosure_url = "#{base_media_url( feed_episode )}/#{feed_episode.enclosure}"
+          episode.mime_type ||= mime_type( feed_episode )
+          episode.itunes_image = "#{base_media_url( feed_episode )}/#{site.itunes.image}" 
+
+          feed_episode.enclosure_url = "#{base_media_url( feed_episode )}/#{feed_episode.enclosure}"
+          feed_episode.mime_type ||= mime_type( feed_episode )
           feed_episode.itunes_image = "#{base_media_url( feed_episode )}/#{site.itunes.image}" 
           pages << feed_episode
         end
@@ -76,14 +81,14 @@ module Awestruct
 
       def base_media_url( page )
         if is_not_blank? page.base_media_url
-          puts "USING BASE MEDIA URL page.base_media_url [#{page.base_media_url}]"
+          #puts "USING BASE MEDIA URL page.base_media_url [#{page.base_media_url}]"
           page.base_media_url
         elsif is_not_blank? page.site.itunes.base_media_url
-          puts "USING BASE MEDIA URL page.site.itunes.base_media_url [#{page.site.itunes.base_media_url}]"
+          #puts "USING BASE MEDIA URL page.site.itunes.base_media_url [#{page.site.itunes.base_media_url}]"
           page.site.itunes.base_media_url
         else
-          puts "USING BASE MEDIA URL page.site.base_url [#{page.site.base_url}]"
-          page.site.base_url
+          #puts "USING BASE MEDIA URL page.site.base_media_url [#{page.site.base_media_url}]"
+          page.site.base_media_url
         end
       end
 

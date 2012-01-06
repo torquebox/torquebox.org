@@ -15,14 +15,15 @@ change_frequency: yearly
           - page.tags.each do |tag|
             %a{:href=>tag.primary_page.url}
               = tag
-      .body
-        ~ content
         .duration
           Duration:
           = page.duration
+      .body
+        .summary
+          ~ content
         .enclosure.leanback-player-video
           %video{:width=>"640", :height=>"360", :preload=>"auto", :controls=>'true'}
-            %source{:src=>"#{site.base_url}/#{page.enclosure}", :type=>'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'}
+            %source{:src=>"#{page.enclosure_url}", :type=>'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'}
       .comments
         = page.intense_debate_comments
   #sidebar-column

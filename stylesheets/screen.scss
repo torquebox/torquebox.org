@@ -490,6 +490,9 @@ table.downloads {
       color: $post_date_color;
       margin-left: 1ex;
     }
+    .duration {
+      font-weight: bold;
+    }
     .author {
       font-weight: bold;
       display: inline;

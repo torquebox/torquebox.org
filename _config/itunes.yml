@@ -4,8 +4,7 @@ copyright: Red Hat, Inc.
 subtitle: 5-Minute Screencasts
 author: The TorqueBox Team # for the collection
 summary: A series of 5 minute screencasts to get you up and running on TorqueBox quickly.
-image: /images/knob.pnb
-#base_media_url: http://mycontentserver.com/base/path
+image: knob.png
 owner:
   name: The TorqueBox Team, Red Hat, Inc.
   email: torquebox-user@torquebox.org

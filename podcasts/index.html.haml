@@ -19,6 +19,8 @@ layout: default
             - episode.tags.each do |tag|
               %a{:href=>tag.primary_page.url}
                 = tag
+          .duration
+            = episode.duration
         .body
           ~ episode.content
         .tail
