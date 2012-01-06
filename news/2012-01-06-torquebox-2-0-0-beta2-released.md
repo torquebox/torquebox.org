@@ -69,8 +69,13 @@ Well, hopefully you'll see less bugs. Seriously though, you shouldn't see
 any difference in your application, unless you have already had to work
 around VFS issues. In that case, you'll want to remove the workarounds. We
 still have to use VFS internally to communicate with AS7, so it is possible 
-that there are places where vfs: urls are still bleeding through to ruby. If 
-you see any, please let us know.
+that there are places where vfs: urls are still bleeding through to ruby. 
+
+As part of this change, the `torquebox-vfs` gem has been retired. If you have
+it listed in a `Gemfile` or manually require it in your code, you'll need to 
+remove those references. 
+
+If you see any issues, please [let us know][JIRA].
 
 # What's next?
 
