@@ -23,7 +23,8 @@ layout: default
             = episode.duration
         .body
           ~ episode.content
-          %a{:href=>episode.url, :style=>'font-size:16px;font-weight:bold'} Watch Now!
+          .button
+            %a{:href=>episode.url} Watch Now!
           
         .tail
           = episode.intense_debate_comments_link

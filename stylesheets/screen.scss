@@ -519,6 +519,31 @@ table.downloads {
     margin-bottom: 1em;
     margin-top: 1em;
   }
+  .button:hover {
+    color: #4D657C;
+    background-color: #EEE;
+  }
+  .button {
+    background-color: #DDDDDF;
+    color: #6C3B7D;
+    padding: 8px; 
+    margin-top: 10px; 
+    text-transform: uppercase; 
+    font-weight: bold; 
+    width: 100px;
+    font-size: 14px; 
+    text-align: center; 
+    -moz-border-radius: 4px; 
+    -moz-border-radius: 4px; 
+    border-radius: 4px; 
+    border-radius: 4px; 
+    -webkit-border-radius: 4px; 
+    -webkit-border-radius: 4px; 
+    cursor: pointer; 
+    border: none; 
+    white-space: nowrap; 
+    a { text-decoration: none; }
+  }
 }
 
 #error-404 {
