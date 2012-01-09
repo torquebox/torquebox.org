@@ -2,10 +2,8 @@
 title: TorqueBox Screencasts
 layout: default
 ---
-%link{:rel=>"self",      :type=>"application/rss+xml", :href=>"#{site.base_url}/podcasts.xml" }
-%link{:rel=>"alternate", :type=>"text/html", :href=>"#{site.base_url}/podcasts" }
 #right-sidebar
-  #main-column
+  #main-column.podcasts
     - for episode in page.podcasts
       .post
         %h1.title
@@ -15,16 +13,23 @@ layout: default
             = episode.author
           .date
             #{episode.date.strftime( '%d %B %Y' )}
+          .duration
+            Duration:
+            = episode.duration
           .tags
             - episode.tags.each do |tag|
               %a{:href=>tag.primary_page.url}
                 = tag
-          .duration
-            = episode.duration
         .body
-          ~ episode.content
+          .enclosure.leanback-player-video
+            %video{:width=>"180", :height=>"105", :preload=>"auto", :poster=>episode.itunes_image, :controls=>false}
+              %source{:src=>"#{episode.enclosure_url}", :type=>'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'}
+              .leanback-player-html-fallback
+                %img{:src=>episode.itunes_image, :width=>"180", :height=>"105", :alt=>"TorqueBox Knob", :title=>"No HTML5 media playback capabilities available."}
           .button
             %a{:href=>episode.url} Watch Now!
+          .summary
+            ~ episode.content
           
         .tail
           = episode.intense_debate_comments_link

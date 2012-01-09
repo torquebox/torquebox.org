@@ -26,6 +26,19 @@ Awestruct::Extensions::Pipeline.new do
   extension Awestruct::Extensions::Posts.new('/news')
   extension Awestruct::Extensions::TagImplier.new( :posts, [ :presentations, :conference, :conferences, :talks ], [ :event ] )
   extension Awestruct::Extensions::Paginator.new(:posts, '/news/index', :per_page => 5 )
+  extension Awestruct::Extensions::Podcasts.new
+  extension Awestruct::Extensions::Paginator.new(:podcasts, '/podcasts/index', :per_page => 5 )
+
+  extension Awestruct::Extensions::Tagger.new( :podcasts, 
+                                               '/podcasts/index', 
+                                               '/podcasts/tags', 
+                                               :per_page=>5 )
+  extension Awestruct::Extensions::TagCloud.new( :podcasts, 
+                                                 '/podcasts/tags/index.html',
+                                                 :layout=>'default' )
+
+
+
   extension Awestruct::Extensions::Indexifier.new
   extension Awestruct::Extensions::Atomizer.new(:posts, '/news.atom')
 
@@ -49,19 +62,6 @@ Awestruct::Extensions::Pipeline.new do
   helper RssWidget
 
   extension Documentation.new()
-
-  extension Awestruct::Extensions::Podcasts.new
-  extension Awestruct::Extensions::Paginator.new(:podcasts, '/podcasts/index', :per_page => 5 )
-
-  extension Awestruct::Extensions::Tagger.new( :podcasts, 
-                                               '/podcasts/index', 
-                                               '/podcasts/tags', 
-                                               :per_page=>5 )
-  extension Awestruct::Extensions::TagCloud.new( :podcasts, 
-                                                 '/podcasts/tags/index.html',
-                                                 :layout=>'default' )
-
-
 
   extension Awestruct::Extensions::Sitemap.new
 
