@@ -21,15 +21,10 @@ layout: default
               %a{:href=>tag.primary_page.url}
                 = tag
         .body
-          .enclosure.leanback-player-video
-            %video{:width=>"180", :height=>"105", :preload=>"auto", :poster=>episode.itunes_image, :controls=>false}
-              %source{:src=>"#{episode.enclosure_url}", :type=>'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'}
-              .leanback-player-html-fallback
-                %img{:src=>episode.itunes_image, :width=>"180", :height=>"105", :alt=>"TorqueBox Knob", :title=>"No HTML5 media playback capabilities available."}
-          .button
-            %a{:href=>episode.url} Watch Now!
           .summary
             ~ episode.content
+          .button
+            %a{:href=>episode.url} Watch Now!
           
         .tail
           = episode.intense_debate_comments_link
