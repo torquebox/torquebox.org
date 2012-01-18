@@ -38,12 +38,12 @@ module Awestruct
             episode.length = stats.size
           end
 
-          episode.enclosure_url = "#{base_media_url( feed_episode )}/#{feed_episode.enclosure}"
-          episode.mime_type ||= mime_type( feed_episode )
+          episode.enclosure_mp4 = "#{base_media_url( feed_episode )}/#{feed_episode.enclosure_mp4}"
+          episode.enclosure_ogg = "#{base_media_url( feed_episode )}/#{feed_episode.enclosure_ogg}"
           episode.itunes_image = "#{base_media_url( feed_episode )}/#{site.itunes.image}" 
 
-          feed_episode.enclosure_url = "#{base_media_url( feed_episode )}/#{feed_episode.enclosure}"
-          feed_episode.mime_type ||= mime_type( feed_episode )
+          feed_episode.enclosure_mp4 = "#{base_media_url( feed_episode )}/#{feed_episode.enclosure_mp4}"
+          feed_episode.enclosure_ogg = "#{base_media_url( feed_episode )}/#{feed_episode.enclosure_ogg}"
           feed_episode.itunes_image = "#{base_media_url( feed_episode )}/#{site.itunes.image}" 
           pages << feed_episode
         end
@@ -58,25 +58,6 @@ module Awestruct
         page.itunes_image = "#{base_media_url( page )}/#{site.itunes.image}" 
         page.episodes = pages
         site.pages << page
-      end
-
-      def mime_type( episode )
-        return eposide.mime_type if is_not_blank?( episode.mime_type )
-        enclosure = episode.enclosure
-        case File.extname(enclosure)
-        when '.mp4' 
-          "video/mp4"
-        when '.m4v' 
-          "video/mp4"
-        when '.mov'
-          "video/quicktime"
-        when '.mpg'
-          "video/mpeg"
-        when '.ogg'
-          "video/ogg"
-        else
-          "application/unknown"
-        end
       end
 
       def base_media_url( page )

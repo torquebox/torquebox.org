@@ -11,12 +11,20 @@ change_frequency: yearly
           ~ content
         .enclosure.leanback-player-video
           %video{:width=>"550", :height=>"320", :autoplay=>'true', :preload=>"auto", :controls=>'true', :poster=>page.itunes_image}
-            %source{:src=>"#{page.enclosure_url}", :type=>'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'}
+            %source{:src=>"#{page.enclosure_mp4}", :type=>'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'}
+            %source{:src=>"#{page.enclosure_ogg}", :type=>'video/ogg; codecs="theora, vorbis"'}
             .leanback-player-html-fallback
               %img{:src=>page.itunes_image, :width=>"550", :height=>"320", :alt=>"TorqueBox Knob", :title=>"No HTML5 media playback capabilities available."}
               .downloads
                 %strong Download Video:
-                %a{:href=>page.enclosure_url}= page.title
+                %br
+                %a{:href=>page.enclosure_mp4}
+                  = page.title 
+                MP4
+                %br
+                %a{:href=>page.enclosure_ogg}
+                  = page.title 
+                Ogg/Theora
       .byline
         .author
           = page.author

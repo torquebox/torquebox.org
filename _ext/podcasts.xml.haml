@@ -34,7 +34,7 @@
           %itunes:summary
             #{summarize( html_to_text( episode.content ), 100 )}...
           %itunes:image= episode.itunes_image
-          %enclosure{:url=>episode.enclosure_url, :length=>episode.length, :type=>episode.mime_type}
+          %enclosure{:url=>episode.enclosure_mp4, :length=>episode.length, :type=>'video/mp4'}
           %guid= episode.enclosure_url
           %pubdate= episode.date.xmlschema
           %itunes:duration= episode.duration
