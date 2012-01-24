@@ -60,7 +60,7 @@ our configuration schema. If it doesn't pass, we'll fail fast and stop the deplo
 an appropriate error, which should greatly reduce confusing errors related to erroneous 
 configuration.
 
-# Issues resolved since beta2
+## Issues resolved since beta2
 
 <ul>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-474'>TORQUE-474</a>] -         HornetQ 2.1.2 Final throws NPE when largemessage is published to cluster  
