@@ -52,7 +52,15 @@ This release brings with it an updated HornetQ, fixing a small memory
 leak for each published message and issues with large messages in a
 cluster.
 
-## Issues resolved since beta2
+## Configuration validation
+
+One of the things that we wanted to add to TorqueBox is automatic validation for
+your app's configuration. So, we now validate configuration at deploy time according to 
+our configuration schema. If it doesn't pass, we'll fail fast and stop the deployment with 
+an appropriate error, which should greatly reduce confusing errors related to erroneous 
+configuration.
+
+# Issues resolved since beta2
 
 <ul>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-474'>TORQUE-474</a>] -         HornetQ 2.1.2 Final throws NPE when largemessage is published to cluster  
