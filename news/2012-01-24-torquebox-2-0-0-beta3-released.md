@@ -19,13 +19,10 @@ availability of *TorqueBox v2.0.0.beta3*.
 
 # What is TorqueBox?
 
-TorqueBox builds upon the JBoss AS Java application server,
-mixing in JRuby, to provide a scalable platform for Ruby applications,
-including support for Rails, Sinatra and other Rack-based frameworks.
-
-In addition to supporting popular web frameworks, TorqueBox [bridges
-many common Java facilities][features] provided by JBoss, including *scheduled jobs*,
-*caching*, *messaging*, and *services*.
+TorqueBox is a Ruby application server built on JBoss AS7 and JRuby.  In
+addition to supporting Rack-based web frameworks, TorqueBox provides [simple
+Ruby interfaces][features] to standard JavaEE services, including *scheduled
+jobs*, *caching*, *messaging*, and *services*.
 
 # What's special about 2.0.0?
 
@@ -38,21 +35,24 @@ inclusions in 2.0.0 include:
 * Multi-resource distributed XA transactions
 * WebSockets/STOMP
 
-# No-op gem
+# What's In Beta 3?
 
-# HornetQ updated to 2.2.10
+## No-op gem
+
+I'll admit it. Sometimes unit testing is difficult. While TorqueSpec is great
+for integration tests, you don't always want or need the entire TorqueBox
+stack. Introducing `torquebox-no-op`. [Joe Kutner], a long-time TorqueBox
+user has written this gem to help you out in those situations.  It's now
+maintained in the TorqueBox source. Look for a post from Joe on these pages
+soon.
+
+## HornetQ updated to 2.2.10
 
 This release brings with it an updated HornetQ, fixing a small memory
 leak for each published message and issues with large messages in a
 cluster.
 
-# What's next?
-
-We'd like everyone to give our beta3 release a whirl and report any
-issues you find in [JIRA]. If all goes as planned, we should have our
-first 2.0.0 candidate release out in a few weeks!
-
-# Issues resolved since beta2
+## Issues resolved since beta2
 
 <ul>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-474'>TORQUE-474</a>] -         HornetQ 2.1.2 Final throws NPE when largemessage is published to cluster  
@@ -95,6 +95,13 @@ first 2.0.0 candidate release out in a few weeks!
 </li>
 </ul>
 
+# What's next?
+
+We'd like everyone to give our beta3 release a whirl and report any
+issues you find in [JIRA]. If all goes as planned, we should have our
+first 2.0.0 candidate release out in a few weeks!
+
+
 [download]: /release/org/torquebox/torquebox-dist/2.0.0.beta3/torquebox-dist-2.0.0.beta3-bin.zip
 [htmldocs]: /documentation/2.0.0.beta3/
 [javadocs]: /documentation/2.0.0.beta3/javadoc/
@@ -103,3 +110,4 @@ first 2.0.0 candidate release out in a few weeks!
 [epubdocs]: /release/org/torquebox/torquebox-docs-en_US/2.0.0.beta3/torquebox-docs-en_US-2.0.0.beta3.epub
 [features]: /features
 [JIRA]: http://issues.jboss.org/browse/TORQUE
+[Joe Kutner]: https://github.com/jkutner
