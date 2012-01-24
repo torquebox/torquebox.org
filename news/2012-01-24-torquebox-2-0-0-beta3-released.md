@@ -56,8 +56,8 @@ cluster.
 
 One of the things that we wanted to add to TorqueBox is automatic validation for
 your app's configuration. So, we now validate configuration at deploy time according to 
-our configuration schema. If it doesn't pass, we'll fail fast and stop the deployment with 
-an appropriate error, which should greatly reduce confusing errors related to erroneous 
+our schema. If it doesn't pass, we'll fail fast and stop the deployment with an 
+appropriate error, which should greatly reduce confusing errors related to erroneous 
 configuration.
 
 ## Issues resolved since beta2
