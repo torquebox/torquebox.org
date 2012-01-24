@@ -40,7 +40,17 @@ inclusions in 2.0.0 include:
 
 # No-op gem
 
+# HornetQ updated to 2.2.10
+
+This release brings with it an updated HornetQ, fixing a small memory
+leak for each published message and issues with large messages in a
+cluster.
+
 # What's next?
+
+We'd like everyone to give our beta3 release a whirl and report any
+issues you find in [JIRA]. If all goes as planned, we should have our
+first 2.0.0 candidate release out in a few weeks!
 
 # Issues resolved since beta2
 
@@ -92,3 +102,4 @@ inclusions in 2.0.0 include:
 [pdfdocs]:  /release/org/torquebox/torquebox-docs-en_US/2.0.0.beta3/torquebox-docs-en_US-2.0.0.beta3.pdf
 [epubdocs]: /release/org/torquebox/torquebox-docs-en_US/2.0.0.beta3/torquebox-docs-en_US-2.0.0.beta3.epub
 [features]: /features
+[JIRA]: http://issues.jboss.org/browse/TORQUE
