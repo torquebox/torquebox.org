@@ -20,9 +20,10 @@ availability of *TorqueBox v2.0.0.beta3*.
 # What is TorqueBox?
 
 TorqueBox is a Ruby application server built on JBoss AS7 and JRuby.  In
-addition to supporting Rack-based web frameworks, TorqueBox provides [simple
-Ruby interfaces][features] to standard JavaEE services, including *scheduled
-jobs*, *caching*, *messaging*, and *services*.
+addition to being one of the [fastest Ruby servers around][BENchmarks], it supports
+Rack-based web frameworks, and provides [simple Ruby interfaces][features] to
+standard JavaEE services, including *scheduled jobs*, *caching*, *messaging*,
+and *services*.
 
 # What's special about 2.0.0?
 
@@ -35,11 +36,15 @@ inclusions in 2.0.0 include:
 * Multi-resource distributed XA transactions
 * WebSockets/STOMP
 
+We'd love it if you give our beta3 release a whirl and report any
+issues you find in [JIRA]. If all goes as planned, we should have our
+first 2.0.0 candidate release out in a few weeks!
+
 # What's In Beta 3?
 
 ## No-op gem
 
-I'll admit it. Sometimes unit testing is difficult. While TorqueSpec is great
+We admit it. Sometimes unit testing is difficult. While [TorqueSpec] is great
 for integration tests, you don't always want or need the entire TorqueBox
 stack. Introducing `torquebox-no-op`. [Joe Kutner], a long-time TorqueBox
 user has written this gem to help you out in those situations.  It's now
@@ -103,12 +108,6 @@ configuration.
 </li>
 </ul>
 
-# What's next?
-
-We'd like everyone to give our beta3 release a whirl and report any
-issues you find in [JIRA]. If all goes as planned, we should have our
-first 2.0.0 candidate release out in a few weeks!
-
 
 [download]: /release/org/torquebox/torquebox-dist/2.0.0.beta3/torquebox-dist-2.0.0.beta3-bin.zip
 [htmldocs]: /documentation/2.0.0.beta3/
@@ -119,3 +118,5 @@ first 2.0.0 candidate release out in a few weeks!
 [features]: /features
 [JIRA]: http://issues.jboss.org/browse/TORQUE
 [Joe Kutner]: https://github.com/jkutner
+[TorqueSpec]: https://github.com/torquebox/torquespec
+[BENchmarks]: /news/2011/10/06/torquebox-2x-performance/
