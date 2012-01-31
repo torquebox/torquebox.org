@@ -58,53 +58,54 @@ priority: 1
       %th
         Git Tree
     - for release in site.releases
-      %tr
-        %td
-          .version
-            = release.version
-          - announcement = site.posts.find{|e| e.layout=='release' && e.version == release.version}
-          - if announcement
-            .announcement
-              %a{:href=>announcement.url} Release announcement
-            .release-date
-              = announcement.date.strftime( '%d %B %Y' )
-        %td
-          - rel = release.latest? ? 'download' : 'nofollow'
-          %a{:href=>release.urls.dist_zip, :rel=>rel}
-            ZIP archive (#{release.dist_size}mb)
-        %td
-          - rel = release.latest? ? 'documentation' : 'nofollow'
-          %ul
-            %li
-              - if release.urls.docs.javadocs.empty?
-                %a{:href=>release.urls.docs.browse, :rel=>rel} Browse Manual
-              - else
-                Browse:
-                %ul
-                  %li
-                    %a{:href=>release.urls.docs.browse, :rel=>rel} Manual
-                  %li
-                    %a{:href=>release.urls.docs.javadocs, :rel=>rel} JavaDocs
-                  %li
-                    %a{:href=>release.urls.docs.yardocs, :rel=>rel} Gem RDocs
+      - if release.published?
+        %tr
+          %td
+            .version
+              = release.version
+            - announcement = site.posts.find{|e| e.layout=='release' && e.version == release.version}
+            - if announcement
+              .announcement
+                %a{:href=>announcement.url} Release announcement
+              .release-date
+                = announcement.date.strftime( '%d %B %Y' )
+          %td
+            - rel = release.latest? ? 'download' : 'nofollow'
+            %a{:href=>release.urls.dist_zip, :rel=>rel}
+              ZIP archive (#{release.dist_size}mb)
+          %td
+            - rel = release.latest? ? 'documentation' : 'nofollow'
+            %ul
+              %li
+                - if release.urls.docs.javadocs.empty?
+                  %a{:href=>release.urls.docs.browse, :rel=>rel} Browse Manual
+                - else
+                  Browse:
+                  %ul
+                    %li
+                      %a{:href=>release.urls.docs.browse, :rel=>rel} Manual
+                    %li
+                      %a{:href=>release.urls.docs.javadocs, :rel=>rel} JavaDocs
+                    %li
+                      %a{:href=>release.urls.docs.yardocs, :rel=>rel} Gem RDocs
 
-            %li
-              %a{:href=>release.urls.docs.html_multi_zip, :rel=>rel} Multi-page HTML Manual (ZIP)
-            - unless ( release.urls.docs.html_single_zip.empty? )
               %li
-                %a{:href=>release.urls.docs.html_single_zip, :rel=>rel} Single-page HTML Manual (ZIP)
-            %li
-              %a{:href=>release.urls.docs.pdf, :rel=>rel} Manual (PDF)
-            - unless ( release.urls.docs.epub.empty? )
+                %a{:href=>release.urls.docs.html_multi_zip, :rel=>rel} Multi-page HTML Manual (ZIP)
+              - unless ( release.urls.docs.html_single_zip.empty? )
+                %li
+                  %a{:href=>release.urls.docs.html_single_zip, :rel=>rel} Single-page HTML Manual (ZIP)
               %li
-                %a{:href=>release.urls.docs.epub, :rel=>rel} Manual (ePub)
-        %td
-          %ul
-            %li
-              %a{:href=>release.urls.jira} JIRA Issues
-            %li
-              %a{:href=>release.urls.github.log} Git Log
-        %td
-          %a{:href=>release.urls.github.tree} Browse
+                %a{:href=>release.urls.docs.pdf, :rel=>rel} Manual (PDF)
+              - unless ( release.urls.docs.epub.empty? )
+                %li
+                  %a{:href=>release.urls.docs.epub, :rel=>rel} Manual (ePub)
+          %td
+            %ul
+              %li
+                %a{:href=>release.urls.jira} JIRA Issues
+              %li
+                %a{:href=>release.urls.github.log} Git Log
+          %td
+            %a{:href=>release.urls.github.tree} Browse
 
 

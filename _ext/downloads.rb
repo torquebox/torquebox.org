@@ -18,9 +18,10 @@ class Downloads
              end
            end
 
-  REPO_PREFIX = "http://repository-projectodd.forge.cloudbees.com/release/org/torquebox"
-  LOCAL_REPO_PREFIX = "/release/org/torquebox"
-  DOCS_PREFIX = "#{LOCAL_REPO_PREFIX}/torquebox-docs-en_US"
+  VERSION_RANGE      = Range.new(Versionomy.parse('1.0.0', FORMAT), '2.0')
+  REPO_PREFIX        = "http://repository-projectodd.forge.cloudbees.com/release/org/torquebox"
+  LOCAL_REPO_PREFIX  = "/release/org/torquebox"
+  DOCS_PREFIX        = "#{LOCAL_REPO_PREFIX}/torquebox-docs-en_US"
   REMOTE_DOCS_PREFIX = "#{REPO_PREFIX}/torquebox-docs-en_US"
 
   def initialize(enabled=true)
@@ -31,20 +32,14 @@ class Downloads
     return unless @enabled
 
     site.releases.each do |release|
-      v = Versionomy.parse( release.version, FORMAT )
-
-      case ( v )
-        when ( v('1.0.0.CR1')..('2.0') )
-          all_releases(v, release)
-          release_suffix = "/torquebox-dist/#{release.version}/torquebox-dist-#{release.version}-bin.zip"
-          release.urls.dist_zip = "#{LOCAL_REPO_PREFIX}#{release_suffix}"
-          release.urls.remote_dist_zip = "#{REPO_PREFIX}#{release_suffix}"
+      version = Versionomy.parse( release.version, FORMAT )
+      if release.published = version.published?
+        all_releases(version, release)
+        release_suffix                = "/torquebox-dist/#{release.version}/torquebox-dist-#{release.version}-bin.zip"
+        release.urls.dist_zip         = "#{LOCAL_REPO_PREFIX}#{release_suffix}"
+        release.urls.remote_dist_zip  = "#{REPO_PREFIX}#{release_suffix}"
       end
     end
-  end
-
-  def v(version)
-    Versionomy.parse( version, FORMAT )
   end
 
   def all_releases(version, release)
@@ -52,18 +47,14 @@ class Downloads
     release.urls.docs ||= OpenStruct.new
     release.urls.docs.browse                = "/documentation/#{release.version}/"
     if release.api_docs === true
-      release.urls.docs.javadocs              = "/documentation/#{release.version}/javadoc/"
-      release.urls.docs.yardocs               = "/documentation/#{release.version}/yardoc/"
+      release.urls.docs.javadocs            = "/documentation/#{release.version}/javadoc/"
+      release.urls.docs.yardocs             = "/documentation/#{release.version}/yardoc/"
     end
     
     release.urls.docs.pdf                   = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}.pdf"
     release.urls.docs.html_multi_zip        = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}-html.zip"
     release.urls.docs.remote_html_multi_zip = "#{REMOTE_DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}-html.zip"
-
-    if ( (v('1.0.0.CR2')..v('2.0')).include?( version ) )
-      release.urls.docs.epub          = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}.epub"
-    end
-
+    release.urls.docs.epub                = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}.epub" 
 
     release.urls.jira = "https://jira.jboss.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project=TORQUE+AND+fixVersion=#{release.jira_version}&sorter/field=issuekey&sorter/order=DESC"
 
@@ -72,23 +63,19 @@ class Downloads
     release.urls.github.tree = "http://github.com/torquebox/torquebox/tree/#{release.version}"
   end
   
-  def before_beta21(release)
-    release_suffix = "/torquebox-bin/#{release.version}/torquebox-bin-#{release.version}.zip"
-    release.urls.dist_zip = "#{LOCAL_REPO_PREFIX}#{release_suffix}"
-    release.urls.remote_dist_zip = "#{REPO_PREFIX}#{release_suffix}"
-  end
-
-  def after_beta21(release)
-    release_suffix = "/torquebox-dist/#{release.version}/torquebox-dist-#{release.version}-bin.zip"
-    release.urls.dist_zip = "#{LOCAL_REPO_PREFIX}#{release_suffix}"
-    release.urls.remote_dist_zip = "#{REPO_PREFIX}#{release_suffix}"
-  end
-
-  def before_beta22(release)
-    release.urls.docs.html_single_zip = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}-html-single.zip"
-  end
-
-  def after_beta22(release)
-  end
-
 end
+
+module Versionomy
+  @@ruby_version = parse(RUBY_VERSION)
+
+  def self.published? version
+    @@ruby_version.minor == 8 ? Downloads::VERSION_RANGE.include?( version ) : Downloads::VERSION_RANGE.cover?( version )
+  end
+
+  class Value
+    def published?
+      Versionomy.published? self
+    end
+  end
+end
+
