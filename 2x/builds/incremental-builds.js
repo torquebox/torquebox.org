@@ -9,9 +9,9 @@ renderer = {
     $.each( row, function(i,r) {
       $( '#builds' ).append( row[i] );
     } );
-    
+
     if ( self.lastSuccessfulBuild && ( self.lastSuccessfulBuild.number == build.number ) ) {
-      $( '#latest-stable' ).append( row[0].clone() ); 
+      $( '#latest-stable' ).append( row[0].clone() );
     }
 
   },
@@ -23,12 +23,12 @@ renderer = {
 
     if ( build.result == 'SUCCESS' ) {
       column.addClass( 'matrix-success' );
-      column.append( 
+      column.append(
         $( '<a href="' + build.url + '/console' + '" class="status">Passed</a>' )
       );
     } else if ( build.result == 'FAILURE' ) {
       column.addClass( 'matrix-failure' );
-      column.append( 
+      column.append(
         $( '<a href="' + build.url + '/console' + '" class="status">Failed</a>' )
       );
     }  else if ( build.result == 'ABORTED' ) {
@@ -56,11 +56,11 @@ renderer = {
     column.append( '<span class="duration">: ' + duration + ' min</span>' );
 
     if ( build.building ) {
-      column.append( $( '<ul class="links"/>' ).append( 
+      column.append( $( '<ul class="links"/>' ).append(
           $( '<li><a href="' + build.url + '../ws/integration-tests/target/integ-dist/jboss/server/default/log/boot.log">boot.log</a></li>'  ),
           $( '<li><a href="' + build.url + '../ws/integration-tests/target/integ-dist/jboss/server/default/log/output.log">output.log</a></li>'  ),
           $( '<li><a href="' + build.url + '../ws/integration-tests/target/integ-dist/jboss/server/default/log/server.log">server.log</a></li>'  )
-        ) 
+        )
       );
     }
 
@@ -86,7 +86,7 @@ renderer = {
       $( '.build-' + build.number + '.build-details td *' ).hide();
       $( '.build-' + build.number + '.build-details' ).addClass( 'hidden' );
     }
-    
+
   },
 
   populate_artifacts: function(build) {
@@ -111,7 +111,7 @@ renderer = {
     ul.append( $( '<li class="artifact"><a href="/2x/builds/' + build.number + '/html-docs/">Browse HTML</a></li>' ) );
     ul.append( $( '<li class="artifact"><a href="/2x/builds/' + build.number + '/torquebox-docs.pdf">PDF</a></li>' ) );
     ul.append( $( '<li class="artifact"><a href="/2x/builds/' + build.number + '/torquebox-docs.epub">ePub</a></li>' ) );
-    ul.append( $( '<li class="artifact newdocs"><a href="/2x/builds/' + build.number + '/javadocs/">Java API Docs</a></li>' ) );    
+    ul.append( $( '<li class="artifact newdocs"><a href="/2x/builds/' + build.number + '/javadocs/">Java API Docs</a></li>' ) );
     ul.append( $( '<li class="artifact newdocs"><a href="/2x/builds/' + build.number + '/yardocs/">Gem RDocs</a></li>' ) );
 
     docs_column.append( ul );
@@ -160,8 +160,8 @@ renderer = {
           );
 
     if ( self.build_sha1( build ) ) {
-      row.find( '.build-info' ).append(          
-        $( '<span class="sha1"/>' ).append( 
+      row.find( '.build-info' ).append(
+        $( '<span class="sha1"/>' ).append(
           $('<a href="https://github.com/torquebox/torquebox/commits/' + self.build_sha1( build )+ '">' + self.build_sha1_short( build ) + '</a>' )
         )
       );
@@ -177,7 +177,7 @@ renderer = {
       );
     }
 
-    details_row = $( '<tr class="build-details build-' + build.number + '"/>' ).append( 
+    details_row = $( '<tr class="build-details build-' + build.number + '"/>' ).append(
       $( '<td class="first" colspan="4"/>' )
     );
 
