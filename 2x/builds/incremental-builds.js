@@ -57,9 +57,8 @@ renderer = {
 
     if ( build.building ) {
       column.append( $( '<ul class="links"/>' ).append(
-          $( '<li><a href="' + build.url + '../ws/integration-tests/target/integ-dist/jboss/server/default/log/boot.log">boot.log</a></li>'  ),
-          $( '<li><a href="' + build.url + '../ws/integration-tests/target/integ-dist/jboss/server/default/log/output.log">output.log</a></li>'  ),
-          $( '<li><a href="' + build.url + '../ws/integration-tests/target/integ-dist/jboss/server/default/log/server.log">server.log</a></li>'  )
+          $( '<li><a href="' + build.url + '../ws/integration-tests/target/integ-dist/jboss/standalone/log/boot.log">boot.log</a></li>'  ),
+          $( '<li><a href="' + build.url + '../ws/integration-tests/target/integ-dist/jboss/standalone/log/server.log">server.log</a></li>'  )
         )
       );
     }
