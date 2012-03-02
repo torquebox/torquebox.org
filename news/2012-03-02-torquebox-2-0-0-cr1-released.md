@@ -52,7 +52,7 @@ Mostly we focused on bugfixes, but a few features did slip in before we closed
 the CR pipeline.
 
 * A new `clojure` encoding for messaging to allow even better interop with [Immutant] message
-publishes and processors.
+publishers and processors.
 * Easier to pass options to JBoss/JVM from the `torquebox` command.
 * Better DataMapper support with messaging-related features.
 * `torquebox_init.rb` for arbitrary initialization code.
@@ -127,3 +127,4 @@ publishes and processors.
 [features]: /features
 [JIRA]: http://issues.jboss.org/browse/TORQUE
 [BENchmarks]: /news/2011/10/06/torquebox-2x-performance/
+[Immutant]: http://immutant.org/
