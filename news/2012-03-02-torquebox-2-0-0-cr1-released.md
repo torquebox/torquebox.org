@@ -27,7 +27,7 @@ and *services*.
 
 # What's special about 2.0.0?
 
-This is the third beta for our 2.0.0 release, which is a *major*
+This is the first candidate-release (see below) for our 2.0.0 version, which is a *major*
 upgrade over the 1.x you may already be familiar with.  Notable
 inclusions in 2.0.0 include:
 
@@ -36,7 +36,7 @@ inclusions in 2.0.0 include:
 * Multi-resource distributed XA transactions
 * WebSockets/STOMP
 
-We'd love it if you give our C1 release a whirl and report any
+We'd love it if you give our *CR1* release a whirl and report any
 issues you find in [JIRA].
 
 # What's CR1?
@@ -55,6 +55,7 @@ the CR pipeline.
 publishes and processors.
 * Easier to pass options to JBoss/JVM from the `torquebox` command.
 * Better DataMapper support with messaging-related features.
+* `torquebox_init.rb` for arbitrary initialization code.
 
 ## Issues resolved since beta3
 
@@ -64,8 +65,6 @@ publishes and processors.
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-648'>TORQUE-648</a>] -         Poor error message when active_record_store is used instead of torque_box_store
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-672'>TORQUE-672</a>] -         torquebox deploy doesn&#39;t set default environment
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-673'>TORQUE-673</a>] -         Reaching max http worker thread limit causes connection reset, not queued
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-683'>TORQUE-683</a>] -         Stomplets fails sometimes during setup
 </li>
@@ -127,3 +126,4 @@ publishes and processors.
 [epubdocs]: /release/org/torquebox/torquebox-docs-en_US/2.0.0.cr1/torquebox-docs-en_US-2.0.0.cr1.epub
 [features]: /features
 [JIRA]: http://issues.jboss.org/browse/TORQUE
+[BENchmarks]: /news/2011/10/06/torquebox-2x-performance/
