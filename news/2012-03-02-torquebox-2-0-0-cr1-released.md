@@ -33,8 +33,8 @@ inclusions in 2.0.0 include:
 
 * JRuby 1.6.7 (with better Ruby 1.9 support)
 * JBoss AS7 (faster boot time, smaller memory footprint)
-* Multi-resource distributed XA transactions
-* WebSockets/STOMP
+* [Multi-resource distributed XA transactions][XA]
+* [WebSockets/STOMP][STOMP]
 
 We'd love it if you give our *CR1* release a whirl and report any
 issues you find in [JIRA].
@@ -128,3 +128,5 @@ publishers and processors.
 [JIRA]: http://issues.jboss.org/browse/TORQUE
 [BENchmarks]: /news/2011/10/06/torquebox-2x-performance/
 [Immutant]: http://immutant.org/
+[STOMP]: /documentation/2.0.0.cr1/stomp.html
+[XA]: /documentation/2.0.0.cr1/transactions.html
