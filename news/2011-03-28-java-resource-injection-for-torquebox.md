@@ -153,8 +153,8 @@ First, throw your JAR full of CDI-enabled things into your application's
       models/
       views/
       controllers/
-      lib/
-        mycorp-components.jar
+    lib/
+      mycorp-components.jar
 
 Now, let's inject it into a controller:
 
