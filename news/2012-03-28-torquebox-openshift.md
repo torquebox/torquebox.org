@@ -29,7 +29,10 @@ To help you get started, we've provided a [polyglot-openshift-example]
 repository that walks you through creating an AS7 application on
 OpenShift and then merging in the necessary changes to support
 TorqueBox applications. Take a moment to head over there and try it
-out for yourself.
+out for yourself. At the end you'll get to play a simple game of ping
+pong with messaging between Ruby and Clojure.
+
+<img src="/images/pingpong.png"/>
 
 Assuming you followed the directions from the README.md in that
 repository, you've now deployed a Java application, a Ruby
@@ -44,7 +47,9 @@ this same TorqueBox instance? Just create a new directory next to the
 of it, ensuring you have a `torquebox.yml` or `config/torquebox.yml`
 inside the new directory with a unique web context specified. Add the
 new files to git, `git push`, and watch your new application be picked
-up and deployed to TorqueBox.
+up and deployed to TorqueBox. We detect the type of application from
+the contents of the directory, not from the directory name. The sample
+applications are just named ruby and clojure for simplicity.
 
 Don't want the example Clojure app anymore? Just `rm -r
 clojure/`. Don't want the example Java app? Just `rm -r src` and `rm
@@ -53,6 +58,6 @@ pom.xml`.
 How many applications can you deploy to this single OpenShift
 instance? I don't know - it all depends on the size of your
 applications and how much memory they ultimately consume. Give it a
-shot and let us know! And, don't forget that you get five OpenShift
-instances for free - so far we've been deploying all these
-applications to a single one of those five. See the potential?
+shot and let us know! And, don't forget that you get multiple
+OpenShift instances for free - so far we've been deploying all these
+applications to a single one. See the potential?
