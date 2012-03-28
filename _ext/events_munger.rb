@@ -23,7 +23,7 @@ class EventsMunger
       else
         nil
       end
-    }.reject!{|e| e.nil?}
+    }.reject{|e| e.nil?}
   end
 
 end
