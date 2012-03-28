@@ -10,6 +10,8 @@ tags: [ openshift ]
 [polyglot-openshift-example]: https://github.com/projectodd/polyglot-openshift-example
 [immutant]: http://immutant.org
 
+<img src="/images/openshift_200.png"/>
+
 We [previously][torquebox-openshift-first] posted how to run TorqueBox
 on Red Hat OpenShift Express but thought it was time to freshen things
 up a bit since OpenShift and TorqueBox have had several releases since
