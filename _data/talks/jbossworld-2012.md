@@ -7,4 +7,5 @@ event_url: http://www.redhat.com/summit/
 event_logo_url: http://www.redhat.com/summit/img/logo-banner-small_new3.png
 location: Boston, MA
 effective_date: 20120630
+posted: 2012-03-22
 ---

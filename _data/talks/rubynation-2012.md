@@ -7,4 +7,5 @@ event_url: http://www.rubynation.org/
 # event_logo_url:
 location: Reston, VA
 effective_date: 20120323
+posted: 2012-03-06
 ---
