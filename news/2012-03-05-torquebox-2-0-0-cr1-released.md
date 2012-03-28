@@ -3,7 +3,7 @@ title: 'TorqueBox v2.0.0.cr1 Released'
 author: The Entire TorqueBox Team
 layout: release
 version: '2.0.0.cr1'
-timestamp: 2012-03-05t9:15:00.0-05:00
+timestamp: 2012-03-05t09:15:00.0-05:00
 tags: [ releases ]
 ---
 
