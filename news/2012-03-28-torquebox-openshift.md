@@ -43,15 +43,16 @@ AS7 instance running in OpenShift. That's **three applications** in
 **three different languages** all running in the **same JVM** on
 **OpenShift**. Mind blown yet?
 
-The fun doesn't stop here. Want to deploy a second Ruby application to
-this same TorqueBox instance? Just create a new directory next to the
-`ruby/` and `clojure/` ones already present and place your code inside
-of it, ensuring you have a `torquebox.yml` or `config/torquebox.yml`
-inside the new directory with a unique web context specified. Add the
-new files to git, `git push`, and watch your new application be picked
-up and deployed to TorqueBox. We detect the type of application from
-the contents of the directory, not from the directory name. The sample
-applications are just named ruby and clojure for simplicity.
+The fun doesn't stop there. Want to deploy a second Ruby application
+to this same TorqueBox instance? Just create a new directory next to
+the `ruby/` and `clojure/` ones already present and place your code
+inside of it, ensuring you have a `torquebox.yml` or
+`config/torquebox.yml` inside the new directory with a unique web
+context specified. Add the new files to git, `git push`, and watch
+your new application be picked up and deployed to TorqueBox. We detect
+the type of application from the contents of the directory, not from
+the directory name. The sample applications are just named ruby and
+clojure for simplicity.
 
 Don't want the example Clojure app anymore? Just `rm -r
 clojure/`. Don't want the example Java app? Just `rm -r src` and `rm
