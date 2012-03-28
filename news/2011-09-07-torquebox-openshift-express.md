@@ -13,8 +13,13 @@ tags: [ openshift, announcements ]
 [rails-quickstart]: https://www.redhat.com/openshift/kb/kb-e1005-ruby-on-rails-express-quickstart-guide
 [2x-builds]: http://torquebox.org/2x/builds/
 [flex]: https://openshift.redhat.com/app/flex
+[new-post]: /news/2012/03/28/torquebox-openshift
 
 <img src="/images/openshift_logo.png"/>
+
+**Please refer to the [updated instructions][new-post] for running
+  TorqueBox on OpenShift. The process below might still work but is
+  being deprecated in favor of the [new method][new-post].**
 
 # TorqueBox on OpenShift Express
 
