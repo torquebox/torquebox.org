@@ -57,9 +57,14 @@ Don't want the example Clojure app anymore? Just `rm -r
 clojure/`. Don't want the example Java app? Just `rm -r src` and `rm
 pom.xml`.
 
-How many applications can you deploy to this single OpenShift
-instance? I don't know - it all depends on the size of your
-applications and how much memory they ultimately consume. Give it a
-shot and let us know! And, don't forget that you get multiple
-OpenShift instances for free - so far we've been deploying all these
-applications to a single one. See the potential?
+How many applications can you deploy to this TorqueBox server? I don't
+know - it all depends on the size of your applications and how much
+memory they ultimately consume. Give it a shot and let us know!
+
+Don't forget that you can always start up a second TorqueBox server
+with a separate URL by following the instructions in
+[polyglot-openshift-example] again and passing different arguments to
+`rhc app create`.
+
+See the potential? How much money could you save on PaaS hosted
+applications by switching to TorqueBox and OpenShift?
