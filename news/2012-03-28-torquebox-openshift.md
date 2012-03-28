@@ -2,7 +2,7 @@
 title: 'Get Up and Running with TorqueBox on OpenShift'
 author: Ben Browning
 layout: news
-timestamp: 2012-03-28t16:30:00.0-05:00
+timestamp: 2012-03-28t17:15:00.0-05:00
 tags: [ openshift ]
 ---
 
@@ -10,7 +10,7 @@ tags: [ openshift ]
 [polyglot-openshift-example]: https://github.com/projectodd/polyglot-openshift-example
 [immutant]: http://immutant.org
 
-<img src="/images/openshift_200.png"/>
+<img src="/images/openshift_200.png" class="alignright"/>
 
 We [previously][torquebox-openshift-first] posted how to run TorqueBox
 on Red Hat OpenShift Express but thought it was time to freshen things
