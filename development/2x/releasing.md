@@ -64,7 +64,7 @@ Verify that the artifacts you expect have been uploaded and deployed to
 # Manually deploy RubyGems
 
 Once the build has completed, grab the gems from 
-[https://projectodd.ci.cloudbees.com//job/torquebox-release/lastSuccessfulBuild/artifact/assemblage/assembly/target/stage/gem-repo/gems/](https://projectodd.ci.cloudbees.com//job/torquebox-release/lastSuccessfulBuild/artifact/assemblage/assembly/target/stage/gem-repo/gems/) using the 'all files as zip' link.
+[https://projectodd.ci.cloudbees.com//job/torquebox-2x-release/lastSuccessfulBuild/artifact/build/assembly/target/stage/gem-repo/gems/](https://projectodd.ci.cloudbees.com/job/torquebox-2x-release/lastSuccessfulBuild/artifact/build/assembly/target/stage/gem-repo/gems/) using the 'all files as zip' link.
 
 The **_support/publish-gems.rb_** will publish the gems for you in the above order. You'll just need to invoke it from
 within the gems directory, or you can push each gem manually:
