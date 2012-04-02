@@ -61,7 +61,7 @@ meantime, read through the [documentation][htmldocs], give it a try, and
 
 Thanks to everyone that helped us with patches, bug reports, and generally good natured
 support as we went through this major rewrite over the last 11 months. You guys are
-awesome! Without you, there would just be us :)
+great! Without you, there would just be us :)
 
 We'd especially like to thank the following folks for their code contributions to 2.0.0:
 
