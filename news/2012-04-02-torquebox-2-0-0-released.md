@@ -3,7 +3,7 @@ title: 'TorqueBox v2.0.0 Released'
 author: The Entire TorqueBox Team
 layout: release
 version: '2.0.0'
-timestamp: 2012-04-02t16:00:00.0-05:00
+timestamp: 2012-04-02t16:30:00.0-05:00
 tags: [ releases ]
 ---
 
@@ -34,7 +34,7 @@ upgrade over TorqueBox 1.x.  Notable inclusions in 2.0.0 include:
 * JBoss AS 7.1.1 (faster boot time, smaller memory footprint)
 * [Multi-resource distributed XA transactions][XA]
 * [WebSockets/STOMP][STOMP]
-* Considerable [speed improvements& memory][BENchmarks] over 1.x
+* Considerable [speed & memory improvements][BENchmarks] over 1.x
 
 ## What's changed since cr1?
 
@@ -44,7 +44,7 @@ overhaul. Highlights in this release include:
 * A brand-spankin-new [production setup guide]
 * A chapter in the documentation covering [application deployment]
 * Jobs & Services are now singleton by default - if you are running in a cluster 
-  and were relying Jobs & Services running on every node by default, you'll need 
+  and were relying on Jobs and Services running on every node by default, you'll need 
   to turn off singleton support by setting `singleton: false` for each Job or Service.
 
 ## How do I migrate from 1.x to 2.0.0?
