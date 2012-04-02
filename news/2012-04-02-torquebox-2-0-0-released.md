@@ -3,7 +3,7 @@ title: 'TorqueBox v2.0.0 Released'
 author: The Entire TorqueBox Team
 layout: release
 version: '2.0.0'
-timestamp: 2012-04-02t13:15:00.0-05:00
+timestamp: 2012-04-02t16:00:00.0-05:00
 tags: [ releases ]
 ---
 
@@ -34,6 +34,7 @@ upgrade over TorqueBox 1.x.  Notable inclusions in 2.0.0 include:
 * JBoss AS 7.1.1 (faster boot time, smaller memory footprint)
 * [Multi-resource distributed XA transactions][XA]
 * [WebSockets/STOMP][STOMP]
+* Considerable [speed improvements& memory][BENchmarks] over 1.x
 
 ## What's changed since cr1?
 
