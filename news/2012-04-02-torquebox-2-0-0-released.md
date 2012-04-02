@@ -28,11 +28,10 @@ and *services*.
 ## What's special about 2.0.0?
 
 This is the 2.0.0 *final* release, which is a *major*
-upgrade over the 1.x you may already be familiar with.  Notable
-inclusions in 2.0.0 include:
+upgrade over TorqueBox 1.x.  Notable inclusions in 2.0.0 include:
 
 * JRuby 1.6.7 (with better Ruby 1.9 support)
-* JBoss AS7.1.1 (faster boot time, smaller memory footprint)
+* JBoss AS 7.1.1 (faster boot time, smaller memory footprint)
 * [Multi-resource distributed XA transactions][XA]
 * [WebSockets/STOMP][STOMP]
 
@@ -47,21 +46,41 @@ overhaul. Highlights in this release include:
   and were relying Jobs & Services running on every node by default, you'll need 
   to turn off singleton support by setting `singleton: false` for each Job or Service.
 
-## How do I migrate from 1.1.1 to 2.0.0?
+## How do I migrate from 1.x to 2.0.0?
 
 The biggest changes you'll see will be around any xml configuration changes you
-have made to the underlying JBossAS server. TorqueBox 1.x was based on AS6, and
+have made to the underlying JBoss AS server. TorqueBox 1.x was based on AS6, and
 2.x is based on AS7, which is considerably different than AS6. Any changes you'll
 need to make to your application code and configuration should be minimal, if any.
 We plan on writing migration guide sometime in the next couple of weeks. In the 
 meantime, read through the [documentation][htmldocs], give it a try, and 
 [bug us][community] if you have any questions or problems.
 
-## Thanks to an awesome community
+## Thanks to an outstanding community
 
 Thanks to everyone that helped us with patches, bug reports, and generally good natured
 support as we went through this major rewrite over the last 11 months. You guys are
 awesome! Without you, there would just be us :)
+
+We'd especially like to thank the following folks for their code contributions to 2.0.0:
+
+* Benjamin Anderson 
+* Bruno Oliveira 
+* Carl Hörberg 
+* Curtis Carter 
+* David Glassborow 
+* Gavin Stark 
+* Joe Kutner 
+* John Lynch 
+* Joshua Borton 
+* Kris Leech 
+* Marek Goldmann 
+* Mike Dobozy 
+* Robert Rasmussen 
+* Saulius Grigaitis 
+* Tony Collen 
+* penumbra 
+* tinylox 
 
 ## Issues resolved since cr1
 
