@@ -17,7 +17,7 @@ availability of *TorqueBox v2.0.0*.
 * [Download PDF manual][pdfdocs]
 * [Download ePub manual][epubdocs]
 
-# What is TorqueBox?
+## What is TorqueBox?
 
 TorqueBox is a Ruby application server built on JBoss AS7 and JRuby.  In
 addition to being one of the [fastest Ruby servers around][BENchmarks], it supports
@@ -25,24 +25,37 @@ Rack-based web frameworks, and provides [simple Ruby interfaces][features] to
 standard JavaEE services, including *scheduled jobs*, *caching*, *messaging*,
 and *services*.
 
-# What's special about 2.0.0?
+## What's special about 2.0.0?
 
 This is the 2.0.0 *final* release, which is a *major*
 upgrade over the 1.x you may already be familiar with.  Notable
 inclusions in 2.0.0 include:
 
 * JRuby 1.6.7 (with better Ruby 1.9 support)
-* JBoss AS7 (faster boot time, smaller memory footprint)
+* JBoss AS7.1.1 (faster boot time, smaller memory footprint)
 * [Multi-resource distributed XA transactions][XA]
 * [WebSockets/STOMP][STOMP]
 
-## What's in the tin?
+## What's changed since cr1?
 
 We fixed a handful of issues reported against cr1, and gave our documentation an 
 overhaul. Highlights in this release include:
 
 * A brand-spankin-new [production setup guide]
-* {{more here}}
+* A chapter in the documentation covering [application deployment]
+* Jobs & Services are now singleton by default - if you are running in a cluster 
+  and were relying Jobs & Services running on every node by default, you'll need 
+  to turn off singleton support by setting `singleton: false` for each Job or Service.
+
+## How do I migrate from 1.1.1 to 2.0.0?
+
+The biggest changes you'll see will be around any xml configuration changes you
+have made to the underlying JBossAS server. TorqueBox 1.x was based on AS6, and
+2.x is based on AS7, which is considerably different than AS6. Any changes you'll
+need to make to your application code and configuration should be minimal, if any.
+We plan on writing migration guide sometime in the next couple of weeks. In the 
+meantime, read through the [documentation][htmldocs], give it a try, and 
+[bug us][community] if you have any questions or problems.
 
 ## Thanks to an awesome community
 
@@ -113,5 +126,7 @@ awesome! Without you, there would just be us :)
 [JIRA]: http://issues.jboss.org/browse/TORQUE
 [BENchmarks]: /news/2011/10/06/torquebox-2x-performance/
 [production setup guide]: /documentation/2.0.0/production-setup.html
+[application deployment]: /documentation/2.0.0/deployment.html
 [STOMP]: /documentation/2.0.0/stomp.html
 [XA]: /documentation/2.0.0/transactions.html
+[community]: /community
