@@ -6,7 +6,7 @@ timestamp: 2012-03-28t17:15:00.0-05:00
 tags: [ openshift ]
 ---
 
-[torquebox-openshift-first]: /news/2011/09/07/torquebox-openshift/express
+[torquebox-openshift-first]: /news/2011/09/07/torquebox-openshift-express/
 [polyglot-openshift-example]: https://github.com/projectodd/polyglot-openshift-example
 [immutant]: http://immutant.org
 
