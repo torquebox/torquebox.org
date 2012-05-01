@@ -7,12 +7,13 @@ timestamp: 2012-05-01t16:40:00.0-05:00
 tags: [ releases ]
 ---
 
-Just in time for May Day, we are happy as kids at a May Pole to
-announce the immediate availability of *TorqueBox v2.0.2*.  This
-release brings JRuby 1.7 compatibility, fixes for distributed
-transactions on Oracle, several other minor bug fixes, and some
-changes and additions to our documentation - including oft-requested
-explanations about [how logging works][logdocs], thanks to jcrossley3.
+We're as happy as kids around a maypole on May Day to announce the
+immediate availability of *TorqueBox v2.0.2*. This release brings
+JRuby 1.7 compatibility, fixes for distributed transactions on Oracle,
+several other minor bug fixes, and some changes and additions to our
+documentation - including oft-requested explanations about
+[how logging works][logdocs], thanks to
+[jcrossley3](http://twitter.com/jcrossley3).
 
 * [Download TorqueBox 2.0.2 (ZIP)][download]
 * [Browse HTML manual][htmldocs]
@@ -28,11 +29,6 @@ addition to being one of the [fastest Ruby servers around][BENchmarks], it suppo
 Rack-based web frameworks, and provides [simple Ruby interfaces][features] to
 standard JavaEE services, including *scheduled jobs*, *caching*, *messaging*,
 and *services*.
-
-## What's changed since 2.0.1?
-
-[Insert pithy prose here. Isn't this section a bit redundant with the
-first paragraph and release notes below? Or no?]
 
 ## Updates on the Release Process and Versions
 
