@@ -15,12 +15,15 @@ documentation - including oft-requested explanations about
 [how logging works][logdocs], thanks to
 [jcrossley3](http://twitter.com/jcrossley3).
 
+<img src="/images/maypole.jpg" class="alignright bordered" style="width: 350px;"/>
+
 * [Download TorqueBox 2.0.2 (ZIP)][download]
 * [Browse HTML manual][htmldocs]
 * [Browse JavaDocs][javadocs]
 * [Browse Gem RDocs][rdocs]
 * [Download PDF manual][pdfdocs]
 * [Download ePub manual][epubdocs]
+
 
 ## What is TorqueBox?
 
@@ -83,6 +86,8 @@ As always, if you have any questions about or issues with TorqueBox, please [get
 </li>
 </ul>
 
+
+*Image &copy; Copyright [Jim Champion] and licensed for reuse under this [Creative Commons License]. The original can be be found [here][image].*
                                     
 [download]: /release/org/torquebox/torquebox-dist/2.0.2/torquebox-dist-2.0.2-bin.zip
 [htmldocs]: /documentation/2.0.2/
@@ -94,3 +99,6 @@ As always, if you have any questions about or issues with TorqueBox, please [get
 [features]: /features
 [BENchmarks]: /news/2011/10/06/torquebox-2x-performance/
 [community]: /community
+[Jim Champion]: http://www.geograph.org.uk/profile/1086
+[Creative Commons License]: http://creativecommons.org/licenses/by-sa/2.0/
+[image]: http://www.geograph.org.uk/photo/160418
