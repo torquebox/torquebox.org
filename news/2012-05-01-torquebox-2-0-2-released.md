@@ -30,6 +30,16 @@ Rack-based web frameworks, and provides [simple Ruby interfaces][features] to
 standard JavaEE services, including *scheduled jobs*, *caching*, *messaging*,
 and *services*.
 
+## JRuby 1.7 Compatibility
+
+We've tested TorqueBox with recent builds of JRuby's master branch to
+ensure it is compatible with the upcoming 1.7 release. Note that we're
+still bundling JRuby 1.6.7 and building TorqueBox against JRuby 1.6.7
+so you'll need to bring your own JRuby 1.7. You'll also see a warning
+logged like "WARNING: TorqueBox was built and tested with JRuby 1.6.7
+and you are running JRuby 1.7.0.dev". Once JRuby 1.7 is released we
+should be able to remove that warning.
+
 ## Updates on the Release Process and Versions
 
 The 2.0.x TorqueBox releases will be bugfixes only from this point
