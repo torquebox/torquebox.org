@@ -61,8 +61,6 @@ As always, if you have any questions about or issues with TorqueBox, please [get
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-781'>TORQUE-781</a>] -         Don&#39;t Assume Every ActiveRecord User is Using ActiveRecord-JDBC
 </li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-782'>TORQUE-782</a>] -         session store logs warnings when multiple apps are deployed and one of them is at /
-</li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-783'>TORQUE-783</a>] -         Clustering Without Multicast Docs Should Show ModCluster Example
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-784'>TORQUE-784</a>] -         HornetQ fails to cluster on some platforms
@@ -70,8 +68,6 @@ As always, if you have any questions about or issues with TorqueBox, please [get
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-787'>TORQUE-787</a>] -         Some bug in STOMP makes it use all CPU resource
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-792'>TORQUE-792</a>] -         Torquebox not passing HTTP OPTIONS requests through to our app
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-793'>TORQUE-793</a>] -         Task concurrency &gt; backgroundable tasks test fails on OpenJDK
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-794'>TORQUE-794</a>] -         Allow to check if curent Ruby runtime is a web context, a message processor or a service.
 </li>
