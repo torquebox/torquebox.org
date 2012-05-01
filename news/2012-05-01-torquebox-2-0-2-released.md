@@ -12,7 +12,7 @@ announce the immediate availability of *TorqueBox v2.0.2*.  This
 release brings JRuby 1.7 compatibility, fixes for distributed
 transactions on Oracle, several other minor bug fixes, and some
 changes and additions to our documentation - including oft-requested
-explanations about how logging works, thanks to jcrossley3.
+explanations about [how logging works][logdocs], thanks to jcrossley3.
 
 * [Download TorqueBox 2.0.2 (ZIP)][download]
 * [Browse HTML manual][htmldocs]
@@ -84,6 +84,7 @@ As always, if you have any questions about or issues with TorqueBox, please [get
                                     
 [download]: /release/org/torquebox/torquebox-dist/2.0.2/torquebox-dist-2.0.2-bin.zip
 [htmldocs]: /documentation/2.0.2/
+[logdocs]:  /documentation/2.0.2/jboss.html#jboss-logging
 [javadocs]: /documentation/2.0.2/javadoc/
 [rdocs]:    /documentation/2.0.2/yardoc/
 [pdfdocs]:  /release/org/torquebox/torquebox-docs-en_US/2.0.2/torquebox-docs-en_US-2.0.2.pdf
