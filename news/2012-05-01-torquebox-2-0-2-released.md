@@ -7,11 +7,12 @@ timestamp: 2012-05-01t16:40:00.0-05:00
 tags: [ releases ]
 ---
 
-Just in time for May Day, we are happy as kids at a May Pole to announce the immediate
-availability of *TorqueBox v2.0.2*.  This release brings the awesomeness of
-JRuby 1.7 to your applications, as well as fixes for XA on Oracle, and some
-changes and additions to our documentation - including oft-requested explanations
-about how logging works, thanks to jcrossley3.
+Just in time for May Day, we are happy as kids at a May Pole to
+announce the immediate availability of *TorqueBox v2.0.2*.  This
+release brings JRuby 1.7 compatibility, fixes for distributed
+transactions on Oracle, several other minor bug fixes, and some
+changes and additions to our documentation - including oft-requested
+explanations about how logging works, thanks to jcrossley3.
 
 * [Download TorqueBox 2.0.2 (ZIP)][download]
 * [Browse HTML manual][htmldocs]
@@ -30,7 +31,15 @@ and *services*.
 
 ## What's changed since 2.0.1?
 
-[Insert pithy prose here.]
+[Insert pithy prose here. Isn't this section a bit redundant with the
+first paragraph and release notes below? Or no?]
+
+## Updates on the Release Process and Versions
+
+The 2.0.x TorqueBox releases will be bugfixes only from this point
+forward, while we'll continue adding new features to what will become
+2.1.0. The goal is to ensure maximum stability of all future 2.0.x
+releases while not hindering new feature requests and development.
 
 ## Don't be a stranger!
 
