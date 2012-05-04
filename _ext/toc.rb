@@ -11,9 +11,9 @@ class TOC
       next unless page.toc
       toc = ""
 
-      if page.is_a?(Awestruct::MarkdownFile)
+      if page.content_syntx == :markdown
         toc = parse_markdown_headers(page.raw_page_content)
-      elsif page.is_a?(Awestruct::TextileFile)
+      elsif page.content_syntax == :textile
         toc = parse_textile_headers(page.raw_page_content)
       end
 
