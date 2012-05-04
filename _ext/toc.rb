@@ -11,8 +11,6 @@ class TOC
       next unless page.toc
       toc = ""
 
-      puts "syntax: #{page.content_syntax.inspect}"
-
       if page.content_syntax == :markdown
         toc = parse_markdown_headers(page.raw_content)
       elsif page.content_syntax == :textile
@@ -20,8 +18,6 @@ class TOC
       end
 
       page.table_of_contents = toc
-      puts page.table_of_contents
-
     end
   end
 
