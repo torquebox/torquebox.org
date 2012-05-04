@@ -24,12 +24,6 @@ Happy Cuatro de Mayo!
 * [Download PDF manual][pdfdocs]
 * [Download ePub manual][epubdocs]
 
-## Most Notable
-
-You might've noticed that files from your `public/` directory were only
-being served every other request or so.  This has been tracked (via [TORQUE-810])
-and fixed in 2.0.3
-
 ## What is TorqueBox?
 
 TorqueBox is a Ruby application server built on JBoss AS7 and JRuby.  In
@@ -37,6 +31,13 @@ addition to being one of the [fastest Ruby servers around][BENchmarks], it suppo
 Rack-based web frameworks, and provides [simple Ruby interfaces][features] to
 standard JavaEE services, including *scheduled jobs*, *caching*, *messaging*,
 and *services*.
+
+## `public/` directory not consistently serving assets
+
+You might've noticed that files from your `public/` directory were only
+being served every other request or so.  This has been tracked (via [TORQUE-810])
+and fixed in 2.0.3
+
 
 ## Keep up with the flurry of releases
 
@@ -52,9 +53,9 @@ releases and announcements about TorqueBox is to [follow us on Twitter (@torqueb
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-813'>TORQUE-813</a>] -         undefined method `__enable_backgroundable_newrelic_tracing&#39;
 </li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-816'>TORQUE-816</a>] -         Capistrano app_environment produces an invalid deployment descriptor
-</li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-814'>TORQUE-814</a>] -         Upgrade to JRuby 1.6.7.2
+</li>
+<li>[<a href='https://issues.jboss.org/browse/TORQUE-816'>TORQUE-816</a>] -         Capistrano app_environment produces an invalid deployment descriptor
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-818'>TORQUE-818</a>] -         Services docs incorrectly state that app/services/ has to be added to the load path
 </li>
@@ -67,6 +68,7 @@ releases and announcements about TorqueBox is to [follow us on Twitter (@torqueb
 [rdocs]:    /documentation/2.0.3/yardoc/
 [pdfdocs]:  /release/org/torquebox/torquebox-docs-en_US/2.0.3/torquebox-docs-en_US-2.0.3.pdf
 [epubdocs]: /release/org/torquebox/torquebox-docs-en_US/2.0.3/torquebox-docs-en_US-2.0.3.epub
+[BENchmarks]: /news/2011/10/06/torquebox-2x-performance/
 [features]: /features
 [twitter]: http://twitter.com/torquebox
 [TORQUE-810]: https://issues.jboss.org/browse/TORQUE-810
