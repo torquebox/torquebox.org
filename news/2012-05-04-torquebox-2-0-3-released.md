@@ -32,6 +32,12 @@ Rack-based web frameworks, and provides [simple Ruby interfaces][features] to
 standard JavaEE services, including *scheduled jobs*, *caching*, *messaging*,
 and *services*.
 
+## JRuby 1.6.7.2
+
+The only change incorporated into the upgrade of JRuby is the updating of
+the bundled RubyGems to 1.8.24.  This version starts checking the server certificate
+of rubygems.org.  That's a good thing.
+
 ## `public/` directory not consistently serving assets
 
 You might've noticed that files from your `public/` directory were only
