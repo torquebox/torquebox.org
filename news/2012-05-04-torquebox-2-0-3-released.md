@@ -7,10 +7,12 @@ timestamp: 2012-05-04t13:00:00.0-05:00
 tags: [ releases ]
 ---
 
-Well, this is a little embarrasing.  Not a few hours after we released
-2.0.2, the JRuby guys released JRuby-1.6.7.2, fixing a security issue.
-Because of this, along with having found a few bugs in the past 4 days,
-we are embarrasingly proud to announce the availability of TorqueBox
+Well, this is a little embarrassing.  
+
+Only a few hours after we released
+2.0.2, the JRuby guys released JRuby-1.6.7.2 fixing a security issue.
+Along with having found a few of our own bugs in the past 
+4 days, we are embarrassingly proud to announce the availability of TorqueBox
 2.0.3.
 
 Happy Cuatro de Mayo!
@@ -21,6 +23,12 @@ Happy Cuatro de Mayo!
 * [Browse Gem RDocs][rdocs]
 * [Download PDF manual][pdfdocs]
 * [Download ePub manual][epubdocs]
+
+## Most Notable
+
+You might've noticed that files from your `public/` directory were only
+being served every other request or so.  This has been tracked (via [TORQUE-810])
+and fixed in 2.0.3
 
 ## What is TorqueBox?
 
@@ -52,12 +60,13 @@ releases and announcements about TorqueBox is to [follow us on Twitter (@torqueb
 </li>
 </ul>
 
-[download]: /release/org/torquebox/torquebox-dist/2.0.2/torquebox-dist-2.0.2-bin.zip
-[htmldocs]: /documentation/2.0.2/
-[logdocs]:  /documentation/2.0.2/jboss.html#jboss-logging
-[javadocs]: /documentation/2.0.2/javadoc/
-[rdocs]:    /documentation/2.0.2/yardoc/
-[pdfdocs]:  /release/org/torquebox/torquebox-docs-en_US/2.0.2/torquebox-docs-en_US-2.0.2.pdf
-[epubdocs]: /release/org/torquebox/torquebox-docs-en_US/2.0.2/torquebox-docs-en_US-2.0.2.epub
+[download]: /release/org/torquebox/torquebox-dist/2.0.3/torquebox-dist-2.0.3-bin.zip
+[htmldocs]: /documentation/2.0.3/
+[logdocs]:  /documentation/2.0.3/jboss.html#jboss-logging
+[javadocs]: /documentation/2.0.3/javadoc/
+[rdocs]:    /documentation/2.0.3/yardoc/
+[pdfdocs]:  /release/org/torquebox/torquebox-docs-en_US/2.0.3/torquebox-docs-en_US-2.0.3.pdf
+[epubdocs]: /release/org/torquebox/torquebox-docs-en_US/2.0.3/torquebox-docs-en_US-2.0.3.epub
 [features]: /features
 [twitter]: http://twitter.com/torquebox
+[TORQUE-810]: https://issues.jboss.org/browse/TORQUE-810
