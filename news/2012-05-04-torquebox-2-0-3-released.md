@@ -42,7 +42,7 @@ of rubygems.org.  That's a good thing.
 
 You might've noticed that files from your `public/` directory were only
 being served every other request or so.  This has been tracked (via [TORQUE-810])
-and fixed in 2.0.3
+and fixed in 2.0.3.
 
 
 ## Keep up with the flurry of releases
