@@ -2,7 +2,7 @@
 title: 'TorqueBox at Guru Sorocaba, Brazil'
 author: Bruno Oliveira
 layout: news
-timestamp: 2012-06-18t10:45:00.0-05:00
+timestamp: 2012-06-19t9:30:00.0-04:00
 tags: [ presentations, gurusorocaba, brazil ]
 ---
 

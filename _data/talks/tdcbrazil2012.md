@@ -1,5 +1,5 @@
 ---
-title: JBoss Polyglot: aplicações enterprise além do Java 
+title: 'JBoss Polyglot: aplicações enterprise além do Java'
 presentor: Bruno Oliveira (abstractj)
 event: TDC 2012 - The developer's conference
 event_date: 6 Jul, 2012
