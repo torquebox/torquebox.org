@@ -81,10 +81,14 @@ body.bp {
       text-decoration: none;
     }
     #bottom-left {
-      @include column(8);
+      @include column(5);
     }
-    #bottom-center {
-      @include column(8);
+    #bottom-center-left {
+      @include column(5);
+    }
+    #bottom-center-right {
+      @include column(5);
+      @include append(1);
     }
     #bottom-right {
       @include column(8);

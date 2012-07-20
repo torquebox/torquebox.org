@@ -30,7 +30,7 @@ priority: 0.8
           on IRC.  IRC is our virtual office (and virtual watercooler)
           so fire up an IRC client and stop in.
     
-        %a{:href=>'irc://irc.freenode.net/torquebox'}
+        %a{:href=>'http://webchat.freenode.net/?channels=torquebox'}
           %code
             irc.freenode.net #torquebox
 
@@ -55,25 +55,8 @@ priority: 0.8
             More information about our mailing lists
        
       .section 
-        %h1 
-          %a{:href=>'/community/issues/'}
-            Issue Tracker
-    
-        %a{:href=>'/community/issues/'}
-          %img.screencap{:src=>'/images/screencaps/jbossjira.png'}
-    
-        %p
-          The project tracks bugs, feature-requests, and other issues
-          through the JIRA issue-tracking system at JBoss.org.
-    
-        %p
-          To file issues or requests with JIRA, you must have a
-          JBoss Community account.  Signing up is easy.
-    
-        %p.more
-          %a{:href=>'/community/issues/'}
-            More information about our issue-tracker    
-         
+        = partial('issue-tracker.html.haml')
+
       .section 
         %h1
           %a{:href=>"http://twitter.com/torquebox"}

@@ -1,17 +1,24 @@
 
 #bottom-left
-  %h2 Download
+  %h2 Quick Links
   %ul
     %li
+      %a{:href=>'https://issues.jboss.org/browse/TORQUE'}Issues
+    %li
+      %a{:href=>'http://webchat.freenode.net/?channels=torquebox'}#torquebox on IRC
+    %li
+      %a{:href=>'https://github.com/torquebox/torquebox/'}Source
+
+    %li
       %a{:href=>site.releases.first.urls.dist_zip}
-        Latest release: #{site.releases.first.version} (#{site.releases.first.dist_size}mb ZIP)
+        Latest release: #{site.releases.first.version}
     %li
       %a{:href=>'/download/'}
-        Recent releases
+        All releases
     %li
-      %a{:href=>'/1x/builds'} 1.x Incremental Builds
-    %li
-      %a{:href=>'/2x/builds'} 2.x Incremental Builds
+      %a{:href=>'/2x/builds'} Incremental Builds
+
+#bottom-center-left
   %h2 Learn
   %ul
     %li
@@ -20,6 +27,9 @@
     %li
       %a{:href=>'/news/'}
         News
+    %li
+      %a{:href=>'/podcasts/'}
+        Screencasts
     %li
       %a{:href=>'/faq/'}
         FAQ
@@ -32,7 +42,8 @@
     %li
       %a{:href=>'/license/'}
         License
-#bottom-center
+
+#bottom-center-right
   %h2 Get Involved
   %ul
     %li
@@ -62,12 +73,10 @@
             %a{:href=>'/development/#ci'}
               Continuous Integration
           %li
-            %a{:href=>'/1x/source-guide/'}
-              1.x Source Guide
-          %li
             %a{:href=>'/2x/source-guide/'}
-              2.x Source Guide
+              Source Guide
     %li
       %a{:href=>'/support/'}
         Support
+
 
