@@ -32,7 +32,7 @@ reading.
   continue to work with `inject` but in some future release, probably
   2.2.0, `inject` will be removed.
 
-* The default clustering mode of TorqueBox::Infinispan::Cache is now
+* The default clustering mode of `TorqueBox::Infinispan::Cache` is now
   distributed instead of invalidated. See the [caching clustering mode
   documentation][cacheclusterdocs] for more details on the different
   modes.
@@ -147,9 +147,25 @@ As always, if you have any questions about or issues with TorqueBox, please [get
 ## Issues resolved since 2.0.3
 
 <ul>
+<li>[<a href='https://issues.jboss.org/browse/TORQUE-337'>TORQUE-337</a>] -         Expose pools and runtimes in BackStage
+</li>
+<li>[<a href='https://issues.jboss.org/browse/TORQUE-400'>TORQUE-400</a>] -         REGRESSION - Allow creation of queues using code as well as with queues.yml file
+</li>
+<li>[<a href='https://issues.jboss.org/browse/TORQUE-514'>TORQUE-514</a>] -         Allow setting a timeout on scheduled jobs
+</li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-527'>TORQUE-527</a>] -         Make TorqueBox::Logger work with the Rails console
 </li>
+<li>[<a href='https://issues.jboss.org/browse/TORQUE-580'>TORQUE-580</a>] -         Add bin/torquebox Command to Zip Distribution
+</li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-598'>TORQUE-598</a>] -         Torqubox and Jars relying on Native libraries
+</li>
+<li>[<a href='https://issues.jboss.org/browse/TORQUE-633'>TORQUE-633</a>] -         TorqueBox Should Respect $JRUBY_OPTS
+</li>
+<li>[<a href='https://issues.jboss.org/browse/TORQUE-677'>TORQUE-677</a>] -         Print a useful error message when JRUBY_HOME is improperly set
+</li>
+<li>[<a href='https://issues.jboss.org/browse/TORQUE-688'>TORQUE-688</a>] -         Provide gem for remote messaging
+</li>
+<li>[<a href='https://issues.jboss.org/browse/TORQUE-724'>TORQUE-724</a>] -         Backgroundable should wire up NewRelic instrumentation so its stats can be reported in the &#39;Background tasks&#39; tab of the NewRelic control panel
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-774'>TORQUE-774</a>] -         HornetQ not starting (Torquebox 2.0.1 on ubuntu 11.10)
 </li>
@@ -164,6 +180,8 @@ As always, if you have any questions about or issues with TorqueBox, please [get
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-806'>TORQUE-806</a>] -         Scheduled job using infinispan cache not accessible in controller
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-808'>TORQUE-808</a>] -         TorqueBox Sometimes Fails to Boot When Multiple Clustered Applications are Deployed
+</li>
+<li>[<a href='https://issues.jboss.org/browse/TORQUE-815'>TORQUE-815</a>] -         Revert mod_cluster Backport Fixes Once Upgraded to AS 7.1.2
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-821'>TORQUE-821</a>] -         Infinispan errors when clustered
 </li>
@@ -183,19 +201,27 @@ As always, if you have any questions about or issues with TorqueBox, please [get
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-838'>TORQUE-838</a>] -         TorqueBox::Messaging::TextMessage should implement respond_to?
 </li>
+<li>[<a href='https://issues.jboss.org/browse/TORQUE-839'>TORQUE-839</a>] -         Better error catching when the $JRUBY_HOME is not correct, there&#39;s no lib folder in it
+</li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-840'>TORQUE-840</a>] -         Rename inject method to fetch
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-842'>TORQUE-842</a>] -         Integration Tests Using jmx4r Fail on RHEL 6
 </li>
+<li>[<a href='https://issues.jboss.org/browse/TORQUE-843'>TORQUE-843</a>] -         Torquebox::Messaging::Destination should not accept a nil destination name
+</li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-850'>TORQUE-850</a>] -         Creating a TorqueBox Archive Fails on Windows
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-855'>TORQUE-855</a>] -         Cache transactional values are not properly rolled back for failed XA transactions in a clustered cache
+</li>
+<li>[<a href='https://issues.jboss.org/browse/TORQUE-864'>TORQUE-864</a>] -         Change the config sample in the job docs to not use &#39;throttle&#39; as the example
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-870'>TORQUE-870</a>] -         jdk1.7-64bit error which works in jdk1.7-32bit on windows
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-873'>TORQUE-873</a>] -         torquebox rails command creates a &quot;tasks&quot; folder 
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-874'>TORQUE-874</a>] -         Exception Acquiring Ownership of Clustered Session
+</li>
+<li>[<a href='https://issues.jboss.org/browse/TORQUE-875'>TORQUE-875</a>] -         The default cache clustering mode should be transactional distributed synchronous with optimistic locking
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-880'>TORQUE-880</a>] -         Unable to change the Quartz threadpool size to accomodate different &#39;job&#39; pool sizes
 </li>
@@ -205,35 +231,9 @@ As always, if you have any questions about or issues with TorqueBox, please [get
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-886'>TORQUE-886</a>] -         torquebox:archive mistakenly packages the &#39;vendor/bundle/jruby/RUBY_VERSION/cache/&#39; directory
 </li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-896'>TORQUE-896</a>] -         HASingleton jobs and services don&#39;t start if a cluster only has a single node
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-688'>TORQUE-688</a>] -         Provide gem for remote messaging
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-843'>TORQUE-843</a>] -         Torquebox::Messaging::Destination should not accept a nil destination name
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-864'>TORQUE-864</a>] -         Change the config sample in the job docs to not use &#39;throttle&#39; as the example
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-337'>TORQUE-337</a>] -         Expose pools and runtimes in BackStage
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-400'>TORQUE-400</a>] -         REGRESSION - Allow creation of queues using code as well as with queues.yml file
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-514'>TORQUE-514</a>] -         Allow setting a timeout on scheduled jobs
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-580'>TORQUE-580</a>] -         Add bin/torquebox Command to Zip Distribution
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-633'>TORQUE-633</a>] -         TorqueBox Should Respect $JRUBY_OPTS
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-677'>TORQUE-677</a>] -         Print a useful error message when JRUBY_HOME is improperly set
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-724'>TORQUE-724</a>] -         Backgroundable should wire up NewRelic instrumentation so its stats can be reported in the &#39;Background tasks&#39; tab of the NewRelic control panel
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-839'>TORQUE-839</a>] -         Better error catching when the $JRUBY_HOME is not correct, there&#39;s no lib folder in it
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-875'>TORQUE-875</a>] -         The default cache clustering mode should be transactional distributed synchronous with optimistic locking
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-815'>TORQUE-815</a>] -         Revert mod_cluster Backport Fixes Once Upgraded to AS 7.1.2
-</li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-890'>TORQUE-890</a>] -         Warn in documentation about setting JAVA_OPTS environment variable
+</li>
+<li>[<a href='https://issues.jboss.org/browse/TORQUE-896'>TORQUE-896</a>] -         HASingleton jobs and services don&#39;t start if a cluster only has a single node
 </li>
 </ul>
 
