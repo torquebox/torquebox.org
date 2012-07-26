@@ -3,7 +3,7 @@ title: 'TorqueBox 2.1.0 - New Release and New Leadership'
 author: The Entire TorqueBox Team
 layout: release
 version: '2.1.0'
-timestamp: 2012-07-26t17:00:00.0-05:00
+timestamp: 2012-07-27t09:30:00.0-05:00
 tags: [ releases ]
 ---
 
