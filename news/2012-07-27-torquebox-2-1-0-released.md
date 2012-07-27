@@ -147,25 +147,13 @@ As always, if you have any questions about or issues with TorqueBox, please [get
 ## Issues resolved since 2.0.3
 
 <ul>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-337'>TORQUE-337</a>] -         Expose pools and runtimes in BackStage
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-400'>TORQUE-400</a>] -         REGRESSION - Allow creation of queues using code as well as with queues.yml file
-</li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-514'>TORQUE-514</a>] -         Allow setting a timeout on scheduled jobs
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-527'>TORQUE-527</a>] -         Make TorqueBox::Logger work with the Rails console
 </li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-580'>TORQUE-580</a>] -         Add bin/torquebox Command to Zip Distribution
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-598'>TORQUE-598</a>] -         Torqubox and Jars relying on Native libraries
-</li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-633'>TORQUE-633</a>] -         TorqueBox Should Respect $JRUBY_OPTS
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-677'>TORQUE-677</a>] -         Print a useful error message when JRUBY_HOME is improperly set
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-688'>TORQUE-688</a>] -         Provide gem for remote messaging
-</li>
-<li>[<a href='https://issues.jboss.org/browse/TORQUE-724'>TORQUE-724</a>] -         Backgroundable should wire up NewRelic instrumentation so its stats can be reported in the &#39;Background tasks&#39; tab of the NewRelic control panel
 </li>
 <li>[<a href='https://issues.jboss.org/browse/TORQUE-774'>TORQUE-774</a>] -         HornetQ not starting (Torquebox 2.0.1 on ubuntu 11.10)
 </li>
