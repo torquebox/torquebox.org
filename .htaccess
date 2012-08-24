@@ -1,18 +1,18 @@
 ErrorDocument 404 /404.html
 
-SetEnvIf Request_URI .* base_artifact_url=https://projectodd.ci.cloudbees.com/job/torquebox/lastSuccessfulBuild/label=m1.large,ruby_compat_version=1.8/artifact
+SetEnvIf Request_URI .* base_artifact_url=http://repository-projectodd.forge.cloudbees.com/incremental/torquebox/LATEST/
 SetEnvIf Request_URI .* release_url=http://d2t70pdxfgqbmq.cloudfront.net/release
 
 RewriteEngine on
 
-RewriteRule ^documentation/LATEST/torquebox-doc\.pdf$    %{ENV:base_artifact_url}/docs/en-US/target/docbook/publish/en-US/pdf/torquebox-docs-en_US.pdf [P]
+RewriteRule ^documentation/LATEST/torquebox-doc\.pdf$    %{ENV:base_artifact_url}/torquebox-docs.pdf [P]
 
 RewriteRule ^documentation/LATEST$          /documentation/LATEST/ [R]
-RewriteRule ^documentation/LATEST/?$        %{ENV:base_artifact_url}/docs/en-US/target/docbook/publish/en-US/xhtml/index.html [P]
-RewriteRule ^documentation/LATEST/(.*)$     %{ENV:base_artifact_url}/docs/en-US/target/docbook/publish/en-US/xhtml/$1 [P]
+RewriteRule ^documentation/LATEST/?$        %{ENV:base_artifact_url}/html-docs/index.html [P]
+RewriteRule ^documentation/LATEST/(.*)$     %{ENV:base_artifact_url}/html-docs/$1 [P]
 
-RewriteRule ^builds/([0-9]+)/torquebox-dist-bin.zip$  https://projectodd.ci.cloudbees.com/job/torquebox/$1/label=m1.large,ruby_compat_version=1.8/artifact/dist/target/torquebox-dist-bin.zip [P]
-RewriteRule ^builds/LATEST/torquebox-dist-bin.zip$    %{ENV:base_artifact_url}/dist/target/torquebox-dist-bin.zip [P]
+RewriteRule ^builds/([0-9]+)/torquebox-dist-bin.zip$  http://repository-projectodd.forge.cloudbees.com/incremental/torquebox/$1/torquebox-dist-bin.zip [P]
+RewriteRule ^builds/LATEST/torquebox-dist-bin.zip$    %{ENV:base_artifact_url}/torquebox-dist-bin.zip [P]
 
 RewriteRule ^release/(.*)$    %{ENV:release_url}/$1 [R,L]
 
