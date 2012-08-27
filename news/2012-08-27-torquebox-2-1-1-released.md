@@ -26,8 +26,10 @@ TorqueBox 2.x.
   startup. Eager pools will start when the application is deployed
   while lazy pools will wait until they are needed (first web request
   comes in, first job fires, first message received) before
-  booting. The web runtime defaults to eager and the rest to lazy. See
-  the [pooling documentation][pooling_docs] for more details.
+  booting. The web runtime defaults to eager and the rest to
+  lazy. This is the same defaults as 2.1.0, but now you have the
+  option of changing those defaults. See the [pooling
+  documentation][pooling_docs] for more details.
 
 * There was a rather nasty bug where message processors and jobs were
   sharing a single instance of the message processor or job class when
@@ -47,7 +49,7 @@ TorqueBox 2.x.
   first requests to hit the newly deployed application.
 
 * Anyone using TorqueBox::Backgroundable with backgroundable methods
-  that took longer than 5 minutes to complete have probably seen
+  that took longer than 5 minutes to complete has probably seen
   various errors in their logs related to the Arjuna library and
   transactions. To fix these errors, Backgroundable no longer runs
   inside an XA transaction by default. If you were relying on the
@@ -59,9 +61,10 @@ TorqueBox 2.x.
 # Upgrading from 2.1.1
 
 Our goal with 2.1.1 was to be backwards-compatible with 2.1.0, so
-there shouldn't be any special steps needed for the upgrade. The only
-caveat is if you were relying on Backgroundable's transactionality, as
-mentioned above.
+there shouldn't be any special steps needed for the upgrade. None of
+the underlying AS7 xml configuration files or torquebox.yml /
+torquebox.rb files need any changes. The only caveat is if you were
+relying on Backgroundable's transactionality, as mentioned above.
 
 # Roadmap update
 
