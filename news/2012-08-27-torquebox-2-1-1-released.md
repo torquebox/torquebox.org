@@ -58,7 +58,7 @@ TorqueBox 2.x.
   `TorqueBox.transaction` block as shown in the comments of
   [TORQUE-906][torque-906].
 
-# Upgrading from 2.1.1
+# Upgrading from 2.1.0
 
 Our goal with 2.1.1 was to be backwards-compatible with 2.1.0, so
 there shouldn't be any special steps needed for the upgrade. None of
