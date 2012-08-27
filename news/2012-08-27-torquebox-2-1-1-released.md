@@ -71,7 +71,8 @@ relying on Backgroundable's transactionality, as mentioned above.
 We're still sticking to our monthly release schedule so expect
 TorqueBox 2.1.2 (bug fixes only) to come out at the end of September
 followed by TorqueBox 2.2.0 (new features galore) at the end of
-October.
+October. As always the most up-to-date [roadmap][] is available in
+JIRA.
 
 ## Don't be a stranger!
 
@@ -132,4 +133,5 @@ As always, if you have any questions about or issues with TorqueBox, please [get
 [epubdocs]:         /release/org/torquebox/torquebox-docs-en_US/2.1.1/torquebox-docs-en_US-2.1.1.epub
 [pooling_docs]:     /documentation/2.1.1/pooling.html#pooling-configuration
 [torque-906]:       https://issues.jboss.org/browse/TORQUE-906
+[roadmap]:          https://issues.jboss.org/browse/TORQUE?selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel
 [community]:        /community
