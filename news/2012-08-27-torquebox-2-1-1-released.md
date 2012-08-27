@@ -22,10 +22,10 @@ TorqueBox 2.x.
 ## Highlights of major changes
 
 * The JRuby runtime pools for the various subsystems (web, messaging,
-  jobs, services, stomp) can now be toggled between eager or lazy
-  startup. Eager pools will start when the application is deployed
-  while lazy pools will wait until they are needed (first web request
-  comes in, first job fires, first message received) before
+  jobs, services, stomp) can now be toggled between **eager** or
+  **lazy** startup. Eager pools will start when the application is
+  deployed while lazy pools will wait until they are needed (first web
+  request comes in, first job fires, first message received) before
   booting. The web runtime defaults to eager and the rest to
   lazy. This is the same defaults as 2.1.0, but now you have the
   option of changing those defaults. See the [pooling

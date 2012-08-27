@@ -17,7 +17,7 @@ class Downloads
              end
            end
 
-  VERSION_RANGE      = Range.new(Versionomy.parse('1.0.0', FORMAT), Versionomy.parse('2.1', FORMAT))
+  VERSION_RANGE      = Range.new(Versionomy.parse('1.0.0', FORMAT), Versionomy.parse('2.99', FORMAT))
   REPO_PREFIX        = "http://repository-projectodd.forge.cloudbees.com/release/org/torquebox"
   LOCAL_REPO_PREFIX  = "/release/org/torquebox"
   DOCS_PREFIX        = "#{LOCAL_REPO_PREFIX}/torquebox-docs-en_US"
