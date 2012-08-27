@@ -1,6 +1,8 @@
-- version: '2.1.0'
-  jira_version: 12316682
+- version: '2.1.1'
+  jira_version: 12319876
   latest: true
+  api_docs: true
+- version: '2.1.0'
   api_docs: true
 - version: '2.0.3'
   jira_version: 12319487
