@@ -13,7 +13,7 @@ RewriteRule ^([0-9]+)/(.*)$                         http://repository-projectodd
 
 RewriteRule ^(LATEST/)?html-docs$                   http://%{HTTP_HOST}/2x/builds/$1html-docs/ [R,L]
 RewriteRule ^(LATEST/)?html-docs/$                  http://repository-projectodd.forge.cloudbees.com/incremental/torquebox/LATEST/html-docs/index.html [P]
-RewriteRule ^(LATEST/)?getting-started$             http://%{HTTP_HOST}/2x/builds/$getting-started/ [R,L]
+RewriteRule ^(LATEST/)?getting-started$             http://%{HTTP_HOST}/2x/builds/$1getting-started/ [R,L]
 RewriteRule ^(LATEST/)?getting-started/$            http://repository-projectodd.forge.cloudbees.com/incremental/torquebox/LATEST/getting-started/index.html [P]
 RewriteRule ^(LATEST/)?javadocs$                    http://%{HTTP_HOST}/2x/builds/$1javadocs/ [R,L]
 RewriteRule ^(LATEST/)?javadocs/$                   http://repository-projectodd.forge.cloudbees.com/incremental/torquebox/LATEST/javadocs/index.html [P]
