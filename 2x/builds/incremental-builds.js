@@ -110,6 +110,9 @@ renderer = {
     ul.append( $( '<li class="artifact"><a href="/2x/builds/' + build.number + '/html-docs/">Browse HTML</a></li>' ) );
     ul.append( $( '<li class="artifact"><a href="/2x/builds/' + build.number + '/torquebox-docs.pdf">PDF</a></li>' ) );
     ul.append( $( '<li class="artifact"><a href="/2x/builds/' + build.number + '/torquebox-docs.epub">ePub</a></li>' ) );
+    if (build.number >= 1188) {
+      ul.append( $( '<li class="artifact"><a href="/2x/builds/' + build.number + '/getting-started/">Getting Started Guide</a></li>') );
+    }
     ul.append( $( '<li class="artifact newdocs"><a href="/2x/builds/' + build.number + '/javadocs/">Java API Docs</a></li>' ) );
     ul.append( $( '<li class="artifact newdocs"><a href="/2x/builds/' + build.number + '/yardocs/">Gem RDocs</a></li>' ) );
 
