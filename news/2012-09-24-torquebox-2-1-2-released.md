@@ -40,13 +40,13 @@ release and is a recommended upgrade for anyone running TorqueBox
   these should no longer appear.
 
 * We're a bit smarter about finding Bundler when `torquebox run` is
-  run within an application that uses `bundle install
-  --deployment`. If you've been fighting with errors like 'no such
-  file to -- bundler/setup' this should fix that error.
+  used within an application that uses `bundle install
+  --deployment`. If you've been fighting with errors like `no such
+  file to -- bundler/setup` this should fix them.
 
-* We're now much looser in our Thor dependency requirement for the
-  torquebox gem so any error caused by TorqueBox requiring an
-  incompatible Thor version as other gems should now be fixed.
+* We're much looser in our Thor dependency requirement for the
+  torquebox gem so any error caused by TorqueBox requiring a Thor
+  version that was incompatible with other gems should be fixed.
 
 * The parsing of database.yml to setup XA datasources has been
   improved to handle basic ERB usage, like reading environment
@@ -60,6 +60,15 @@ Our goal with 2.1.2 was to be backwards-compatible with 2.1.1, so
 there shouldn't be any special steps needed for the upgrade. None of
 the underlying AS7 xml configuration files or torquebox.yml /
 torquebox.rb files need any changes.
+
+## Roadmap update
+
+This is the last anticipated release in our 2.1.x line. The next
+release is 2.2.0, currently scheduled for October 29th. The feature
+list of 2.2.0 is probably a bit too aggressive so don't be surprised
+if some things get bumped to 2.3.0. Head on over to the [roadmap][]
+page and make sure you vote for any features you'd really like in
+2.2.0 so we can prioritize accordingly.
 
 ## Don't be a stranger!
 
@@ -113,6 +122,7 @@ As always, if you have any questions about or issues with TorqueBox, please [get
 [pdfdocs]:          /release/org/torquebox/torquebox-docs-en_US/2.1.2/torquebox-docs-en_US-2.1.2.pdf
 [epubdocs]:         /release/org/torquebox/torquebox-docs-en_US/2.1.2/torquebox-docs-en_US-2.1.2.epub
 [gettingstarted]:   /getting-started/2.1.2/
+[roadmap]:          https://issues.jboss.org/browse/TORQUE?selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel
 [community]:        /community
 [Mark A. Wilson]:   http://commons.wikimedia.org/wiki/User:Wilson44691
 [Creative Commons License]: http://creativecommons.org/licenses/by-sa/3.0/
