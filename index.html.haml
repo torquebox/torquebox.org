@@ -47,8 +47,12 @@ priority: 1.0
             %tr.links
               %td{:colspan=>2}
                 - if announcement
-                  %a{:href=>announcement.url} Announcement |
+                  %a{:href=>announcement.url} Announcement
+                  |
                 %a{:href=>"/documentation/#{site.releases.first.version}/"} Documentation
+                - unless site.releases.first.urls.getting_started.browse.empty?
+                  <br/>
+                  %a{:href=>site.releases.first.urls.getting_started.browse} Getting Started Guide
   #middle-row
     %a{:href=>'/features'}
       %img#stack{:src=>"/images/stack.png"}

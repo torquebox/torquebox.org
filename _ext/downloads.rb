@@ -20,8 +20,12 @@ class Downloads
   VERSION_RANGE      = Range.new(Versionomy.parse('1.0.0', FORMAT), Versionomy.parse('2.99', FORMAT))
   REPO_PREFIX        = "http://repository-projectodd.forge.cloudbees.com/release/org/torquebox"
   LOCAL_REPO_PREFIX  = "/release/org/torquebox"
+
   DOCS_PREFIX        = "#{LOCAL_REPO_PREFIX}/torquebox-docs-en_US"
   REMOTE_DOCS_PREFIX = "#{REPO_PREFIX}/torquebox-docs-en_US"
+
+  GETTING_STARTED_PREFIX        = "#{LOCAL_REPO_PREFIX}/torquebox-docs-getting-started-en_US"
+  REMOTE_GETTING_STARTED_PREFIX = "#{REPO_PREFIX}/torquebox-docs-getting-started-en_US"
 
   def initialize(enabled=true)
     @enabled = enabled
@@ -53,7 +57,16 @@ class Downloads
     release.urls.docs.pdf                   = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}.pdf"
     release.urls.docs.html_multi_zip        = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}-html.zip"
     release.urls.docs.remote_html_multi_zip = "#{REMOTE_DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}-html.zip"
-    release.urls.docs.epub                = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}.epub" 
+    release.urls.docs.epub                = "#{DOCS_PREFIX}/#{release.version}/torquebox-docs-en_US-#{release.version}.epub"
+
+    release.urls.getting_started ||= OpenStruct.new
+    if release.getting_started_guide == true
+      release.urls.getting_started.browse                 = "/getting-started/#{release.version}/"
+      release.urls.getting_started.pdf                    = "#{GETTING_STARTED_PREFIX}/#{release.version}/torquebox-docs-getting-started-en_US-#{release.version}.pdf"
+      release.urls.getting_started.html_multi_zip         = "#{GETTING_STARTED_PREFIX}/#{release.version}/torquebox-docs-getting-started-en_US-#{release.version}-html.zip"
+      release.urls.getting_started.remote_html_multi_zip  = "#{REMOTE_GETTING_STARTED_PREFIX}/#{release.version}/torquebox-docs-getting-started-en_US-#{release.version}-html.zip"
+      release.urls.getting_started.epub                   = "#{GETTING_STARTED_PREFIX}/#{release.version}/torquebox-docs-getting-started-en_US-#{release.version}.epub"
+    end
 
     release.urls.jira = "https://jira.jboss.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project=TORQUE+AND+fixVersion=#{release.jira_version}&sorter/field=issuekey&sorter/order=DESC"
 

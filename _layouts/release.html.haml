@@ -42,6 +42,9 @@ change_frequency: monthly
         %ul
           %li
             %a{:href=>release.urls.dist_zip} Download #{release.version} binary
+          - unless release.urls.getting_started.browse.empty?
+            %li
+              %a{:href=>release.urls.getting_started.browse} Browse getting started guide for #{release.version}
           %li
             %a{:href=>release.urls.docs.browse} Browse manual for #{release.version}
           - unless release.urls.docs.javadocs.empty?

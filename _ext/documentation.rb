@@ -19,6 +19,10 @@ class Documentation
       doc_root = File.join( site.output_dir, 'documentation', release.version )
       FileUtils.mkdir_p( doc_root )
 
+      getting_started_bundle_name = "torquebox-docs-getting-started-en_US-#{release.version}-html.zip"
+      getting_started_root = File.join( site.output_dir, 'getting-started', release.version )
+      FileUtils.mkdir_p( getting_started_root )
+
       if release == site.releases.first
         #puts "Linking documentation/current to #{release.version}"
         FileUtils.cd( File.join( site.output_dir, 'documentation' ) ) do |dir|
@@ -34,6 +38,18 @@ class Documentation
       unless File.exist?( File.join( doc_root, "index.html" ) )
         puts "Unzipping doc bundle for #{release.version}"
         unzip( bundle_path( doc_bundle_name ), doc_root )
+      end
+
+      if release.getting_started_guide == true
+        unless bundle_exists?( getting_started_bundle_name )
+          puts "Fetching getting started bundle for #{release.version}"
+          dl( release.urls.getting_started.remote_html_multi_zip )
+        end
+
+        unless File.exist?( File.join( getting_started_root, "index.html" ) )
+          puts "Unzipping getting started bundle for #{release.version}"
+          unzip( bundle_path( getting_started_bundle_name ), getting_started_root )
+        end
       end
 
       if release.api_docs === true

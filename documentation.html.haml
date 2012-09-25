@@ -19,6 +19,8 @@ priority: 0.9
           %a{:href=>'/2x/builds', :rel=>'beta documentation'}
             2.x.incremental
         %td
+          %a{:href=>'/2x/builds/getting-started/', :rel => 'beta documentation'}Getting Started Guide
+          |
           %a{:href=>'/2x/builds/html-docs/', :rel=>'beta documentation'}Manual
           |
           %a{:href=>'/2x/builds/javadocs/', :rel=>'beta documentation'}JavaDocs
@@ -34,6 +36,9 @@ priority: 0.9
         %td
           #{release.version}
         %td
+          - unless release.urls.getting_started.browse.empty?
+            %a{:href=>release.urls.getting_started.browse, :rel=>rel}Getting Started Guide
+            |
           %a{:href=>"/documentation/#{release.version}/", :rel=>rel}Manual
           - unless release.urls.docs.javadocs.empty?
             |

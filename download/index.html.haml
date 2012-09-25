@@ -30,6 +30,7 @@ priority: 1
   
       You may browse the documentation online:
       
+      * [Getting Started Guide for #{site.releases.first.version}](#{site.releases.first.urls.getting_started.browse})
       * [Manual for #{site.releases.first.version}](#{site.releases.first.urls.docs.browse})
       * [JavaDocs for #{site.releases.first.version}](#{site.releases.first.urls.docs.javadocs})
       * [Gem RDocs for #{site.releases.first.version}](#{site.releases.first.urls.docs.yardocs})
@@ -82,6 +83,9 @@ priority: 1
                 - else
                   Browse:
                   %ul
+                    - unless release.urls.getting_started.browse.empty?
+                      %li
+                        %a{:href=>release.urls.getting_started.browse, :rel=>rel} Getting Started Guide
                     %li
                       %a{:href=>release.urls.docs.browse, :rel=>rel} Manual
                     %li
