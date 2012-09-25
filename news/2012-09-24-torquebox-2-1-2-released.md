@@ -42,7 +42,7 @@ release and is a recommended upgrade for anyone running TorqueBox
 * We're a bit smarter about finding Bundler when `torquebox run` is
   used within an application that uses `bundle install
   --deployment`. If you've been fighting with errors like `no such
-  file to -- bundler/setup` this should fix them.
+  file to load -- bundler/setup` this should fix them.
 
 * We're much looser in our Thor dependency requirement for the
   torquebox gem so any error caused by TorqueBox requiring a Thor
