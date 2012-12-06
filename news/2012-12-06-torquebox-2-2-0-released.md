@@ -45,7 +45,7 @@ services, including *scheduled jobs*, *caching*, *messaging*, and
   don't run it on a production server unless you're absolutely sure
   you've locked it down.
 
-* Scheduled Jobs and Services and now be inspected and controlled at
+* Scheduled Jobs and Services can now be inspected and controlled at
   runtime via our new [TorqueBox::ScheduledJob][job_rdoc] and
   [TorqueBox::Service][service_rdoc] APIs.
 
