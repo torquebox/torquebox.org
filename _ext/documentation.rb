@@ -11,8 +11,10 @@ class Documentation
 
     @tmp_dir = site.tmp_dir
     
-    current_path = File.join( site.output_dir, 'documentation', 'current' ) 
-    FileUtils.rm( current_path ) if File.exist?( current_path )
+    current_docs_path = File.join( site.output_dir, 'documentation', 'current' )
+    FileUtils.rm( current_docs_path ) if File.exist?( current_docs_path )
+    current_guide_path = File.join( site.output_dir, 'getting-started', 'current' )
+    FileUtils.rm( current_guide_path) if File.exist?( current_guide_path )
 
     (site.releases).each do |release|
       doc_bundle_name = "torquebox-docs-en_US-#{release.version}-html.zip"
@@ -26,7 +28,11 @@ class Documentation
       if release == site.releases.first
         #puts "Linking documentation/current to #{release.version}"
         FileUtils.cd( File.join( site.output_dir, 'documentation' ) ) do |dir|
-          FileUtils.ln_s( release.version, 'current' ) 
+          FileUtils.ln_s( release.version, 'current' )
+        end
+
+        FileUtils.cd( File.join( site.output_dir, 'getting-started' ) ) do |dir|
+          FileUtils.ln_s( release.version, 'current' )
         end
       end
       
