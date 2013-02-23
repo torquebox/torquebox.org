@@ -212,15 +212,15 @@ renderer = {
   },
 
   build_sha1: function(build) {
-    if ( build.actions && build.actions.length >= 2 && build.actions[1].lastBuiltRevision ) {
-      return build.actions[1].lastBuiltRevision.SHA1;
+    if ( build.actions && build.actions.length >= 3 && build.actions[2].lastBuiltRevision ) {
+      return build.actions[2].lastBuiltRevision.SHA1;
     }
     return null;
   },
 
   build_sha1_short: function(build) {
-    if ( build.actions && build.actions.length >= 2 ) {
-      return build.actions[1].lastBuiltRevision.SHA1.substring(0,8);
+    if ( build.actions && build.actions.length >= 3 ) {
+      return build.actions[2].lastBuiltRevision.SHA1.substring(0,8);
     }
     return null;
   },
