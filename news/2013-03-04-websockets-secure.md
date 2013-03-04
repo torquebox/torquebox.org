@@ -110,3 +110,8 @@ StompClient client = new StompClient( "stomp+ssl://localhost:8676/", sslContext 
 
 Notice that pure STOMP-over-SSL uses the `stomp+ssl://` scheme in the URL. 
 
+# Availability
+
+This support is available in an incremental build of TorqueBox, and will
+be included in the 3.0.0 release stream.
+
