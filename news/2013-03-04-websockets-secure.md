@@ -28,13 +28,19 @@ using) to setup an additional connector
 &lt;/subsystem&gt;
 </code></pre>
 
-The main component is adding a `<connector>` and providing enough information
-for it to be able to find and unlock your SSL certificate.
+The main component is adding a `<connector>` with the `scheme` of
+`https`, the `secure` set to `true`, and the `socket-binding` set to
+`https`.  The `https` socket-binding uses port 8443 by default for web
+SSL traffic.
+
+Additionally, a nested `<ssl>` element is required to provide enough information
+for it to be able to find and unlock your SSL certificate, particularly the
+`certificate-key-file` and `password` attributes.
 
 ## Additional WebSocket connector
 
 While un-encrypted WebSocket traffic travels on port 8675 by default, if SSL
-is enable on the web-server, an additional WebSocket port is opened on port 8676.
+is enabled on the web-server, an additional WebSocket port is opened on port 8676.
 Since SSL is encrypted from the first packet, we cannot pass both secure and non-secure
 traffic on the same port.  Hence the additional port.
 
