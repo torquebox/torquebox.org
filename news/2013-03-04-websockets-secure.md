@@ -89,7 +89,7 @@ succeed.
 As with the non-secure STOMP endpoint, the secure port can accept connections
 from both STOMP-over-WebSockets clients and pure STOMP clients.  To use a
 pure STOMP client (such as the Stilts clients) with the secure port, simply pass
-in a correct-configured `SSLContext` which is backed by your trust-manager.  In 
+in a correctly-configured `SSLContext` which is backed by your trust-manager.  In 
 most cases, the trust-manager should be configured to trust the same keystore 
 (and certificate) that the server is using.
 
