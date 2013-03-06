@@ -1,0 +1,30 @@
+
+RewriteEngine on
+
+RewriteRule ^([0-9]+)/html-docs$                    http://%{HTTP_HOST}/builds/$1/html-docs/ [R,L]
+RewriteRule ^([0-9]+)/html-docs/$                   http://repository-projectodd.forge.cloudbees.com/incremental/torquebox/3.x/$1/html-docs/index.html [P]
+RewriteRule ^([0-9]+)/getting-started$              http://%{HTTP_HOST}/builds/$1/getting-started/ [R,L]
+RewriteRule ^([0-9]+)/getting-started/$             http://repository-projectodd.forge.cloudbees.com/incremental/torquebox/3.x/$1/getting-started/index.html [P]
+RewriteRule ^([0-9]+)/javadocs$                     http://%{HTTP_HOST}/builds/$1/javadocs/ [R,L]
+RewriteRule ^([0-9]+)/javadocs/$                    http://repository-projectodd.forge.cloudbees.com/incremental/torquebox/3.x/$1/javadocs/index.html [P]
+RewriteRule ^([0-9]+)/yardocs$                      http://%{HTTP_HOST}/builds/$1/yardocs/ [R,L]
+RewriteRule ^([0-9]+)/yardocs/$                     http://repository-projectodd.forge.cloudbees.com/incremental/torquebox/3.x/$1/yardocs/index.html [P]
+RewriteRule ^([0-9]+)/(.*)$                         http://repository-projectodd.forge.cloudbees.com/incremental/torquebox/3.x/$1/$2 [P]
+
+RewriteRule ^(LATEST/)?html-docs$                   http://%{HTTP_HOST}/builds/$1html-docs/ [R,L]
+RewriteRule ^(LATEST/)?html-docs/$                  http://repository-projectodd.forge.cloudbees.com/incremental/torquebox/3.x/LATEST/html-docs/index.html [P]
+RewriteRule ^(LATEST/)?getting-started$             http://%{HTTP_HOST}/builds/$1getting-started/ [R,L]
+RewriteRule ^(LATEST/)?getting-started/$            http://repository-projectodd.forge.cloudbees.com/incremental/torquebox/3.x/LATEST/getting-started/index.html [P]
+RewriteRule ^(LATEST/)?javadocs$                    http://%{HTTP_HOST}/builds/$1javadocs/ [R,L]
+RewriteRule ^(LATEST/)?javadocs/$                   http://repository-projectodd.forge.cloudbees.com/incremental/torquebox/3.x/LATEST/javadocs/index.html [P]
+RewriteRule ^(LATEST/)?yardocs$                     http://%{HTTP_HOST}/builds/$1yardocs/ [R,L]
+RewriteRule ^(LATEST/)?yardocs/$                    http://repository-projectodd.forge.cloudbees.com/incremental/torquebox/3.x/LATEST/yardocs/index.html [P]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(LATEST/)?(.*)$                        http://repository-projectodd.forge.cloudbees.com/incremental/torquebox/3.x/LATEST/$2 [P]
+
+
+SetEnvIfNoCase Request_URI torquebox-dist-bin\.zip$ torquebox-latest
+Header set Content-Disposition \
+    "attachment; filename=torquebox-dist-bin.zip" env=torquebox-latest
