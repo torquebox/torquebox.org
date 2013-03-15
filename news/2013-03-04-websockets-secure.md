@@ -2,7 +2,7 @@
 title: 'WebSockets: Secure!'
 author: Bob McWhirter
 layout: news
-timestamp: 2012-09-07T18:00:00.0Z
+timestamp: 2013-03-04T18:00:00.0Z
 tags: [ websockets, stomp, ssl, tls ]
 ---
 
