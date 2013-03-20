@@ -102,7 +102,7 @@ The above can be replaced with:
 <pre><code>client.connect( function() { ... } )</code></pre>
 
 You can still provide a username and password, if for some reason you require it.
-As long as the last parameter the on-connect callback function, you're golden.
+As long as the last parameter is an on-connect callback function, you're golden.
 
 # Middleware begone
 
