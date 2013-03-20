@@ -92,7 +92,7 @@ secure flag.
 
 <pre><code>client = new Stomp.Client('myhost.com', 8676, true);</code></pre>
 
-Additionally, while `connect()` previous took an un-used combination of username
+Additionally, while `connect()` previously took an un-used combination of username
 and password, these are now optional:
 
 <pre><code>client.connect( null, null, function() { ... } )</code></pre>
@@ -100,6 +100,9 @@ and password, these are now optional:
 The above can be replaced with:
 
 <pre><code>client.connect( function() { ... } )</code></pre>
+
+You can still provide a username and password, if for some reason you require it.
+As long as the last parameter the on-connect callback function, you're golden.
 
 # Middleware begone
 
