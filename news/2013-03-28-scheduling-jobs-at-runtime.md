@@ -2,7 +2,7 @@
 title: 'Scheduling jobs at runtime'
 author: Marek Goldmann
 layout: news
-timestamp: 2013-03-26T16:00:00.0Z
+timestamp: 2013-03-28T16:10:00.0Z
 tags: [ jobs ]
 ---
 
@@ -38,13 +38,13 @@ expression and run it once a minute, for example:
 
     TorqueBox::ScheduledJob.schedule('Counter', '0 * * * * ?')
 
-The `schedule` method is synchronous - it waits until the job is fully deployed
-and returns `true` afterwards. There is a default wait time set to 5s. If the job
-is not created in that time the method returns `false`.
+The `schedule` method  waits until the job is fully deployed and returns `true`
+afterwards. If the job is not created in 30s the method returns `false`.
 
-There are many other options, including customizing the wait time as well as the job
-name. Please refer to the [RDoc documentation for the `schedule`
-method](/builds/yardocs/TorqueBox/ScheduledJob.html#schedule-class_method) for the details.
+There are many other options, including customizing the job name or
+description. Please refer to the [RDoc documentation for the `schedule`
+method](/builds/yardocs/TorqueBox/ScheduledJob.html#schedule-class_method) for
+the details.
 
 ## Job names
 
@@ -66,7 +66,7 @@ This will make it easier to look it up later, for management.
 
 It's also easy to do simple management of a scheduled job:
 
-    job = TorqueBox::ScheduledJob.lookup('Counter')
+    job = TorqueBox::ScheduledJob.lookup('job.counter')
     job.started? # true
     job.stop
     job.status   # STOPPED
@@ -124,9 +124,11 @@ instead of specifying the time of the first job execution you define a delay
     )
 
 This style focuses on the count of job executions. This job will be executed
-for the first time 10s from now and repeated 5 times every 1s. Please note that the
-total count of executions will be 6, since the first is not counted.
-
+for the first time 10s from now and repeated 5 times every 1s.  Please note
+that the total count of executions will be 6, since it executes once then
+repeats 5 times. By default `:repeat` is set to `0`, so only one execution
+will happen.
+  
 You can replace the `:at` parameter with `:in` just like shown in the *In,
 every, until* example.
 
@@ -143,6 +145,6 @@ method](/builds/yardocs/TorqueBox/ScheduledJob.html#at-class_method).
 # When will it be available?
 
 We plan to include these new features in the next TorqueBox release. But if
-you're eager to test them - use one of our [incremental builds](/builds/). It's
+you're eager to test them - use the latest [incremental build](/builds/). It's
 already there!
 
