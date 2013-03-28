@@ -22,13 +22,13 @@ Simple and still cool.
 
 But there was one issue related to scheduled jobs - you could create them only
 at deployment time. We fixed this - you can now create scheduled jobs at
-runtime now too.
+runtime too.
 
 # Runtime!
 
-With the latest changes to the TorqueBox codebase we can now use full power of
-scheduled jobs with the flexibility of runtime scheduling. Let's start with an
-example.
+With the latest changes to the TorqueBox codebase we can now use the full power
+of scheduled jobs with the flexibility of runtime scheduling. Let's start with
+an example.
 
     TorqueBox::ScheduledJob.schedule('Counter', '*/10 * * * * ?')
 
