@@ -64,8 +64,15 @@ grown in size but rubygems.org has undergone a lot of changes in the
 last few months and one of those is apparently a decreased maximum gem
 size. We'll try to figure something out for future TorqueBox releases.
 
-**What this means is that torquebox-server users are stuck on 2.3.0
-  for now**
+**Update**
+
+We've created a custom gem repository you can add as a source to get
+torquebox-server 2.3.1 - here's an example Gemfile.
+
+    source 'https://rubygems.org'
+    source 'http://torquebox.org/rubygems'
+
+    gem 'torquebox-server', '2.3.1'
 
 ## Upgrading from 2.3.0
 
