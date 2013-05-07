@@ -1,6 +1,10 @@
+- version: '2.3.1'
+  jira_version: 12321321
+  latest: true
+  api_docs: true
+  getting_started_guide: true
 - version: '2.3.0'
   jira_version: 12319878
-  latest: true
   api_docs: true
   getting_started_guide: true
 - version: '2.2.0'
