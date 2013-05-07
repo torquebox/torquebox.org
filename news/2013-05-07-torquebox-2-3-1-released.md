@@ -3,7 +3,7 @@ title: 'TorqueBox 2.3.1 Released'
 author: The Entire TorqueBox Team
 layout: release
 version: '2.3.1'
-timestamp: 2013-05-07t13:15:00.0-04:00
+timestamp: 2013-05-07t12:45:00.0-04:00
 tags: [ releases ]
 ---
 
@@ -55,11 +55,24 @@ services, including *scheduled jobs*, *caching*, *messaging*, and
 
 Scroll down for the complete list of issues fixed in this release.
 
+## Where's the torquebox-server gem?
+
+Unfortunately, we found out at the last-minute after pushing all other
+TorqueBox 2.3.1 gems that the torquebox-server gem is too large to
+upload to rubygems.org. It was not too large in the past and has not
+grown in size but rubygems.org has undergone a lot of changes in the
+last few months and one of those is apparently a decreased maximum gem
+size. We'll try to figure something out for future TorqueBox releases.
+
+**What this means is that torquebox-server users are stuck on 2.3.0
+  for now**
+
 ## Upgrading from 2.3.0
 
-Upgrading from 2.3.0 to 2.3.1 should be very straightforward - we
-worked hard to ensure only bug fixes made it into this release so no
-configuration or code should need changing.
+Upgrading from 2.3.0 to 2.3.1 should be very straightforward, unless
+you use the torquebox-server gem - we worked hard to ensure only bug
+fixes made it into this release so no configuration or code should
+need changing.
 
 ## Don't be a stranger!
 
