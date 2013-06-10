@@ -19,15 +19,15 @@ priority: 0.9
           %a{:href=>'/builds', :rel=>'incremental builds'}
             Latest incremental
         %td
-          %a{:href=>'/builds/getting-started/', :rel => 'incremental documentation'}Getting Started Guide
+          %a{:href=>'/builds/LATEST/getting-started/', :rel => 'incremental documentation'}Getting Started Guide
           |
-          %a{:href=>'/builds/html-docs/', :rel=>'incremental documentation'}Manual
+          %a{:href=>'/builds/LATEST/html-docs/', :rel=>'incremental documentation'}Manual
           |
-          %a{:href=>'/builds/javadocs/', :rel=>'incremental documentation'}JavaDocs
+          %a{:href=>'/builds/LATEST/javadocs/', :rel=>'incremental documentation'}JavaDocs
           |
-          %a{:href=>'/builds/yardocs/', :rel=>'incremental documentation'}Gem RDocs
+          %a{:href=>'/builds/LATEST/yardocs/', :rel=>'incremental documentation'}Gem RDocs
         %td
-          %a{:href=>'/builds/torquebox-docs.pdf', :rel=>'incremental documentation'}
+          %a{:href=>'/builds/LATEST/torquebox-docs.pdf', :rel=>'incremental documentation'}
             PDF
 
     - for release in ( site.releases )
