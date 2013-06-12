@@ -3,7 +3,7 @@ title: 'TorqueBox 2.3.2 Released'
 author: The Entire TorqueBox Team
 layout: release
 version: '2.3.2'
-timestamp: 2013-06-12t14:45:00.0-04:00
+timestamp: 2013-06-12t13:10:00.0-04:00
 tags: [ releases ]
 ---
 
