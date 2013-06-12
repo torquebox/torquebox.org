@@ -16,6 +16,7 @@ RewriteRule ^builds/LATEST/torquebox-dist-bin.zip$    %{ENV:base_artifact_url}/t
 
 RewriteRule ^release/(.*)$    %{ENV:release_url}/$1 [R,L]
 
+RewriteRule ^rubygems$         http://repository-projectodd.forge.cloudbees.com/rubygems/ [R,L]
 RewriteRule ^rubygems/(.*)$    http://repository-projectodd.forge.cloudbees.com/rubygems/$1 [R,L]
 
 SetEnvIfNoCase Request_URI torquebox-dist-bin\.zip$ torquebox-latest
