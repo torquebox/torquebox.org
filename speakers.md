@@ -59,3 +59,4 @@ location.
 | Bob McWhirter  | bobmcw               | United States, Virginia
 | Bruno Oliveira | abstractj            | Brazil 
 | Adam Warski    | awarski              | Poland
+| Michael Johann | malagant             | Germany
