@@ -158,7 +158,8 @@ renderer = {
             $( '<td class="docs"/>' ),
             $( '<td class="git"/>' ),
             $( '<td rowspan="2" class="matrix 1_8 matrix-unknown"/>' ),
-            $( '<td rowspan="2" class="matrix 1_9 matrix-unknown"/>' )
+            $( '<td rowspan="2" class="matrix 1_9 matrix-unknown"/>' ),
+            $( '<td rowspan="2" class="matrix 2_0 matrix-unknown"/>' )
           );
 
     if ( self.build_sha1( build ) ) {
@@ -242,5 +243,6 @@ renderer = {
 j = new Jenkins( renderer, 'http://projectodd.ci.cloudbees.com', 'torquebox-incremental', [
                    [ 'label=m1.large,ruby_compat_version=1.8', '1_8' ],
                    [ 'label=m1.large,ruby_compat_version=1.9', '1_9' ],
+                   [ 'label=m1.large,ruby_compat_version=2.0', '2_0' ]
                  ] );
 
