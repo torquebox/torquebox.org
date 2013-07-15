@@ -17,7 +17,7 @@ class Downloads
              end
            end
 
-  VERSION_RANGE      = Range.new(Versionomy.parse('1.0.0', FORMAT), Versionomy.parse('2.99', FORMAT))
+  VERSION_RANGE      = Range.new(Versionomy.parse('1.0.0', FORMAT), Versionomy.parse('3.9.9', FORMAT))
   REPO_PREFIX        = "http://repository-projectodd.forge.cloudbees.com/release/org/torquebox"
   LOCAL_REPO_PREFIX  = "/release/org/torquebox"
 
@@ -41,6 +41,9 @@ class Downloads
         release_suffix                = "/torquebox-dist/#{release.version}/torquebox-dist-#{release.version}-bin.zip"
         release.urls.dist_zip         = "#{LOCAL_REPO_PREFIX}#{release_suffix}"
         release.urls.remote_dist_zip  = "#{REPO_PREFIX}#{release_suffix}"
+        eap_release_suffix            = "/torquebox-dist/#{release.version}/torquebox-dist-#{release.version}-eap-overlay.zip"
+        release.urls.eap_zip          = "#{LOCAL_REPO_PREFIX}#{eap_release_suffix}"
+        release.urls.remote_eap_zip   = "#{REPO_PREFIX}#{eap_release_suffix}"
       end
     end
   end

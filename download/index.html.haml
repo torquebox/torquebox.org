@@ -72,8 +72,15 @@ priority: 1
                 = announcement.date.strftime( '%d %B %Y' )
           %td
             - rel = release.latest? ? 'download' : 'nofollow'
-            %a{:href=>release.urls.dist_zip, :rel=>rel}
-              ZIP archive (#{release.dist_size}mb)
+            - if release.eap_overlay?
+              %a{:href=>release.urls.dist_zip, :rel=>rel}
+                Slim ZIP archive (#{release.dist_size}mb)
+              <br/>
+              %a{:href=>release.urls.eap_zip}
+                JBoss EAP overlay (#{release.eap_size}mb)
+            - else
+              %a{:href=>release.urls.dist_zip, :rel=>rel}
+                ZIP archive (#{release.dist_size}mb)
           %td
             - rel = release.latest? ? 'documentation' : 'nofollow'
             %ul

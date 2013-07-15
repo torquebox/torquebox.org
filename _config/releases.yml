@@ -1,6 +1,11 @@
+- version: '3.0.0.beta1'
+  jira_version: 12320005
+  latest: true
+  api_docs: true
+  getting_started_guide: true
+  eap_overlay: true
 - version: '2.3.2'
   jira_version: 12321998
-  latest: true
   api_docs: true
   getting_started_guide: true
 - version: '2.3.1'

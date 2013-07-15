@@ -42,6 +42,9 @@ change_frequency: monthly
         %ul
           %li
             %a{:href=>release.urls.dist_zip} Download #{release.version} binary
+          - if release.eap_overlay?
+            %li
+              %a{:href=>release.urls.eap_zip} Download #{release.version} JBoss EAP overlay
           - unless release.urls.getting_started.browse.empty?
             %li
               %a{:href=>release.urls.getting_started.browse} Browse getting started guide for #{release.version}
