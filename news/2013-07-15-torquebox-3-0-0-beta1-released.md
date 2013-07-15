@@ -50,9 +50,9 @@ need.
 
 If you use Java EE then you'll need to download [JBoss EAP
 6][download_eap], our new [TorqueBox overlay][download_overlay] for
-EAP 6, and unzip the TorqueBox overlay on top of the unzipped EAP
-6. We've added a [new section to the Getting Started
-Guide][eap_instructions] to walk you through this process.
+EAP 6, and unzip the TorqueBox overlay on top of EAP 6. We've added a
+[new section to the Getting Started Guide][eap_instructions] to walk
+you through this process.
 
 The TorqueBox EAP overlay is purely additive and does not modify any
 existing files when unzipped on top of a JBoss EAP 6
