@@ -24,19 +24,18 @@ GEM
       sass (~> 3.1)
     compass-960-plugin (0.10.4)
       compass (>= 0.10.0)
-    ffi (1.9.0)
     ffi (1.9.0-java)
     fssm (0.2.10)
     git (1.2.5)
     haml (4.0.3)
       tilt
+    json (1.8.0-java)
     kramdown (1.1.0)
     listen (1.2.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
       rb-kqueue (>= 0.2)
     mime-types (1.23)
-    nokogiri (1.5.10)
     nokogiri (1.5.10-java)
     rack (1.5.2)
     rb-fsevent (0.9.3)
@@ -59,5 +58,6 @@ PLATFORMS
 
 DEPENDENCIES
   awestruct (~> 0.5.3)
+  json
   kramdown (~> 1.1.0)
   versionomy (~> 0.4.4)
