@@ -1,4 +1,5 @@
-source :rubygems
+source 'https://rubygems.org'
 
-gem 'awestruct', '0.4.2.x5'
-gem 'therubyracer'
+gem 'awestruct', '~> 0.5.3'
+gem 'kramdown', '~> 1.1.0'
+gem 'versionomy', '~> 0.4.4'

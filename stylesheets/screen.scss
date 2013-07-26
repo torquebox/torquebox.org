@@ -3,7 +3,7 @@
 @import "partials/base";
 @import "blueprint";
 @import "blueprint/scaffolding";
-@import "compass/utilities/lists";
+@import "compass/typography/lists";
 @import "compass/css3/border-radius";
 
 // To generate css equivalent to the blueprint css but with your
@@ -13,7 +13,7 @@
 // But Compass recommends that you scope your blueprint styles
 // So that you can better control what pages use blueprint
 // when stylesheets are concatenated together.
-@include blueprint-scaffolding("body.bp");
+@include blueprint-scaffolding();
 
 body.bp {
   @include blueprint-typography(true);
