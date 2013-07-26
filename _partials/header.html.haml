@@ -5,18 +5,34 @@
 
   %table.downloads
     %tr.stable
+      - release = release_for_version('2.3.2')
       %th
-        #{site.releases.first.version}
+        #{release.version}
       %td
-        #{site.releases.first.dist_size}mb
+        #{release.dist_size}mb
       %td
-        %a{:href=>site.releases.first.urls.dist_zip} 
+        %a{:href=>release.urls.dist_zip} 
           ZIP
         |
-        %a{:href=>site.releases.first.urls.docs.pdf}
+        %a{:href=>release.urls.docs.pdf}
           PDF
         |
-        %a{:href=>'/documentation/current'}
+        %a{:href=>"/documentation/#{release.version}"}
+          HTML
+    %tr.beta
+      - release = site.releases.first
+      %th
+        #{release.version}
+      %td
+        #{release.dist_size}mb
+      %td
+        %a{:href=>release.urls.dist_zip} 
+          ZIP
+        |
+        %a{:href=>release.urls.docs.pdf}
+          PDF
+        |
+        %a{:href=>"/documentation/#{release.version}"}
           HTML
     %tr.incremental
       %th
