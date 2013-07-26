@@ -6,3 +6,4 @@ _tmp
 _rewrite.log
 .rvmrc
 .awestruct
+Gemfile.lock
