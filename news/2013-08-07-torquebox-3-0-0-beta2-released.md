@@ -3,7 +3,7 @@ title: 'TorqueBox 3.0.0.beta2 Released'
 author: The Entire TorqueBox Team
 layout: release
 version: '3.0.0.beta2'
-timestamp: 2013-08-07t14:30:00.0-04:00
+timestamp: 2013-08-07t14:15:00.0-04:00
 tags: [ releases ]
 ---
 
@@ -72,6 +72,13 @@ compatibility with TorqueBox 3 while also retaining compatibility with
 TorqueBox 2. If you previously tried to use torquebox-console with
 TorqueBox 3.0.0.beta1 or later updating to torquebox-console 0.3.0
 should fix things.
+
+## Upgrading from 3.0.0.beta1
+
+No changes (other than bumping gem versions) should be required to
+your application or the AS7 configuration files to upgrade from
+TorqueBox 3.0.0.beta1 to 3.0.0.beta2.
+
 
 ## Don't be a stranger!
 
