@@ -38,7 +38,7 @@ Zero downtime deployments now wait until the new JRuby runtimes are
 completely initialized before sending requests to them, preventing any
 web timeout issues you may have seen in 3.0.0.beta1.
 
-If the new runtimes fail to initialize we also log and error and
+If the new runtimes fail to initialize we also log an error and
 continue to use the old runtimes so that an application isn't left in
 an unusable state.
 
