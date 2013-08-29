@@ -5,21 +5,6 @@
 
   %table.downloads
     %tr.stable
-      - release = release_for_version('2.3.2')
-      %th
-        #{release.version}
-      %td
-        #{release.dist_size}mb
-      %td
-        %a{:href=>release.urls.dist_zip} 
-          ZIP
-        |
-        %a{:href=>release.urls.docs.pdf}
-          PDF
-        |
-        %a{:href=>"/documentation/#{release.version}"}
-          HTML
-    %tr.beta
       - release = site.releases.first
       %th
         #{release.version}
