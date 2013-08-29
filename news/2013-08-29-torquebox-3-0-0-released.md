@@ -133,16 +133,16 @@ environments like Amazon EC2.
 
 TorqueBox Stomplets, used for pushing data to a browser directly from
 the server, now support falling back from WebSockets to Flash,
-server-sent events, and long-polling. We've also added secure
-WebSocket (wss://) support, change the JavaScript client API a bit,
-and fixed passing of UTF8 encoded data from the JavaScript
+Server-Sent Events (SSE), and long-polling. We've also added secure
+WebSocket (wss://) support, changed the JavaScript client API a bit,
+and fixed passing of UTF8-encoded data from the JavaScript
 client. Check out our blog posts "[STOMP Improvements][stomp_improve]"
 and "[WebSockets: Secure!][wss]" for more details.
 
 
 ## Upgrading from 2.3.2
 
-Upgrading from 2.3.2 to 3.0.0.beta1 should be fairly smooth - please let us know.
+Upgrading from 2.3.2 to 3.0.0 should be fairly smooth - please let us know.
 
 * If you deployed Java EE applications to TorqueBox you'll need the
 new EAP overlay as described above.
