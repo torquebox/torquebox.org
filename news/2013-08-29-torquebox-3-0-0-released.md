@@ -163,6 +163,9 @@ domain mode) are what get used. For the EAP overlay,
 torquebox-full.xml, torquebox-full-ha.xml, and torquebox-full.xml (in
 domain mode) are what get used.
 
+Read our [3.0.0.beta1][] and [3.0.0.beta2][] release announcements for
+more specifics on the changes that went into each of those releases.
+
 ## Upgrading from 3.0.0.beta2
 
 No changes (other than bumping gem versions) should be required to
@@ -233,3 +236,5 @@ As always, if you have any questions about or issues with TorqueBox, please [get
 [stomp_improve]:     /news/2013/03/20/stomp-improvements/
 [wss]:               /news/2013/03/04/websockets-secure/
 [standalone_ha]:     https://github.com/torquebox/torquebox/commits/3.0.0/build/assembly/src/main/resources/standalone/configuration/torquebox-slim-ha.xml
+[3.0.0.beta1]:       /news/2013/07/15/torquebox-3-0-0-beta1-released/
+[3.0.0.beta2]:       /news/2013/08/07/torquebox-3-0-0-beta2-released/
