@@ -93,9 +93,10 @@ href='https://issues.jboss.org/browse/TORQUE-1178'>TORQUE-1178</a>.
 
 ## Upgrading from 3.0.1
 
-No changes (other than bumping gem versions) should be required to
-your application or the AS7 configuration files to upgrade from
-TorqueBox 3.0.0 to 3.0.1.
+If you manage your own AS7 configuration files, you'll need to replace
+any instances of 'UNICAST3' with 'UNICAST2' because of the different
+JGroups version. Otherwise, no changes (other than bumping gem
+versions) should be required to upgrade from TorqueBox 3.0.0 to 3.0.1.
 
 ## Don't be a stranger!
 
