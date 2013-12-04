@@ -76,11 +76,10 @@ Try our `torqbox` gem and [let us know][community] what it lacks to
 make it your default JRuby web server. Also let us know what feature
 from TorqueBox 3 (or elsewhere) you'd like to see us tackle
 next. Real-time push of data from the server to browser clients?
-Background jobs? Asynchronous messaging? Running multiple applications
-in one server? Whatever we add next, `torqbox` will remain the
-lightweight, high-performance web serving core and additional features
-will be brought in by adding additional gems to your Gemfile.
-
+Background jobs? Asynchronous messaging? Whatever we add next,
+`torqbox` will remain the lightweight, high-performance web serving
+core and additional features will be brought in by adding additional
+gems to your Gemfile.
 
 
 
