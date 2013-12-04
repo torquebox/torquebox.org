@@ -27,3 +27,6 @@ SetEnvIfNoCase Request_URI torquebox-doc\.pdf torquebox-doc-latest
 Header set Content-Disposition \
     "attachment; filename=torquebox-doc.pdf" env=torquebox-doc-latest
 
+
+RewriteRule ^torqbox$      /torqbox/ [R]
+RewriteRule ^torqbox/?$    /news/2013/12/04/torquebox-next-generation/ [R]
