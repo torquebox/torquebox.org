@@ -1,7 +1,7 @@
 
 class Documentation
   API_DOC_REPO = "http://repository-projectodd.forge.cloudbees.com/release/org/torquebox/torquebox-complete/"
-  
+
   def initialize(enabled=true)
     @enabled = enabled
   end
@@ -10,7 +10,7 @@ class Documentation
     return unless @enabled
 
     @tmp_dir = site.tmp_dir
-    
+
     current_docs_path = File.join( site.output_dir, 'documentation', 'current' )
     FileUtils.rm( current_docs_path ) if File.exist?( current_docs_path )
     current_guide_path = File.join( site.output_dir, 'getting-started', 'current' )
@@ -35,15 +35,16 @@ class Documentation
           FileUtils.ln_s( release.version, 'current' )
         end
       end
-      
+
       unless bundle_exists?( doc_bundle_name )
         puts "Fetching doc bundle for #{release.version}"
         dl( release.urls.docs.remote_html_multi_zip )
       end
-      
+
       unless File.exist?( File.join( doc_root, "index.html" ) )
         puts "Unzipping doc bundle for #{release.version}"
         unzip( bundle_path( doc_bundle_name ), doc_root )
+        add_analytics( site, doc_root )
       end
 
       if release.getting_started_guide == true
@@ -55,18 +56,19 @@ class Documentation
         unless File.exist?( File.join( getting_started_root, "index.html" ) )
           puts "Unzipping getting started bundle for #{release.version}"
           unzip( bundle_path( getting_started_bundle_name ), getting_started_root )
+          add_analytics( site, getting_started_root )
         end
       end
 
       if release.api_docs === true
-        api_docs( release.version, 'javadoc', doc_root )
-        api_docs( release.version, 'yardoc', doc_root )
+        api_docs( site, release.version, 'javadoc', doc_root )
+        api_docs( site, release.version, 'yardoc', doc_root )
       end
-      
+
     end
   end
 
-  def api_docs(version, type, root)
+  def api_docs(site, version, type, root)
     bundle_name = "torquebox-complete-#{version}-#{type}s.jar"
     url = API_DOC_REPO + version + "/#{bundle_name}"
 
@@ -80,6 +82,7 @@ class Documentation
       puts "Unzipping #{type} bundle for #{version}"
       FileUtils.mkdir_p( output_dir )
       unzip( bundle_path( bundle_name ), output_dir )
+      add_analytics( site, output_dir )
     end
   end
 
@@ -94,11 +97,27 @@ class Documentation
   def unzip(bundle, dest)
     `unzip -q #{bundle} -d #{dest}`
   end
-  
-
 
   def dl(url, dir = @tmp_dir)
     `wget --quiet -P #{dir} #{url}`
   end
-  
+
+  def add_analytics(site, root)
+    analytics_code = AnalyticsHelper.new(site).google_analytics_async
+    Dir.glob( "#{root}/**/*.html" ).each do |path|
+      puts "!!! Adding analytics to #{path}"
+      contents = File.read( path )
+      contents.sub!(/(<\/body>)/i, "#{analytics_code}\\1")
+      File.write( path, contents )
+    end
+  end
+
+  class AnalyticsHelper
+    include Awestruct::Extensions::GoogleAnalytics
+    attr_reader :site
+    def initialize(site)
+      @site = site
+    end
+  end
+
 end
