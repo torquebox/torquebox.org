@@ -91,7 +91,7 @@ href='https://issues.jboss.org/browse/TORQUE-1178'>TORQUE-1178</a>.
   
 
 
-## Upgrading from 3.0.1
+## Upgrading from 3.0.0
 
 If you manage your own AS7 configuration files, you'll need to replace
 any instances of 'UNICAST3' with 'UNICAST2' because of the different
