@@ -117,7 +117,7 @@ As always, if you have any questions about or issues with TorqueBox, please [get
 [features]:         /features
 [community]:        /community/
 
-[torqbox]:          http://localhost:4242/news/2013/12/04/torquebox-next-generation/
+[torqbox]:          http://torquebox.org/news/2013/12/04/torquebox-next-generation/
 [tfbr8]:            http://www.techempower.com/benchmarks/#section=data-r8&hw=i7&test=json
 [jruby179]:         http://jruby.org/2013/12/06/jruby-1-7-9.html
 [jruby1710]:        http://jruby.org/2014/01/09/jruby-1-7-10.html
