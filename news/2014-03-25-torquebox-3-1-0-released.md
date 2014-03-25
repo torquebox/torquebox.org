@@ -3,7 +3,7 @@ title: 'TorqueBox 3.1.0 Released'
 author: The Entire TorqueBox Team
 layout: release
 version: '3.1.0'
-timestamp: 2014-03-25t11:30:00.0-05:00
+timestamp: 2014-03-25t11:45:00.0-05:00
 tags: [ releases ]
 ---
 
