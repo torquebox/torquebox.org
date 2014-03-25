@@ -83,9 +83,11 @@ trying to do a rolling upgrade of a cluster from 3.0.2 to 3.1.0
 because of the new Infinispan version. In the past, Infinispan version
 bumps have meant clustered rolling upgrades might not go so well.
 
-If you maintain your own XML config files, we haven't changed anything
-of note since 3.0.2. Your old config files should continue to work
-as-is.
+If you maintain your own XML config files, there is a change related
+to the Infinispan upgrade you'll need to apply. Commit [b51fb2b][] has
+all the details, but essentially there is now a 'polyglot'
+cache-container defined in the config file instead of it just being an
+alias to the 'web' cache-container.
 
 
 ## Don't be a stranger!
@@ -133,3 +135,4 @@ As always, if you have any questions about or issues with TorqueBox, please [get
 [pooling]:          /documentation/3.1.0/pooling.html
 [TORQUE-1199]:      https://issues.jboss.org/browse/TORQUE-1199
 [TORQUE-1151]:      https://issues.jboss.org/browse/TORQUE-1151
+[b51fb2b]:          https://github.com/torquebox/torquebox/commit/b51fb2b
