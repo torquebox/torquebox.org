@@ -3,6 +3,7 @@ tmp
 _site
 _tmp
 _vendor
+_gems
 .sass-cache
 _rewrite.log
 .rvmrc
