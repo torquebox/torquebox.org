@@ -7,4 +7,5 @@ _vendor
 _rewrite.log
 .rvmrc
 .awestruct
+.bundle
 Gemfile.lock
