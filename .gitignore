@@ -2,6 +2,7 @@ tmp
 *.swp
 _site
 _tmp
+_vendor
 .sass-cache
 _rewrite.log
 .rvmrc
