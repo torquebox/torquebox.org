@@ -1,5 +1,5 @@
 ---
-event: the Boulder Ruby Group
+event: Boulder Ruby Group
 event_date: 15 July, 2014
 event_url: http://www.meetup.com/boulder_ruby_group/events/185641642/
 location: Boulder, Colorado
