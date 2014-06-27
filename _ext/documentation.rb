@@ -103,7 +103,7 @@ class Documentation
   end
 
   def add_analytics(site, root)
-    analytics_code = AnalyticsHelper.new(site).google_analytics_async
+    analytics_code = AnalyticsHelper.new(site).google_analytics
     Dir.glob( "#{root}/**/*.html" ).each do |path|
       contents = File.read( path )
       contents.sub!(/(<\/body>)/i, "#{analytics_code}\\1")
