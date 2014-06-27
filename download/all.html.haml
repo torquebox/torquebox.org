@@ -1,49 +1,9 @@
 ---
 layout: default
-title: Download
+title: All Downloads
 change_frequency: monthly
 priority: 1
 ---
-
-#two-column
-  #left-column
-    :markdown
-      # Binary Distribution
-    
-      The latest binary distribution is #{site.releases.first.version}
-      
-      * [Download torquebox-#{site.releases.first.version}](#{site.releases.first.urls.dist_zip})
-
-      # Incremental Builds
-
-      Unstable [incremental builds](/builds/) are produced regularly from our 
-      [continuous integration server](/development#ci). 
-      
-      A developer build has no guarantee of actually working.  *At all.*  But it probably will.  Feel free to try it.
-
-      * [Download the latest incremental build](/builds/torquebox-dist-bin.zip)
-     
-
-  #right-column
-    :markdown
-      # Documentation
-  
-      You may browse the documentation online:
-      
-      * [Getting Started Guide for #{site.releases.first.version}](#{site.releases.first.urls.getting_started.browse})
-      * [Manual for #{site.releases.first.version}](#{site.releases.first.urls.docs.browse})
-      * [JavaDocs for #{site.releases.first.version}](#{site.releases.first.urls.docs.javadocs})
-      * [Gem RDocs for #{site.releases.first.version}](#{site.releases.first.urls.docs.yardocs})
-
-      The manual is available for download in several forms:
-  
-      * [PDF Manual for #{site.releases.first.version}](#{site.releases.first.urls.docs.pdf})
-      * [Multi-page HTML Manual for #{site.releases.first.version}](#{site.releases.first.urls.docs.html_multi_zip})
-      * [ePub Manual for #{site.releases.first.version}](#{site.releases.first.urls.docs.epub})
-
-      You may also obtain a pdf containing the latest, un-released manual that coincides with our developer build.
-
-      * [Download the latest incremental manual](/builds/torquebox-docs.pdf)
 
 #download-table
   %table.downloads
@@ -58,7 +18,7 @@ priority: 1
         Changelog
       %th
         Git Tree
-    - for release in site.releases.first(5)
+    - for release in site.releases
       - if release.published?
         %tr
           %td
@@ -120,5 +80,3 @@ priority: 1
             %a{:href=>release.urls.github.tree} Browse
 
 
-:markdown
-  ## [Older releases](/download/all)
