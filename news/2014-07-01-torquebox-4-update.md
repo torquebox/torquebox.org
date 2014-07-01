@@ -62,7 +62,7 @@ advanced functionality when run inside of it, such as:
 ## Following along
 
 If you'd like to follow along or contribute to the TorqueBox 4
-development, it currently takes places on the [torqbox][tb4git]
+development, it currently takes place on the [torqbox][tb4git]
 branch. We'll be merging that to master before too long and will give
 a heads-up on the [developer mailing list][devlist] when that happens.
 
