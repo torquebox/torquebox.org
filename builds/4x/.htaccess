@@ -1,7 +1,9 @@
 RewriteEngine on
 
-RewriteRule ^([0-9]+)/yardocs$                      http://%{HTTP_HOST}/builds/4x/$1/yardocs/ [R,L]
-RewriteRule ^([0-9]+)/yardocs/$                     https://projectodd.ci.cloudbees.com/job/torquebox-4/$1/artifact/doc/index.html [P]
+RewriteRule ^([0-9]+)/docs$                      http://%{HTTP_HOST}/builds/4x/$1/yardocs/ [R,L]
+RewriteRule ^([0-9]+)/docs/$                     https://projectodd.ci.cloudbees.com/job/torquebox-4/$1/artifact/doc/index.html [P]
+RewriteRule ^([0-9]+)/docs/(.+)$                 https://projectodd.ci.cloudbees.com/job/torquebox-4/$1/artifact/doc/$2 [P]
 
-RewriteRule ^(LATEST/)?yardocs$                     http://%{HTTP_HOST}/builds/4x/$1yardocs/ [R,L]
-RewriteRule ^(LATEST/)?yardocs/$                    https://projectodd.ci.cloudbees.com/job/torquebox-4/lastSuccessfulBuild/artifact/doc/index.html [P]
+RewriteRule ^(LATEST/)?docs$                     http://%{HTTP_HOST}/builds/4x/$1yardocs/ [R,L]
+RewriteRule ^(LATEST/)?docs/$                    https://projectodd.ci.cloudbees.com/job/torquebox-4/lastSuccessfulBuild/artifact/doc/index.html [P]
+RewriteRule ^(LATEST/)?docs/(.+)$                https://projectodd.ci.cloudbees.com/job/torquebox-4/lastSuccessfulBuild/artifact/doc/$2 [P]

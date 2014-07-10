@@ -73,7 +73,7 @@ renderer = {
 
     // Docs
     docs_column = $( '.build-summary.build-' + build.number ).find( 'td.docs4x' );
-    docs_column.append( $( '<a href="/builds/4x/' + build.number + '/yardocs/">Browse API</a>' ) );
+    docs_column.append( $( '<a href="/builds/4x/' + build.number + '/docs/">Browse API</a>' ) );
 
   },
 
