@@ -1,0 +1,50 @@
+---
+title: Community Incremental Builds
+layout: default
+change_frequency: hourly
+priority: 1
+---
+
+%script{:type=>'text/javascript', :src=>'/javascripts/jenkins.js'}
+%script{:type=>'text/javascript', :src=>'incremental-builds.js'}
+
+%a{:href=>'http://cloudbees.com/', :style=>'display: block; float:right; margin-left: 3em; margin-bottom: 3em;'}
+  %img{:src=>'/images/cloudbees_logo.png'}
+
+%h1 Incremental Builds
+
+%p 
+  Incremental builds are performed by our <a href="/development/#ci">CI system</a> any time the code changes.
+  The incremental builds are supported by a contribution from 
+  <a href="http://cloudbees.com/">CloudBees</a>.  <span id="build-currently-building"/>
+
+ 
+.clearfix{:style=>'clear:both; height: 0px;'}
+  &nbsp;
+
+%h2 Latest Incremental Build
+
+%table.downloads.incremental-builds#latest-stable
+  %tr.header
+    %th.build-info Build
+    %th.docs Documentation
+    %th.git Git
+    %th.status Status
+
+.spacer{:style=>'height: 2em;'}
+  &nbsp;
+
+%h2 Recent Incremental Builds
+
+%p
+  Previous builds are listed below.  A currently-running build is displayed in yellow. Aborted builds are displayed in grey.
+  Successful builds are green.  Failed builds are in red.  Failed builds <b>may produce artifacts</b>, but they should probably
+  not be trusted.
+
+%table.downloads.incremental-builds#builds
+  %tr.header
+    %th.build-info Build
+    %th.docs4x Documentation
+    %th.git4x Git
+    %th.status4x Status
+  

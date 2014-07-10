@@ -13,7 +13,7 @@ Jenkins.prototype = {
   initialize: function() {
     var self = this;
     $.ajax( { 
-      url: self.job_url('/api/json?depth=1' ),
+      url: self.job_url('api/json?depth=1' ),
       jsonp: 'jsonp',
       dataType: 'jsonp',
       type: 'GET',

@@ -310,6 +310,10 @@ table.downloads {
     text-decoration: none;
   }
 
+  a:hover {
+    text-decoration: underline;
+  }
+
   th.build-info {
     padding-left: 18px;
   }
@@ -452,9 +456,21 @@ table.downloads {
   .git{
     width: 10%;
   }
-
   .matrix {
     width: 20%;
+  }
+
+  .docs4x {
+    width: 25%;
+    vertical-align: middle;
+  }
+  .git4x {
+    width: 25%;
+    vertical-align: middle;
+  }
+  .status4x {
+    width: 20%;
+    vertical-align: middle;
   }
 }
 
