@@ -21,7 +21,8 @@ body.bp {
   @include blueprint-debug;
   @include blueprint-interaction;
 
-  font-family: Interstate,Helvetica,Arial,sans-serif;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-size: 14px;
 }
 
 form.bp {
