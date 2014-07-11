@@ -1,11 +1,11 @@
 RewriteEngine on
 
-RewriteRule ^([0-9]+)/docs$                      http://%{HTTP_HOST}/builds/4x/$1/docs/ [R,L]
+RewriteRule ^([0-9]+)/docs$                      http://%{HTTP_HOST}/4x/builds/$1/docs/ [R,L]
 RewriteRule ^([0-9]+)/docs/$                     https://projectodd.ci.cloudbees.com/job/torquebox-4/$1/artifact/pkg/doc/index.html [P]
 RewriteRule ^([0-9]+)/docs/(.+)$                 https://projectodd.ci.cloudbees.com/job/torquebox-4/$1/artifact/pkg/doc/$2 [P]
 
-RewriteRule ^(LATEST/)?docs$                     http://%{HTTP_HOST}/builds/4x/$1docs/ [R,L]
+RewriteRule ^(LATEST/)?docs$                     http://%{HTTP_HOST}/4x/builds/$1docs/ [R,L]
 RewriteRule ^(LATEST/)?docs/$                    https://projectodd.ci.cloudbees.com/job/torquebox-4/lastSuccessfulBuild/artifact/pkg/doc/index.html [P]
 RewriteRule ^(LATEST/)?docs/(.+)$                https://projectodd.ci.cloudbees.com/job/torquebox-4/lastSuccessfulBuild/artifact/pkg/doc/$2 [P]
 
-RewriteRule ^/gem-repo(.*)$                      https://repository-projectodd.forge.cloudbees.com/rubygems/4x$1 [P]
+RewriteRule ^/gem-repo(.*)$                      https://repository-projectodd.forge.cloudbees.com/rubygems/4x$1 [R,L]
