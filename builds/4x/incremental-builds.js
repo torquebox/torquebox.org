@@ -72,8 +72,10 @@ renderer = {
     }
 
     // Docs
-    docs_column = $( '.build-summary.build-' + build.number ).find( 'td.docs4x' );
-    docs_column.append( $( '<a href="/builds/4x/' + build.number + '/docs/">Browse API</a>' ) );
+    if (build.number >= 170) {
+      docs_column = $( '.build-summary.build-' + build.number ).find( 'td.docs4x' );
+      docs_column.append( $( '<a href="/builds/4x/' + build.number + '/docs/">Browse API</a>' ) );
+    }
 
   },
 
