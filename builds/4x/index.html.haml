@@ -1,5 +1,5 @@
 ---
-title: Community Incremental Builds
+title: TorqueBox 4 Incremental Builds
 layout: default
 change_frequency: hourly
 priority: 1
@@ -21,6 +21,18 @@ priority: 1
  
 .clearfix{:style=>'clear:both; height: 0px;'}
   &nbsp;
+
+%h2 Gem Repository
+
+:markdown
+  To use these incremental builds, you'll need to add the TorqueBox 4
+  incremental gem repository as a source. Here's an example Gemfile:
+
+      source 'http://torquebox.org/builds/4x/gem-repo/'
+
+      gem 'torquebox', '4.x.incremental.BUILD_NUM'
+
+  Where `BUILD_NUM` is the build number for the build you want to use.
 
 %h2 Latest Incremental Build
 
