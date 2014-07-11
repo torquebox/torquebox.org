@@ -1,0 +1,3 @@
+RewriteEngine on
+
+RewriteRule ^$                      http://%{HTTP_HOST}/news/tags/4x [R,L]

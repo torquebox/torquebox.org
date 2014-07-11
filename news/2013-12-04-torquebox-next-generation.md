@@ -3,7 +3,7 @@ title: 'TorqueBox Next Generation - The Future is Now'
 author: Ben Browning
 layout: news
 timestamp: 2013-12-04t13:30:00.0-05:00
-tags: [ announcements, torqbox ]
+tags: [ announcements, torqbox, 4x ]
 ---
 
 

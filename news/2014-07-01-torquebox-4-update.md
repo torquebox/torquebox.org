@@ -3,7 +3,7 @@ title: 'TorqueBox 4 Update'
 author: Ben Browning
 layout: news
 timestamp: 2014-07-01t10:30:00.0-05:00
-tags: [ roadmap, torqbox, update ]
+tags: [ 4x, roadmap, torqbox, update ]
 ---
 
 Lots of community users have been asking about TorqueBox 4 recently,
