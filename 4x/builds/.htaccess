@@ -8,4 +8,4 @@ RewriteRule ^(LATEST/)?docs$                     http://%{HTTP_HOST}/4x/builds/$
 RewriteRule ^(LATEST/)?docs/$                    https://projectodd.ci.cloudbees.com/job/torquebox-4/lastSuccessfulBuild/artifact/pkg/doc/index.html [P]
 RewriteRule ^(LATEST/)?docs/(.+)$                https://projectodd.ci.cloudbees.com/job/torquebox-4/lastSuccessfulBuild/artifact/pkg/doc/$2 [P]
 
-RewriteRule ^/gem-repo(.*)$                      https://repository-projectodd.forge.cloudbees.com/rubygems/4x$1 [R,L]
+RewriteRule ^gem-repo(.*)$                      https://repository-projectodd.forge.cloudbees.com/rubygems/4x$1 [R,L]
