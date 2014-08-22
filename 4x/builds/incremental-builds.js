@@ -1,4 +1,3 @@
-
 renderer = {
   add_build: function(build) {
     var self = this;
@@ -133,15 +132,23 @@ renderer = {
   },
 
   build_sha1: function(build) {
-    if ( build.actions && build.actions.length >= 3 && build.actions[2].lastBuiltRevision ) {
-      return build.actions[2].lastBuiltRevision.SHA1;
+    if ( build.actions && build.actions.length >= 3 ) {
+      var revision = build.actions[2].lastBuiltRevision
+      if (!revision) {
+          revision = build.actions[3].lastBuiltRevision
+      }
+
+      if (revision) {
+          return revision.SHA1;
+      }
     }
     return null;
   },
 
   build_sha1_short: function(build) {
-    if ( build.actions && build.actions.length >= 3 ) {
-      return build.actions[2].lastBuiltRevision.SHA1.substring(0,8);
+    var sha = this.build_sha1(build)
+    if (sha) {
+      return sha.substring(0,8);
     }
     return null;
   },
