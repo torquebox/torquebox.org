@@ -132,15 +132,14 @@ renderer = {
   },
 
   build_sha1: function(build) {
-    if ( build.actions && build.actions.length >= 3 ) {
-      var revision = build.actions[2].lastBuiltRevision
-      if (!revision) {
-          revision = build.actions[3].lastBuiltRevision
-      }
-
-      if (revision) {
-          return revision.SHA1;
-      }
+    if (build.actions) {
+        return build.actions.reduce(function(found, action) {
+            if (!found && action.lastBuiltRevision) {
+                return action.lastBuiltRevision.SHA1
+            } else {
+                return found
+            }
+        }, null)
     }
     return null;
   },
