@@ -86,7 +86,7 @@ benchmark application, bypassing the Ruby layer entirely for most
 requests. All the other servers under test are going through the
 entire Rack stack.
 
-The merits of "hello world" benchmarks are debated already, but they
+The merits of "hello world" benchmarks are debatable, but they
 do provide some valuable insight into the maximum throughput any
 server can possibly achieve with the simplest of Rack
 applications. With turbocaching enabled, Raptor serves cached
@@ -108,7 +108,7 @@ requests per second numbers will be different on every machine. As you
 can see, TorqueBox 4 leads the pack and Passenger 5 brings up the
 rear.
 
-We love friendly competition amongst other web servers and encourage
+We love friendly competition among other web servers and encourage
 everyone to continue to push the boundaries of Ruby web server
 performance. But, we also believe it's just as important to be open
 and forthcoming with what is actually being benchmarked and not make
