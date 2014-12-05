@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+<title>
+  File: Deploying an Application to WildFly
+  
+    &mdash; TorqueBox 4.0.0.alpha1
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.wildfly.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: Deploying an Application to WildFly</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'>
+<h1 id="wildfly-deployment">WildFly Deployment</h1>
+
+<p>One of the primary goals for TorqueBox 4 is the removal of the ancient
+AS7 fork we lugged around in TorqueBox 3.x. This eliminates the need to
+install and deploy your apps into a &#8220;container&#8221; to use the TorqueBox
+gems.</p>
+
+<p>But here&#8217;s the trade-off: app server containers can simplify the
+configuration of features &#8211; e.g. security, monitoring, clustering &#8211;
+for all the applications deployed to it.</p>
+
+<p>And since each TorqueBox gem automatically benefits in some way
+from being clustered, we wanted to <em>facilitate</em> app server deployment
+but not actually <em>require</em> it. Further, we didn&#8217;t want to require any
+tweaking of the stock &#8220;vanilla&#8221; configuration provided by the app
+server. This meant using the standard deployment protocol for all Java
+app servers: war files.</p>
+
+<p>TorqueBox intentionally uses the same services as <a href="http://wildfly.org">WildFly</a>, the
+community-supported upstream project for the commercially-supported
+<a href="http://www.jboss.org/products/eap/overview/">JBoss EAP</a> product. And these are the containers we&#8217;ll initially
+support.</p>
+
+<h2 id="wildfly">WildFly</h2>
+
+<p>There are lots of resources for installing and administering WildFly,
+and frankly, we love being able to refer you to those rather than
+write them ourselves. :)</p>
+
+<p>Thankfully, installing WildFly is trivial:</p>
+
+<pre class="code ruby"><code class="ruby">$ wget http://download.jboss.org/wildfly/8.2.0.Final/wildfly-8.2.0.Final.zip
+$ unzip wildfly-8.2.0.Final.zip
+</code></pre>
+
+<p>Downloading and unpacking it somewhere are all there is to it. Running
+it is easy, too:</p>
+
+<pre class="code ruby"><code class="ruby">$ wildfly-8.2.0.Final/bin/standalone.sh
+</code></pre>
+
+<p>Pass it <code>-h</code> to see what options it supports. The main one you&#8217;ll use
+is <code>-c</code> which refers to one of its config files beneath
+<code>standalone/configuration</code>. The default config doesn&#8217;t include
+HornetQ, for example, so to use TorqueBox messaging, you&#8217;ll need to
+start WildFly as follows:</p>
+
+<pre class="code ruby"><code class="ruby">$ wildfly-8.2.0.Final/bin/standalone.sh -c standalone-full.xml
+</code></pre>
+
+<p>And if you want clustering&#8230;</p>
+
+<pre class="code ruby"><code class="ruby">$ wildfly-8.2.0.Final/bin/standalone.sh -c standalone-full-ha.xml
+</code></pre>
+
+<p>You can create your own, of course, too.</p>
+
+<h3 id="creating-a-war-file">Creating a war file</h3>
+
+<p>TorqueBox war files require a bit of special config: a couple of jars
+of &#8220;glue code&#8221;, a properties file to trigger that code, a couple of
+tags in <code>web.xml</code>, and a <code>jboss-deployment-structure.xml</code> to link the
+deployment to the necessary WildFly modules. Luckily, the <code>torquebox
+war</code> command handles all of that for you - it generates a <a href="./file.jar.html">jar</a> of
+your application, then places it (along with the aforementioned
+configuration) in to a war file:</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle exec torquebox war
+</code></pre>
+
+<p>The <code>torquebox war</code> command provides a number of configuration options,
+all of which can be specified as command line arguments, many of which
+are the same as the ones available for the <a href="./file.jar.html">jar</a> task.</p>
+
+<p>For a full list of options, try:</p>
+
+<pre class="code ruby"><code class="ruby">$ torquebox war -h
+</code></pre>
+
+<h2 id="deploying-to-wildfly">Deploying to WildFly</h2>
+
+<p>Once you have a war file, it&#8217;s a simple matter of making it known to
+your WildFly server. The easiest way to do that is to copy it to a
+directory that is monitored by WildFly for artifacts to deploy.
+Assuming you installed WildFly in <code>/srv/wildfly</code>, that path is
+<code>/srv/wildfly/standalone/deployments</code>. For example:</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle exec torquebox war
+$ cp myapp.war /srv/wildfly/standalone/deployments
+</code></pre>
+
+<p>Alternatively,</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle exec torquebox war --destination /srv/wildfly/standalone/deployments
+</code></pre>
+
+<p>If not already running, fire up WildFly to see your deployed app:</p>
+
+<pre class="code ruby"><code class="ruby">$ /srv/wildfly/bin/standalone.sh -c standalone-full.xml
+</code></pre>
+
+<h2 id="context-paths-in-wildfly">Context paths in WildFly</h2>
+
+<p>The URL for your handler will include a context path corresponding to
+the base name of your deployed war file. To override this and set your
+context path to &#8220;/&#8221; instead, provide a context-path when building the war:</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle exec torquebox war --destination /srv/wildfly/standalone/deployments --context-path /
+</code></pre>
+
+<p>or name your war file <code>ROOT.war</code>:</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle exec torquebox war --destination /srv/wildfly/standalone/deployments --name ROOT.war
+</code></pre>
+
+</div></div>
+
+    <div id="footer">
+  Generated on Thu Dec  4 15:08:02 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

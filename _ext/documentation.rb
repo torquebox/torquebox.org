@@ -66,6 +66,8 @@ class Documentation
       end
 
     end
+
+    api_docs_4x(site)
   end
 
   def api_docs(site, version, type, root)
@@ -83,6 +85,15 @@ class Documentation
       FileUtils.mkdir_p( output_dir )
       unzip( bundle_path( bundle_name ), output_dir )
       add_analytics( site, output_dir )
+    end
+  end
+
+  def api_docs_4x(site)
+    Dir.glob("_4x_docs/*").each do |dir|
+      version = File.basename(dir)
+      doc_root = File.join(site.output_dir, 'documentation', version)
+      puts "!Copying docs for #{version}"
+      FileUtils.cp_r(dir, doc_root)
     end
   end
 

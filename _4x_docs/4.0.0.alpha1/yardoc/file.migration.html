@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+<title>
+  File: TorqueBox 3 -&gt; 4 Migration Guide
+  
+    &mdash; TorqueBox 4.0.0.alpha1
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.migration.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: TorqueBox 3 -> 4 Migration Guide</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'>
+<h1 id="migrating-from-torquebox-3-to-torquebox-4">Migrating from TorqueBox 3 to TorqueBox 4</h1>
+
+<p><strong>NOTE</strong>: This guide is still largely a work-in-progress and missing
+quite a bit of content. Until TorqueBox 4 gets out of alpha, only
+attempt migrating TorqueBox 3 applications if they are relatively
+simple (mostly web) or you&#8217;re prepared to dig into the API docs and
+source to see what&#8217;s changed. If you do attempt to migrate your
+application, please provide us feedback so we can update the guide.</p>
+
+<p>TorqueBox 4 is quite different from TorqueBox 3 in several ways, the
+largest being:</p>
+
+<ul>
+  <li><strong>An Application Server is no longer required.</strong> TorqueBox 4 ships
+as a collection of gems, and can be used in a standalone JRuby
+application - you no longer are required to download and manage a
+monolithic container. Even though the container isn&#8217;t required, you
+can still deploy TorqueBox 4 to a <a href="http://wildfly.org/">WildFly</a>
+server to take advantage of clustering, load-balancing, and failover
+features. For more details on using WildFly, see our
+<a href="file.wildfly.html">WildFly Guide</a>. For details on gem usage, see our
+<a href="file.installation.html">Installation Guilde</a>.</li>
+  <li><strong>Applications can now be packaged as executable jar files.</strong>
+TorqueBox 4 supports packaging your entire application (including
+gems and JRuby itself) as a executable jar file that can run
+anywhere Java is available without any other dependencies. For more
+details, see our <a href="file.jar.html">Jar Guide</a>.</li>
+  <li><strong>Everything is started/configured dynamically.</strong> In TorqueBox 3,
+the majority of your application&#8217;s resource setup was static, and
+had to be in <code>torquebox.yml</code> or <code>torquebox.rb</code>. In TorqueBox 4, all
+resources can be set up dynamically, at runtime (more on this
+below).</li>
+</ul>
+
+<h2 id="application-initialization">Application initialization</h2>
+
+<p>In TorqueBox 3, most of your resources had to be set up statically at
+deploy time, either through <code>torquebox.yml</code> or <code>torquebox.rb</code>. In
+TorqueBox 4, neither of those files are supported, and you instead set
+up resources at runtime from within your application code.</p>
+
+<h2 id="features-missing-or-removed-since-torquebox-3">Features missing or removed since TorqueBox 3</h2>
+
+<ul>
+  <li>TorqueBox::Messaging::Backgroundable and related APIs</li>
+  <li>stomp and stomplets</li>
+  <li>distributed transactions (XA)</li>
+  <li>services / long-running daemons</li>
+  <li>pooled JRuby runtimes - all Ruby code is expected to be thread-safe and run
+in a single runtime</li>
+</ul>
+
+<p>Some of these may come back in some form or other, depending on our
+user&#8217;s wants and needs. TorqueBox 4 is still in the early stages and
+under heavy development.</p>
+
+<h2 id="web">Web</h2>
+
+<h2 id="messaging">Messaging</h2>
+
+<p>Message Processors -&gt; <a href="TorqueBox/Messaging/Destination.html#listen-instance_method">listen</a></p>
+
+<p>Synchronous Message Processors -&gt; <a href="TorqueBox/Messaging/Queue.html#respond-instance_method">respond</a></p>
+
+<p>not supported:</p>
+
+<ul>
+  <li>queue enumeration</li>
+  <li>xa</li>
+</ul>
+
+<h2 id="scheduling">Scheduling</h2>
+
+<p>Changes:</p>
+
+<ul>
+  <li>no job classes, just blocks</li>
+  <li>no job timeouts (yet)</li>
+  <li>no passing configuration to jobs</li>
+</ul>
+
+<h2 id="caching">Caching</h2>
+</div></div>
+
+    <div id="footer">
+  Generated on Thu Dec  4 15:08:02 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>
