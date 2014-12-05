@@ -94,6 +94,7 @@ class Documentation
       doc_root = File.join(site.output_dir, 'documentation', version)
       puts "!Copying docs for #{version}"
       FileUtils.cp_r(dir, doc_root)
+      add_analytics(site, doc_root)
     end
   end
 
