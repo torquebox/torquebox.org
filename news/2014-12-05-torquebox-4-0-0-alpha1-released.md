@@ -54,7 +54,7 @@ and plaintext tests it participates in.
 
 We'll delve a bit deeper into performance below for anyone interested.
 
-### Executable .jar file support
+### Executable JAR file support
 
 TorqueBox applications can now be packaged up into executable .jar
 files and run on any machine that has Java installed on it. Read our
@@ -105,14 +105,11 @@ well-known.
 Using Phusion's own benchmarking kit, modified to test against
 TorqueBox 4.0.0.alpha1 instead of TorqueBox 3 and with Raptor's
 turbocaching disabled, I get the following results when running their
-hello world Rack benchmark:
+hello world Rack benchmark. The relative performance of each is all
+that matters here - the actual requests per second numbers will be
+different on every machine.
 
 <img src="/images/benchmarks/phusion_kit_hello_world.png"/>
-
-The relative performance of each is all that matters here - the actual
-requests per second numbers will be different on every machine. As you
-can see, TorqueBox 4 leads the pack and Passenger 5 brings up the
-rear.
 
 We love friendly competition among other web servers and encourage
 everyone to continue to push the boundaries of Ruby web server
