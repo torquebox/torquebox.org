@@ -3,7 +3,7 @@ title: 'TorqueBox 4 Alpha1 Released'
 author: The Entire TorqueBox Team
 layout: release
 version: '4.0.0.alpha1'
-timestamp: 2014-12-05t12:30:00.0-05:00
+timestamp: 2014-12-05t14:15:00.0-05:00
 tags: [ releases, 4x ]
 ---
 
@@ -53,6 +53,12 @@ Benchmarks][techempower], placing rack-jruby near the top of the JSON
 and plaintext tests it participates in.
 
 We'll delve a bit deeper into performance below for anyone interested.
+
+### Executable .jar file support
+
+TorqueBox applications can now be packaged up into executable .jar
+files and run on any machine that has Java installed on it. Read our
+[Executable Jar Guide][jar_guide] for more information.
 
 ## Getting started with TorqueBox 4
 
@@ -123,6 +129,7 @@ As always, if you have any questions about or issues with TorqueBox, please [get
 [community]:   /community/
 
 [tb4_posts]:   /news/tags/4x/
+[jar_guide]:   /documentation/4.0.0.alpha1/yardoc/file.jar.html
 [wildfly]:     http://wildfly.org/
 [undertow]:    http://undertow.io/
 [techempower]: http://www.techempower.com/benchmarks/#section=data-r9&hw=i7&test=json
