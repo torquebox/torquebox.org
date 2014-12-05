@@ -64,6 +64,8 @@ get started.
 
 **[TorqueBox 4 Documentation][docs]**
 
+<a name="performance"/>
+
 ## Web performance compared to other Ruby servers
 
 In our testing, TorqueBox 4 is the highest performing JRuby web server
