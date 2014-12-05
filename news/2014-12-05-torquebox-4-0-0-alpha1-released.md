@@ -105,8 +105,8 @@ hello world Rack benchmark:
 
 The relative performance of each is all that matters here - the actual
 requests per second numbers will be different on every machine. As you
-can see, with caching disabled, TorqueBox 4 leads the pack and
-Passenger 5 brings up the rear.
+can see, TorqueBox 4 leads the pack and Passenger 5 brings up the
+rear.
 
 We love friendly competition amongst other web servers and encourage
 everyone to continue to push the boundaries of Ruby web server
