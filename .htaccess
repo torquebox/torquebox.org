@@ -29,4 +29,4 @@ Header set Content-Disposition \
 
 
 RewriteRule ^torqbox$      /torqbox/ [R]
-RewriteRule ^torqbox/?$    /news/2013/12/04/torquebox-next-generation/ [R]
+RewriteRule ^torqbox/?$    /news/tags/4x/ [R]
