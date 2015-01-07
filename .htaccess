@@ -1,7 +1,7 @@
 ErrorDocument 404 /404.html
 
 SetEnvIf Request_URI .* base_artifact_url=http://repository-projectodd.forge.cloudbees.com/incremental/torquebox/LATEST/
-SetEnvIf Request_URI .* release_url=http://d2t70pdxfgqbmq.cloudfront.net/release
+SetEnvIf Request_URI .* release_url=http://repository-projectodd.forge.cloudbees.com/release
 
 RewriteEngine on
 
