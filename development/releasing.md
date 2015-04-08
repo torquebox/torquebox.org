@@ -7,7 +7,7 @@ layout: default
 
 # Preparation
 
-Code is released from the `master` branch of [torquebox/torquebox-release][release-repo].
+Code is released from the `3x-maint` branch of [torquebox/torquebox-release][release-repo].
 
 Set up this repository as an additional remote for your workspace:
 
@@ -16,13 +16,13 @@ Set up this repository as an additional remote for your workspace:
 Ensure that the tag you are attempting to release does not exist in the release repository,
 or maven will fail part way through the build
 
-    git push release :3.0.0.beta2
+    git push release :3.1.2
 
-Ensure that the `master` branch has the contents you wish to release.  Using the `-f`
+Ensure that the `3x-maint` branch has the contents you wish to release.  Using the `-f`
 flag to force is allowed in this case, since the **torquebox-release** repository is not
 a public-facing human-cloneable repository.
 
-    git push release master:master -f
+    git push release 3x-maint:3x-maint -f
 
 # Pre-flight build
 
@@ -32,7 +32,7 @@ Using the [build system](http://projectodd.ci.cloudbees.com/), select the
 
 <img src="/images/releasing/ci.png" style="width: 100%"/>
 
-Enter in the branch to release from (usually 'master'), the version to
+Enter in the branch to release from (usually '3x-maint'), the version to
 release, the **next** version after the release, and select the
 **release-staging** profile.  The **release-staging** profile can
 build against other projects also built to the **release-staging**
@@ -44,8 +44,8 @@ they all work together before publishing any to public repositories.
 
 After each pre-flight build, you will need to reset the release repository:
 
-    git push release :3.0.0.beta2
-    git push release master:master -f
+    git push release :3.1.2
+    git push release 3x-maint:3x-maint -f
     
 When you are happy with the pre-flight build (in other words, it completes successfully), 
 you're ready to run the real build.
@@ -98,15 +98,15 @@ the exact tag pushed by the primary **torquebox-release** job is required to bui
 
 ## Merge in the release commits:
 
-    git merge release/master
+    git merge release/3x-maint
 
 ## Push to the official repository
 
-    git push origin master
+    git push origin 3x-maint
 
 ## Push the tag to the official repository
 
-    git push origin 3.0.0.beta2
+    git push origin 3.1.2
 
 # Release the project in JIRA
 
