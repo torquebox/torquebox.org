@@ -1,0 +1,547 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: TorqueBox::Messaging::Topic
+  
+    &mdash; TorqueBox 4.0.0.beta1
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!TorqueBox/Messaging/Topic.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (T)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../TorqueBox.html" title="TorqueBox (module)">TorqueBox</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Messaging.html" title="TorqueBox::Messaging (module)">Messaging</a></span></span>
+     &raquo; 
+    <span class="title">Topic</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: TorqueBox::Messaging::Topic
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="Destination.html" title="TorqueBox::Messaging::Destination (class)">Destination</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="Destination.html" title="TorqueBox::Messaging::Destination (class)">Destination</a></span></li>
+          
+            <li class="next">TorqueBox::Messaging::Topic</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">messaging/lib/torquebox/messaging/topic.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>Represents a messaging topic.</p>
+
+<p>Obtain a topic object by calling <span class='object_link'><a href="../Messaging.html#topic-class_method" title="TorqueBox::Messaging.topic (method)">topic</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="TOPIC_OPTIONS-constant" class="">TOPIC_OPTIONS =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Valid options for topic creation.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_optset'>optset</span><span class='lparen'>(</span><span class='const'>WBMessaging</span><span class='op'>::</span><span class='const'>CreateTopicOption</span><span class='comma'>,</span> <span class='symbol'>:default_options</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SUBSCRIBE_OPTIONS-constant" class="">SUBSCRIBE_OPTIONS =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Valid options for <span class='object_link'><a href="#subscribe-instance_method" title="TorqueBox::Messaging::Topic#subscribe (method)">#subscribe</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_optset'>optset</span><span class='lparen'>(</span><span class='const'>WBTopic</span><span class='op'>::</span><span class='const'>SubscribeOption</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="UNSUBSCRIBE_OPTIONS-constant" class="">UNSUBSCRIBE_OPTIONS =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Valid options for <span class='object_link'><a href="#unsubscribe-instance_method" title="TorqueBox::Messaging::Topic#unsubscribe (method)">#unsubscribe</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_optset'>optset</span><span class='lparen'>(</span><span class='const'>WBTopic</span><span class='op'>::</span><span class='const'>UnsubscribeOption</span><span class='rparen'>)</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+  
+  
+  <h3 class="inherited">Constants inherited
+     from <span class='object_link'><a href="Destination.html" title="TorqueBox::Messaging::Destination (class)">Destination</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Destination.html#LISTEN_OPTIONS-constant" title="TorqueBox::Messaging::Destination::LISTEN_OPTIONS (constant)">Destination::LISTEN_OPTIONS</a></span>, <span class='object_link'><a href="Destination.html#PRIORITY_MAP-constant" title="TorqueBox::Messaging::Destination::PRIORITY_MAP (constant)">Destination::PRIORITY_MAP</a></span>, <span class='object_link'><a href="Destination.html#PUBLISH_OPTIONS-constant" title="TorqueBox::Messaging::Destination::PUBLISH_OPTIONS (constant)">Destination::PUBLISH_OPTIONS</a></span>, <span class='object_link'><a href="Destination.html#RECEIVE_OPTIONS-constant" title="TorqueBox::Messaging::Destination::RECEIVE_OPTIONS (constant)">Destination::RECEIVE_OPTIONS</a></span></p>
+
+
+
+
+  <h2>Instance Attribute Summary</h2>
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="Destination.html" title="TorqueBox::Messaging::Destination (class)">Destination</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Destination.html#internal_destination-instance_method" title="TorqueBox::Messaging::Destination#internal_destination (method)">#internal_destination</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#subscribe-instance_method" title="#subscribe (instance method)">- (Object) <strong>subscribe</strong>(name, options = {}, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>A listener object that can be stopped by calling .close on it.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#unsubscribe-instance_method" title="#unsubscribe (instance method)">- (void) <strong>unsubscribe</strong>(name, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Tears down a durable topic subscription.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Destination.html" title="TorqueBox::Messaging::Destination (class)">Destination</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Destination.html#listen-instance_method" title="TorqueBox::Messaging::Destination#listen (method)">#listen</a></span>, <span class='object_link'><a href="Destination.html#publish-instance_method" title="TorqueBox::Messaging::Destination#publish (method)">#publish</a></span>, <span class='object_link'><a href="Destination.html#receive-instance_method" title="TorqueBox::Messaging::Destination#receive (method)">#receive</a></span>, <span class='object_link'><a href="Destination.html#stop-instance_method" title="TorqueBox::Messaging::Destination#stop (method)">#stop</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="subscribe-instance_method">
+  
+    - (<tt>Object</tt>) <strong>subscribe</strong>(name, options = {}, &amp;block) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns A listener object that can be stopped by
+calling .close on it.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the subscription.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Options for the subscription.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:decode</span>
+          <span class="type">(<tt>true</tt>, <tt>false</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>If true, the decoded
+message body is passed to the block. Otherwise, the
+base message object is passed.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:context</span>
+          <span class="type">(<tt><span class='object_link'><a href="Context.html" title="TorqueBox::Messaging::Context (class)">Context</a></span></tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>a context to use;
+caller expected to close.</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+    
+    
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'><p>A listener object that can be stopped by
+calling .close on it.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/topic.rb', line 56</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_subscribe'>subscribe</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_validate_options'>validate_options</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='const'>SUBSCRIBE_OPTIONS</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='id identifier rubyid_apply_default_options'>apply_default_options</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='id identifier rubyid_coerce_context'>coerce_context</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_handler'>handler</span> <span class='op'>=</span> <span class='const'>MessageHandler</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_message'>message</span><span class='op'>|</span>
+    <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:decode</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_message'>message</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span> <span class='op'>:</span> <span class='id identifier rubyid_message'>message</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@internal_destination</span><span class='period'>.</span><span class='id identifier rubyid_subscribe'>subscribe</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_handler'>handler</span><span class='comma'>,</span>
+                                  <span class='const'>Codecs</span><span class='period'>.</span><span class='id identifier rubyid_java_codecs'>java_codecs</span><span class='comma'>,</span>
+                                  <span class='id identifier rubyid_extract_options'>extract_options</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='const'>WBTopic</span><span class='op'>::</span><span class='const'>SubscribeOption</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="unsubscribe-instance_method">
+  
+    - (<tt>void</tt>) <strong>unsubscribe</strong>(name, options = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Tears down a durable topic subscription.</p>
+
+<p>If no context is provided, a new context is created for
+this action. If a context is provided, it must have its
+:client_id set to the same value used when creating the
+subscription (see #subscribe).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the subscription.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Options for the subscription.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:context</span>
+          <span class="type">(<tt><span class='object_link'><a href="Context.html" title="TorqueBox::Messaging::Context (class)">Context</a></span></tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>a context to use;
+caller expected to close.</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+83
+84
+85
+86
+87
+88
+89</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/topic.rb', line 83</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_unsubscribe'>unsubscribe</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_validate_options'>validate_options</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='const'>UNSUBSCRIBE_OPTIONS</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='id identifier rubyid_apply_default_options'>apply_default_options</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='id identifier rubyid_coerce_context'>coerce_context</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='ivar'>@internal_destination</span><span class='period'>.</span><span class='id identifier rubyid_unsubscribe'>unsubscribe</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span>
+                                    <span class='id identifier rubyid_extract_options'>extract_options</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='const'>WBTopic</span><span class='op'>::</span><span class='const'>UnsubscribeOption</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Jun 10 09:55:26 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

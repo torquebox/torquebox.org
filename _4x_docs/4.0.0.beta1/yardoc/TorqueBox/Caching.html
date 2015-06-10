@@ -1,0 +1,754 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: TorqueBox::Caching
+  
+    &mdash; TorqueBox 4.0.0.beta1
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!TorqueBox/Caching.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (C)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../TorqueBox.html" title="TorqueBox (module)">TorqueBox</a></span></span>
+     &raquo; 
+    <span class="title">Caching</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: TorqueBox::Caching
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+      <dt class="r1">Extended by:</dt>
+      <dd class="r1"><span class='object_link'><a href="OptionUtils.html" title="TorqueBox::OptionUtils (module)">OptionUtils</a></span></dd>
+      
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">caching/lib/torquebox/caching.rb<span class="defines">,<br />
+  caching/lib/torquebox/caching/cache.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Caching/Cache.html" title="TorqueBox::Caching::Cache (class)">Cache</a></span>
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="VALID_OPTIONS-constant" class="">VALID_OPTIONS =
+          
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_optset'>optset</span><span class='lparen'>(</span><span class='const'>Caching</span><span class='op'>::</span><span class='const'>CreateOption</span><span class='comma'>,</span> <span class='symbol'>:encoding</span><span class='rparen'>)</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#builder-class_method" title="builder (class method)">+ (Object) <strong>builder</strong>(options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>For advanced use, call this function to obtain a &#8220;fluent&#8221; <a href="https://docs.jboss.org/infinispan/6.0/apidocs/org/infinispan/configuration/cache/ConfigurationBuilder.html" target="_parent" title="ConfigurationBuilder">ConfigurationBuilder</a>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cache-class_method" title="cache (class method)">+ (Cache) <strong>cache</strong>(name, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns an <a href="https://docs.jboss.org/infinispan/6.0/apidocs/org/infinispan/Cache.html" target="_parent" title="org.infinispan.Cache">org.infinispan.Cache</a>, an extension of <code>java.util.concurrent.ConcurrentMap</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#exists%3F-class_method" title="exists? (class method)">+ (true, false) <strong>exists?</strong>(name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Determine whether cache is currently running.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#stop-class_method" title="stop (class method)">+ (true, false) <strong>stop</strong>(name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Stop cache by name.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="builder-class_method">
+  
+    + (<tt>Object</tt>) <strong>builder</strong>(options = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>For advanced use, call this function to obtain a &#8220;fluent&#8221;
+<a href="https://docs.jboss.org/infinispan/6.0/apidocs/org/infinispan/configuration/cache/ConfigurationBuilder.html" target="_parent" title="ConfigurationBuilder">ConfigurationBuilder</a>.
+Set the desired options, and invoke its build method, the
+result from which can be passed via the :configuration option
+of the <span class='object_link'><a href="#cache-class_method" title="TorqueBox::Caching.cache (method)">cache</a></span> function.</p>
+
+<p>Note that builder takes the same options as <span class='object_link'><a href="#cache-class_method" title="TorqueBox::Caching.cache (method)">cache</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+126
+127
+128
+129</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching.rb', line 126</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_builder'>builder</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_config'>config</span> <span class='op'>=</span> <span class='id identifier rubyid_org'>org</span><span class='period'>.</span><span class='id identifier rubyid_projectodd'>projectodd</span><span class='period'>.</span><span class='id identifier rubyid_wunderboss'>wunderboss</span><span class='period'>.</span><span class='id identifier rubyid_caching'>caching</span><span class='op'>::</span><span class='const'>Config</span>
+  <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_builder'>builder</span><span class='lparen'>(</span><span class='const'>Options</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_extract_options'>extract_options</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='const'>Caching</span><span class='op'>::</span><span class='const'>CreateOption</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="cache-class_method">
+  
+    + (<tt><span class='object_link'><a href="Caching/Cache.html" title="TorqueBox::Caching::Cache (class)">Cache</a></span></tt>) <strong>cache</strong>(name, options = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns an
+<a href="https://docs.jboss.org/infinispan/6.0/apidocs/org/infinispan/Cache.html" target="_parent" title="org.infinispan.Cache">org.infinispan.Cache</a>, an extension of
+<code>java.util.concurrent.ConcurrentMap</code>. A name is the only
+required argument. If a cache by that name already exists, it
+will be returned, and any options passed to this function will
+be ignored. To force reconfiguration of an existing cache,
+call <span class='object_link'><a href="#stop-class_method" title="TorqueBox::Caching.stop (method)">stop</a></span> before calling this function.</p>
+
+<p><em>Durability:</em> Entries can persist to disk via the :persist
+option. If set to <code>true</code>, cache entries will persist in the
+current directory. Override this by setting <code>:persist</code> to a
+string naming the desired directory.</p>
+
+<p><em>Eviction:</em> Turned off by default, <code>:max_entries</code> may be set to
+mitigate the risk of memory exhaustion. When <code>:persist</code> is
+enabled, evicted entries are written to disk, so that the
+entries in memory are a subset of those in the file store,
+transparently reloaded upon request. The eviction policy may
+be one of <code>:none</code>, <code>:lru</code>, <code>:lirs</code>, or <code>:unordered</code></p>
+
+<p><em>Expiration:</em> Both time-to-live and max idle limits are
+supported. Units are milliseconds.</p>
+
+<p><em>Replication:</em> The replication mode defaults to <code>:dist_sync</code> when
+clustered. When not clustered, the value of <code>:mode</code> is ignored,
+and the cache will be <code>:local</code>. Asynchronous replication may
+yield a slight performance increase at the risk of potential
+cache inconsistency.</p>
+
+<p><em>Transactions:</em> Caches can participate in transactions when a
+TransactionManager is available. The locking scheme may be
+either <code>:optimisitic</code> or <code>:pessimistic</code></p>
+
+<p><em>Advanced configuration:</em> Infinispan has many buttons,
+switches, dials, knobs and levers. Call the <span class='object_link'><a href="#builder-class_method" title="TorqueBox::Caching.builder (method)">builder</a></span> function
+to create your own Configuration instance and pass it in via
+the <code>:configuration</code> option.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the cache</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Options for cache creation.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:persist</span>
+          <span class="type">(<tt>String</tt>, <tt>true</tt>, <tt>false</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>nil</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>if non-nil,
+data persists across server restarts in a file store; a
+string value names the directory</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:max_entries</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>-1</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>the max number of
+entries allowed in the cache</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:eviction</span>
+          <span class="type">(<tt>Symbol</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>:none</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>how entries are
+evicted when :max_entries is exceeded</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:ttl</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>-1</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>the max time the entry will
+live before expiry</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:idle</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>-1</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>the time after which an
+entry will expire if not accessed</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:mode</span>
+          <span class="type">(<tt>Symbol</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>:dist_sync or :local</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>replication mode, one of :local, :repl_sync, :repl_async,
+:invalidation_sync, :invalidation_async, :dist_sync,
+:dist_async</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:transactional</span>
+          <span class="type">(<tt>true</tt>, <tt>false</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>false</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>whether
+the cache is transactional</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:locking</span>
+          <span class="type">(<tt>Symbol</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>:optimistic</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>transactional
+locking scheme</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:encoding</span>
+          <span class="type">(<tt>Symbol</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>:marshal_smart</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>other
+supported encodings include :edn, :json, :marshal,
+:marshal_base64 and :text</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:configuration</span>
+          <span class="type">(<tt>Configuration</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>a
+<a href="https://docs.jboss.org/infinispan/6.0/apidocs/org/infinispan/configuration/cache/Configuration.html" target="_parent" title="Configuration">Configuration</a> instance</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Caching/Cache.html" title="TorqueBox::Caching::Cache (class)">Cache</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The cache reference</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+95
+96
+97
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching.rb', line 95</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cache'>cache</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_validate_options'>validate_options</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='const'>VALID_OPTIONS</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_cache'>cache</span> <span class='op'>=</span> <span class='id identifier rubyid_component'>component</span><span class='period'>.</span><span class='id identifier rubyid_find_or_create'>find_or_create</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_extract_options'>extract_options</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='const'>Caching</span><span class='op'>::</span><span class='const'>CreateOption</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_codec'>codec</span> <span class='op'>=</span> <span class='const'>Codecs</span><span class='lbracket'>[</span><span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:encoding</span><span class='comma'>,</span> <span class='symbol'>:marshal_smart</span><span class='rparen'>)</span><span class='rbracket'>]</span>
+  <span class='const'>Cache</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_component'>component</span><span class='period'>.</span><span class='id identifier rubyid_withCodec'>withCodec</span><span class='lparen'>(</span><span class='id identifier rubyid_cache'>cache</span><span class='comma'>,</span> <span class='id identifier rubyid_codec'>codec</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="exists?-class_method">
+  
+    + (<tt>true</tt>, <tt>false</tt>) <strong>exists?</strong>(name) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Determine whether cache is currently running</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the name of the cache</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>true if running</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+114
+115
+116</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching.rb', line 114</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_exists?'>exists?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='op'>!</span><span class='op'>!</span><span class='id identifier rubyid_component'>component</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="stop-class_method">
+  
+    + (<tt>true</tt>, <tt>false</tt>) <strong>stop</strong>(name) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Stop cache by name</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the name of the cache to stop</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>true if successfully stopped</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+106
+107
+108</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching.rb', line 106</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_stop'>stop</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_component'>component</span><span class='period'>.</span><span class='id identifier rubyid_stop'>stop</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Jun 10 09:55:21 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

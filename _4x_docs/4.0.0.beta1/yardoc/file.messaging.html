@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+<title>
+  File: Messaging Guide
+  
+    &mdash; TorqueBox 4.0.0.beta1
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.messaging.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: Messaging Guide</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'>
+<h1 id="messaging">Messaging</h1>
+
+<p>TorqueBox provides support for asynchronous and synchronous messaging.</p>
+
+<p>The API for messaging all resides within the
+<a href="TorqueBox/Messaging.html">Messaging module</a>.</p>
+
+<h2 id="the-gem">The gem</h2>
+
+<p>Messaging services are provided by the <code>torquebox-messaging</code> gem, and
+can be used independently of other TorqueBox services.</p>
+
+<h2 id="the-api">The API</h2>
+
+<p>The messaging API is backed by <a href="http://hornetq.jboss.org/">HornetQ</a>, which is an implementation
+of <a href="https://en.wikipedia.org/wiki/Java_Message_Service">JMS</a>. JMS provides two primary destination types: <em>queues</em> and
+<em>topics</em>. Queues represent point-to-point destinations, and topics
+publish/subscribe.</p>
+
+<p>To use a destination, we need to get a reference to one via the
+<a href="TorqueBox/Messaging.html#queue-class_method">Messaging.queue</a> or
+<a href="TorqueBox/Messaging.html#topic-class_method">Messaging.topic</a> methods
+(or similar methods on a <a href="TorqueBox/Messaging/Context.html">Context</a>
+for remote destinations), depending on the type required. This will
+create the destination if it does not already exist.</p>
+
+<p>Once we have a reference to a destination, we can operate on it with
+the following methods:</p>
+
+<ul>
+  <li><a href="TorqueBox/Messaging/Destination.html#publish-instance_method">Destination.publish</a> -
+sends a message to the destination</li>
+  <li><a href="TorqueBox/Messaging/Destination.html#receive-instance_method">Destination.receive</a> -
+receives a single message from the destination</li>
+  <li><a href="TorqueBox/Messaging/Destination.html#listen-instance_method">Destination.listen</a> -
+registers a function to be called each time a message arrives at the
+destination</li>
+</ul>
+
+<p>If the destination is a queue, we can do synchronous messaging
+(<a href="https://en.wikipedia.org/wiki/Request-response">request-response</a>):</p>
+
+<ul>
+  <li><a href="TorqueBox/Messaging/Queue.html#respond-instance_method">Queue.respond</a> -
+registers a function that receives each request, and the returned
+value will be sent back to the requester</li>
+  <li><a href="TorqueBox/Messaging/Queue.html#request-instance_method">Queue.request</a> -
+sends a message to the responder</li>
+</ul>
+
+<h3 id="some-examples">Some Examples</h3>
+
+<p>First, let&#8217;s create a queue:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Messaging</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>my-queue</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+</code></pre>
+
+<p>That will create the queue in the HornetQ broker for us. We&#8217;ll need a
+reference to that queue to operate on it. Let&#8217;s go ahead and store
+that reference:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_q'>q</span> <span class='op'>=</span> <span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Messaging</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>my-queue</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+</code></pre>
+
+<p>We can call <code>queue</code> any number of times - if the queue already exists,
+we&#8217;re just grabbing a reference to it.</p>
+
+<p>Now, let&#8217;s register a listener on our queue. Let&#8217;s just print every
+message we get:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_listener'>listener</span> <span class='op'>=</span> <span class='id identifier rubyid_q'>q</span><span class='period'>.</span><span class='id identifier rubyid_listen'>listen</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_m'>m</span><span class='op'>|</span> <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_m'>m</span> <span class='rbrace'>}</span>
+</code></pre>
+
+<p>We can publish to that queue, and see that the listener gets called:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_q'>q</span><span class='period'>.</span><span class='id identifier rubyid_publish'>publish</span><span class='lparen'>(</span><span class='symbol'>:hi</span> <span class='op'>=&gt;</span> <span class='symbol'>:there</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>You&#8217;ll notice that we&#8217;re publishing a hash there - we can publish
+pretty much any data structure as a message. By default, that message
+will be encoded using Ruby&#8217;s built-in Marshal format. We also support
+other encodings, namely: <code>:edn</code>, <code>:json</code>, <code>:marshal_base64</code> and
+<code>:text</code>. We can choose a different encoding by passing an :encoding
+option to <code>publish</code>:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_q'>q</span><span class='period'>.</span><span class='id identifier rubyid_publish'>publish</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:hi</span> <span class='op'>=&gt;</span> <span class='symbol'>:there</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='symbol'>:encoding</span> <span class='op'>=&gt;</span> <span class='symbol'>:json</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>If you want to use <code>:json</code>, you&#8217;ll need to have the JSON gem loaded.</p>
+
+<p>We can deregister the listener by calling <code>.close</code> on it:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_listener'>listener</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
+</code></pre>
+
+<p>Now let&#8217;s take a look at synchronous messaging. Let&#8217;s create a new
+queue for this (you&#8217;ll want to use a dedicated queue for each
+responder) and register a responder that just increments the request:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_sync_q'>sync_q</span> <span class='op'>=</span> <span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Messaging</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sync</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+
+<span class='id identifier rubyid_responder'>responder</span> <span class='op'>=</span> <span class='id identifier rubyid_sync_q'>sync_q</span><span class='period'>.</span><span class='id identifier rubyid_respond'>respond</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_m'>m</span><span class='op'>|</span> <span class='id identifier rubyid_m'>m</span><span class='period'>.</span><span class='id identifier rubyid_succ'>succ</span> <span class='rbrace'>}</span>
+</code></pre>
+
+<p>Then, we make a request, which blocks and waits for a response:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_sync_q'>sync_q</span><span class='period'>.</span><span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>The responder is just a fancy listener, and can be deregistered the
+same way as a listener:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_responder'>responder</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
+</code></pre>
+
+<h2 id="remote-contexts">Remote contexts</h2>
+
+<p>To connect to a remote HornetQ instance, you&#8217;ll need to create a
+remote context by instantiating a
+<a href="TorqueBox/Messaging/Context.html">Context</a>, and use it when getting a
+reference to the destination:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Messaging</span><span class='op'>::</span><span class='const'>Context</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:host</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>some-host</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:port</span> <span class='op'>=&gt;</span> <span class='int'>5445</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_context'>context</span><span class='op'>|</span>
+  <span class='id identifier rubyid_context'>context</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>foo</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_publish'>publish</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a message</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span>
+</code></pre>
+
+<p>A few things to note about the above example:</p>
+
+<ul>
+  <li>We&#8217;re passing a block to the <code>Context</code> initializer, which will
+ensure the context gets closed when the block completes.</li>
+  <li>We&#8217;re acquiring the <code>Queue</code> reference from the context, which
+just returns a reference to the remote queue, <em>without</em> asking
+HornetQ to create it. You&#8217;ll need to make sure it already exists.</li>
+</ul>
+
+<h2 id="reusing-contexts">Reusing contexts</h2>
+
+<p>By default, TorqueBox creates a new context object for each <code>publish</code>,
+<code>request</code> or <code>receive</code> call. Creating a context isn&#8217;t free, and incurs
+some performance overhead. If you plan on calling any of those
+functions in a tight loop, you can gain some performance by creating
+the context yourself:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_q'>q</span> <span class='op'>=</span> <span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Messaging</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>foo</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:durable</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='rparen'>)</span>
+<span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Messaging</span><span class='op'>::</span><span class='const'>Context</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_context'>context</span><span class='op'>|</span>
+  <span class='int'>5000</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_n'>n</span><span class='op'>|</span>
+    <span class='id identifier rubyid_q'>q</span><span class='period'>.</span><span class='id identifier rubyid_publish'>publish</span><span class='lparen'>(</span><span class='id identifier rubyid_n'>n</span><span class='comma'>,</span> <span class='symbol'>:context</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_context'>context</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h2 id="hornetq-configuration">HornetQ configuration</h2>
+
+<p>When used outside of WildFly, we configure <a href="http://hornetq.jboss.org/">HornetQ</a> via a pair of xml
+files. If you need to adjust any of the HornetQ
+<a href="https://docs.jboss.org/hornetq/2.4.0.Final/docs/user-manual/html_single/#server.configuration">configuration options</a>, you can provide a copy of one (or both) of
+those files (<code>hornetq-configuration.xml</code> and <code>hornetq-jms.xml</code>, which
+should be based off of the <a href="https://github.com/projectodd/wunderboss/blob/0.2.0/modules/messaging/src/main/resources/">default versions</a>) on your application&#8217;s
+classpath and your copies will be used instead of the default
+ones. When making changes to these files, be careful about changing
+existing settings, as TorqueBox relies on some of them.</p>
+
+<p>We&#8217;ve also exposed a few HornetQ settings as system properties, namely:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>hornetq.data.dir</code></td>
+      <td>The base directory for HornetQ to store its data files</td>
+      <td><code>./hornetq-data/</code></td>
+    </tr>
+    <tr>
+      <td><code>hornetq.netty.port</code></td>
+      <td>The port that HornetQ will listen on for remote connections</td>
+      <td><code>5445</code></td>
+    </tr>
+    <tr>
+      <td><code>hornetq.netty.host</code></td>
+      <td>The host that HornetQ will listen on for remote connections</td>
+      <td><code>localhost</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Note that any custom xml or system properties will be ignored when
+running inside WildFly - you&#8217;ll need to make adjustments to the
+WildFly configuration to achieve similar effects.</p>
+
+<h2 id="more-to-come">More to come</h2>
+
+<p>That was just a brief introduction to the messaging API. There are
+features we&#8217;ve yet to cover (durable topic subscriptions,
+transactional sessions)&#8230;</p>
+
+</div></div>
+
+    <div id="footer">
+  Generated on Wed Jun 10 09:55:20 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

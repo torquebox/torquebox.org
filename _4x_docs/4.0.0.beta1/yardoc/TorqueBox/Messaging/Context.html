@@ -1,0 +1,1081 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: TorqueBox::Messaging::Context
+  
+    &mdash; TorqueBox 4.0.0.beta1
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!TorqueBox/Messaging/Context.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (C)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../TorqueBox.html" title="TorqueBox (module)">TorqueBox</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Messaging.html" title="TorqueBox::Messaging (module)">Messaging</a></span></span>
+     &raquo; 
+    <span class="title">Context</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: TorqueBox::Messaging::Context
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">TorqueBox::Messaging::Context</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+      <dt class="r2">Extended by:</dt>
+      <dd class="r2"><span class='object_link'><a href="../OptionUtils.html" title="TorqueBox::OptionUtils (module)">OptionUtils</a></span></dd>
+      
+    
+  
+    
+      <dt class="r1">Includes:</dt>
+      <dd class="r1"><span class='object_link'><a href="../OptionUtils.html" title="TorqueBox::OptionUtils (module)">OptionUtils</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">messaging/lib/torquebox/messaging/context.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>Represents a context to the message broker.</p>
+
+<p>You should only need to create a Context directly if you are
+connecting to a remote broker, you need transactional semantics,
+or you need better perfomance when doing lots of
+<span class='object_link'><a href="Destination.html#publish-instance_method" title="TorqueBox::Messaging::Destination#publish (method)">Destination#publish</a></span> or <span class='object_link'><a href="Destination.html#receive-instance_method" title="TorqueBox::Messaging::Destination#receive (method)">Destination#receive</a></span> calls in rapid
+succession, since each call will
+create and close a context if one is not provided.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="CONTEXT_OPTIONS-constant" class="">CONTEXT_OPTIONS =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Valid options for Context creation.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_optset'>optset</span><span class='lparen'>(</span><span class='const'>WBMessaging</span><span class='op'>::</span><span class='const'>CreateContextOption</span><span class='rparen'>)</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#internal_context-instance_method" title="#internal_context (instance method)">- (Object) <strong>internal_context</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute internal_context.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#acknowledge-instance_method" title="#acknowledge (instance method)">- (void) <strong>acknowledge</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Acknowledge any un-acknowledged messages in this context.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#close-instance_method" title="#close (instance method)">- (void) <strong>close</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Closes this context.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#commit-instance_method" title="#commit (instance method)">- (void) <strong>commit</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Commits the context.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Context) <strong>initialize</strong>(options = {}, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Creates a new context.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#mode-instance_method" title="#mode (instance method)">- (Symbol) <strong>mode</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>The mode of this context.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#queue-instance_method" title="#queue (instance method)">- (Queue) <strong>queue</strong>(name, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Creates a Queue from this context.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rollback-instance_method" title="#rollback (instance method)">- (void) <strong>rollback</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Rolls back the context.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#topic-instance_method" title="#topic (instance method)">- (Topic) <strong>topic</strong>(name, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Creates a Topic from this context.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="TorqueBox::Messaging::Context (class)">Context</a></span></tt>) <strong>initialize</strong>(options = {}, &amp;block) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Creates a new context.</p>
+
+<p>You are responsible for closing any contexts you create.</p>
+
+<p>If given a block, the Context instance will be passed to
+the block and the Context will be closed once the block
+returns.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:mode</span>
+          <span class="type">(<tt>Symbol</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>:auto_ack</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>One of: :auto_ack,
+:client_ack, :transacted</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:client_id</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>Identifies the client id
+for use with a durable topic subscriber.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:host</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The host of a remote broker.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:port</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>nil</tt>, <tt>5445 if :host provided</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The port of a remote broker.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:username</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The username for the remote
+broker.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:password</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The password for the remote
+broker.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:remote_type</span>
+          <span class="type">(<tt>Symbol</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>:hornetq_standalone</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>When connecting to a HornetQ instance running inside
+WildFly, this needs to be set to :hornetq_wildfly.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:reconnect_attempts</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>0</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>Total number
+of reconnect attempts to make before giving up (-1 for unlimited).</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:reconnect_retry_interval</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>2000</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The
+period in milliseconds between subsequent recontext attempts.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:reconnect_max_retry_interval</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>2000</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The max retry interval that will be used.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:reconnect_retry_interval_multiplier</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>1.0</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>A multiplier to apply to the time since the last retry
+to compute the time to the next retry.</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+    
+    
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/context.rb', line 70</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_validate_options'>validate_options</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='const'>CONTEXT_OPTIONS</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:mode</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_coerce_mode'>coerce_mode</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:mode</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_create_options'>create_options</span> <span class='op'>=</span> <span class='id identifier rubyid_extract_options'>extract_options</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='const'>WBMessaging</span><span class='op'>::</span><span class='const'>CreateContextOption</span><span class='rparen'>)</span>
+  <span class='ivar'>@internal_context</span> <span class='op'>=</span> <span class='id identifier rubyid_default_broker'>default_broker</span><span class='period'>.</span><span class='id identifier rubyid_create_context'>create_context</span><span class='lparen'>(</span><span class='id identifier rubyid_create_options'>create_options</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_block'>block</span>
+    <span class='kw'>begin</span>
+      <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
+    <span class='kw'>ensure</span>
+      <span class='id identifier rubyid_close'>close</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="internal_context-instance_method">
+  
+    - (<tt>Object</tt>) <strong>internal_context</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute internal_context</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/context.rb', line 32</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_internal_context'>internal_context</span>
+  <span class='ivar'>@internal_context</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="acknowledge-instance_method">
+  
+    - (<tt>void</tt>) <strong>acknowledge</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Acknowledge any un-acknowledged messages in this context.</p>
+
+<p>This only has affect for :client_ack contexts.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+139
+140
+141</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/context.rb', line 139</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_acknowledge'>acknowledge</span>
+  <span class='ivar'>@internal_context</span><span class='period'>.</span><span class='id identifier rubyid_acknowledge'>acknowledge</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="close-instance_method">
+  
+    - (<tt>void</tt>) <strong>close</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Closes this context.</p>
+
+<p>Once closed, any operations on this context will raise
+errors.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+111
+112
+113</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/context.rb', line 111</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
+  <span class='ivar'>@internal_context</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="commit-instance_method">
+  
+    - (<tt>void</tt>) <strong>commit</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Commits the context.</p>
+
+<p>This only has affect for :transacted contexts.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+130
+131
+132</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/context.rb', line 130</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_commit'>commit</span>
+  <span class='ivar'>@internal_context</span><span class='period'>.</span><span class='id identifier rubyid_commit'>commit</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="mode-instance_method">
+  
+    - (<tt>Symbol</tt>) <strong>mode</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns The mode of this context.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The mode of this context.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/context.rb', line 144</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_mode'>mode</span>
+  <span class='kw'>case</span> <span class='ivar'>@internal_context</span><span class='period'>.</span><span class='id identifier rubyid_mode'>mode</span>
+  <span class='kw'>when</span> <span class='const'>WBContext</span><span class='op'>::</span><span class='const'>Mode</span><span class='op'>::</span><span class='const'>AUTO_ACK</span>
+    <span class='symbol'>:auto_ack</span>
+  <span class='kw'>when</span> <span class='const'>WBContext</span><span class='op'>::</span><span class='const'>Mode</span><span class='op'>::</span><span class='const'>CLIENT_ACK</span>
+    <span class='symbol'>:client_ack</span>
+  <span class='kw'>when</span> <span class='const'>WBContext</span><span class='op'>::</span><span class='const'>Mode</span><span class='op'>::</span><span class='const'>TRANSACTED</span>
+    <span class='symbol'>:transacted</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="queue-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Queue.html" title="TorqueBox::Messaging::Queue (class)">Queue</a></span></tt>) <strong>queue</strong>(name, options = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Creates a Queue from this context.</p>
+
+<p>The Queue instance will use this context for
+any of its methods that take a <code>:context</code> option.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Queue.html" title="TorqueBox::Messaging::Queue (class)">Queue</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a new instance of Queue</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+91
+92
+93</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/context.rb', line 91</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_queue'>queue</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Messaging</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='symbol'>:context</span> <span class='op'>=&gt;</span> <span class='kw'>self</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rollback-instance_method">
+  
+    - (<tt>void</tt>) <strong>rollback</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Rolls back the context.</p>
+
+<p>This only has affect for :transacted contexts.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+121
+122
+123</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/context.rb', line 121</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_rollback'>rollback</span>
+  <span class='ivar'>@internal_context</span><span class='period'>.</span><span class='id identifier rubyid_rollback'>rollback</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="topic-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Topic.html" title="TorqueBox::Messaging::Topic (class)">Topic</a></span></tt>) <strong>topic</strong>(name, options = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Creates a Topic from this context.</p>
+
+<p>The Topic instance will use this context for
+any of its methods that take a <code>:context</code> option.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Topic.html" title="TorqueBox::Messaging::Topic (class)">Topic</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a new instance of Topic</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+102
+103
+104</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/context.rb', line 102</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_topic'>topic</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Messaging</span><span class='period'>.</span><span class='id identifier rubyid_topic'>topic</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='symbol'>:context</span> <span class='op'>=&gt;</span> <span class='kw'>self</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Jun 10 09:55:26 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>
