@@ -82,5 +82,4 @@ As always, if you have any questions about or issues with TorqueBox, please [get
 [community]:   /community/
 
 [tb4_posts]:   /news/tags/4x/
-[jar_guide]:   /documentation/4.0.0.beta11/yardoc/file.jar.html
 [wildfly]:     http://wildfly.org/
