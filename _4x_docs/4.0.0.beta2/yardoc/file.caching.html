@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+<title>
+  File: Caching Guide
+  
+    &mdash; TorqueBox 4.0.0.beta2
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.caching.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: Caching Guide</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'>
+<h1 id="caching">Caching</h1>
+
+<p>TorqueBox caching is provided by the <a href="http://infinispan.org">Infinispan</a> data grid, the
+distributed features of which are available when deployed to a
+<a href="file.wildfly.html">WildFly</a> or EAP cluster. But even in &#8220;local mode&#8221;, i.e. not in a
+cluster but locally embedded within your app, Infinispan caches offer
+features such as eviction, expiration, persistence, and transactions
+that aren&#8217;t available in typical <a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ConcurrentMap.html">ConcurrentMap</a> implementations.</p>
+
+<p>This guide will explore the
+<a href="TorqueBox/Caching.html">TorqueBox::Caching</a> module, which provides
+access to Infinispan, whether your app is deployed to a WildFly/EAP
+cluster or not.</p>
+
+<h2 id="creation-and-configuration">Creation and Configuration</h2>
+
+<p>Caches are created, started, and referenced using the
+<a href="TorqueBox/Caching.html#cache-class_method">TorqueBox::Caching.cache</a>
+method. It accepts a number of optional configuration arguments, but
+the only required one is a name, since every cache must be uniquely
+named. If you pass the name of a cache that already exists, a
+reference to the existing cache will be returned, effectively ignoring
+any additional config options you might pass. So two cache instances
+with the same name will be backed by the same Infinispan cache.</p>
+
+<p>If you wish to reconfigure an existing cache, you must stop it first
+by calling
+<a href="TorqueBox/Caching.html#stop-class_method">TorqueBox::Caching.stop</a>.</p>
+
+<p>Infinispan is a veritable morass of enterprisey configuration.
+TorqueBox tries to strike a convention/configuration balance by
+representing the more common options as kwargs passed to the <code>cache</code>
+method, while still supporting the more esoteric config via
+<a href="TorqueBox/Caching.html#builder-class_method">TorqueBox::Caching.builder</a>
+and Java interop.</p>
+
+<h2 id="example-usage">Example Usage</h2>
+
+<p>You&#8217;re encouraged to run the following examples in an <code>irb</code> session:</p>
+
+<h3 id="writing">Writing</h3>
+
+<p>Let&#8217;s create a cache and put some data in it:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>torquebox-caching</span><span class='tstring_end'>'</span></span>
+<span class='id identifier rubyid_c'>c</span> <span class='op'>=</span> <span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Caching</span><span class='period'>.</span><span class='id identifier rubyid_cache'>cache</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>foo</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+
+<span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='symbol'>:a</span><span class='comma'>,</span> <span class='int'>1</span><span class='rparen'>)</span>                                  <span class='comment'>#=&gt; nil
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='symbol'>:a</span><span class='comma'>,</span> <span class='int'>2</span><span class='rparen'>)</span>                                  <span class='comment'>#=&gt; 1
+</span><span class='id identifier rubyid_c'>c</span><span class='lbracket'>[</span><span class='symbol'>:b</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>3</span>                                     <span class='comment'>#=&gt; 3
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_put_all'>put_all</span><span class='lparen'>(</span><span class='symbol'>:x</span> <span class='op'>=&gt;</span> <span class='int'>42</span><span class='comma'>,</span> <span class='symbol'>:y</span> <span class='op'>=&gt;</span> <span class='int'>99</span><span class='rparen'>)</span>                 <span class='comment'>#=&gt; nil
+</span></code></pre>
+
+<p>Note that <code>put</code> returns the previous value and <code>[]=</code> returns the new
+one. We have all the <a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ConcurrentMap.html">ConcurrentMap</a> operations at our disposal, too:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Cache it only if key doesn't exist
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_put_if_absent'>put_if_absent</span><span class='lparen'>(</span><span class='symbol'>:b</span><span class='comma'>,</span> <span class='int'>6</span><span class='rparen'>)</span>                        <span class='comment'>#=&gt; 3
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_put_if_absent'>put_if_absent</span><span class='lparen'>(</span><span class='symbol'>:d</span><span class='comma'>,</span> <span class='int'>4</span><span class='rparen'>)</span>                        <span class='comment'>#=&gt; nil
+</span>
+<span class='comment'># Cache it only if key exists
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_replace'>replace</span><span class='lparen'>(</span><span class='symbol'>:e</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span>                              <span class='comment'>#=&gt; nil
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_replace'>replace</span><span class='lparen'>(</span><span class='symbol'>:b</span><span class='comma'>,</span> <span class='int'>6</span><span class='rparen'>)</span>                              <span class='comment'>#=&gt; 3
+</span>
+<span class='comment'># Cache it only if key and value exists
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_compare_and_set'>compare_and_set</span><span class='lparen'>(</span><span class='symbol'>:b</span><span class='comma'>,</span> <span class='int'>2</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span>                   <span class='comment'>#=&gt; false
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_compare_and_set'>compare_and_set</span><span class='lparen'>(</span><span class='symbol'>:b</span><span class='comma'>,</span> <span class='int'>6</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span>                   <span class='comment'>#=&gt; true
+</span></code></pre>
+
+<h3 id="reading">Reading</h3>
+
+<p>Querying a cache is straightforward:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='symbol'>:b</span><span class='rparen'>)</span>                                     <span class='comment'>#=&gt; 0
+</span><span class='id identifier rubyid_c'>c</span><span class='lbracket'>[</span><span class='symbol'>:b</span><span class='rbracket'>]</span>                                         <span class='comment'>#=&gt; 0
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>                                        <span class='comment'>#=&gt; 5
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>                                      <span class='comment'>#=&gt; false
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_contains_key?'>contains_key?</span><span class='lparen'>(</span><span class='symbol'>:b</span><span class='rparen'>)</span>                           <span class='comment'>#=&gt; true
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_cache'>cache</span>                                       <span class='comment'>#=&gt; {:y=&gt;99, :x=&gt;42, :a=&gt;2, :d=&gt;4, :b=&gt;0}
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span>                                   <span class='comment'>#=&gt; [:a, :b, :d, :x, :y]
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span>                                 <span class='comment'>#=&gt; [0, 2, 4, 42, 99]
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>                                        <span class='comment'>#=&gt; &quot;foo&quot;
+</span></code></pre>
+
+<h3 id="removing">Removing</h3>
+
+<p>Cache entries can be explicitly deleted using Java interop, but they
+can also be subject to automatic expiration and eviction.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Removing a missing key is harmless
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_remove'>remove</span><span class='lparen'>(</span><span class='symbol'>:missing</span><span class='rparen'>)</span>                            <span class='comment'>#=&gt; nil
+</span>
+<span class='comment'># Removing an existing key returns its value
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_remove'>remove</span><span class='lparen'>(</span><span class='symbol'>:b</span><span class='rparen'>)</span>                                  <span class='comment'>#=&gt; 0
+</span>
+<span class='comment'># If value is passed, both must match for remove to succeed
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_remove'>remove</span><span class='lparen'>(</span><span class='symbol'>:y</span><span class='comma'>,</span> <span class='int'>8</span><span class='rparen'>)</span>                                <span class='comment'>#=&gt; false
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_remove'>remove</span><span class='lparen'>(</span><span class='symbol'>:y</span><span class='comma'>,</span> <span class='int'>99</span><span class='rparen'>)</span>                               <span class='comment'>#=&gt; true
+</span>
+<span class='comment'># Clear all entries
+</span><span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
+</code></pre>
+
+<h4 id="expiration">Expiration</h4>
+
+<p>By default, cached entries never expire, but you can trigger
+expiration by passing the <code>:ttl</code> (time-to-live) and/or <code>:idle</code> options
+to the <code>cache</code> method. Their units are milliseconds, and negative
+values disable expiration.</p>
+
+<p>If <code>:ttl</code> is specified, entries will be automatically deleted after
+that amount of time elapses, starting from when the entry was added.
+Effectively, this is the entry&#8217;s &#8220;maximum lifespan&#8221;. If <code>:idle</code> is
+specified, the entry is deleted after the time elapses, but the
+&#8220;timer&#8221; is reset each time the entry is accessed. If both are
+specified, whichever elapses first &#8220;wins&#8221; and triggers expiration.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># We can set the defaults for a cache
+</span><span class='id identifier rubyid_e'>e</span> <span class='op'>=</span> <span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Caching</span><span class='period'>.</span><span class='id identifier rubyid_cache'>cache</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bar</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:ttl</span> <span class='op'>=&gt;</span> <span class='int'>30</span><span class='op'>*</span><span class='int'>1000</span><span class='comma'>,</span> <span class='symbol'>:idle</span> <span class='op'>=&gt;</span> <span class='int'>15</span><span class='op'>*</span><span class='int'>1000</span><span class='rparen'>)</span>
+
+<span class='comment'># All of the cache manipulation methods take the same options
+</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='symbol'>:a</span><span class='comma'>,</span> <span class='int'>42</span><span class='comma'>,</span> <span class='symbol'>:ttl</span> <span class='op'>=&gt;</span> <span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_put_all'>put_all</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:x</span> <span class='op'>=&gt;</span> <span class='int'>42</span><span class='comma'>,</span> <span class='symbol'>:y</span> <span class='op'>=&gt;</span> <span class='int'>99</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='symbol'>:idle</span> <span class='op'>=&gt;</span> <span class='int'>60</span><span class='op'>*</span><span class='int'>1000</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_put_if_absent'>put_if_absent</span><span class='lparen'>(</span><span class='symbol'>:a</span><span class='comma'>,</span> <span class='int'>42</span><span class='comma'>,</span> <span class='symbol'>:ttl</span> <span class='op'>=&gt;</span> <span class='int'>100000</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_replace'>replace</span><span class='lparen'>(</span><span class='symbol'>:k</span><span class='comma'>,</span> <span class='int'>99</span><span class='comma'>,</span> <span class='symbol'>:ttl</span> <span class='op'>=&gt;</span> <span class='int'>500</span><span class='comma'>,</span> <span class='symbol'>:idle</span> <span class='op'>=&gt;</span> <span class='int'>500</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_compare_and_set'>compare_and_set</span><span class='lparen'>(</span><span class='symbol'>:k</span><span class='comma'>,</span> <span class='int'>99</span><span class='comma'>,</span> <span class='int'>100</span><span class='comma'>,</span> <span class='symbol'>:ttl</span> <span class='op'>=&gt;</span> <span class='int'>1000</span><span class='rparen'>)</span>
+</code></pre>
+
+<h4 id="eviction">Eviction</h4>
+
+<p>To avoid memory exhaustion, you can include the <code>:max_entries</code> option
+as well as the <code>:eviction</code> policy to determine which entries to evict.
+And if the <code>:persist</code> option is set, evicted entries are not deleted
+but rather flushed to disk so that the entries in memory are always a
+finite subset of those on disk.</p>
+
+<p>The default eviction policy is <a href="http://en.wikipedia.org/wiki/LIRS_caching_algorithm">:lirs</a>, which is an optimized version
+of <code>:lru</code> (Least Recently Used).</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_baz'>baz</span> <span class='op'>=</span> <span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Caching</span><span class='period'>.</span><span class='id identifier rubyid_cache'>cache</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>baz</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:max_entries</span> <span class='op'>=&gt;</span> <span class='int'>3</span>
+<span class='id identifier rubyid_baz'>baz</span><span class='lbracket'>[</span><span class='symbol'>:a</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>1</span>
+<span class='id identifier rubyid_baz'>baz</span><span class='lbracket'>[</span><span class='symbol'>:b</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>2</span>
+<span class='id identifier rubyid_baz'>baz</span><span class='lbracket'>[</span><span class='symbol'>:c</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>3</span>
+<span class='id identifier rubyid_baz'>baz</span><span class='lbracket'>[</span><span class='symbol'>:d</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>4</span>
+<span class='id identifier rubyid_baz'>baz</span><span class='lbracket'>[</span><span class='symbol'>:a</span><span class='rbracket'>]</span>                                       <span class='comment'>#=&gt; nil
+</span><span class='id identifier rubyid_baz'>baz</span><span class='period'>.</span><span class='id identifier rubyid_cache'>cache</span>                                     <span class='comment'>#=&gt; {:d=&gt;4, :c=&gt;3, :b=&gt;2}
+</span></code></pre>
+
+<h3 id="event-notification">Event Notification</h3>
+
+<p>Infinispan provides an API for registering callback functions to be
+invoked when specific events occur during a cache&#8217;s lifecycle.
+Unfortunately, this API relies exclusively on Java annotations, which
+are awkward in JRuby (not to mention Java, if we&#8217;re being honest).</p>
+
+<p>Therefore, TorqueBox caches provide the
+<a href="TorqueBox/Caching/Cache.html#add_listener-instance_method">add-listener</a>
+method, which takes one or more Ruby symbols and a block. Each symbol
+corresponds to one of the Infinispan annotations, and the block will
+be passed the appropriate Event object. Technically, the block will be
+called twice for each event: once right before it occurs, and once
+immediately after.</p>
+
+<p>For example, to print an event whenever an entry is either visited or
+modified in the baz cache:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_baz'>baz</span><span class='period'>.</span><span class='id identifier rubyid_add_listener'>add_listener</span><span class='lparen'>(</span><span class='symbol'>:cache_entry_visited</span><span class='comma'>,</span> <span class='symbol'>:cache_entry_modified</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_e'>e</span><span class='op'>|</span> <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_e'>e</span><span class='rbrace'>}</span>
+
+<span class='id identifier rubyid_baz'>baz</span><span class='period'>.</span><span class='id identifier rubyid_get_listeners'>get_listeners</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>                        <span class='comment'>#=&gt; 2
+</span>
+<span class='comment'># This should show two messages for each event (before/after)
+</span><span class='id identifier rubyid_baz'>baz</span><span class='lbracket'>[</span><span class='symbol'>:b</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_baz'>baz</span><span class='lbracket'>[</span><span class='symbol'>:b</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='int'>1</span>
+
+<span class='comment'># This should turn the notifications off
+</span><span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_baz'>baz</span><span class='period'>.</span><span class='id identifier rubyid_remove_listener'>remove_listener</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span><span class='rbrace'>}</span>
+<span class='id identifier rubyid_baz'>baz</span><span class='period'>.</span><span class='id identifier rubyid_get_listeners'>get_listeners</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>                      <span class='comment'>#=&gt; true
+</span></code></pre>
+
+<h3 id="encoding">Encoding</h3>
+
+<p>Cache entries are encoded with modified version of Ruby&#8217;s Marshal
+codec called <code>:marshal_smart</code>. Other supported codecs include <code>:edn</code>,
+<code>:json</code>, <code>:marshal</code>, <code>:marshal_base64</code> and <code>:text</code></p>
+
+<p>Setting the <code>:encoding</code> is typically necessary only when non-Ruby
+clients are sharing your cache.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_edn'>edn</span> <span class='op'>=</span> <span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Caching</span><span class='period'>.</span><span class='id identifier rubyid_cache'>cache</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>edn</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:encoding</span> <span class='op'>=&gt;</span> <span class='symbol'>:edn</span><span class='rparen'>)</span>
+</code></pre>
+
+<h2 id="clustering">Clustering</h2>
+
+<p>Each Infinispan cache operates in one of four modes. Normally, <em>local</em>
+mode is your only option, but when your app is deployed to a cluster,
+you get three more: <em>invalidated</em>, <em>replicated</em>, and <em>distributed</em>.
+These modes define how peers collaborate to replicate your data
+throughout the cluster. Further, you can choose whether this
+collaboration occurs asynchronous to the write.</p>
+
+<ul>
+  <li><code>:local</code> This is the only supported mode outside of a cluster</li>
+  <li><code>:dist_sync</code> <code>:dist_async</code> This mode enables Infinispan caches to
+achieve &#8220;linear scalability&#8221;. Cache entries are copied to a fixed
+number of peers (2, by default) regardless of the cluster size.
+Distribution uses a consistent hashing algorithm to determine which
+nodes will store a given entry.</li>
+  <li><code>:invalidation_sync</code> <code>:invalidation_async</code> No data is actually
+shared among the cluster peers in this mode. Instead, notifications
+are sent to all nodes when data changes, causing them to evict their
+stale copies of the updated entry.</li>
+  <li><code>:repl_sync</code> <code>:repl_async</code> In this mode, entries added to any peer
+will be copied to all other peers in the cluster, and can then be
+retrieved locally from any instance. This mode is probably
+impractical for clusters of any significant size. Infinispan
+recommends 10 as a reasonable upper bound on the number of
+replicated nodes.</li>
+</ul>
+
+<p>The simplest way to take advantage of Infinispan&#8217;s clustering
+capabilities is to deploy your app to a <a href="file.wildfly.html">WildFly</a> cluster.</p>
+
+</div></div>
+
+    <div id="footer">
+  Generated on Thu Sep  3 11:01:20 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

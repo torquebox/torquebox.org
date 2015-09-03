@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+<title>
+  File: Deploying an Application as a Jar
+  
+    &mdash; TorqueBox 4.0.0.beta2
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.jar.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: Deploying an Application as a Jar</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'>
+<h1 id="jar-deployment">Jar Deployment</h1>
+
+<p>Using the <code>torquebox jar</code> command, you can generate an jar file that
+(optionally) includes JRuby, your application, and all of its
+dependencies (if you are using bundler). This gives you an artifact
+that can be launched anywhere java (version 7 or higher) is
+available - no JRuby install is required. You run the jar with:</p>
+
+<pre class="code ruby"><code class="ruby">$ java -jar myapp.jar
+</code></pre>
+
+<h2 id="building-the-jar">Building the jar</h2>
+
+<p>The <code>torquebox-core</code> gem provides a <code>torquebox</code> binary that provides
+command-line utilities for managing TorqueBox applications. One of
+those utilities is <code>torquebox jar</code>. We&#8217;ll walk through a simple web
+application to demonstrate its usage (for general information on
+web-based applications with TorqueBox, see the <a href="./file.web.html">Web Guide</a>).</p>
+
+<p>First, a <code>Gemfile</code>. We&#8217;ll use <a href="http://sinatrarb.com/">Sinatra</a>, so we need to bring its gem
+in, along with <code>torquebox-web</code>:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_source'>source</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://rubygems.org</span><span class='tstring_end'>&quot;</span></span>
+
+<span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sinatra</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1.4.5</span><span class='tstring_end'>&quot;</span></span>
+<span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>torquebox-web</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>4.0.0.beta2</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
+
+<p>Then, the application itself. Let&#8217;s put it at <code>app.rb</code> at the root of
+our project:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>sinatra</span><span class='tstring_end'>'</span></span>
+
+<span class='id identifier rubyid_get'>get</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/</span><span class='tstring_end'>'</span></span> <span class='kw'>do</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ahoyhoy!&lt;br&gt;
+   FOO=</span><span class='embexpr_beg'>#{</span><span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>FOO</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>&lt;br&gt;
+   BAR=</span><span class='embexpr_beg'>#{</span><span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>BAR</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</code></pre>
+
+<p>Lastly, we&#8217;ll need a standard <code>config.ru</code> to start the application:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>./app</span><span class='tstring_end'>'</span></span>
+
+<span class='id identifier rubyid_run'>run</span> <span class='const'>Sinatra</span><span class='op'>::</span><span class='const'>Application</span>
+</code></pre>
+
+<p>Now we can generate the jar. This will vendor our gems inside the jar,
+along with JRuby itself:</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle exec torquebox jar
+</code></pre>
+
+<p>You should see output like:</p>
+
+<pre class="code ruby"><code class="ruby">15:53:24.604 INFO  Bundling gem dependencies
+15:53:44.530 INFO  Writing ./jar-example.jar
+</code></pre>
+
+<p>By default, the jar command uses the name of the current directory as
+the jar name - you can override that with the <code>--name</code> option. In my
+case, the dir was <code>jar-example</code>. It also creates the jar in the
+current directory - that can be overridden with <code>--destination</code>.</p>
+
+<p>Since we&#8217;re bundling JRuby, we end up with a rather large file (33Mb
+for this example), but that&#8217;s the price we pay for a portable
+artifact. If you will be running the jar on a machine that has a JRuby
+install, you can disable the inclusion of JRuby, resulting in a much
+smaller artifact (we cover that in more detail below).</p>
+
+<h2 id="running-the-jar">Running the jar</h2>
+
+<p>Run the jar with (remember, your jar name may vary):</p>
+
+<pre class="code ruby"><code class="ruby">$ java -jar jar-example.jar
+</code></pre>
+
+<p>You should see output like:</p>
+
+<pre class="code ruby"><code class="ruby">16:02:29.061 INFO  [org.projectodd.wunderboss] (main) Initializing application as ruby
+16:02:32.940 INFO  [org.projectodd.wunderboss.web.Web] (main) Registered web context /
+16:02:32.942 INFO  [TorqueBox::Web::Server] (main) Starting TorqueBox::Web::Server 'default'
+16:02:33.258 INFO  [TorqueBox::Web::Server] (main) Listening for HTTP requests on localhost:8080
+</code></pre>
+
+<p>If you then visit <a href="http://localhost:8080">http://localhost:8080</a> in a browser, you should get
+a response. But notice that the response doesn&#8217;t include our
+environment variables.</p>
+
+<h2 id="environment-variables">Environment variables</h2>
+
+<p>When running the jar file, you can provide environment variables as
+you normally would, either exported or on the command-line:</p>
+
+<pre class="code ruby"><code class="ruby">$ FOO=foo BAR=bar java -jar jar-example.jar
+</code></pre>
+
+<p>Or, you can include them in the jar itself. Try:</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle exec torquebox jar --envvar FOO=foo --envvar BAR=bar
+</code></pre>
+
+<p>and run it again with:</p>
+
+<pre class="code ruby"><code class="ruby">$ java -jar jar-example.jar
+</code></pre>
+
+<p>Then visit <a href="http://localhost:8080">http://localhost:8080</a> to see the request complete with
+the environment variable values. Note that the two options above
+aren&#8217;t mutually exclusive - you can set some variables as part of the
+jar build process, and provide others (or override ones set in the
+jar) at the command-line.</p>
+
+<h2 id="using-an-existing-jruby-install">Using an existing JRuby install</h2>
+
+<p>If you have an existing JRuby install, and don&#8217;t want to include one
+in the jar (or override the one that is included), you can do so by
+specifying a JRuby home dir. But first, let&#8217;s build a jar that doesn&#8217;t
+include JRuby:</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle exec torquebox jar --no-include-jruby
+</code></pre>
+
+<p>This generates <em>much</em> smaller jar file - 13Mb for this example. Now,
+we can run it, either with:</p>
+
+<pre class="code ruby"><code class="ruby">$ JRUBY_HOME=/path/to/jruby java -jar jar-example.jar
+</code></pre>
+
+<p>or:</p>
+
+<pre class="code ruby"><code class="ruby">$ java -Djruby.home=/path/to/jruby -jar jar-example.jar
+</code></pre>
+
+<p>You can also create a jar without bundled gems, if they are available
+in the local JRuby install:</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle exec torquebox jar --no-include-jruby --no-bundle-gems
+</code></pre>
+
+<p>This results in an even smaller jar (3.7Mb).</p>
+
+<h2 id="initializing-a-non-web-application">Initializing a non-web application</h2>
+
+<p>So far, we&#8217;ve been looking at a web application. But what if you have
+a non-web application? How do you start it? The jar command provides a
+<code>--main</code> option for this case:</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle exec torquebox jar --main app/init
+</code></pre>
+
+<p>This results in a jar that, when started, will call <code>require
+"app/init"</code> after initializing JRuby, which can be used to bootstrap
+your application.</p>
+
+<h2 id="running-rake-or-other-scripts-from-inside-the-jar">Running rake or other scripts from inside the jar</h2>
+
+<p>You can run rake or similar tasks from the code inside the jar by
+using the &#8216;-S&#8217; flag, which mimics the behavior of &#8216;jruby -S&#8217; but in
+the context of your application inside the jar. For example, to run
+database migrations from a typical Rails application:</p>
+
+<pre class="code ruby"><code class="ruby">$ java -jar jar-example.jar -S rake db:migrate
+</code></pre>
+
+<h2 id="customizing-the-temporary-directory-jars-get-unpacked-to">Customizing the temporary directory jars get unpacked to</h2>
+
+<p>When running TorqueBox applications from a jar, some items get
+unpacked from the jar into a temporary directory. We delegate to the
+JVM&#8217;s logic for doing this which means you can control the location of
+this temporary directory by passing a JVM system property:</p>
+
+<pre class="code ruby"><code class="ruby">$ java -Djava.io.tmpdir=/path/to/tmp -jar jar-example.jar
+</code></pre>
+
+</div></div>
+
+    <div id="footer">
+  Generated on Thu Sep  3 11:01:20 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

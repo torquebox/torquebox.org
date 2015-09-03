@@ -1,0 +1,1643 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: TorqueBox::CLI::Jar
+  
+    &mdash; TorqueBox 4.0.0.beta2
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!TorqueBox/CLI/Jar.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (J)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../TorqueBox.html" title="TorqueBox (module)">TorqueBox</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../CLI.html" title="TorqueBox::CLI (class)">CLI</a></span></span>
+     &raquo; 
+    <span class="title">Jar</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: TorqueBox::CLI::Jar
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">TorqueBox::CLI::Jar</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">core/lib/torquebox/cli/jar.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="War.html" title="TorqueBox::CLI::War (class)">War</a></span></p>
+</div>
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="DEFAULT_INIT-constant" class="">DEFAULT_INIT =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>require 'torquebox-core'; \
+TorqueBox::CLI::Archive.new(ARGV).run;</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_app_files-instance_method" title="#add_app_files (instance method)">- (Object) <strong>add_app_files</strong>(jar_builder, options) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_bundler_files-instance_method" title="#add_bundler_files (instance method)">- (Object) <strong>add_bundler_files</strong>(jar_builder, tmpdir, bundle_without) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_files-instance_method" title="#add_files (instance method)">- (Object) <strong>add_files</strong>(jar_builder, options) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_jar-instance_method" title="#add_jar (instance method)">- (Object) <strong>add_jar</strong>(jar_builder, jar) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_jruby_files-instance_method" title="#add_jruby_files (instance method)">- (Object) <strong>add_jruby_files</strong>(jar_builder) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_torquebox_files-instance_method" title="#add_torquebox_files (instance method)">- (Object) <strong>add_torquebox_files</strong>(jar_builder) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#app_properties-instance_method" title="#app_properties (instance method)">- (Object) <strong>app_properties</strong>(env, init) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#available_options-instance_method" title="#available_options (instance method)">- (Object) <strong>available_options</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bundle_gems-instance_method" title="#bundle_gems (instance method)">- (Object) <strong>bundle_gems</strong>(tmpdir, bundle_without) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cache_gems-instance_method" title="#cache_gems (instance method)">- (Object) <strong>cache_gems</strong>(tmpdir) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#copy_and_restore_lockfile-instance_method" title="#copy_and_restore_lockfile (instance method)">- (Object) <strong>copy_and_restore_lockfile</strong>(tmpdir, lockfile, original_lockfile) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#copy_bundle_config-instance_method" title="#copy_bundle_config (instance method)">- (Object) <strong>copy_bundle_config</strong>(tmpdir) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#copy_cached_gems-instance_method" title="#copy_cached_gems (instance method)">- (Object) <strong>copy_cached_gems</strong>(tmpdir) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#eval_in_new_ruby-instance_method" title="#eval_in_new_ruby (instance method)">- (Object) <strong>eval_in_new_ruby</strong>(script) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Jar) <strong>initialize</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>A new instance of Jar.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#option_defaults-instance_method" title="#option_defaults (instance method)">- (Object) <strong>option_defaults</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#run-instance_method" title="#run (instance method)">- (Object) <strong>run</strong>(_argv, options) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setup_parser-instance_method" title="#setup_parser (instance method)">- (Object) <strong>setup_parser</strong>(parser, options) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#usage_parameters-instance_method" title="#usage_parameters (instance method)">- (Object) <strong>usage_parameters</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="TorqueBox::CLI::Jar (class)">Jar</a></span></tt>) <strong>initialize</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns a new instance of Jar</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 28</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
+  <span class='ivar'>@logger</span> <span class='op'>=</span> <span class='id identifier rubyid_org'>org</span><span class='period'>.</span><span class='id identifier rubyid_projectodd'>projectodd</span><span class='period'>.</span><span class='id identifier rubyid_wunderboss'>wunderboss</span><span class='period'>.</span><span class='const'>WunderBoss</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>TorqueBox</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='ivar'>@classpath</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="add_app_files-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add_app_files</strong>(jar_builder, options) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 168</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_app_files'>add_app_files</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='ivar'>@logger</span><span class='period'>.</span><span class='id identifier rubyid_trace'>trace</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Adding application files to jar...</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_exclude'>exclude</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^/[^/]*\.(jar|war)</span><span class='regexp_end'>}</span></span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:exclude</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_exclude'>exclude</span> <span class='op'>+=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:exclude</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_e'>e</span><span class='op'>|</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>^</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_add_files'>add_files</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='comma'>,</span>
+            <span class='symbol'>:file_prefix</span> <span class='op'>=&gt;</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_pwd'>pwd</span><span class='comma'>,</span>
+            <span class='symbol'>:pattern</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/**/{*,\.*manifest*}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+            <span class='symbol'>:jar_prefix</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>app</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+            <span class='symbol'>:exclude</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_exclude'>exclude</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="add_bundler_files-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add_bundler_files</strong>(jar_builder, tmpdir, bundle_without) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 181</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_bundler_files'>add_bundler_files</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='comma'>,</span> <span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='comma'>,</span> <span class='id identifier rubyid_bundle_without'>bundle_without</span><span class='rparen'>)</span>
+  <span class='ivar'>@logger</span><span class='period'>.</span><span class='id identifier rubyid_trace'>trace</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Adding bundler files to jar...</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>BUNDLE_GEMFILE</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Gemfile</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='ivar'>@logger</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No Gemfile found - skipping gem dependencies</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@logger</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bundling gem dependencies</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>bundler</span><span class='tstring_end'>'</span></span>
+
+  <span class='id identifier rubyid_copy_bundle_config'>copy_bundle_config</span><span class='lparen'>(</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_vendor_dir_exists'>vendor_dir_exists</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>vendor</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_cache_dir_exists'>cache_dir_exists</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>vendor/cache</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_bundle_dir_exists'>bundle_dir_exists</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>vendor/bundle</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_already_cached'>already_cached</span> <span class='op'>=</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_glob'>glob</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>vendor/cache/*.gem</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_already_bundled'>already_bundled</span> <span class='op'>=</span> <span class='const'>Pathname</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Bundler</span><span class='period'>.</span><span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_relative?'>relative?</span>
+
+  <span class='id identifier rubyid_lockfile'>lockfile</span> <span class='op'>=</span> <span class='const'>Bundler</span><span class='period'>.</span><span class='id identifier rubyid_default_lockfile'>default_lockfile</span>
+  <span class='id identifier rubyid_original_lockfile'>original_lockfile</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_lockfile'>lockfile</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_lockfile'>lockfile</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='kw'>nil</span>
+
+  <span class='id identifier rubyid_cache_gems'>cache_gems</span><span class='lparen'>(</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_already_cached'>already_cached</span>
+  <span class='id identifier rubyid_bundle_gems'>bundle_gems</span><span class='lparen'>(</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='comma'>,</span> <span class='id identifier rubyid_bundle_without'>bundle_without</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_already_bundled'>already_bundled</span>
+  <span class='id identifier rubyid_copy_cached_gems'>copy_cached_gems</span><span class='lparen'>(</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_already_cached'>already_cached</span>
+  <span class='id identifier rubyid_copy_and_restore_lockfile'>copy_and_restore_lockfile</span><span class='lparen'>(</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='comma'>,</span> <span class='id identifier rubyid_lockfile'>lockfile</span><span class='comma'>,</span> <span class='id identifier rubyid_original_lockfile'>original_lockfile</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_add_files'>add_files</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='comma'>,</span>
+            <span class='symbol'>:file_prefix</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='comma'>,</span>
+            <span class='symbol'>:pattern</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/{**/*,.bundle/**/*}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+            <span class='symbol'>:jar_prefix</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>app</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+            <span class='symbol'>:exclude</span> <span class='op'>=&gt;</span> <span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Jars</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_j'>j</span><span class='op'>|</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='id identifier rubyid_j'>j</span><span class='rparen'>)</span>  <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='const'>Gem</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_prefix'>prefix</span><span class='op'>|</span>
+    <span class='id identifier rubyid_add_files'>add_files</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='comma'>,</span>
+              <span class='symbol'>:file_prefix</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_prefix'>prefix</span><span class='comma'>,</span>
+              <span class='symbol'>:pattern</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/**/bundler-</span><span class='embexpr_beg'>#{</span><span class='const'>Bundler</span><span class='op'>::</span><span class='const'>VERSION</span><span class='rbrace'>}</span><span class='tstring_content'>{*,/**/*}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+              <span class='symbol'>:jar_prefix</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>jruby/lib/ruby/gems/shared</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>ensure</span>
+  <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_rm_rf'>rm_rf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>vendor/bundle</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_bundle_dir_exists'>bundle_dir_exists</span>
+  <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_rm_rf'>rm_rf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>vendor/cache</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_cache_dir_exists'>cache_dir_exists</span>
+  <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_rm_rf'>rm_rf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>vendor</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_vendor_dir_exists'>vendor_dir_exists</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="add_files-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add_files</strong>(jar_builder, options) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 285</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_files'>add_files</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_prefix'>prefix</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:file_prefix</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_prefix'>prefix</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/</span><span class='tstring_end'>'</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_prefix'>prefix</span><span class='period'>.</span><span class='id identifier rubyid_end_with?'>end_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_glob'>glob</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_prefix'>prefix</span><span class='rbrace'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:pattern</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
+    <span class='id identifier rubyid_suffix'>suffix</span> <span class='op'>=</span> <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='id identifier rubyid_prefix'>prefix</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_excludes'>excludes</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:exclude</span><span class='rbracket'>]</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span>
+    <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_excludes'>excludes</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_exclude'>exclude</span><span class='op'>|</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_exclude'>exclude</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Regexp</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_exclude'>exclude</span> <span class='op'>=~</span> <span class='id identifier rubyid_suffix'>suffix</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_suffix'>suffix</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_exclude'>exclude</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_suffix'>suffix</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tmptorqueboxjar</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_in_jar_name'>in_jar_name</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:jar_prefix</span><span class='rbracket'>]</span> <span class='op'>?</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:jar_prefix</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_suffix'>suffix</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_suffix'>suffix</span>
+    <span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='period'>.</span><span class='id identifier rubyid_add_file'>add_file</span><span class='lparen'>(</span><span class='id identifier rubyid_in_jar_name'>in_jar_name</span><span class='comma'>,</span> <span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="add_jar-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add_jar</strong>(jar_builder, jar) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+267
+268
+269
+270
+271
+272</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 267</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_jar'>add_jar</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='comma'>,</span> <span class='id identifier rubyid_jar'>jar</span><span class='rparen'>)</span>
+  <span class='ivar'>@logger</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Adding jar {}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_jar'>jar</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_jar_name'>jar_name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>jars/</span><span class='embexpr_beg'>#{</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='id identifier rubyid_jar'>jar</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='ivar'>@classpath</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>${extract_root}/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_jar_name'>jar_name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='period'>.</span><span class='id identifier rubyid_add_file'>add_file</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_name'>jar_name</span><span class='comma'>,</span> <span class='id identifier rubyid_jar'>jar</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="add_jruby_files-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add_jruby_files</strong>(jar_builder) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 149</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_jruby_files'>add_jruby_files</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='rparen'>)</span>
+  <span class='ivar'>@logger</span><span class='period'>.</span><span class='id identifier rubyid_trace'>trace</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Adding JRuby files to jar...</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_rb_config'>rb_config</span> <span class='op'>=</span> <span class='const'>RbConfig</span><span class='op'>::</span><span class='const'>CONFIG</span>
+  <span class='id identifier rubyid_add_files'>add_files</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='comma'>,</span>
+            <span class='symbol'>:file_prefix</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_rb_config'>rb_config</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>prefix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+            <span class='symbol'>:pattern</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/*</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+            <span class='symbol'>:jar_prefix</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>jruby</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_add_files'>add_files</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='comma'>,</span>
+            <span class='symbol'>:file_prefix</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_rb_config'>rb_config</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>libdir</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+            <span class='symbol'>:pattern</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/**/*</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+            <span class='symbol'>:jar_prefix</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>jruby/lib</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+            <span class='symbol'>:exclude</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>jruby.jar</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ruby/gems/shared</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_add_files'>add_files</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='comma'>,</span>
+            <span class='symbol'>:file_prefix</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_rb_config'>rb_config</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bindir</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+            <span class='symbol'>:pattern</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/*</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+            <span class='symbol'>:jar_prefix</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>jruby/bin</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_add_jar'>add_jar</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_rb_config'>rb_config</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>libdir</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>/jruby.jar</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="add_torquebox_files-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add_torquebox_files</strong>(jar_builder) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 274</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_torquebox_files'>add_torquebox_files</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='rparen'>)</span>
+  <span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Jars</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_jar'>jar</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='id identifier rubyid_jar'>jar</span><span class='rparen'>)</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^wunderboss-(rack|ruby).*?\.jar$</span><span class='regexp_end'>/</span></span>
+      <span class='id identifier rubyid_add_jar'>add_jar</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='comma'>,</span> <span class='id identifier rubyid_jar'>jar</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='ivar'>@logger</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Shading jar {}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_jar'>jar</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='period'>.</span><span class='id identifier rubyid_shade_jar'>shade_jar</span><span class='lparen'>(</span><span class='id identifier rubyid_jar'>jar</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="app_properties-instance_method">
+  
+    - (<tt>Object</tt>) <strong>app_properties</strong>(env, init) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 317</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_app_properties'>app_properties</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='id identifier rubyid_init'>init</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_env_str'>env_str</span> <span class='op'>=</span> <span class='id identifier rubyid_env'>env</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ENV['</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='rbrace'>}</span><span class='tstring_content'>'] ||= '</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='rbrace'>}</span><span class='tstring_content'>';</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_classpath_str'>classpath_str</span> <span class='op'>=</span> <span class='ivar'>@classpath</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>:</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+
+  <span class='heredoc_beg'>&lt;&lt;-EOS</span>
+<span class='tstring_content'>language=ruby
+extract_paths=app/:jruby/:jars/
+root=${extract_root}/app
+classpath=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_classpath_str'>classpath_str</span><span class='rbrace'>}</span><span class='tstring_content'>
+init=ENV['BUNDLE_GEMFILE'] = nil; \
+</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_env_str'>env_str</span><span class='rbrace'>}</span><span class='tstring_content'> \
+require &quot;bundler/setup&quot;; \
+</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_init'>init</span><span class='rbrace'>}</span><span class='tstring_content'>; \
+require &quot;torquebox/spec_helpers&quot;; \
+TorqueBox::SpecHelpers.booted
+</span><span class='heredoc_end'>EOS
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="available_options-instance_method">
+  
+    - (<tt>Object</tt>) <strong>available_options</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 48</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_available_options'>available_options</span>
+  <span class='id identifier rubyid_defaults'>defaults</span> <span class='op'>=</span> <span class='id identifier rubyid_option_defaults'>option_defaults</span>
+  <span class='lbracket'>[</span><span class='lbrace'>{</span>
+     <span class='symbol'>:name</span> <span class='op'>=&gt;</span> <span class='symbol'>:destination</span><span class='comma'>,</span>
+     <span class='symbol'>:switch</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>--destination PATH</span><span class='tstring_end'>'</span></span><span class='comma'>,</span>
+     <span class='symbol'>:description</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Destination directory for the jar file (default: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_defaults'>defaults</span><span class='lbracket'>[</span><span class='symbol'>:destination</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+   <span class='rbrace'>}</span><span class='comma'>,</span>
+   <span class='lbrace'>{</span>
+     <span class='symbol'>:name</span> <span class='op'>=&gt;</span> <span class='symbol'>:jar_name</span><span class='comma'>,</span>
+     <span class='symbol'>:switch</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>--name NAME</span><span class='tstring_end'>'</span></span><span class='comma'>,</span>
+     <span class='symbol'>:description</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Name of the jar file (default: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_defaults'>defaults</span><span class='lbracket'>[</span><span class='symbol'>:jar_name</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+   <span class='rbrace'>}</span><span class='comma'>,</span>
+   <span class='lbrace'>{</span>
+     <span class='symbol'>:name</span> <span class='op'>=&gt;</span> <span class='symbol'>:include_jruby</span><span class='comma'>,</span>
+     <span class='symbol'>:switch</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>--[no-]include-jruby</span><span class='tstring_end'>'</span></span><span class='comma'>,</span>
+     <span class='symbol'>:description</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Include JRuby in the jar (default: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_defaults'>defaults</span><span class='lbracket'>[</span><span class='symbol'>:include_jruby</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+   <span class='rbrace'>}</span><span class='comma'>,</span>
+   <span class='lbrace'>{</span>
+     <span class='symbol'>:name</span> <span class='op'>=&gt;</span> <span class='symbol'>:bundle_gems</span><span class='comma'>,</span>
+     <span class='symbol'>:switch</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>--[no-]bundle-gems</span><span class='tstring_end'>'</span></span><span class='comma'>,</span>
+     <span class='symbol'>:description</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bundle gem dependencies in the jar (default: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_defaults'>defaults</span><span class='lbracket'>[</span><span class='symbol'>:bundle_gems</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+   <span class='rbrace'>}</span><span class='comma'>,</span>
+   <span class='lbrace'>{</span>
+     <span class='symbol'>:name</span> <span class='op'>=&gt;</span> <span class='symbol'>:bundle_without</span><span class='comma'>,</span>
+     <span class='symbol'>:switch</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>--bundle-without GROUPS</span><span class='tstring_end'>'</span></span><span class='comma'>,</span>
+     <span class='symbol'>:description</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bundler groups to skip (default: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_defaults'>defaults</span><span class='lbracket'>[</span><span class='symbol'>:bundle_without</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+     <span class='symbol'>:type</span> <span class='op'>=&gt;</span> <span class='const'>Array</span>
+   <span class='rbrace'>}</span><span class='comma'>,</span>
+   <span class='lbrace'>{</span>
+     <span class='symbol'>:name</span> <span class='op'>=&gt;</span> <span class='symbol'>:main</span><span class='comma'>,</span>
+     <span class='symbol'>:switch</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>--main MAIN</span><span class='tstring_end'>'</span></span><span class='comma'>,</span>
+     <span class='symbol'>:description</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>File to require to bootstrap the application (if not given, assumes a web app)</span><span class='tstring_end'>'</span></span>
+   <span class='rbrace'>}</span><span class='comma'>,</span>
+   <span class='lbrace'>{</span>
+     <span class='symbol'>:name</span> <span class='op'>=&gt;</span> <span class='symbol'>:exclude</span><span class='comma'>,</span>
+     <span class='symbol'>:switch</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>--exclude EXCLUDES</span><span class='tstring_end'>'</span></span><span class='comma'>,</span>
+     <span class='symbol'>:description</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>File paths to exclude from bundled jar</span><span class='tstring_end'>'</span></span><span class='comma'>,</span>
+     <span class='symbol'>:type</span> <span class='op'>=&gt;</span> <span class='const'>Array</span>
+   <span class='rbrace'>}</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bundle_gems-instance_method">
+  
+    - (<tt>Object</tt>) <strong>bundle_gems</strong>(tmpdir, bundle_without) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 238</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bundle_gems'>bundle_gems</span><span class='lparen'>(</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='comma'>,</span> <span class='id identifier rubyid_bundle_without'>bundle_without</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_install_options'>install_options</span> <span class='op'>=</span> <span class='words_beg'>%W(</span><span class='tstring_content'>--local</span><span class='words_sep'> </span><span class='tstring_content'>--path</span><span class='words_sep'> </span><span class='tstring_content'>vendor/bundle</span><span class='words_sep'> </span><span class='tstring_content'>--no-cache</span><span class='words_sep'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_bundle_without'>bundle_without</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='id identifier rubyid_install_options'>install_options</span> <span class='op'>+=</span> <span class='words_beg'>%W(</span><span class='tstring_content'>--without</span><span class='words_sep'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bundle_without'>bundle_without</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='words_sep'>)</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_eval_in_new_ruby'>eval_in_new_ruby</span> <span class='heredoc_beg'>&lt;&lt;-EOS</span>
+<span class='tstring_content'>    ENV['BUNDLE_APP_CONFIG'] = &quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='rbrace'>}</span><span class='tstring_content'>/.bundle&quot;
+    require 'bundler/cli'
+    Bundler::CLI.start(['install'] + </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_install_options'>install_options</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='rbrace'>}</span><span class='tstring_content'>)
+</span><span class='heredoc_end'>  EOS
+</span>  <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_mkdir_p'>mkdir_p</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='rbrace'>}</span><span class='tstring_content'>/vendor/bundle/jruby</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_cp_r'>cp_r</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>vendor/bundle/jruby</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='rbrace'>}</span><span class='tstring_content'>/vendor/bundle/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="cache_gems-instance_method">
+  
+    - (<tt>Object</tt>) <strong>cache_gems</strong>(tmpdir) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+230
+231
+232
+233
+234
+235
+236</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 230</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cache_gems'>cache_gems</span><span class='lparen'>(</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_eval_in_new_ruby'>eval_in_new_ruby</span> <span class='heredoc_beg'>&lt;&lt;-EOS</span>
+<span class='tstring_content'>    ENV['BUNDLE_APP_CONFIG'] = &quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='rbrace'>}</span><span class='tstring_content'>/.bundle&quot;
+    require 'bundler/cli'
+    Bundler::CLI.start(['cache', '--all'])
+</span><span class='heredoc_end'>  EOS
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="copy_and_restore_lockfile-instance_method">
+  
+    - (<tt>Object</tt>) <strong>copy_and_restore_lockfile</strong>(tmpdir, lockfile, original_lockfile) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+257
+258
+259
+260
+261
+262
+263
+264
+265</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 257</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_copy_and_restore_lockfile'>copy_and_restore_lockfile</span><span class='lparen'>(</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='comma'>,</span> <span class='id identifier rubyid_lockfile'>lockfile</span><span class='comma'>,</span> <span class='id identifier rubyid_original_lockfile'>original_lockfile</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_new_lockfile'>new_lockfile</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_lockfile'>lockfile</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_lockfile'>lockfile</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='kw'>nil</span>
+  <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_cp'>cp</span><span class='lparen'>(</span><span class='id identifier rubyid_lockfile'>lockfile</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='rbrace'>}</span><span class='tstring_content'>/Gemfile.lock</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_new_lockfile'>new_lockfile</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_original_lockfile'>original_lockfile</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_new_lockfile'>new_lockfile</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_rm_f'>rm_f</span><span class='lparen'>(</span><span class='id identifier rubyid_lockfile'>lockfile</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_original_lockfile'>original_lockfile</span> <span class='op'>!=</span> <span class='id identifier rubyid_new_lockfile'>new_lockfile</span>
+    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_lockfile'>lockfile</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>w</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_original_lockfile'>original_lockfile</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="copy_bundle_config-instance_method">
+  
+    - (<tt>Object</tt>) <strong>copy_bundle_config</strong>(tmpdir) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+223
+224
+225
+226
+227
+228</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 223</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_copy_bundle_config'>copy_bundle_config</span><span class='lparen'>(</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>.bundle/config</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_mkdir_p'>mkdir_p</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='rbrace'>}</span><span class='tstring_content'>/.bundle</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_cp'>cp</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>.bundle/config</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='rbrace'>}</span><span class='tstring_content'>/.bundle</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="copy_cached_gems-instance_method">
+  
+    - (<tt>Object</tt>) <strong>copy_cached_gems</strong>(tmpdir) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+252
+253
+254
+255</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 252</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_copy_cached_gems'>copy_cached_gems</span><span class='lparen'>(</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='rparen'>)</span>
+  <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_mkdir_p'>mkdir_p</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='rbrace'>}</span><span class='tstring_content'>/vendor/cache</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_cp_r'>cp_r</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>vendor/cache</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='rbrace'>}</span><span class='tstring_content'>/vendor/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="eval_in_new_ruby-instance_method">
+  
+    - (<tt>Object</tt>) <strong>eval_in_new_ruby</strong>(script) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 304</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_eval_in_new_ruby'>eval_in_new_ruby</span><span class='lparen'>(</span><span class='id identifier rubyid_script'>script</span><span class='rparen'>)</span>
+  <span class='comment'># Copy our environment to the new Ruby runtime
+</span>  <span class='id identifier rubyid_config'>config</span> <span class='op'>=</span> <span class='id identifier rubyid_org'>org</span><span class='period'>.</span><span class='id identifier rubyid_jruby'>jruby</span><span class='period'>.</span><span class='const'>RubyInstanceConfig</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_environment'>environment</span> <span class='op'>=</span> <span class='const'>ENV</span>
+  <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_current_directory'>current_directory</span> <span class='op'>=</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_pwd'>pwd</span>
+  <span class='id identifier rubyid_ruby'>ruby</span> <span class='op'>=</span> <span class='id identifier rubyid_org'>org</span><span class='period'>.</span><span class='id identifier rubyid_jruby'>jruby</span><span class='period'>.</span><span class='const'>Ruby</span><span class='period'>.</span><span class='id identifier rubyid_new_instance'>new_instance</span><span class='lparen'>(</span><span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='words_beg'>%W(</span><span class='tstring_content'>DEBUG</span><span class='words_sep'> </span><span class='tstring_content'>TRACE</span><span class='words_sep'>)</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Logger</span><span class='period'>.</span><span class='id identifier rubyid_log_level'>log_level</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_dev_null'>dev_null</span> <span class='op'>=</span> <span class='const'>PLATFORM</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>mswin</span><span class='regexp_end'>/</span></span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>NUL</span><span class='tstring_end'>'</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/dev/null</span><span class='tstring_end'>'</span></span>
+    <span class='id identifier rubyid_ruby'>ruby</span><span class='period'>.</span><span class='id identifier rubyid_evalScriptlet'>evalScriptlet</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$stdout = File.open('</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_dev_null'>dev_null</span><span class='rbrace'>}</span><span class='tstring_content'>', 'w')</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_ruby'>ruby</span><span class='period'>.</span><span class='id identifier rubyid_evalScriptlet'>evalScriptlet</span><span class='lparen'>(</span><span class='id identifier rubyid_script'>script</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="option_defaults-instance_method">
+  
+    - (<tt>Object</tt>) <strong>option_defaults</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 37</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_option_defaults'>option_defaults</span>
+  <span class='lbrace'>{</span>
+    <span class='symbol'>:destination</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>.</span><span class='tstring_end'>'</span></span><span class='comma'>,</span>
+    <span class='symbol'>:jar_name</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_pwd'>pwd</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>.jar</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='symbol'>:include_jruby</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='comma'>,</span>
+    <span class='symbol'>:bundle_gems</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='comma'>,</span>
+    <span class='symbol'>:bundle_without</span> <span class='op'>=&gt;</span> <span class='words_beg'>%W(</span><span class='tstring_content'>development</span><span class='words_sep'> </span><span class='tstring_content'>test</span><span class='words_sep'> </span><span class='tstring_content'>assets</span><span class='words_sep'>)</span><span class='comma'>,</span>
+    <span class='symbol'>:rackup</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>config.ru</span><span class='tstring_end'>'</span></span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="run-instance_method">
+  
+    - (<tt>Object</tt>) <strong>run</strong>(_argv, options) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 107</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='id identifier rubyid__argv'>_argv</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='id identifier rubyid_option_defaults'>option_defaults</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_jar_path'>jar_path</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_expand_path'>expand_path</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:destination</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:jar_name</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='ivar'>@logger</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Creating jar with options {}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_init'>init</span> <span class='op'>=</span> <span class='const'>DEFAULT_INIT</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:main</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_init'>init</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ENV['TORQUEBOX_MAIN'] = '</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:main</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>'; </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_init'>init</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_init'>init</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ENV['TORQUEBOX_RACKUP'] = '</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:rackup</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>'; </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_init'>init</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='id identifier rubyid_jar_builder'>jar_builder</span> <span class='op'>=</span> <span class='id identifier rubyid_org'>org</span><span class='period'>.</span><span class='id identifier rubyid_torquebox'>torquebox</span><span class='period'>.</span><span class='id identifier rubyid_core'>core</span><span class='period'>.</span><span class='const'>JarBuilder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='period'>.</span><span class='id identifier rubyid_add_manifest_attribute'>add_manifest_attribute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Main-Class</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>org.torquebox.core.TorqueBoxMain</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='period'>.</span><span class='id identifier rubyid_add_string'>add_string</span><span class='lparen'>(</span><span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>JAR_MARKER</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_add_torquebox_files'>add_torquebox_files</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:include_jruby</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_add_jruby_files'>add_jruby_files</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_add_app_files'>add_app_files</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:bundle_gems</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_tmpdir'>tmpdir</span> <span class='op'>=</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_mktmpdir'>mktmpdir</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tmptorqueboxjar</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_add_bundler_files'>add_bundler_files</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='comma'>,</span> <span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:bundle_without</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='period'>.</span><span class='id identifier rubyid_add_string'>add_string</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>META-INF/app.properties</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                         <span class='id identifier rubyid_app_properties'>app_properties</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:envvar</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_init'>init</span><span class='rparen'>)</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_path'>jar_path</span><span class='rparen'>)</span>
+    <span class='ivar'>@logger</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Removing {}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_jar_path'>jar_path</span><span class='rparen'>)</span>
+    <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_rm_f'>rm_f</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_path'>jar_path</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@logger</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Writing {}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_jar_path'>jar_path</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_jar_builder'>jar_builder</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_jar_path'>jar_path</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_jar_path'>jar_path</span>
+<span class='kw'>ensure</span>
+  <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_rm_rf'>rm_rf</span><span class='lparen'>(</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_tmpdir'>tmpdir</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setup_parser-instance_method">
+  
+    - (<tt>Object</tt>) <strong>setup_parser</strong>(parser, options) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 89</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setup_parser'>setup_parser</span><span class='lparen'>(</span><span class='id identifier rubyid_parser'>parser</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_available_options'>available_options</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_opt'>opt</span><span class='op'>|</span>
+    <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='op'>*</span><span class='lparen'>(</span><span class='id identifier rubyid_opt'>opt</span><span class='period'>.</span><span class='id identifier rubyid_values_at'>values_at</span><span class='lparen'>(</span><span class='symbol'>:short</span><span class='comma'>,</span> <span class='symbol'>:switch</span><span class='comma'>,</span> <span class='symbol'>:type</span><span class='comma'>,</span> <span class='symbol'>:description</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+      <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='id identifier rubyid_opt'>opt</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_arg'>arg</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>--envvar KEY=VALUE</span><span class='tstring_end'>'</span></span><span class='comma'>,</span>
+            <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Specify an environment variable to set before running the app</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+    <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_arg'>arg</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>=</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='gvar'>$stderr</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error: Environment variables must be separated by '='</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_exit'>exit</span> <span class='int'>1</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:envvar</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+    <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:envvar</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="usage_parameters-instance_method">
+  
+    - (<tt>Object</tt>) <strong>usage_parameters</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'core/lib/torquebox/cli/jar.rb', line 33</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_usage_parameters'>usage_parameters</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[options]</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Thu Sep  3 11:01:24 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

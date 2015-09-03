@@ -1,0 +1,1429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: TorqueBox::Messaging::HornetQ::AddressSettings
+  
+    &mdash; TorqueBox 4.0.0.beta2
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../';
+  framesUrl = "../../../frames.html#!TorqueBox/Messaging/HornetQ/AddressSettings.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (A)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../TorqueBox.html" title="TorqueBox (module)">TorqueBox</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Messaging.html" title="TorqueBox::Messaging (module)">Messaging</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../HornetQ.html" title="TorqueBox::Messaging::HornetQ (module)">HornetQ</a></span></span>
+     &raquo; 
+    <span class="title">AddressSettings</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: TorqueBox::Messaging::HornetQ::AddressSettings
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">TorqueBox::Messaging::HornetQ::AddressSettings</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+      <dt class="r2">Extended by:</dt>
+      <dd class="r2">Forwardable</dd>
+      
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">messaging/lib/torquebox/messaging/hornetq/address_settings.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>Sets the HornetQ-specific address options for the given match.</p>
+
+<p>This provides programatic access to options that are normally set
+in the xml configuration.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#address_full_message_policy%3D-instance_method" title="#address_full_message_policy= (instance method)">- (Object) <strong>address_full_message_policy=</strong>(policy) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Specifies what should happen when an address reaches max_size_bytes in undelivered messages.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dead_letter_address%3D-instance_method" title="#dead_letter_address= (instance method)">- (Object) <strong>dead_letter_address=</strong>(address) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>If set, any messages that fail to deliver to their original destination will be delivered here.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#expiry_address%3D-instance_method" title="#expiry_address= (instance method)">- (Object) <strong>expiry_address=</strong>(address) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>If set, any messages with a :ttl that expires before delivery will be delivered here.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#expiry_delay%3D-instance_method" title="#expiry_delay= (instance method)">- (Object) <strong>expiry_delay=</strong>(delay) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>If &gt; -1, this value (in millis) is used as the default :ttl for messages that don&#8217;t have a :ttl &gt; 0 set.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (AddressSettings) <strong>initialize</strong>(match_or_dest) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Creates and registers address settings.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#last_value_queue%3D-instance_method" title="#last_value_queue= (instance method)">- (Object) <strong>last_value_queue=</strong>(val) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>If true, only the most recent message for a last-value property will be retained.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#max_delivery_attempts%3D-instance_method" title="#max_delivery_attempts= (instance method)">- (Object) <strong>max_delivery_attempts=</strong>(attempts) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>The number of times delivery will be attempted for a message before giving up.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#max_redelivery_delay%3D-instance_method" title="#max_redelivery_delay= (instance method)">- (Object) <strong>max_redelivery_delay=</strong>(delay) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Specifies the maximum redelivery delay (in millis) when a <span class='object_link'><a href="#redelivery_multiplier%3D-instance_method" title="TorqueBox::Messaging::HornetQ::AddressSettings#redelivery_multiplier= (method)">#redelivery_multiplier=</a></span> is used.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#max_size_bytes%3D-instance_method" title="#max_size_bytes= (instance method)">- (Object) <strong>max_size_bytes=</strong>(bytes) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>The maximum size (in bytes) of retained messages on an address before <span class='object_link'><a href="#address_full_message_policy%3D-instance_method" title="TorqueBox::Messaging::HornetQ::AddressSettings#address_full_message_policy= (method)">#address_full_message_policy=</a></span> is applied.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#page_cache_max_size%3D-instance_method" title="#page_cache_max_size= (instance method)">- (Object) <strong>page_cache_max_size=</strong>(size) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>HornetQ will keep up to this many page files in memory to optimize IO.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#page_size_bytes%3D-instance_method" title="#page_size_bytes= (instance method)">- (Object) <strong>page_size_bytes=</strong>(bytes) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>The size (in bytes) of the page files created when paging.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#redelivery_delay%3D-instance_method" title="#redelivery_delay= (instance method)">- (Object) <strong>redelivery_delay=</strong>(delay) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Specifies the delay (in millis) between redelivery attempts.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#redelivery_multiplier%3D-instance_method" title="#redelivery_multiplier= (instance method)">- (Object) <strong>redelivery_multiplier=</strong>(multiplier) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Controls the backoff for redeliveries.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#redistribution_delay%3D-instance_method" title="#redistribution_delay= (instance method)">- (Object) <strong>redistribution_delay=</strong>(delay) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Specifies the delay (in millis) to wait before redistributing messages from a node in a cluster to other nodes when the queue no longer has consumers on the current node.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#send_to_dla_on_no_route%3D-instance_method" title="#send_to_dla_on_no_route= (instance method)">- (Object) <strong>send_to_dla_on_no_route=</strong>(val) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>If true, any message that can&#8217;t be routed to its destination will be sent to the <span class='object_link'><a href="#dead_letter_address%3D-instance_method" title="TorqueBox::Messaging::HornetQ::AddressSettings#dead_letter_address= (method)">#dead_letter_address=</a></span>.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="TorqueBox::Messaging::HornetQ::AddressSettings (class)">AddressSettings</a></span></tt>) <strong>initialize</strong>(match_or_dest) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Creates and registers address settings.</p>
+
+<p>Creating a new AddressOptions for a match that you have set
+options for already will replace those prior options.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>match_or_dest</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>must be either a <span class='object_link'><a href="../Destination.html" title="TorqueBox::Messaging::Destination (class)">Destination</a></span> or a fully
+qualified jms destination name (prefixed with ‘jms.queue.’
+or ‘jms.topic.’). It may contain HornetQ wildcard matchers
+(see
+http://docs.jboss.org/hornetq/2.3.0.Final/docs/user-manual/html/wildcard-syntax.html)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38
+39
+40
+41
+42
+43
+44</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/hornetq/address_settings.rb', line 38</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_match_or_dest'>match_or_dest</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_server_manager'>server_manager</span> <span class='op'>=</span> <span class='const'>HornetQ</span><span class='period'>.</span><span class='id identifier rubyid_server_manager'>server_manager</span>
+  <span class='id identifier rubyid_import_hornetq'>import_hornetq</span>
+
+  <span class='ivar'>@address_settings</span> <span class='op'>=</span> <span class='id identifier rubyid_org'>org</span><span class='period'>.</span><span class='id identifier rubyid_hornetq'>hornetq</span><span class='period'>.</span><span class='id identifier rubyid_core'>core</span><span class='period'>.</span><span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_impl'>impl</span><span class='period'>.</span><span class='const'>AddressSettings</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_server_manager'>server_manager</span><span class='period'>.</span><span class='id identifier rubyid_add_address_settings'>add_address_settings</span><span class='lparen'>(</span><span class='id identifier rubyid_normalize_destination_match'>normalize_destination_match</span><span class='lparen'>(</span><span class='id identifier rubyid_match_or_dest'>match_or_dest</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='ivar'>@address_settings</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="address_full_message_policy=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>address_full_message_policy=</strong>(policy) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Specifies what should happen when an address reaches
+max_size_bytes in undelivered messages.</p>
+
+<p>See
+http://docs.jboss.org/hornetq/2.3.0.Final/docs/user-manual/html/paging.html</p>
+
+<p>The policy can be one of:</p>
+
+<ul>
+  <li>:block - publish calls will block until the current size
+ drops below max_size_bytes</li>
+  <li>:drop - new messages are silently dropped</li>
+  <li>:fail - new messages are dropped and an exception is thrown on publish</li>
+  <li>:page - new messages will be paged to disk</li>
+</ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>policy</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>(:page) The policy to use.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/hornetq/address_settings.rb', line 61</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_address_full_message_policy='>address_full_message_policy=</span><span class='lparen'>(</span><span class='id identifier rubyid_policy'>policy</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_policy_const'>policy_const</span> <span class='op'>=</span> <span class='kw'>case</span> <span class='id identifier rubyid_policy'>policy</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+                 <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>block</span><span class='tstring_end'>&quot;</span></span>
+                   <span class='const'>AddressFullMessagePolicy</span><span class='op'>::</span><span class='const'>BLOCK</span>
+                 <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>drop</span><span class='tstring_end'>&quot;</span></span>
+                   <span class='const'>AddressFullMessagePolicy</span><span class='op'>::</span><span class='const'>DROP</span>
+                 <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>fail</span><span class='tstring_end'>&quot;</span></span>
+                   <span class='const'>AddressFullMessagePolicy</span><span class='op'>::</span><span class='const'>FAIL</span>
+                 <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>page</span><span class='tstring_end'>&quot;</span></span>
+                   <span class='const'>AddressFullMessagePolicy</span><span class='op'>::</span><span class='const'>PAGE</span>
+                 <span class='kw'>else</span>
+                   <span class='id identifier rubyid_fail'>fail</span> <span class='const'>ArgumentError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_policy'>policy</span><span class='rbrace'>}</span><span class='tstring_content'> isn't a valid full message policy</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+                 <span class='kw'>end</span>
+  <span class='ivar'>@address_settings</span><span class='period'>.</span><span class='id identifier rubyid_address_full_message_policy'>address_full_message_policy</span> <span class='op'>=</span> <span class='id identifier rubyid_policy_const'>policy_const</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="dead_letter_address=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>dead_letter_address=</strong>(address) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>If set, any messages that fail to deliver to their original
+destination will be delivered here. See
+http://docs.jboss.org/hornetq/2.3.0.Final/docs/user-manual/html/undelivered-messages.html#undelivered-messages.configuring</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>address</span>
+      
+      
+        <span class='type'>(<tt>'jms.<span class='object_link'><a href="../../Messaging.html#queue-class_method" title="TorqueBox::Messaging.queue (method)">queue</a></span>.DLQ'</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The address to use. It can
+either be a <span class='object_link'><a href="../Destination.html" title="TorqueBox::Messaging::Destination (class)">Destination</a></span> object or a fully-qualified
+destination name.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+84
+85
+86</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/hornetq/address_settings.rb', line 84</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_dead_letter_address='>dead_letter_address=</span><span class='lparen'>(</span><span class='id identifier rubyid_address'>address</span><span class='rparen'>)</span>
+  <span class='ivar'>@address_settings</span><span class='period'>.</span><span class='id identifier rubyid_dead_letter_address'>dead_letter_address</span> <span class='op'>=</span> <span class='const'>SimpleString</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>HornetQ</span><span class='period'>.</span><span class='id identifier rubyid_jms_name'>jms_name</span><span class='lparen'>(</span><span class='id identifier rubyid_address'>address</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="expiry_address=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>expiry_address=</strong>(address) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>If set, any messages with a :ttl that expires before
+delivery will be delivered here. See
+http://docs.jboss.org/hornetq/2.3.0.Final/docs/user-manual/html/message-expiry.html#message-expiry.configuring</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>address</span>
+      
+      
+        <span class='type'>(<tt>'jms.<span class='object_link'><a href="../../Messaging.html#queue-class_method" title="TorqueBox::Messaging.queue (method)">queue</a></span>.ExpiryQueue'</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The address to use. It can
+either be a <span class='object_link'><a href="../Destination.html" title="TorqueBox::Messaging::Destination (class)">Destination</a></span> object or a fully-qualified
+destination name.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+95
+96
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/hornetq/address_settings.rb', line 95</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_expiry_address='>expiry_address=</span><span class='lparen'>(</span><span class='id identifier rubyid_address'>address</span><span class='rparen'>)</span>
+  <span class='ivar'>@address_settings</span><span class='period'>.</span><span class='id identifier rubyid_expiry_address'>expiry_address</span> <span class='op'>=</span> <span class='const'>SimpleString</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>HornetQ</span><span class='period'>.</span><span class='id identifier rubyid_jms_name'>jms_name</span><span class='lparen'>(</span><span class='id identifier rubyid_address'>address</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="expiry_delay=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>expiry_delay=</strong>(delay) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>If &gt; -1, this value (in millis) is used as the
+default :ttl for messages that don&#8217;t have a :ttl &gt; 0 set.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>delay</span>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>(-1) The delay.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+127</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/hornetq/address_settings.rb', line 127</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span><span class='lparen'>(</span><span class='symbol'>:@address_settings</span><span class='comma'>,</span> <span class='symbol'>:expiry_delay=</span><span class='rparen'>)</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="last_value_queue=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>last_value_queue=</strong>(val) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>If true, only the most recent message
+for a last-value property will be retained.</p>
+
+<p>Setting this option will also cause
+<span class='object_link'><a href="#address_full_message_policy%3D-instance_method" title="TorqueBox::Messaging::HornetQ::AddressSettings#address_full_message_policy= (method)">#address_full_message_policy=</a></span> to be set to :drop, as HornetQ
+has a bug related to paging last value queues. See
+http://docs.jboss.org/hornetq/2.3.0.Final/docs/user-manual/html/last-value-queues.html</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>val</span>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>(false)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+108
+109
+110
+111</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/hornetq/address_settings.rb', line 108</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_last_value_queue='>last_value_queue=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
+  <span class='ivar'>@address_settings</span><span class='period'>.</span><span class='id identifier rubyid_last_value_queue'>last_value_queue</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_address_full_message_policy'>address_full_message_policy</span> <span class='op'>=</span> <span class='symbol'>:drop</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="max_delivery_attempts=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>max_delivery_attempts=</strong>(attempts) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>The number of times delivery will be attempted for a message
+before giving up.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/hornetq/address_settings.rb', line 129</span>
+
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="max_redelivery_delay=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>max_redelivery_delay=</strong>(delay) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Specifies the maximum redelivery delay (in millis) when a
+<span class='object_link'><a href="#redelivery_multiplier%3D-instance_method" title="TorqueBox::Messaging::HornetQ::AddressSettings#redelivery_multiplier= (method)">#redelivery_multiplier=</a></span> is used.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>delay</span>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>(same as <span class='object_link'><a href="#redelivery_delay%3D-instance_method" title="TorqueBox::Messaging::HornetQ::AddressSettings#redelivery_delay= (method)">#redelivery_delay=</a></span>)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/hornetq/address_settings.rb', line 147</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span><span class='lparen'>(</span><span class='symbol'>:@address_settings</span><span class='comma'>,</span> <span class='symbol'>:max_redelivery_delay=</span><span class='rparen'>)</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="max_size_bytes=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>max_size_bytes=</strong>(bytes) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>The maximum size (in bytes) of retained messages
+on an address before <span class='object_link'><a href="#address_full_message_policy%3D-instance_method" title="TorqueBox::Messaging::HornetQ::AddressSettings#address_full_message_policy= (method)">#address_full_message_policy=</a></span> is applied. See
+http://docs.jboss.org/hornetq/2.3.0.Final/docs/user-manual/html/paging.html</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>bytes</span>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>(20_971_520 (20MB))</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+156</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/hornetq/address_settings.rb', line 156</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span><span class='lparen'>(</span><span class='symbol'>:@address_settings</span><span class='comma'>,</span> <span class='symbol'>:max_size_bytes=</span><span class='rparen'>)</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="page_cache_max_size=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>page_cache_max_size=</strong>(size) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>HornetQ will keep up to this many page files in memory to
+optimize IO. See
+http://docs.jboss.org/hornetq/2.3.0.Final/docs/user-manual/html/paging.html</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>size</span>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>(5)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+165</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/hornetq/address_settings.rb', line 165</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span><span class='lparen'>(</span><span class='symbol'>:@address_settings</span><span class='comma'>,</span> <span class='symbol'>:page_cache_max_size=</span><span class='rparen'>)</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="page_size_bytes=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>page_size_bytes=</strong>(bytes) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>The size (in bytes) of the page files created when
+paging. See
+http://docs.jboss.org/hornetq/2.3.0.Final/docs/user-manual/html/paging.html</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>bytes</span>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>(10_485_760 (10MB))</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+174</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/hornetq/address_settings.rb', line 174</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span><span class='lparen'>(</span><span class='symbol'>:@address_settings</span><span class='comma'>,</span> <span class='symbol'>:page_size_bytes=</span><span class='rparen'>)</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="redelivery_delay=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>redelivery_delay=</strong>(delay) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Specifies the delay (in millis) between redelivery
+attempts. See
+http://docs.jboss.org/hornetq/2.3.0.Final/docs/user-manual/html/undelivered-messages.html#undelivered-messages.delay</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>delay</span>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>(0)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+183</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/hornetq/address_settings.rb', line 183</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span><span class='lparen'>(</span><span class='symbol'>:@address_settings</span><span class='comma'>,</span> <span class='symbol'>:redelivery_delay=</span><span class='rparen'>)</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="redelivery_multiplier=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>redelivery_multiplier=</strong>(multiplier) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Controls the backoff for redeliveries. The
+delay between redelivery attempts is calculated as
+<span class='object_link'><a href="#redelivery_delay%3D-instance_method" title="TorqueBox::Messaging::HornetQ::AddressSettings#redelivery_delay= (method)">#redelivery_delay=</a></span> * (<span class='object_link'><a href="#redelivery_multiplier%3D-instance_method" title="TorqueBox::Messaging::HornetQ::AddressSettings#redelivery_multiplier= (method)">#redelivery_multiplier=</a></span> ^ attempt_count). This won&#8217;t have
+any effect if you don&#8217;t also set <span class='object_link'><a href="#redelivery_delay%3D-instance_method" title="TorqueBox::Messaging::HornetQ::AddressSettings#redelivery_delay= (method)">#redelivery_delay=</a></span> and <span class='object_link'><a href="#max_redelivery_delay%3D-instance_method" title="TorqueBox::Messaging::HornetQ::AddressSettings#max_redelivery_delay= (method)">#max_redelivery_delay=</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>multiplier</span>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>(1.0)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+193</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/hornetq/address_settings.rb', line 193</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span><span class='lparen'>(</span><span class='symbol'>:@address_settings</span><span class='comma'>,</span> <span class='symbol'>:redelivery_multiplier=</span><span class='rparen'>)</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="redistribution_delay=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>redistribution_delay=</strong>(delay) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Specifies the delay (in millis) to wait before
+redistributing messages from a node in a cluster to other
+nodes when the queue no longer has consumers on the current
+node. See
+http://docs.jboss.org/hornetq/2.3.0.Final/docs/user-manual/html/clusters.html</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>delay</span>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>(1_000)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+204</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/hornetq/address_settings.rb', line 204</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span><span class='lparen'>(</span><span class='symbol'>:@address_settings</span><span class='comma'>,</span> <span class='symbol'>:redistribution_delay=</span><span class='rparen'>)</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="send_to_dla_on_no_route=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>send_to_dla_on_no_route=</strong>(val) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>If true, any message that can&#8217;t be routed to its destination
+will be sent to the <span class='object_link'><a href="#dead_letter_address%3D-instance_method" title="TorqueBox::Messaging::HornetQ::AddressSettings#dead_letter_address= (method)">#dead_letter_address=</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>val</span>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>(false)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'messaging/lib/torquebox/messaging/hornetq/address_settings.rb', line 119</span>
+
+<span class='id identifier rubyid_def_delegator'>def_delegator</span><span class='lparen'>(</span><span class='symbol'>:@address_settings</span><span class='comma'>,</span> <span class='symbol'>:setSendToDLAOnNoRoute</span><span class='comma'>,</span> <span class='symbol'>:send_to_dla_on_no_route=</span><span class='rparen'>)</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Thu Sep  3 11:01:29 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

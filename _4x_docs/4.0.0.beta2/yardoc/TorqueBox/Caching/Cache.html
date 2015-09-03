@@ -1,0 +1,2321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: TorqueBox::Caching::Cache
+  
+    &mdash; TorqueBox 4.0.0.beta2
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!TorqueBox/Caching/Cache.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (C)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../TorqueBox.html" title="TorqueBox (module)">TorqueBox</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Caching.html" title="TorqueBox::Caching (module)">Caching</a></span></span>
+     &raquo; 
+    <span class="title">Cache</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: TorqueBox::Caching::Cache
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">TorqueBox::Caching::Cache</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+      <dt class="r2">Extended by:</dt>
+      <dd class="r2">Forwardable</dd>
+      
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">caching/lib/torquebox/caching/cache.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Cache/Handler.html" title="TorqueBox::Caching::Cache::Handler (class)">Handler</a></span>
+    
+  
+</p>
+
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cache-instance_method" title="#cache (instance method)">- (org.infinispan.Cache) <strong>cache</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Accessor for the wrapped cache instance.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_listener-instance_method" title="#add_listener (instance method)">- (Object) <strong>add_listener</strong>(*types, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Infinispan&#8217;s cache notifications API is based on Java annotations, which can be awkward in JRuby (and Java, for that matter).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clear-instance_method" title="#clear (instance method)">- (void) <strong>clear</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Clear all entries from the cache.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#compare_and_set-instance_method" title="#compare_and_set (instance method)">- (true, false) <strong>compare_and_set</strong>(key, old_value, new_value, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Associate key to a new value only if it&#8217;s currently mapped to a specific value.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#configuration-instance_method" title="#configuration (instance method)">- (org.infinispan.configuration.cache.Configuration) <strong>configuration</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Get the cache&#8217;s configuration instance.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#contains_key%3F-instance_method" title="#contains_key? (instance method)">- (true, false) <strong>contains_key?</strong>(key) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Return true if cache contains the key.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#empty%3F-instance_method" title="#empty? (instance method)">- (true, false) <strong>empty?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Return true if cache contains no entries.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#entry_set-instance_method" title="#entry_set (instance method)">- (Set) <strong>entry_set</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Return a Set of Map.Entry instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#evict-instance_method" title="#evict (instance method)">- (void) <strong>evict</strong>(key) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Remove entry from the heap, but not persistent storage, so subsequent reads will cause it to be reloaded.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get-instance_method" title="#get (instance method)">- (Object) <strong>get</strong>(key) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Get the value associated with the key.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_listeners-instance_method" title="#get_listeners (instance method)">- (Array) <strong>get_listeners</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Get the cache&#8217;s active event listener instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Cache) <strong>initialize</strong>(cache, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Wraps a real Infinispan cache object with a slightly simpler interface.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#keys-instance_method" title="#keys (instance method)">- (Array) <strong>keys</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Get the keys in the cache.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">- (String) <strong>name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Get cache name.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#put-instance_method" title="#put (instance method)">- (Object) <strong>put</strong>(key, value, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Associate key to value in the cache.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#put_all-instance_method" title="#put_all (instance method)">- (void) <strong>put_all</strong>(map, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Put a map of entries into the cache.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#put_if_absent-instance_method" title="#put_if_absent (instance method)">- (Object) <strong>put_if_absent</strong>(key, value, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Associate key to value only if key doesn&#8217;t exist in cache.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remove-instance_method" title="#remove (instance method)">- (Object) <strong>remove</strong>(key) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Remove the entry associated with the key.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remove_listener-instance_method" title="#remove_listener (instance method)">- (void) <strong>remove_listener</strong>(listener) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Turn off a particular event listener.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#replace-instance_method" title="#replace (instance method)">- (Object) <strong>replace</strong>(key, value, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Associate key to value only if key exists in cache.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#size-instance_method" title="#size (instance method)">- (Fixnum) <strong>size</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Get the number of entries in the cache.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#values-instance_method" title="#values (instance method)">- (Array) <strong>values</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Get the values in the cache.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="TorqueBox::Caching::Cache (class)">Cache</a></span></tt>) <strong>initialize</strong>(cache, options = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Wraps a real Infinispan cache object with a slightly simpler
+interface. The wrapped cache is available via the <span class='object_link'><a href="#cache-instance_method" title="TorqueBox::Caching::Cache#cache (method)">#cache</a></span>
+accessor.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>cache</span>
+      
+      
+        <span class='type'>(<tt>org.infinispan.<span class='object_link'><a href="" title="TorqueBox::Caching::Cache (class)">Cache</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The wrapped cache</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Options for entry expiration</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:ttl</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>-1</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>milliseconds the entry will
+live before expiry</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:idle</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>-1</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>milliseconds after which an
+entry will expire if not accessed</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+35
+36
+37
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 35</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_cache'>cache</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='ivar'>@cache</span> <span class='op'>=</span> <span class='id identifier rubyid_cache'>cache</span>
+  <span class='ivar'>@options</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="cache=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="cache-instance_method">
+  
+    - (<tt>org.infinispan.<span class='object_link'><a href="" title="TorqueBox::Caching::Cache (class)">Cache</a></span></tt>) <strong>cache</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Accessor for the wrapped cache instance</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>org.infinispan.<span class='object_link'><a href="" title="TorqueBox::Caching::Cache (class)">Cache</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+262
+263
+264</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 262</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cache'>cache</span>
+  <span class='ivar'>@cache</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="add_listener-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add_listener</strong>(*types, &amp;block) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Infinispan&#8217;s cache notifications API is based on Java
+annotations, which can be awkward in JRuby (and Java, for that
+matter).</p>
+
+<p>This function provides the ability to map one or more symbols
+to a block that will be passed an
+<a href="https://docs.jboss.org/infinispan/6.0/apidocs/org/infinispan/notifications/cachelistener/event/package-summary.html" target="_parent" title="Infinispan Event">Infinispan Event</a> instance.</p>
+
+<p>Each symbol corresponds to an event type, i.e. one of the
+<a href="http://docs.jboss.org/infinispan/6.0/apidocs/org/infinispan/notifications/cachelistener/annotation/package-summary.html" target="_parent" title="Infinispan annotations">Infinispan annotations</a>:</p>
+
+<ul>
+  <li>:cache_entries_evicted</li>
+  <li>:cache_entry_activated</li>
+  <li>:cache_entry_created</li>
+  <li>:cache_entry_invalidated</li>
+  <li>:cache_entry_loaded</li>
+  <li>:cache_entry_modified</li>
+  <li>:cache_entry_passivated</li>
+  <li>:cache_entry_removed</li>
+  <li>:cache_entry_visited</li>
+  <li>:data_rehashed</li>
+  <li>:topology_changed</li>
+  <li>:transaction_completed</li>
+  <li>:transaction_registered</li>
+</ul>
+
+<p>The callbacks are synchronous, i.e. invoked on the thread acting on
+the cache. For longer running callbacks, use a queue or some sort of
+asynchronous channel.</p>
+
+<p>The return value is an array of listener objects corresponding
+to the requested event types, which will be a subset of those
+returned from the get_listeners method. These may be passed
+to the remove_listener method to turn off notifications.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+159
+160
+161
+162
+163</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 159</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_listener'>add_listener</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_types'>types</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_handler'>handler</span> <span class='op'>=</span> <span class='const'>Handler</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_listeners'>listeners</span> <span class='op'>=</span> <span class='id identifier rubyid_types'>types</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_type'>type</span><span class='op'>|</span> <span class='const'>Listener</span><span class='op'>::</span><span class='id identifier rubyid_listen'>listen</span><span class='lparen'>(</span><span class='id identifier rubyid_handler'>handler</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_listeners'>listeners</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_listener'>listener</span><span class='op'>|</span> <span class='ivar'>@cache</span><span class='period'>.</span><span class='id identifier rubyid_add_listener'>add_listener</span><span class='lparen'>(</span><span class='id identifier rubyid_listener'>listener</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="clear-instance_method">
+  
+    - (<tt>void</tt>) <strong>clear</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Clear all entries from the cache</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121
+122</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_clear'>clear</span>
+  <span class='ivar'>@cache</span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="compare_and_set-instance_method">
+  
+    - (<tt>true</tt>, <tt>false</tt>) <strong>compare_and_set</strong>(key, old_value, new_value, options = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Associate key to a new value only if it&#8217;s currently mapped to
+a specific value. Expiration options override any passed to
+the constructor.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the key</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>old_value</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the current value of the key</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>new_value</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the desired value of the key</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Options for entry expiration</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:ttl</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>-1</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>milliseconds the entry will
+live before expiry</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:idle</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>-1</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>milliseconds after which an
+entry will expire if not accessed</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>true if value successfully replaced</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+112
+113
+114</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 112</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_compare_and_set'>compare_and_set</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_old_value'>old_value</span><span class='comma'>,</span> <span class='id identifier rubyid_new_value'>new_value</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_cas_m'>cas_m</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='op'>*</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_old_value'>old_value</span><span class='comma'>,</span> <span class='id identifier rubyid_new_value'>new_value</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='id identifier rubyid_expiry'>expiry</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="configuration-instance_method">
+  
+    - (<tt>org.infinispan.configuration.<span class='object_link'><a href="../Caching.html#cache-class_method" title="TorqueBox::Caching.cache (method)">cache</a></span>.Configuration</tt>) <strong>configuration</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Get the cache&#8217;s configuration instance</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>org.infinispan.configuration.<span class='object_link'><a href="../Caching.html#cache-class_method" title="TorqueBox::Caching.cache (method)">cache</a></span>.Configuration</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+255</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 255</span>
+
+<span class='id identifier rubyid_def_delegator'>def_delegator</span> <span class='symbol'>:@cache</span><span class='comma'>,</span> <span class='symbol'>:cache_configuration</span><span class='comma'>,</span> <span class='symbol'>:configuration</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="contains_key?-instance_method">
+  
+    - (<tt>true</tt>, <tt>false</tt>) <strong>contains_key?</strong>(key) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Return true if cache contains the key</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+198</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 198</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span> <span class='symbol'>:@cache</span><span class='comma'>,</span> <span class='symbol'>:contains_key?</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="empty?-instance_method">
+  
+    - (<tt>true</tt>, <tt>false</tt>) <strong>empty?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Return true if cache contains no entries</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+184</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 184</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span> <span class='symbol'>:@cache</span><span class='comma'>,</span> <span class='symbol'>:empty?</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="entry_set-instance_method">
+  
+    - (<tt>Set</tt>) <strong>entry_set</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Return a Set of Map.Entry instances</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Set</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+191</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 191</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span> <span class='symbol'>:@cache</span><span class='comma'>,</span> <span class='symbol'>:entry_set</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="evict-instance_method">
+  
+    - (<tt>void</tt>) <strong>evict</strong>(key) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Remove entry from the heap, but not persistent storage, so
+subsequent reads will cause it to be reloaded</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+206</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 206</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span> <span class='symbol'>:@cache</span><span class='comma'>,</span> <span class='symbol'>:evict</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get</strong>(key) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Get the value associated with the key</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>nil if missing</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+170</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 170</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span> <span class='symbol'>:@cache</span><span class='comma'>,</span> <span class='symbol'>:get</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_listeners-instance_method">
+  
+    - (<tt>Array</tt>) <strong>get_listeners</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Get the cache&#8217;s active event listener instances</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+241</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 241</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span> <span class='symbol'>:@cache</span><span class='comma'>,</span> <span class='symbol'>:get_listeners</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="keys-instance_method">
+  
+    - (<tt>Array</tt>) <strong>keys</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Get the keys in the cache</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+227</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 227</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span> <span class='symbol'>:@cache</span><span class='comma'>,</span> <span class='symbol'>:keys</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="name-instance_method">
+  
+    - (<tt>String</tt>) <strong>name</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Get cache name</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+234</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 234</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span> <span class='symbol'>:@cache</span><span class='comma'>,</span> <span class='symbol'>:name</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="put-instance_method">
+  
+    - (<tt>Object</tt>) <strong>put</strong>(key, value, options = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Associate key to value in the cache. Expiration options
+override any passed to the constructor.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Options for entry expiration</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:ttl</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>-1</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>milliseconds the entry will
+live before expiry</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:idle</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>-1</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>milliseconds after which an
+entry will expire if not accessed</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the old value, if any</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 51</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_put_m'>put_m</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='op'>*</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='id identifier rubyid_expiry'>expiry</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="put_all-instance_method">
+  
+    - (<tt>void</tt>) <strong>put_all</strong>(map, options = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Put a map of entries into the cache. Expiration options
+override any passed to the constructor.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>map</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Options for entry expiration</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:ttl</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>-1</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>milliseconds the entry will
+live before expiry</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:idle</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>-1</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>milliseconds after which an
+entry will expire if not accessed</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+65
+66
+67</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 65</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_put_all'>put_all</span><span class='lparen'>(</span><span class='id identifier rubyid_map'>map</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_putall_m'>putall_m</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='op'>*</span><span class='lbracket'>[</span><span class='id identifier rubyid_map'>map</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='id identifier rubyid_expiry'>expiry</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="put_if_absent-instance_method">
+  
+    - (<tt>Object</tt>) <strong>put_if_absent</strong>(key, value, options = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Associate key to value only if key doesn&#8217;t exist in cache.
+Expiration options override any passed to the constructor.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Options for entry expiration</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:ttl</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>-1</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>milliseconds the entry will
+live before expiry</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:idle</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>-1</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>milliseconds after which an
+entry will expire if not accessed</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>nil on success, otherwise the old value</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+80
+81
+82</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 80</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_put_if_absent'>put_if_absent</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_putif_m'>putif_m</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='op'>*</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='id identifier rubyid_expiry'>expiry</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="remove-instance_method">
+  
+    - (<tt>Object</tt>) <strong>remove</strong>(key) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Remove the entry associated with the key</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the old value or nil, if key is missing</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+213</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 213</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span> <span class='symbol'>:@cache</span><span class='comma'>,</span> <span class='symbol'>:remove</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="remove_listener-instance_method">
+  
+    - (<tt>void</tt>) <strong>remove_listener</strong>(listener) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Turn off a particular event listener</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+248</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 248</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span> <span class='symbol'>:@cache</span><span class='comma'>,</span> <span class='symbol'>:remove_listener</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="replace-instance_method">
+  
+    - (<tt>Object</tt>) <strong>replace</strong>(key, value, options = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Associate key to value only if key exists in cache. Expiration
+options override any passed to the constructor.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Options for entry expiration</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:ttl</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>-1</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>milliseconds the entry will
+live before expiry</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:idle</span>
+          <span class="type">(<tt>Number</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>-1</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>milliseconds after which an
+entry will expire if not accessed</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the old value on success, otherwise nil</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+95
+96
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 95</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_replace'>replace</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_replace_m'>replace_m</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='op'>*</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='id identifier rubyid_expiry'>expiry</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="size-instance_method">
+  
+    - (<tt>Fixnum</tt>) <strong>size</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Get the number of entries in the cache</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+177</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 177</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span> <span class='symbol'>:@cache</span><span class='comma'>,</span> <span class='symbol'>:size</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="values-instance_method">
+  
+    - (<tt>Array</tt>) <strong>values</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Get the values in the cache</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+220</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'caching/lib/torquebox/caching/cache.rb', line 220</span>
+
+<span class='id identifier rubyid_def_delegators'>def_delegators</span> <span class='symbol'>:@cache</span><span class='comma'>,</span> <span class='symbol'>:values</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Thu Sep  3 11:01:26 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>
