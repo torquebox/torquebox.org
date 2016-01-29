@@ -64,7 +64,7 @@ renderer = {
     }
 
 
-    if ( label == '1_8' ) {
+    if ( label == '1_9' ) {
       self.populate_artifacts( build );
       self.update_artifacts( build );
     }
@@ -213,15 +213,22 @@ renderer = {
   },
 
   build_sha1: function(build) {
-    if ( build.actions && build.actions.length >= 3 && build.actions[2].lastBuiltRevision ) {
-      return build.actions[2].lastBuiltRevision.SHA1;
+    if (build.actions) {
+      return build.actions.reduce(function(found, action) {
+        if (!found && action.lastBuiltRevision) {
+          return action.lastBuiltRevision.SHA1
+        } else {
+          return found
+        }
+      }, null)
     }
     return null;
   },
 
   build_sha1_short: function(build) {
-    if ( build.actions && build.actions.length >= 3 ) {
-      return build.actions[2].lastBuiltRevision.SHA1.substring(0,8);
+    var sha = this.build_sha1(build)
+    if (sha) {
+      return sha.substring(0,8);
     }
     return null;
   },
@@ -241,8 +248,8 @@ renderer = {
 };
 
 j = new Jenkins( renderer, 'http://projectodd.ci.cloudbees.com', 'torquebox-incremental', [
-                   [ 'label=m1.large,ruby_compat_version=1.8', '1_8' ],
-                   [ 'label=m1.large,ruby_compat_version=1.9', '1_9' ],
-                   [ 'label=m1.large,ruby_compat_version=2.0', '2_0' ]
+                   [ 'ruby_compat_version=1.8', '1_8' ],
+                   [ 'ruby_compat_version=1.9', '1_9' ],
+                   [ 'ruby_compat_version=2.0', '2_0' ]
                  ] );
 

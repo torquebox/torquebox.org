@@ -13,7 +13,7 @@ Jenkins.prototype = {
   initialize: function() {
     var self = this;
     $.ajax( { 
-      url: self.job_url('api/json?depth=1' ),
+      url: self.job_url('api/json?tree=builds[*[*[*]]],lastSuccessfulBuild[*[*[*]]]' ),
       jsonp: 'jsonp',
       dataType: 'jsonp',
       type: 'GET',
@@ -31,32 +31,26 @@ Jenkins.prototype = {
       self.renderer.add_build( build );
     } );
 
-    $.each( self.matrix, function(i, matrix_leg ) {
-      $.ajax( { 
-        url: self.job_url( '/' + matrix_leg[0] + '/api/json?depth=1' ),
-        jsonp: 'jsonp',
-        dataType: 'jsonp',
-        type: 'GET',
-        context: self,
-        async: false,
-        success: self.handle_matrix_leg_jsonp,
-      } );
-    } );
+    $.each(data.builds, function(i, build) {
+      $.each(build.runs || [], function(i, run) {
+        if (run.number == build.number) {
+          self.handle_matrix_leg(run);
+        }
+      });
+    });
   },
 
-  handle_matrix_leg_jsonp: function(data) {
+  handle_matrix_leg: function(data) {
     var self = this;
 
     var label = '';
-    $.each( self.matrix, function(i,matrix_leg) {
-      if ( matrix_leg[0] == data.name ) {
+    $.each(self.matrix, function(i,matrix_leg) {
+      if (data.url.indexOf(matrix_leg[0]) >= 0) {
         label = matrix_leg[1];
       }
-    } );
+    });
 
-    $.each( data.builds, function(i, build) {
-      self.renderer.add_matrix_build( build, label );
-    } );
+    self.renderer.add_matrix_build(data, label);
   },
 
   locate_artifact: function(build, filename) {
