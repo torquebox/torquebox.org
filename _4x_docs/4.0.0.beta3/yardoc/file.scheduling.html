@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+<title>
+  File: Scheduling Guide
+  
+    &mdash; TorqueBox 4.0.0.beta3
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.scheduling.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: Scheduling Guide</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'>
+<h1 id="scheduling-asynchronous-jobs">Scheduling Asynchronous Jobs</h1>
+
+<p>TorqueBox provides support for registering jobs to execute
+asynchronously on a schedule.</p>
+
+<p>The API for scheduling all resides within the
+<a href="TorqueBox/Scheduling.html">Scheduling module</a>, though most of your
+interaction will be with one method:
+<a href="TorqueBox/Scheduling/Scheduler.html#schedule-class_method">Scheduler.schedule</a>.</p>
+
+<h2 id="the-gem">The gem</h2>
+
+<p>Scheduled jobs are provided by the <code>torquebox-scheduling</code> gem, and can
+be used independently of other TorqueBox services.</p>
+
+<h2 id="scheduling-jobs">Scheduling Jobs</h2>
+
+<p>A job is basically a zero-arity block that will be executed based on a
+schedule you provide. To schedule a job, provide an id, a schedule,
+and your block to <code>Scheduler.schedule</code>:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Scheduling</span><span class='op'>::</span><span class='const'>Scheduler</span><span class='period'>.</span><span class='id identifier rubyid_schedule'>schedule</span><span class='lparen'>(</span><span class='symbol'>:job1</span><span class='comma'>,</span> <span class='label'>every:</span> <span class='int'>1000</span><span class='rparen'>)</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>I fire every second</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</code></pre>
+
+<p>Jobs can be scheduled with a delayed start, to execute a limited
+number of times or up until a stop time, or scheduled based on a
+cron-like schedule. For more details on the available schedule
+options, see the
+<a href="TorqueBox/Scheduling/Scheduler.html#schedule-class_method">Scheduler.schedule docs</a>.</p>
+
+<p>Jobs can be scheduled at runtime, from anywhere within an application.</p>
+
+<h3 id="using-activesupport-extensions">Using ActiveSupport extensions</h3>
+
+<p>If you are using
+<a href="https://rubygems.org/gems/activesupport">ActiveSupport</a>, you can use
+its numeric extensions with any of the options that take a time
+period:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Scheduling</span><span class='op'>::</span><span class='const'>Scheduler</span><span class='period'>.</span><span class='id identifier rubyid_schedule'>schedule</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>my-job</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>in:</span> <span class='int'>5</span><span class='period'>.</span><span class='id identifier rubyid_minutes'>minutes</span><span class='comma'>,</span> <span class='label'>every:</span> <span class='int'>1</span><span class='period'>.</span><span class='id identifier rubyid_second'>second</span><span class='rparen'>)</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>I fire every second, starting in 5 minutes</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h3 id="in-container-behavior">In-container behavior</h3>
+
+<p>When used inside a <a href="file.wildfly.html">WildFly</a> cluster, jobs are
+highly-available singletons by default. This means that if a job with
+the same id is scheduled on multiple nodes, it will only initially run
+on the first node where it fires. If that node goes down, one of the
+other nodes where that same job is scheduled will automatically take
+over.</p>
+
+<p>If you want to schedule a job with the same id on all nodes that does
+actually need to run on every node, you can disable the singleton
+behavior as part of the schedule for the job:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Scheduling</span><span class='op'>::</span><span class='const'>Scheduler</span><span class='period'>.</span><span class='id identifier rubyid_schedule'>schedule</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>every-node</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>every:</span> <span class='int'>1000</span><span class='comma'>,</span> <span class='label'>singleton:</span> <span class='kw'>false</span><span class='rparen'>)</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>I fire on every node where I'm scheduled</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h2 id="unscheduling-jobs">Unscheduling Jobs</h2>
+
+<p>To unschedule a previously scheduled job, you have two options:</p>
+
+<p>1) call <a href="TorqueBox/Scheduling/Scheduler.html#unschedule-class_method">Scheduler.unschedule</a>
+   with the same <code>id</code> you used when scheduling the job:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Scheduling</span><span class='op'>::</span><span class='const'>Scheduler</span><span class='period'>.</span><span class='id identifier rubyid_unschedule'>unschedule</span><span class='lparen'>(</span><span class='symbol'>:job1</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>2) call <a href="TorqueBox/Scheduling/Job.html#unschedule-instance_method">Job#unschedule</a>
+   on the job object returned by <code>Scheduler.schedule</code>:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_job'>job</span> <span class='op'>=</span> <span class='const'>TorqueBox</span><span class='op'>::</span><span class='const'>Scheduling</span><span class='op'>::</span><span class='const'>Scheduler</span><span class='period'>.</span><span class='id identifier rubyid_schedule'>schedule</span><span class='lparen'>(</span><span class='symbol'>:job1</span><span class='comma'>,</span> <span class='label'>every:</span> <span class='int'>1000</span><span class='rparen'>)</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>I fire every second</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+
+<span class='id identifier rubyid_job'>job</span><span class='period'>.</span><span class='id identifier rubyid_unschedule'>unschedule</span>
+</code></pre>
+
+<p>Unscheduling a job will only unschedule it from the current node in a cluster.</p>
+</div></div>
+
+    <div id="footer">
+  Generated on Fri Jun 17 12:35:58 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+<title>
+  File: README
+  
+    &mdash; TorqueBox 4.0.0.beta3
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.README.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1 id="torquebox-400beta3">TorqueBox 4.0.0.beta3</h1>
+
+<p>This is TorqueBox 4 and represents a substantial change in direction
+from previous TorqueBox releases. We&#8217;re moving to a lightweight,
+embedded model that runs without any Java application server, at the
+expense of a few of the more enterprisy features. For users that want
+to run in a Java application server or need those enterprisy features,
+we&#8217;ll provide a way to take your TorqueBox application and run it
+unmodified on a stock <a href="http://wildfly.org/">WildFly</a> installation.</p>
+
+<h2 id="documentation">Documentation</h2>
+
+<p>We have various guides available to help with installation, migration,
+usage, and deployment of TorqueBox 4.</p>
+
+<ul>
+  <li><a href="file.installation.html">Installation Guide</a></li>
+  <li><a href="file.migration.html">Migration Guide</a></li>
+  <li><a href="file.web.html">Web Guide</a></li>
+  <li><a href="file.messaging.html">Messaging Guide</a></li>
+  <li><a href="file.scheduling.html">Scheduling Guide</a></li>
+  <li><a href="file.caching.html">Caching Guide</a></li>
+  <li><a href="file.jar.html">Executable Jar Guide</a></li>
+  <li><a href="file.wildfly.html">Wildfly Guide</a></li>
+</ul>
+
+<h2 id="quickstart-for-running-torquebox">Quickstart for running TorqueBox</h2>
+
+<h3 id="requirements">Requirements</h3>
+
+<p>TorqueBox requires JRuby 1.7.x (in 1.9 or 2.0 mode) or JRuby 9.x.x
+running on Java 7+. The code has only been tested on JRuby 1.7.6 and
+higher but should work on earlier versions.</p>
+
+<h3 id="installation">Installation</h3>
+
+<p>Read the <a href="file.installation.html">Installation Guide</a> for installation
+details.</p>
+
+<h3 id="running-directly">Running directly</h3>
+
+<p>From inside your Rack application&#8217;s root directory:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_torquebox'>torquebox</span> <span class='id identifier rubyid_run'>run</span>
+</code></pre>
+
+<h3 id="rails">Rails</h3>
+
+<p>Ensure <code>torquebox</code> is in your <code>Gemfile</code>, then:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rails'>rails</span> <span class='id identifier rubyid_s'>s</span> <span class='id identifier rubyid_torquebox'>torquebox</span>
+</code></pre>
+
+<h3 id="rack">Rack</h3>
+
+<pre class="code ruby"><code class="ruby">rackup -s torquebox
+</code></pre>
+
+<h2 id="motivation">Motivation</h2>
+
+<p>We want a smaller, more modular TorqueBox that is easier to get
+started with, embeddable, and lets users bring in additional
+functionality as-needed. More details of our motivation and community
+feedback are expressed in <a href="http://markmail.org/thread/4ffelg3qklycwhfo">an email thread</a> from the
+torquebox-user mailing list.</p>
+
+<h2 id="technology">Technology</h2>
+
+<p>TorqueBox runs on JRuby and sits on top of a new lightweight, pluggable,
+polyglot server codenamed <a href="https://github.com/projectodd/wunderboss">WunderBoss</a> (at least for
+now). All the new features of TorqueBox will be implemented in
+WunderBoss then exposed via a Ruby API in the TorqueBox project. This
+lets other projects, in other languages, reuse the same functionality
+by creating small language-specific API wrappers.</p>
+
+<p>The web portion of WunderBoss uses <a href="http://undertow.io/">JBoss Undertow</a>, which
+is also the same web server used in <a href="http://wildfly.org/">WildFly</a> (the successor
+to JBoss Application Server).</p>
+
+<p>We aim to reuse the same underlying components as WildFly so that
+TorqueBox applications can run on top of WildFly in addition to
+running without it, to give users an option between a full-blown Java
+application server and a very lightweight, minimal server.</p>
+
+<h2 id="current-status">Current status</h2>
+
+<p>Right now TorqueBox 4 provides a high-performance Rack implementation
+for web applications and basic APIs for messaging, caching, and
+scheduled jobs. The Rack support is considered production-ready, but
+the messaging, caching, and scheduling implementations are still in a
+bit more flux.</p>
+
+<h2 id="roadmap">Roadmap</h2>
+
+<p>We&#8217;re developing TorqueBox 4 while also maintaining TorqueBox 3, and
+we expect it to take some time before TorqueBox 4 comes out of alpha
+and betas and into a final release.</p>
+
+<h2 id="building-torquebox">Building TorqueBox</h2>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_install'>install</span>
+<span class='id identifier rubyid_rake'>rake</span> <span class='id identifier rubyid_build'>build</span>
+</code></pre>
+
+<h2 id="running-specs">Running specs</h2>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rake'>rake</span> <span class='id identifier rubyid_spec'>spec</span>
+</code></pre>
+
+<h2 id="running-integration-tests">Running integration tests</h2>
+
+<p>Make sure <code>phantomjs</code> is available on your $PATH -
+http://phantomjs.org/download.html.</p>
+
+<p>The first time you run the integration tests may take longer as
+bundler gets invoked for each test application to install its
+dependencies. Subsequent runs with the same JRuby installation should
+be faster.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_cd'>cd</span> <span class='id identifier rubyid_integration'>integration</span><span class='op'>-</span><span class='id identifier rubyid_tests'>tests</span>
+<span class='id identifier rubyid_rake'>rake</span> <span class='id identifier rubyid_spec'>spec</span>
+</code></pre>
+
+<h2 id="running-a-single-integration-test">Running a single integration test</h2>
+
+<pre class="code ruby"><code class="ruby">cd integration-tests
+SPEC=spec/basic_sinatra_spec.rb rake spec
+</code></pre>
+
+<h2 id="running-specs-with-more-verbose-output">Running specs with more verbose output</h2>
+
+<pre class="code ruby"><code class="ruby">DEBUG=true rake spec
+</code></pre>
+
+<h2 id="running-all-integration-test-variants-disk-jar-wildfly">Running all integration test variants (disk, jar, wildfly)</h2>
+
+<p>There are several variants of integration tests. Each runs the same
+applications and same specs, but packaged in different ways. This
+takes quite a bit longer, but is what CI runs.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rake'>rake</span> <span class='label'>spec:</span><span class='id identifier rubyid_all'>all</span>
+</code></pre>
+
+<h2 id="installing-from-source">Installing from source</h2>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rake'>rake</span> <span class='id identifier rubyid_install'>install</span>
+</code></pre>
+
+<h2 id="releasing">Releasing</h2>
+
+<h3 id="preparation">Preparation</h3>
+
+<p>TorqueBox 4 is released from the <code>master</code> branch of
+<a href="http://github.com/torquebox/torquebox-release">torquebox/torquebox-release</a>.</p>
+
+<p>Set up this repository as an additional remote for your workspace:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_git'>git</span> <span class='id identifier rubyid_remote'>remote</span> <span class='id identifier rubyid_add'>add</span> <span class='id identifier rubyid_release'>release</span> <span class='id identifier rubyid_git'>git</span><span class='ivar'>@github</span><span class='period'>.</span><span class='id identifier rubyid_com'>com</span><span class='symbol'>:torquebox</span><span class='op'>/</span><span class='id identifier rubyid_torquebox'>torquebox</span><span class='op'>-</span><span class='id identifier rubyid_release'>release</span><span class='period'>.</span><span class='id identifier rubyid_git'>git</span>
+</code></pre>
+
+<p>Ensure that the <code>master</code> branch has the contents you wish to release.  Using the <code>-f</code>
+flag to force is allowed in this case, since the <strong>torquebox-release</strong> repository is not
+a public-facing human-cloneable repository.</p>
+
+<pre class="code ruby"><code class="ruby">git push release master:master -f
+</code></pre>
+
+<h3 id="perform-the-build">Perform the build</h3>
+
+<p>Using the <a href="http://projectodd.ci.cloudbees.com/">build system</a>, select
+the <strong>torquebox4-release</strong> job, entering in the branch to release from
+(usually &#8216;master&#8217;), the version to release, and the next version
+after release.</p>
+
+<p>If something goes wrong in the release job and it needs to run again,
+be sure to reset the torquebox-release repository with the correct code first:</p>
+
+<pre class="code ruby"><code class="ruby">git push release master:master -f
+</code></pre>
+
+<h3 id="deploy-rubygems">Deploy RubyGems</h3>
+
+<p>After the job complete successfully, the generated RubyGems will need
+to be manually deployed. Download them from the job and push each
+using:</p>
+
+<pre class="code ruby"><code class="ruby">gem push &lt;gem_name&gt;.gem
+</code></pre>
+
+<p>You&#8217;ll have to be an owner of the gems to do this. Bug bbrowning,
+bobmcw, or tcrawley if you are not.</p>
+
+<h3 id="publish-the-release-api-documentation">Publish the release API documentation</h3>
+
+<p>The release API docs are built by the release job on CI. Download
+those and put them a _4x_docs/<version>/yardoc folder in the
+torquebox.org git repo.</version></p>
+
+<h3 id="push-changes-from-the-release-repository-to-the-official-repository">Push changes from the release repository to the official repository</h3>
+
+<pre class="code ruby"><code class="ruby">git fetch release --tags
+git merge release/master
+git push origin master
+git push origin &lt;release_tag&gt;
+</code></pre>
+
+<h3 id="release-the-project-in-jira">Release the project in JIRA</h3>
+
+<h3 id="announce-it">Announce it</h3>
+
+<h4 id="post-it-on-torqueboxorg">Post it on <code>torquebox.org</code></h4>
+
+<h4 id="notify-the-torquebox-users-list">Notify the <code>torquebox-users@</code> list</h4>
+
+<h4 id="tweet-it">Tweet it.</h4>
+
+<h4 id="set-the-topic-in-torquebox-irc-channel-using-chanserv-if-you-can">Set the /topic in #torquebox IRC channel using ChanServ (if you can).</h4>
+
+</div></div>
+
+    <div id="footer">
+  Generated on Fri Jun 17 12:35:58 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>
