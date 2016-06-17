@@ -4,6 +4,16 @@
     Download
 
   %table.downloads
+    %tr.4x
+      - release = site.fourx_releases.first
+      - announcement = site.posts.find{|e| e.layout=='release' && e.version == release.version}
+      %th
+        %a{:href=>announcement.url}
+          #{release.version}
+      %td
+        &nbsp;
+      %td
+        &nbsp;
     %tr.stable
       - release = site.releases.first
       %th
@@ -19,20 +29,3 @@
         |
         %a{:href=>"/documentation/#{release.version}"}
           HTML
-    %tr.incremental
-      %th
-        %a{:href=>'/builds'}
-          Incremental
-      %td
-        &nbsp;
-      %td
-        %a{:href=>'/builds/torquebox-dist-bin.zip'}
-          ZIP
-        |
-        %a{:href=>'/builds/torquebox-docs.pdf'}
-          PDF
-        |
-        %a{:href=>'/builds/html-docs/'}
-          HTML
-
-

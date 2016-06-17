@@ -729,8 +729,8 @@ form {
     }
   }
 
-  #latest-release { margin-top: 40px; }
-  #latest-release, #incremental-release {
+  #latest-release { margin-top: 5px; }
+  #latest-release, #incremental-release, #latest-fourx-release {
     text-align: right;
     p {
       line-height: 1em;
@@ -742,7 +742,8 @@ form {
     }
     h2 { 
       font-size: 140%; 
-      text-align: left;
+      text-align: center;
+      margin-bottom: 0em;
     }
     #download-link {
       font-weight: bold;
@@ -753,6 +754,7 @@ form {
       text-align: center;
     }
     .details {
+      margin-bottom: 2em;
       th {
         text-align: right;
         border-bottom: 1px solid #111;

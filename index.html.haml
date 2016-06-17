@@ -25,14 +25,15 @@ priority: 1.0
           load-balancing and high-availability is included right out-of-the-box. 
     .right-column
       #latest-release
-        - announcement = site.posts.find{|e| e.layout=='release' && e.version == site.releases.first.version}
+        - release = site.releases.first
+        - announcement = site.posts.find{|e| e.layout=='release' && e.version == release.version}
         .download
-          %h2 Latest Release: #{site.releases.first.version}
+          %h2 TorqueBox #{release.version}
           %table.details
             %tr
               %th Download
               %td
-                %a{:href=>site.releases.first.urls.dist_zip} #{site.releases.first.version}
+                %a{:href=>release.urls.dist_zip} #{release.version}
             - if ( announcement )
               %tr.release_date
                 %th
@@ -43,16 +44,35 @@ priority: 1.0
               %th
                 Size
               %td
-                ZIP archive, #{site.releases.first.dist_size}mb
+                #{release.dist_size}mb
             %tr.links
               %td{:colspan=>2}
                 - if announcement
                   %a{:href=>announcement.url} Announcement
                   |
-                %a{:href=>"/documentation/#{site.releases.first.version}/"} Documentation
-                - unless site.releases.first.urls.getting_started.browse.empty?
+                %a{:href=>"/documentation/#{release.version}/"} Documentation
+                - unless release.urls.getting_started.browse.empty?
                   <br/>
-                  %a{:href=>site.releases.first.urls.getting_started.browse} Getting Started Guide
+                  %a{:href=>release.urls.getting_started.browse} Getting Started Guide
+      #latest-fourx-release
+        - release = site.fourx_releases.first
+        - announcement = site.posts.find{|e| e.layout=='release' && e.version == release.version}
+        .download
+          %h2 TorqueBox #{release.version}
+          %table.details
+            %tr
+            - if ( announcement )
+              %tr.release_date
+                %th
+                  Release Date
+                %td
+                  #{announcement.date.strftime( '%d %B %Y' )}
+            %tr.links
+              %td{:colspan=>2}
+                - if announcement
+                  %a{:href=>announcement.url} Announcement
+                  |
+                %a{:href=>"/documentation/#{release.version}/yardoc/"} Documentation
   #middle-row
     %a{:href=>'/features'}
       %img#stack{:src=>"/images/stack.png"}
