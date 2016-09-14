@@ -156,10 +156,7 @@ renderer = {
             ),
             $( '<td class="binary"/>' ),
             $( '<td class="docs"/>' ),
-            $( '<td class="git"/>' ),
-            $( '<td rowspan="2" class="matrix 1_8 matrix-unknown"/>' ),
-            $( '<td rowspan="2" class="matrix 1_9 matrix-unknown"/>' ),
-            $( '<td rowspan="2" class="matrix 2_0 matrix-unknown"/>' )
+            $( '<td class="git"/>' )
           );
 
     if ( self.build_sha1( build ) ) {
@@ -185,13 +182,29 @@ renderer = {
     );
 
     if ( build.result == 'FAILURE' ) {
+      row.addClass( 'build-failure' );
+      details_row.addClass( 'build-failure' );
       if ( build.culprits.length > 0 ) {
         names = $.map( build.culprits, function(each,i) {
           return each.fullName;
         } );
         details_row.find( 'td' ).append( "Possible culprits: " + names.join( ', ' ) );
       }
+    } else if ( build.result == 'SUCCESS' ) {
+      row.addClass( 'build-success' );
+      details_row.addClass( 'build-success' );
+    } else if ( build.result == 'ABORTED' ) {
+      row.addClass( 'build-aborted' );
+      details_row.addClass( 'build-aborted' );
+      row.find( 'td *' ).hide();
+      row.find( 'td .number' ).show();
+      row.find( 'td .number a' ).show();
+      $( '.build-' + build.number + '.build-details td *' ).hide();
+      $( '.build-' + build.number + '.build-details' ).addClass( 'hidden' );
     }
+
+    self.populate_artifacts( build );
+    self.update_artifacts( build );
 
     if ( build.building ) {
       row.addClass( 'build-building' );
@@ -247,9 +260,5 @@ renderer = {
 
 };
 
-j = new Jenkins( renderer, 'http://projectodd.ci.cloudbees.com', 'torquebox-incremental', [
-                   [ 'ruby_compat_version=1.8', '1_8' ],
-                   [ 'ruby_compat_version=1.9', '1_9' ],
-                   [ 'ruby_compat_version=2.0', '2_0' ]
-                 ] );
+j = new Jenkins( renderer, 'http://projectodd.ci.cloudbees.com', 'torquebox-incremental', [] );
 
