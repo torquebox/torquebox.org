@@ -10,6 +10,9 @@ renderer = {
       $( '#builds' ).append( row[i] );
     } );
 
+    self.populate_artifacts( build );
+    self.update_artifacts( build );
+
     if ( self.lastSuccessfulBuild && ( self.lastSuccessfulBuild.number == build.number ) ) {
       $( '#latest-stable' ).append( row[0].clone() );
     }
@@ -202,9 +205,6 @@ renderer = {
       $( '.build-' + build.number + '.build-details td *' ).hide();
       $( '.build-' + build.number + '.build-details' ).addClass( 'hidden' );
     }
-
-    self.populate_artifacts( build );
-    self.update_artifacts( build );
 
     if ( build.building ) {
       row.addClass( 'build-building' );
